@@ -1,0 +1,12 @@
+{
+  "version": 2,
+  "dgSpecHash": "idyhF1Fxnk80rlyTfyRIeEbRDOaOS/OqVnN8XcUOVTpu6WtZIi1ktHNWGspuhb+3HQIWmQ/+QpW+RarE+jHlKg==",
+  "success": true,
+  "projectFilePath": "D:\\Projects\\ReactShop\\ReactShop.Domain\\ReactShop.Domain.csproj",
+  "expectedPackageFiles": [
+    "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder\\microsoft.netcore.platforms\\1.1.0\\microsoft.netcore.platforms.1.1.0.nupkg.sha512",
+    "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder\\netstandard.library\\2.0.3\\netstandard.library.2.0.3.nupkg.sha512",
+    "C:\\Users\\m.mamonov\\.nuget\\packages\\system.componentmodel.annotations\\5.0.0\\system.componentmodel.annotations.5.0.0.nupkg.sha512"
+  ],
+  "logs": []
+}

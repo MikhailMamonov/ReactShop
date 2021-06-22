@@ -1,0 +1,5 @@
+D:\Projects\ReactShop\ReactShop.Domain\bin\Debug\netstandard2.0\ReactShop.Domain.deps.json
+D:\Projects\ReactShop\ReactShop.Domain\bin\Debug\netstandard2.0\ReactShop.Domain.dll
+D:\Projects\ReactShop\ReactShop.Domain\obj\Debug\netstandard2.0\ReactShop.Domain.csprojAssemblyReference.cache
+D:\Projects\ReactShop\ReactShop.Domain\obj\Debug\netstandard2.0\ReactShop.Domain.AssemblyInfoInputs.cache
+D:\Projects\ReactShop\ReactShop.Domain\obj\Debug\netstandard2.0\ReactShop.Domain.AssemblyInfo.cs
