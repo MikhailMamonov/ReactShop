@@ -3,7 +3,7 @@ using Microsoft.AspNetCore.Mvc;
 using ReactShop.Domain.DTOModels;
 using ReactShop.Domain.Entities;
 
-using ReactShop.Services;
+using ReactShop.Services.Interfaces;
 
 using System;
 using System.Collections.Generic;

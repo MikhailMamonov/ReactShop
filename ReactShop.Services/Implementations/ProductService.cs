@@ -2,6 +2,7 @@
 
 using ReactShop.Domain;
 using ReactShop.Domain.Entities;
+using ReactShop.Services.Interfaces;
 
 using System;
 using System.Collections.Generic;
@@ -10,8 +11,6 @@ using System.Threading.Tasks;
 
 namespace ReactShop.Services.Implementations
 {
-    namespace ReactShop.Services
-    {
         public class ProductsService : IProductsService
         {
             private ApplicationDbContext _db;
@@ -88,4 +87,4 @@ namespace ReactShop.Services.Implementations
             }
         }
     }
-}
+

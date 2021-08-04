@@ -11,11 +11,12 @@ export const addUserThunk = (newUser) => {
     dispatch(onErrorAction(null));
     dispatch(toggleIsFetching(true));
     axios
-      .post("http://localhost/Users/AddUser", {
+      .post("https://localhost:44364/Users/AddUser", {
         userDTO: {
           id: newUser.id,
           displayName: newUser.displayName,
           email: newUser.email,
+          password: "",
         },
       })
       .then((res) => {

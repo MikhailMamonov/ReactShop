@@ -11,6 +11,8 @@ using Microsoft.Extensions.Hosting;
 using ReactShop.Domain;
 using ReactShop.Domain.Entities;
 
+using ReactShop.Web.Extensions;
+
 namespace ReactShop
 {
     public class Startup
@@ -26,7 +28,16 @@ namespace ReactShop
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddControllersWithViews();
+            services.AddServicesExtension();
 
+            services.AddCors(o => o.AddPolicy("MyPolicy", builder =>
+            {
+                builder.AllowAnyOrigin()
+                       .AllowAnyMethod()
+                       .AllowAnyHeader();
+            }));
+
+            
             // In production, the React files will be served from this directory
             services.AddSpaStaticFiles(configuration =>
             {
@@ -65,6 +76,7 @@ namespace ReactShop
                     pattern: "{controller}/{action=Index}/{id?}");
             });
 
+            app.UseCors();
             app.UseSpa(spa =>
             {
                 spa.Options.SourcePath = "clientapp";

@@ -12,7 +12,7 @@ using System.Threading.Tasks;
 
 namespace ReactShop.Services.Implementations
 {
-    class UsersService : IUsersService
+    public class UsersService : IUsersService
     {
         ApplicationDbContext _db;
         public UsersService(ApplicationDbContext db)
