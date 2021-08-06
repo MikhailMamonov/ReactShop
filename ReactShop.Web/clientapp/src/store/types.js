@@ -1,4 +1,5 @@
 export const ADD_USER_SUCCESS = "ADD_USER_SUCCESS";
+export const GET_USERS_SUCCESS = "GET_USERS_SUCCESS";
 export const USER_ERROR = "USER_ERROR";
 export const DELETE_USER = "DELETE_USER";
 export const TOGGLE_FETCHING = "TOGGLE_FETCHING";

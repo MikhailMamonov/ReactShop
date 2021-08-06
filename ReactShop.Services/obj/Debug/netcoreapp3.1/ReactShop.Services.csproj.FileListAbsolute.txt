@@ -111,7 +111,6 @@ D:\petProjects\ReactShop\ReactShop.Services\bin\Debug\netcoreapp3.1\runtimes\win
 D:\petProjects\ReactShop\ReactShop.Services\bin\Debug\netcoreapp3.1\runtimes\win\lib\netcoreapp3.0\System.Windows.Extensions.dll
 D:\petProjects\ReactShop\ReactShop.Services\bin\Debug\netcoreapp3.1\ReactShop.Domain.dll
 D:\petProjects\ReactShop\ReactShop.Services\bin\Debug\netcoreapp3.1\ReactShop.Domain.pdb
-D:\petProjects\ReactShop\ReactShop.Services\obj\Debug\netcoreapp3.1\ReactShop.Services.csprojAssemblyReference.cache
 D:\petProjects\ReactShop\ReactShop.Services\obj\Debug\netcoreapp3.1\ReactShop.Services.AssemblyInfoInputs.cache
 D:\petProjects\ReactShop\ReactShop.Services\obj\Debug\netcoreapp3.1\ReactShop.Services.AssemblyInfo.cs
 D:\petProjects\ReactShop\ReactShop.Services\obj\Debug\netcoreapp3.1\ReactShop.Services.csproj.CoreCompileInputs.cache
@@ -124,3 +123,7 @@ D:\petProjects\ReactShop\ReactShop.Services\bin\Debug\netcoreapp3.1\Azure.Identi
 D:\petProjects\ReactShop\ReactShop.Services\bin\Debug\netcoreapp3.1\Microsoft.Bcl.AsyncInterfaces.dll
 D:\petProjects\ReactShop\ReactShop.Services\bin\Debug\netcoreapp3.1\Microsoft.Identity.Client.Extensions.Msal.dll
 D:\petProjects\ReactShop\ReactShop.Services\bin\Debug\netcoreapp3.1\System.Text.Encodings.Web.dll
+D:\petProjects\ReactShop\ReactShop.Services\bin\Debug\netcoreapp3.1\ReactShop.Domain.deps.json
+D:\petProjects\ReactShop\ReactShop.Services\bin\Debug\netcoreapp3.1\ReactShop.Domain.runtimeconfig.json
+D:\petProjects\ReactShop\ReactShop.Services\bin\Debug\netcoreapp3.1\ReactShop.Domain.runtimeconfig.dev.json
+D:\petProjects\ReactShop\ReactShop.Services\obj\Debug\netcoreapp3.1\ReactShop.Services.csproj.AssemblyReference.cache

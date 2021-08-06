@@ -1,19 +1,15 @@
 import React, { Component } from "react";
-import { Form } from "react-bootstrap";
-import { Row } from "react-bootstrap";
-import { Col } from "react-bootstrap";
-import { Button } from "react-bootstrap";
-import { InputGroup } from "react-bootstrap";
-import { FormControl } from "react-bootstrap";
+
 
 export default function AddUser({ addUser }) {
   const [email, setEmail] = React.useState("");
   const [displayName, setDisplayName] = React.useState("");
+  const [password, setPassword] = React.useState("");
 
   const handleSubmit = (e) => {
     debugger;
     e.preventDefault();
-    addUser({ email, displayName });
+    addUser({ email, displayName, password });
   };
 
   return (
@@ -25,6 +21,15 @@ export default function AddUser({ addUser }) {
           id="email"
           value={email}
           onChange={(e) => setEmail(e.target.value)}
+        />
+      </div>
+      <div>
+        <label htmlFor="password">Password</label>
+        <input
+          type="password"
+          id="password"
+          value={password}
+          onChange={(e) => setPassword(e.target.value)}
         />
       </div>
       <div>

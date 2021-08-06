@@ -1,10 +1,8 @@
-import { ADD_USER_SUCCESS, USER_ERROR, TOGGLE_FETCHING } from "../types";
+import { ADD_USER_SUCCESS, USER_ERROR, TOGGLE_FETCHING, GET_USERS_SUCCESS } from "../types";
 
 const initialState = {
   users: [
-    { id: 1, displayName: "First item", email: "jiojioj@mail.ru" },
-    { id: 2, displayName: "Second item", email: "bjhbj@mail.ru" },
-  ],
+     ],
   isLoading: false,
   error: null,
 };
@@ -20,11 +18,17 @@ export default function users(state = initialState, action) {
           ...state.users,
           {
             id: users.length + 1,
-            displayName: action.payload.newUser.displayName,
-            email: action.payload.newUser.email,
+            displayName: action.payload.displayName,
+            email: action.payload.email,
+            password:action.payload.password
           },
         ],
       };
+    case GET_USERS_SUCCESS:
+      return {
+        ...state,
+        users: action.payload.users
+      }
     case USER_ERROR:
       return {
         ...state,

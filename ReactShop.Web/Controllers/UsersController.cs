@@ -1,18 +1,14 @@
 ﻿using AutoMapper;
-using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
-
 using ReactShop.Domain.DTOModels;
 using ReactShop.Domain.Entities;
 
 using ReactShop.Handling;
-using ReactShop.Services;
 using ReactShop.Services.Interfaces;
 
-using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Net;
+
 using System.Threading.Tasks;
 
 namespace ReactShop.Controllers
@@ -31,8 +27,8 @@ namespace ReactShop.Controllers
 
         }
 
-        [HttpPost]
-        public async Task<IActionResult> AddUser([FromForm] UserDTO userDTO)
+        [HttpPost("AddUser")]
+        public async Task<IActionResult> AddUser([FromBody] UserDTO userDTO)
         {
             if (userDTO == null)
             {
@@ -53,14 +49,14 @@ namespace ReactShop.Controllers
             };
 
             //var userEntity = _mapper
-            bool success = await _usersService.AddUserAsync(user);
-            if (success)
-                return Ok(userDTO);
+            var errorMessage = await _usersService.AddUserAsync(user, userDTO.Password);
+            if (errorMessage==null)
+                return Ok(user);
             else
                 throw new HttpResponseException(500 );
         }
 
-        [HttpGet]
+        [HttpGet("Users")]
         public async Task<IActionResult> Users()
         {
             var users = await _usersService.GetUsersAsync();

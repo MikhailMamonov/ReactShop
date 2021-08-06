@@ -17,6 +17,7 @@ const Users = (props) => (
               <Col>id:{u.id}</Col>
               <Col>DisplayName: {u.displayName}</Col>
               <Col>Email: {u.email}</Col>
+              <Col>Password: {u.password}</Col>
               <Col>
                 <Button onClick={() => props.onDeleteUserClick(u.id)}>
                   delete

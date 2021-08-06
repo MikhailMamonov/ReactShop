@@ -11,5 +11,6 @@ namespace ReactShop.Domain.Entities
     {
         public string DisplayName { get; set; }
         public IEnumerable<Order> Orders { get; set; }
+
     }
 }

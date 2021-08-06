@@ -4,7 +4,28 @@ import {
   USER_ERROR,
   TOGGLE_FETCHING,
   DELETE_USER,
+  GET_USERS_SUCCESS
 } from "../types";
+
+export const getUsersThunk = () => {
+  debugger;
+  return (dispatch) => {
+    dispatch(onErrorAction(null));
+    dispatch(toggleIsFetching(true));
+    axios
+      .get("https://localhost:44364/Users/Users")
+      .then((res) => {
+        debugger;
+        dispatch(getUsersAction(res.data));
+        dispatch(toggleIsFetching(false));
+      })
+      .catch((e) => {
+        debugger;
+        dispatch(onErrorAction(e.stack));
+        dispatch(toggleIsFetching(false));
+      });
+  };
+};
 
 export const addUserThunk = (newUser) => {
   return (dispatch) => {
@@ -12,12 +33,9 @@ export const addUserThunk = (newUser) => {
     dispatch(toggleIsFetching(true));
     axios
       .post("https://localhost:44364/Users/AddUser", {
-        userDTO: {
-          id: newUser.id,
           displayName: newUser.displayName,
           email: newUser.email,
-          password: "",
-        },
+          password: newUser.password,
       })
       .then((res) => {
         debugger;
@@ -53,8 +71,16 @@ export const deleteUserThunk = (id) => {
 const addUserAction = (newUser) => ({
   type: ADD_USER_SUCCESS,
   payload: {
-    ...newUser,
+    displayName: newUser.displayName,
+    password: newUser.password,
+    email: newUser.email  
   },
+});
+
+const getUsersAction = (users) => ({
+  type: GET_USERS_SUCCESS,
+  payload: {
+    users },
 });
 
 export const deleteUserAction = (id) => ({
