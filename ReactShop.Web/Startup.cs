@@ -7,11 +7,14 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
-
+using NLog;
 using ReactShop.Domain;
 using ReactShop.Domain.Entities;
-
+using ReactShop.LoggerService;
 using ReactShop.Web.Extensions;
+using ReactShop.Web.Handling.Extensions;
+using System;
+using System.IO;
 
 namespace ReactShop
 {
@@ -19,6 +22,7 @@ namespace ReactShop
     {
         public Startup(IConfiguration configuration)
         {
+            LogManager.LoadConfiguration(String.Concat(Directory.GetCurrentDirectory(), "/nlog.config"));
             Configuration = configuration;
         }
 
@@ -33,7 +37,10 @@ namespace ReactShop
                 .AddEntityFrameworkStores<ApplicationDbContext>();
 
             services.AddControllersWithViews();
-            services.AddServicesExtension();
+
+            services.ConfigureCustomServices();
+            services.ConfigureMapper();
+            services.ConfigureLoggerService();
 
             services.AddCors(o => o.AddPolicy("MyPolicy", builder =>
             {
@@ -53,9 +60,8 @@ namespace ReactShop
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
-        public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
+        public void Configure(IApplicationBuilder app, IWebHostEnvironment env, ILoggerManager logger)
         {
-
 
             if (env.IsDevelopment())
             {
@@ -69,6 +75,8 @@ namespace ReactShop
             }
 
             app.UseHttpsRedirection();
+
+            app.ConfigureExceptionHandler(logger);
             app.UseStaticFiles();
             app.UseSpaStaticFiles();
 

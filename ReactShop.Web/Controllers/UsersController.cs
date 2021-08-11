@@ -3,9 +3,9 @@ using Microsoft.AspNetCore.Mvc;
 using ReactShop.Domain.DTOModels;
 using ReactShop.Domain.Entities;
 
-using ReactShop.Handling;
+using ReactShop.LoggerService;
 using ReactShop.Services.Interfaces;
-
+using System;
 using System.Collections.Generic;
 using System.Linq;
 
@@ -18,50 +18,77 @@ namespace ReactShop.Controllers
     public class UsersController : Controller
     {
         private readonly IMapper _mapper;
+        private ILoggerManager _logger;
 
         IUsersService _usersService;
-        public UsersController(IUsersService usersService, IMapper mapper)
+        public UsersController(IUsersService usersService, IMapper mapper, ILoggerManager logger)
         {
             _usersService = usersService;
             _mapper = mapper;
-
+            _logger = logger;
         }
 
         [HttpPost("AddUser")]
         public async Task<IActionResult> AddUser([FromBody] UserDTO userDTO)
         {
-            if (userDTO == null)
+            try
             {
-                return BadRequest("User Object is null");
+                if (userDTO == null)
+                {
+                    _logger.LogError("User Object is null");
+                    return BadRequest("User Object is null");
+                }
+
+                if (!ModelState.IsValid)
+                {
+                    _logger.LogError("User Object is null");
+                    return BadRequest("Invalid model object");
+                }
+
+                var user = new User
+                {
+                    DisplayName = userDTO.DisplayName,
+                    UserName = userDTO.DisplayName,
+                    Email = userDTO.Email,
+                    PasswordHash = userDTO.Password
+                };
+
+                var errorMessage = await _usersService.AddUserAsync(user, userDTO.Password);
+                if (errorMessage == null)
+                {
+                    _logger.LogInfo($"\nUser Object added ${user}");
+                    return Ok(user);
+                }
+                else
+                {
+                    _logger.LogError(errorMessage);
+                    return StatusCode(500, errorMessage);
+                }
             }
-
-            if (!ModelState.IsValid)
-            {
-                return BadRequest("Invalid model object");
+            catch (Exception e) {
+                _logger.LogError($"{e.Message} -> {e.StackTrace}");
+                return StatusCode(500, e);
             }
-
-            var user = new User
-            {
-                DisplayName = userDTO.DisplayName,
-                UserName = userDTO.DisplayName,
-                Email = userDTO.Email,
-                PasswordHash = userDTO.Password
-            };
-
-            //var userEntity = _mapper
-            var errorMessage = await _usersService.AddUserAsync(user, userDTO.Password);
-            if (errorMessage==null)
-                return Ok(user);
-            else
-                throw new HttpResponseException(500 );
+            
         }
 
-        [HttpGet("Users")]
-        public async Task<IActionResult> Users()
+        [HttpGet("GetUsers")]
+        public async Task<IActionResult> GetUsers()
         {
-            var users = await _usersService.GetUsersAsync();
-            var usersDTO = _mapper.Map<List<UserDTO>>(users);
-            return Ok(usersDTO);
+            try
+            {
+                var users = await _usersService.GetUsersAsync();
+                _logger.LogInfo($"\n Getting list of users -> {users}");
+                var usersDTO = _mapper.Map<List<UserDTO>>(users);
+                return Ok(usersDTO);
+            }
+            catch (System.Exception e) 
+            {
+                var err = string.Join(System.Environment.NewLine, e.Message, e.StackTrace);
+                _logger.LogError(err);
+                return StatusCode(500, $"{e.Message} -> {e.StackTrace}"); 
+            }
+            
         }
 
 

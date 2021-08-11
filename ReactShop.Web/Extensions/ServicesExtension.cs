@@ -1,7 +1,7 @@
 ﻿using AutoMapper;
 
 using Microsoft.Extensions.DependencyInjection;
-
+using ReactShop.LoggerService;
 using ReactShop.Services.Implementations;
 using ReactShop.Services.Interfaces;
 
@@ -14,11 +14,14 @@ namespace ReactShop.Web.Extensions
 {
     public static class ServicesExtension
     {
-        public static void AddServicesExtension(this IServiceCollection services) 
+        public static void ConfigureCustomServices(this IServiceCollection services) 
         {
             services.AddTransient<IUsersService, UsersService>();
-            services.AddTransient<IProductsService, ProductsService>();
+            services.AddTransient<IProductsService, ProductsService>();                     
+        }
 
+        public static void ConfigureMapper(this IServiceCollection services)
+        {
             // Auto Mapper Configurations
             var mapperConfig = new MapperConfiguration(mc =>
             {
@@ -27,6 +30,11 @@ namespace ReactShop.Web.Extensions
 
             IMapper mapper = mapperConfig.CreateMapper();
             services.AddSingleton(mapper);
+        }
+
+        public static void ConfigureLoggerService(this IServiceCollection services)
+        {
+            services.AddSingleton<ILoggerManager, LoggerManager>();
         }
     }
 }

@@ -1,0 +1,2068 @@
+2021-08-10 10:44:24.7113 ERROR Login failed for user ''.
+   at Microsoft.Data.SqlClient.SqlInternalConnection.OnError(SqlException exception, Boolean breakConnection, Action`1 wrapCloseInAction)
+   at Microsoft.Data.SqlClient.TdsParser.ThrowExceptionAndWarning(TdsParserStateObject stateObj, Boolean callerHasConnectionLock, Boolean asyncClose)
+   at Microsoft.Data.SqlClient.TdsParser.TryRun(RunBehavior runBehavior, SqlCommand cmdHandler, SqlDataReader dataStream, BulkCopySimpleResultSet bulkCopyHandler, TdsParserStateObject stateObj, Boolean& dataReady)
+   at Microsoft.Data.SqlClient.TdsParser.Run(RunBehavior runBehavior, SqlCommand cmdHandler, SqlDataReader dataStream, BulkCopySimpleResultSet bulkCopyHandler, TdsParserStateObject stateObj)
+   at Microsoft.Data.SqlClient.SqlInternalConnectionTds.CompleteLogin(Boolean enlistOK)
+   at Microsoft.Data.SqlClient.SqlInternalConnectionTds.AttemptOneLogin(ServerInfo serverInfo, String newPassword, SecureString newSecurePassword, Boolean ignoreSniOpenTimeout, TimeoutTimer timeout, Boolean withFailover)
+   at Microsoft.Data.SqlClient.SqlInternalConnectionTds.LoginNoFailover(ServerInfo serverInfo, String newPassword, SecureString newSecurePassword, Boolean redirectedUserInstance, SqlConnectionString connectionOptions, SqlCredential credential, TimeoutTimer timeout)
+   at Microsoft.Data.SqlClient.SqlInternalConnectionTds.OpenLoginEnlist(TimeoutTimer timeout, SqlConnectionString connectionOptions, SqlCredential credential, String newPassword, SecureString newSecurePassword, Boolean redirectedUserInstance)
+   at Microsoft.Data.SqlClient.SqlInternalConnectionTds..ctor(DbConnectionPoolIdentity identity, SqlConnectionString connectionOptions, SqlCredential credential, Object providerInfo, String newPassword, SecureString newSecurePassword, Boolean redirectedUserInstance, SqlConnectionString userConnectionOptions, SessionData reconnectSessionData, Boolean applyTransientFaultHandling, String accessToken, DbConnectionPool pool)
+   at Microsoft.Data.SqlClient.SqlConnectionFactory.CreateConnection(DbConnectionOptions options, DbConnectionPoolKey poolKey, Object poolGroupProviderInfo, DbConnectionPool pool, DbConnection owningConnection, DbConnectionOptions userOptions)
+   at Microsoft.Data.ProviderBase.DbConnectionFactory.CreatePooledConnection(DbConnectionPool pool, DbConnection owningObject, DbConnectionOptions options, DbConnectionPoolKey poolKey, DbConnectionOptions userOptions)
+   at Microsoft.Data.ProviderBase.DbConnectionPool.CreateObject(DbConnection owningObject, DbConnectionOptions userOptions, DbConnectionInternal oldConnection)
+   at Microsoft.Data.ProviderBase.DbConnectionPool.UserCreateRequest(DbConnection owningObject, DbConnectionOptions userOptions, DbConnectionInternal oldConnection)
+   at Microsoft.Data.ProviderBase.DbConnectionPool.TryGetConnection(DbConnection owningObject, UInt32 waitForMultipleObjectsTimeout, Boolean allowCreate, Boolean onlyOneCheckConnection, DbConnectionOptions userOptions, DbConnectionInternal& connection)
+   at Microsoft.Data.ProviderBase.DbConnectionPool.WaitForPendingOpen()
+--- End of stack trace from previous location ---
+   at Microsoft.EntityFrameworkCore.Storage.RelationalConnection.OpenInternalAsync(Boolean errorsExpected, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.Storage.RelationalConnection.OpenInternalAsync(Boolean errorsExpected, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.Storage.RelationalConnection.OpenAsync(CancellationToken cancellationToken, Boolean errorsExpected)
+   at Microsoft.EntityFrameworkCore.Storage.RelationalCommand.ExecuteReaderAsync(RelationalCommandParameterObject parameterObject, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.Query.Internal.SingleQueryingEnumerable`1.AsyncEnumerator.InitializeReaderAsync(DbContext _, Boolean result, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.SqlServer.Storage.Internal.SqlServerExecutionStrategy.ExecuteAsync[TState,TResult](TState state, Func`4 operation, Func`4 verifySucceeded, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.Query.Internal.SingleQueryingEnumerable`1.AsyncEnumerator.MoveNextAsync()
+   at Microsoft.EntityFrameworkCore.EntityFrameworkQueryableExtensions.ToListAsync[TSource](IQueryable`1 source, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.EntityFrameworkQueryableExtensions.ToListAsync[TSource](IQueryable`1 source, CancellationToken cancellationToken)
+   at ReactShop.Services.Implementations.UsersService.GetUsersAsync() in D:\petProjects\ReactShop\ReactShop.Services\Implementations\UsersService.cs:line 30
+   at ReactShop.Controllers.UsersController.GetUsers() in D:\petProjects\ReactShop\ReactShop.Web\Controllers\UsersController.cs:line 80
+2021-08-10 10:44:32.8682 ERROR Login failed for user ''.
+   at Microsoft.Data.SqlClient.SqlInternalConnection.OnError(SqlException exception, Boolean breakConnection, Action`1 wrapCloseInAction)
+   at Microsoft.Data.SqlClient.TdsParser.ThrowExceptionAndWarning(TdsParserStateObject stateObj, Boolean callerHasConnectionLock, Boolean asyncClose)
+   at Microsoft.Data.SqlClient.TdsParser.TryRun(RunBehavior runBehavior, SqlCommand cmdHandler, SqlDataReader dataStream, BulkCopySimpleResultSet bulkCopyHandler, TdsParserStateObject stateObj, Boolean& dataReady)
+   at Microsoft.Data.SqlClient.TdsParser.Run(RunBehavior runBehavior, SqlCommand cmdHandler, SqlDataReader dataStream, BulkCopySimpleResultSet bulkCopyHandler, TdsParserStateObject stateObj)
+   at Microsoft.Data.SqlClient.SqlInternalConnectionTds.CompleteLogin(Boolean enlistOK)
+   at Microsoft.Data.SqlClient.SqlInternalConnectionTds.AttemptOneLogin(ServerInfo serverInfo, String newPassword, SecureString newSecurePassword, Boolean ignoreSniOpenTimeout, TimeoutTimer timeout, Boolean withFailover)
+   at Microsoft.Data.SqlClient.SqlInternalConnectionTds.LoginNoFailover(ServerInfo serverInfo, String newPassword, SecureString newSecurePassword, Boolean redirectedUserInstance, SqlConnectionString connectionOptions, SqlCredential credential, TimeoutTimer timeout)
+   at Microsoft.Data.SqlClient.SqlInternalConnectionTds.OpenLoginEnlist(TimeoutTimer timeout, SqlConnectionString connectionOptions, SqlCredential credential, String newPassword, SecureString newSecurePassword, Boolean redirectedUserInstance)
+   at Microsoft.Data.SqlClient.SqlInternalConnectionTds..ctor(DbConnectionPoolIdentity identity, SqlConnectionString connectionOptions, SqlCredential credential, Object providerInfo, String newPassword, SecureString newSecurePassword, Boolean redirectedUserInstance, SqlConnectionString userConnectionOptions, SessionData reconnectSessionData, Boolean applyTransientFaultHandling, String accessToken, DbConnectionPool pool)
+   at Microsoft.Data.SqlClient.SqlConnectionFactory.CreateConnection(DbConnectionOptions options, DbConnectionPoolKey poolKey, Object poolGroupProviderInfo, DbConnectionPool pool, DbConnection owningConnection, DbConnectionOptions userOptions)
+   at Microsoft.Data.ProviderBase.DbConnectionFactory.CreatePooledConnection(DbConnectionPool pool, DbConnection owningObject, DbConnectionOptions options, DbConnectionPoolKey poolKey, DbConnectionOptions userOptions)
+   at Microsoft.Data.ProviderBase.DbConnectionPool.CreateObject(DbConnection owningObject, DbConnectionOptions userOptions, DbConnectionInternal oldConnection)
+   at Microsoft.Data.ProviderBase.DbConnectionPool.UserCreateRequest(DbConnection owningObject, DbConnectionOptions userOptions, DbConnectionInternal oldConnection)
+   at Microsoft.Data.ProviderBase.DbConnectionPool.TryGetConnection(DbConnection owningObject, UInt32 waitForMultipleObjectsTimeout, Boolean allowCreate, Boolean onlyOneCheckConnection, DbConnectionOptions userOptions, DbConnectionInternal& connection)
+   at Microsoft.Data.ProviderBase.DbConnectionPool.WaitForPendingOpen()
+--- End of stack trace from previous location ---
+   at Microsoft.EntityFrameworkCore.Storage.RelationalConnection.OpenInternalAsync(Boolean errorsExpected, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.Storage.RelationalConnection.OpenInternalAsync(Boolean errorsExpected, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.Storage.RelationalConnection.OpenAsync(CancellationToken cancellationToken, Boolean errorsExpected)
+   at Microsoft.EntityFrameworkCore.Storage.RelationalCommand.ExecuteReaderAsync(RelationalCommandParameterObject parameterObject, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.Query.Internal.SingleQueryingEnumerable`1.AsyncEnumerator.InitializeReaderAsync(DbContext _, Boolean result, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.SqlServer.Storage.Internal.SqlServerExecutionStrategy.ExecuteAsync[TState,TResult](TState state, Func`4 operation, Func`4 verifySucceeded, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.Query.Internal.SingleQueryingEnumerable`1.AsyncEnumerator.MoveNextAsync()
+   at Microsoft.EntityFrameworkCore.EntityFrameworkQueryableExtensions.ToListAsync[TSource](IQueryable`1 source, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.EntityFrameworkQueryableExtensions.ToListAsync[TSource](IQueryable`1 source, CancellationToken cancellationToken)
+   at ReactShop.Services.Implementations.UsersService.GetUsersAsync() in D:\petProjects\ReactShop\ReactShop.Services\Implementations\UsersService.cs:line 30
+   at ReactShop.Controllers.UsersController.GetUsers() in D:\petProjects\ReactShop\ReactShop.Web\Controllers\UsersController.cs:line 80
+2021-08-10 10:44:38.8666 ERROR Login failed for user ''.
+   at Microsoft.Data.ProviderBase.DbConnectionPool.TryGetConnection(DbConnection owningObject, UInt32 waitForMultipleObjectsTimeout, Boolean allowCreate, Boolean onlyOneCheckConnection, DbConnectionOptions userOptions, DbConnectionInternal& connection)
+   at Microsoft.Data.ProviderBase.DbConnectionPool.TryGetConnection(DbConnection owningObject, TaskCompletionSource`1 retry, DbConnectionOptions userOptions, DbConnectionInternal& connection)
+   at Microsoft.Data.ProviderBase.DbConnectionFactory.TryGetConnection(DbConnection owningConnection, TaskCompletionSource`1 retry, DbConnectionOptions userOptions, DbConnectionInternal oldConnection, DbConnectionInternal& connection)
+   at Microsoft.Data.ProviderBase.DbConnectionInternal.TryOpenConnectionInternal(DbConnection outerConnection, DbConnectionFactory connectionFactory, TaskCompletionSource`1 retry, DbConnectionOptions userOptions)
+   at Microsoft.Data.ProviderBase.DbConnectionClosed.TryOpenConnection(DbConnection outerConnection, DbConnectionFactory connectionFactory, TaskCompletionSource`1 retry, DbConnectionOptions userOptions)
+   at Microsoft.Data.SqlClient.SqlConnection.TryOpen(TaskCompletionSource`1 retry, SqlConnectionOverrides overrides)
+   at Microsoft.Data.SqlClient.SqlConnection.InternalOpenAsync(CancellationToken cancellationToken)
+--- End of stack trace from previous location ---
+   at Microsoft.EntityFrameworkCore.Storage.RelationalConnection.OpenInternalAsync(Boolean errorsExpected, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.Storage.RelationalConnection.OpenInternalAsync(Boolean errorsExpected, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.Storage.RelationalConnection.OpenAsync(CancellationToken cancellationToken, Boolean errorsExpected)
+   at Microsoft.EntityFrameworkCore.Storage.RelationalCommand.ExecuteReaderAsync(RelationalCommandParameterObject parameterObject, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.Query.Internal.SingleQueryingEnumerable`1.AsyncEnumerator.InitializeReaderAsync(DbContext _, Boolean result, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.SqlServer.Storage.Internal.SqlServerExecutionStrategy.ExecuteAsync[TState,TResult](TState state, Func`4 operation, Func`4 verifySucceeded, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.Query.Internal.SingleQueryingEnumerable`1.AsyncEnumerator.MoveNextAsync()
+   at Microsoft.EntityFrameworkCore.EntityFrameworkQueryableExtensions.ToListAsync[TSource](IQueryable`1 source, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.EntityFrameworkQueryableExtensions.ToListAsync[TSource](IQueryable`1 source, CancellationToken cancellationToken)
+   at ReactShop.Services.Implementations.UsersService.GetUsersAsync() in D:\petProjects\ReactShop\ReactShop.Services\Implementations\UsersService.cs:line 30
+   at ReactShop.Controllers.UsersController.GetUsers() in D:\petProjects\ReactShop\ReactShop.Web\Controllers\UsersController.cs:line 80
+2021-08-10 10:57:14.9600 ERROR A network-related or instance-specific error occurred while establishing a connection to SQL Server. The server was not found or was not accessible. Verify that the instance name is correct and that SQL Server is configured to allow remote connections. (provider: Named Pipes Provider, error: 40 - Could not open a connection to SQL Server)
+   at Microsoft.Data.SqlClient.SqlInternalConnection.OnError(SqlException exception, Boolean breakConnection, Action`1 wrapCloseInAction)
+   at Microsoft.Data.SqlClient.TdsParser.ThrowExceptionAndWarning(TdsParserStateObject stateObj, Boolean callerHasConnectionLock, Boolean asyncClose)
+   at Microsoft.Data.SqlClient.TdsParser.Connect(ServerInfo serverInfo, SqlInternalConnectionTds connHandler, Boolean ignoreSniOpenTimeout, Int64 timerExpire, Boolean encrypt, Boolean trustServerCert, Boolean integratedSecurity, Boolean withFailover, SqlAuthenticationMethod authType)
+   at Microsoft.Data.SqlClient.SqlInternalConnectionTds.AttemptOneLogin(ServerInfo serverInfo, String newPassword, SecureString newSecurePassword, Boolean ignoreSniOpenTimeout, TimeoutTimer timeout, Boolean withFailover)
+   at Microsoft.Data.SqlClient.SqlInternalConnectionTds.LoginNoFailover(ServerInfo serverInfo, String newPassword, SecureString newSecurePassword, Boolean redirectedUserInstance, SqlConnectionString connectionOptions, SqlCredential credential, TimeoutTimer timeout)
+   at Microsoft.Data.SqlClient.SqlInternalConnectionTds.OpenLoginEnlist(TimeoutTimer timeout, SqlConnectionString connectionOptions, SqlCredential credential, String newPassword, SecureString newSecurePassword, Boolean redirectedUserInstance)
+   at Microsoft.Data.SqlClient.SqlInternalConnectionTds..ctor(DbConnectionPoolIdentity identity, SqlConnectionString connectionOptions, SqlCredential credential, Object providerInfo, String newPassword, SecureString newSecurePassword, Boolean redirectedUserInstance, SqlConnectionString userConnectionOptions, SessionData reconnectSessionData, Boolean applyTransientFaultHandling, String accessToken, DbConnectionPool pool)
+   at Microsoft.Data.SqlClient.SqlConnectionFactory.CreateConnection(DbConnectionOptions options, DbConnectionPoolKey poolKey, Object poolGroupProviderInfo, DbConnectionPool pool, DbConnection owningConnection, DbConnectionOptions userOptions)
+   at Microsoft.Data.ProviderBase.DbConnectionFactory.CreatePooledConnection(DbConnectionPool pool, DbConnection owningObject, DbConnectionOptions options, DbConnectionPoolKey poolKey, DbConnectionOptions userOptions)
+   at Microsoft.Data.ProviderBase.DbConnectionPool.CreateObject(DbConnection owningObject, DbConnectionOptions userOptions, DbConnectionInternal oldConnection)
+   at Microsoft.Data.ProviderBase.DbConnectionPool.UserCreateRequest(DbConnection owningObject, DbConnectionOptions userOptions, DbConnectionInternal oldConnection)
+   at Microsoft.Data.ProviderBase.DbConnectionPool.TryGetConnection(DbConnection owningObject, UInt32 waitForMultipleObjectsTimeout, Boolean allowCreate, Boolean onlyOneCheckConnection, DbConnectionOptions userOptions, DbConnectionInternal& connection)
+   at Microsoft.Data.ProviderBase.DbConnectionPool.WaitForPendingOpen()
+--- End of stack trace from previous location ---
+   at Microsoft.EntityFrameworkCore.Storage.RelationalConnection.OpenInternalAsync(Boolean errorsExpected, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.Storage.RelationalConnection.OpenInternalAsync(Boolean errorsExpected, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.Storage.RelationalConnection.OpenAsync(CancellationToken cancellationToken, Boolean errorsExpected)
+   at Microsoft.EntityFrameworkCore.Storage.RelationalCommand.ExecuteReaderAsync(RelationalCommandParameterObject parameterObject, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.Query.Internal.SingleQueryingEnumerable`1.AsyncEnumerator.InitializeReaderAsync(DbContext _, Boolean result, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.SqlServer.Storage.Internal.SqlServerExecutionStrategy.ExecuteAsync[TState,TResult](TState state, Func`4 operation, Func`4 verifySucceeded, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.Query.Internal.SingleQueryingEnumerable`1.AsyncEnumerator.MoveNextAsync()
+   at Microsoft.EntityFrameworkCore.EntityFrameworkQueryableExtensions.ToListAsync[TSource](IQueryable`1 source, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.EntityFrameworkQueryableExtensions.ToListAsync[TSource](IQueryable`1 source, CancellationToken cancellationToken)
+   at ReactShop.Services.Implementations.UsersService.GetUsersAsync() in D:\petProjects\ReactShop\ReactShop.Services\Implementations\UsersService.cs:line 30
+   at ReactShop.Controllers.UsersController.GetUsers() in D:\petProjects\ReactShop\ReactShop.Web\Controllers\UsersController.cs:line 80
+2021-08-10 10:57:14.9738 ERROR A network-related or instance-specific error occurred while establishing a connection to SQL Server. The server was not found or was not accessible. Verify that the instance name is correct and that SQL Server is configured to allow remote connections. (provider: Named Pipes Provider, error: 40 - Could not open a connection to SQL Server)
+   at Microsoft.Data.ProviderBase.DbConnectionPool.TryGetConnection(DbConnection owningObject, UInt32 waitForMultipleObjectsTimeout, Boolean allowCreate, Boolean onlyOneCheckConnection, DbConnectionOptions userOptions, DbConnectionInternal& connection)
+   at Microsoft.Data.ProviderBase.DbConnectionPool.TryGetConnection(DbConnection owningObject, TaskCompletionSource`1 retry, DbConnectionOptions userOptions, DbConnectionInternal& connection)
+   at Microsoft.Data.ProviderBase.DbConnectionFactory.TryGetConnection(DbConnection owningConnection, TaskCompletionSource`1 retry, DbConnectionOptions userOptions, DbConnectionInternal oldConnection, DbConnectionInternal& connection)
+   at Microsoft.Data.ProviderBase.DbConnectionInternal.TryOpenConnectionInternal(DbConnection outerConnection, DbConnectionFactory connectionFactory, TaskCompletionSource`1 retry, DbConnectionOptions userOptions)
+   at Microsoft.Data.ProviderBase.DbConnectionClosed.TryOpenConnection(DbConnection outerConnection, DbConnectionFactory connectionFactory, TaskCompletionSource`1 retry, DbConnectionOptions userOptions)
+   at Microsoft.Data.SqlClient.SqlConnection.TryOpen(TaskCompletionSource`1 retry, SqlConnectionOverrides overrides)
+   at Microsoft.Data.SqlClient.SqlConnection.InternalOpenAsync(CancellationToken cancellationToken)
+--- End of stack trace from previous location ---
+   at Microsoft.EntityFrameworkCore.Storage.RelationalConnection.OpenInternalAsync(Boolean errorsExpected, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.Storage.RelationalConnection.OpenInternalAsync(Boolean errorsExpected, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.Storage.RelationalConnection.OpenAsync(CancellationToken cancellationToken, Boolean errorsExpected)
+   at Microsoft.EntityFrameworkCore.Storage.RelationalCommand.ExecuteReaderAsync(RelationalCommandParameterObject parameterObject, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.Query.Internal.SingleQueryingEnumerable`1.AsyncEnumerator.InitializeReaderAsync(DbContext _, Boolean result, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.SqlServer.Storage.Internal.SqlServerExecutionStrategy.ExecuteAsync[TState,TResult](TState state, Func`4 operation, Func`4 verifySucceeded, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.Query.Internal.SingleQueryingEnumerable`1.AsyncEnumerator.MoveNextAsync()
+   at Microsoft.EntityFrameworkCore.EntityFrameworkQueryableExtensions.ToListAsync[TSource](IQueryable`1 source, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.EntityFrameworkQueryableExtensions.ToListAsync[TSource](IQueryable`1 source, CancellationToken cancellationToken)
+   at ReactShop.Services.Implementations.UsersService.GetUsersAsync() in D:\petProjects\ReactShop\ReactShop.Services\Implementations\UsersService.cs:line 30
+   at ReactShop.Controllers.UsersController.GetUsers() in D:\petProjects\ReactShop\ReactShop.Web\Controllers\UsersController.cs:line 80
+2021-08-10 10:57:47.4146 ERROR A network-related or instance-specific error occurred while establishing a connection to SQL Server. The server was not found or was not accessible. Verify that the instance name is correct and that SQL Server is configured to allow remote connections. (provider: Named Pipes Provider, error: 40 - Could not open a connection to SQL Server)
+   at Microsoft.Data.SqlClient.SqlInternalConnection.OnError(SqlException exception, Boolean breakConnection, Action`1 wrapCloseInAction)
+   at Microsoft.Data.SqlClient.TdsParser.ThrowExceptionAndWarning(TdsParserStateObject stateObj, Boolean callerHasConnectionLock, Boolean asyncClose)
+   at Microsoft.Data.SqlClient.TdsParser.Connect(ServerInfo serverInfo, SqlInternalConnectionTds connHandler, Boolean ignoreSniOpenTimeout, Int64 timerExpire, Boolean encrypt, Boolean trustServerCert, Boolean integratedSecurity, Boolean withFailover, SqlAuthenticationMethod authType)
+   at Microsoft.Data.SqlClient.SqlInternalConnectionTds.AttemptOneLogin(ServerInfo serverInfo, String newPassword, SecureString newSecurePassword, Boolean ignoreSniOpenTimeout, TimeoutTimer timeout, Boolean withFailover)
+   at Microsoft.Data.SqlClient.SqlInternalConnectionTds.LoginNoFailover(ServerInfo serverInfo, String newPassword, SecureString newSecurePassword, Boolean redirectedUserInstance, SqlConnectionString connectionOptions, SqlCredential credential, TimeoutTimer timeout)
+   at Microsoft.Data.SqlClient.SqlInternalConnectionTds.OpenLoginEnlist(TimeoutTimer timeout, SqlConnectionString connectionOptions, SqlCredential credential, String newPassword, SecureString newSecurePassword, Boolean redirectedUserInstance)
+   at Microsoft.Data.SqlClient.SqlInternalConnectionTds..ctor(DbConnectionPoolIdentity identity, SqlConnectionString connectionOptions, SqlCredential credential, Object providerInfo, String newPassword, SecureString newSecurePassword, Boolean redirectedUserInstance, SqlConnectionString userConnectionOptions, SessionData reconnectSessionData, Boolean applyTransientFaultHandling, String accessToken, DbConnectionPool pool)
+   at Microsoft.Data.SqlClient.SqlConnectionFactory.CreateConnection(DbConnectionOptions options, DbConnectionPoolKey poolKey, Object poolGroupProviderInfo, DbConnectionPool pool, DbConnection owningConnection, DbConnectionOptions userOptions)
+   at Microsoft.Data.ProviderBase.DbConnectionFactory.CreatePooledConnection(DbConnectionPool pool, DbConnection owningObject, DbConnectionOptions options, DbConnectionPoolKey poolKey, DbConnectionOptions userOptions)
+   at Microsoft.Data.ProviderBase.DbConnectionPool.CreateObject(DbConnection owningObject, DbConnectionOptions userOptions, DbConnectionInternal oldConnection)
+   at Microsoft.Data.ProviderBase.DbConnectionPool.UserCreateRequest(DbConnection owningObject, DbConnectionOptions userOptions, DbConnectionInternal oldConnection)
+   at Microsoft.Data.ProviderBase.DbConnectionPool.TryGetConnection(DbConnection owningObject, UInt32 waitForMultipleObjectsTimeout, Boolean allowCreate, Boolean onlyOneCheckConnection, DbConnectionOptions userOptions, DbConnectionInternal& connection)
+   at Microsoft.Data.ProviderBase.DbConnectionPool.WaitForPendingOpen()
+--- End of stack trace from previous location ---
+   at Microsoft.EntityFrameworkCore.Storage.RelationalConnection.OpenInternalAsync(Boolean errorsExpected, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.Storage.RelationalConnection.OpenInternalAsync(Boolean errorsExpected, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.Storage.RelationalConnection.OpenAsync(CancellationToken cancellationToken, Boolean errorsExpected)
+   at Microsoft.EntityFrameworkCore.Storage.RelationalCommand.ExecuteReaderAsync(RelationalCommandParameterObject parameterObject, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.Query.Internal.SingleQueryingEnumerable`1.AsyncEnumerator.InitializeReaderAsync(DbContext _, Boolean result, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.SqlServer.Storage.Internal.SqlServerExecutionStrategy.ExecuteAsync[TState,TResult](TState state, Func`4 operation, Func`4 verifySucceeded, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.Query.Internal.SingleQueryingEnumerable`1.AsyncEnumerator.MoveNextAsync()
+   at Microsoft.EntityFrameworkCore.EntityFrameworkQueryableExtensions.ToListAsync[TSource](IQueryable`1 source, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.EntityFrameworkQueryableExtensions.ToListAsync[TSource](IQueryable`1 source, CancellationToken cancellationToken)
+   at ReactShop.Services.Implementations.UsersService.GetUsersAsync() in D:\petProjects\ReactShop\ReactShop.Services\Implementations\UsersService.cs:line 30
+   at ReactShop.Controllers.UsersController.GetUsers() in D:\petProjects\ReactShop\ReactShop.Web\Controllers\UsersController.cs:line 80
+2021-08-10 10:57:54.4030 ERROR A network-related or instance-specific error occurred while establishing a connection to SQL Server. The server was not found or was not accessible. Verify that the instance name is correct and that SQL Server is configured to allow remote connections. (provider: Named Pipes Provider, error: 40 - Could not open a connection to SQL Server)
+   at Microsoft.Data.ProviderBase.DbConnectionPool.TryGetConnection(DbConnection owningObject, UInt32 waitForMultipleObjectsTimeout, Boolean allowCreate, Boolean onlyOneCheckConnection, DbConnectionOptions userOptions, DbConnectionInternal& connection)
+   at Microsoft.Data.ProviderBase.DbConnectionPool.TryGetConnection(DbConnection owningObject, TaskCompletionSource`1 retry, DbConnectionOptions userOptions, DbConnectionInternal& connection)
+   at Microsoft.Data.ProviderBase.DbConnectionFactory.TryGetConnection(DbConnection owningConnection, TaskCompletionSource`1 retry, DbConnectionOptions userOptions, DbConnectionInternal oldConnection, DbConnectionInternal& connection)
+   at Microsoft.Data.ProviderBase.DbConnectionInternal.TryOpenConnectionInternal(DbConnection outerConnection, DbConnectionFactory connectionFactory, TaskCompletionSource`1 retry, DbConnectionOptions userOptions)
+   at Microsoft.Data.ProviderBase.DbConnectionClosed.TryOpenConnection(DbConnection outerConnection, DbConnectionFactory connectionFactory, TaskCompletionSource`1 retry, DbConnectionOptions userOptions)
+   at Microsoft.Data.SqlClient.SqlConnection.TryOpen(TaskCompletionSource`1 retry, SqlConnectionOverrides overrides)
+   at Microsoft.Data.SqlClient.SqlConnection.InternalOpenAsync(CancellationToken cancellationToken)
+--- End of stack trace from previous location ---
+   at Microsoft.EntityFrameworkCore.Storage.RelationalConnection.OpenInternalAsync(Boolean errorsExpected, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.Storage.RelationalConnection.OpenInternalAsync(Boolean errorsExpected, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.Storage.RelationalConnection.OpenAsync(CancellationToken cancellationToken, Boolean errorsExpected)
+   at Microsoft.EntityFrameworkCore.Storage.RelationalCommand.ExecuteReaderAsync(RelationalCommandParameterObject parameterObject, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.Query.Internal.SingleQueryingEnumerable`1.AsyncEnumerator.InitializeReaderAsync(DbContext _, Boolean result, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.SqlServer.Storage.Internal.SqlServerExecutionStrategy.ExecuteAsync[TState,TResult](TState state, Func`4 operation, Func`4 verifySucceeded, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.Query.Internal.SingleQueryingEnumerable`1.AsyncEnumerator.MoveNextAsync()
+   at Microsoft.EntityFrameworkCore.EntityFrameworkQueryableExtensions.ToListAsync[TSource](IQueryable`1 source, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.EntityFrameworkQueryableExtensions.ToListAsync[TSource](IQueryable`1 source, CancellationToken cancellationToken)
+   at ReactShop.Services.Implementations.UsersService.GetUsersAsync() in D:\petProjects\ReactShop\ReactShop.Services\Implementations\UsersService.cs:line 30
+   at ReactShop.Controllers.UsersController.GetUsers() in D:\petProjects\ReactShop\ReactShop.Web\Controllers\UsersController.cs:line 80
+2021-08-10 10:59:38.9343 ERROR A network-related or instance-specific error occurred while establishing a connection to SQL Server. The server was not found or was not accessible. Verify that the instance name is correct and that SQL Server is configured to allow remote connections. (provider: Named Pipes Provider, error: 40 - Could not open a connection to SQL Server)
+   at Microsoft.Data.ProviderBase.DbConnectionPool.TryGetConnection(DbConnection owningObject, UInt32 waitForMultipleObjectsTimeout, Boolean allowCreate, Boolean onlyOneCheckConnection, DbConnectionOptions userOptions, DbConnectionInternal& connection)
+   at Microsoft.Data.ProviderBase.DbConnectionPool.TryGetConnection(DbConnection owningObject, TaskCompletionSource`1 retry, DbConnectionOptions userOptions, DbConnectionInternal& connection)
+   at Microsoft.Data.ProviderBase.DbConnectionFactory.TryGetConnection(DbConnection owningConnection, TaskCompletionSource`1 retry, DbConnectionOptions userOptions, DbConnectionInternal oldConnection, DbConnectionInternal& connection)
+   at Microsoft.Data.ProviderBase.DbConnectionInternal.TryOpenConnectionInternal(DbConnection outerConnection, DbConnectionFactory connectionFactory, TaskCompletionSource`1 retry, DbConnectionOptions userOptions)
+   at Microsoft.Data.ProviderBase.DbConnectionClosed.TryOpenConnection(DbConnection outerConnection, DbConnectionFactory connectionFactory, TaskCompletionSource`1 retry, DbConnectionOptions userOptions)
+   at Microsoft.Data.SqlClient.SqlConnection.TryOpen(TaskCompletionSource`1 retry, SqlConnectionOverrides overrides)
+   at Microsoft.Data.SqlClient.SqlConnection.InternalOpenAsync(CancellationToken cancellationToken)
+--- End of stack trace from previous location ---
+   at Microsoft.EntityFrameworkCore.Storage.RelationalConnection.OpenInternalAsync(Boolean errorsExpected, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.Storage.RelationalConnection.OpenInternalAsync(Boolean errorsExpected, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.Storage.RelationalConnection.OpenAsync(CancellationToken cancellationToken, Boolean errorsExpected)
+   at Microsoft.EntityFrameworkCore.Storage.RelationalCommand.ExecuteReaderAsync(RelationalCommandParameterObject parameterObject, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.Query.Internal.SingleQueryingEnumerable`1.AsyncEnumerator.InitializeReaderAsync(DbContext _, Boolean result, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.SqlServer.Storage.Internal.SqlServerExecutionStrategy.ExecuteAsync[TState,TResult](TState state, Func`4 operation, Func`4 verifySucceeded, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.Query.Internal.SingleQueryingEnumerable`1.AsyncEnumerator.MoveNextAsync()
+   at Microsoft.EntityFrameworkCore.EntityFrameworkQueryableExtensions.ToListAsync[TSource](IQueryable`1 source, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.EntityFrameworkQueryableExtensions.ToListAsync[TSource](IQueryable`1 source, CancellationToken cancellationToken)
+   at ReactShop.Services.Implementations.UsersService.GetUsersAsync() in D:\petProjects\ReactShop\ReactShop.Services\Implementations\UsersService.cs:line 30
+   at ReactShop.Controllers.UsersController.GetUsers() in D:\petProjects\ReactShop\ReactShop.Web\Controllers\UsersController.cs:line 80
+2021-08-10 11:15:35.1938 INFO 
+ Getting list of users -> System.Collections.Generic.List`1[ReactShop.Domain.Entities.User]
+2021-08-10 11:15:38.3387 INFO 
+ Getting list of users -> System.Collections.Generic.List`1[ReactShop.Domain.Entities.User]
+2021-08-10 11:15:39.5056 INFO 
+ Getting list of users -> System.Collections.Generic.List`1[ReactShop.Domain.Entities.User]
+2021-08-10 11:15:42.7230 INFO 
+ Getting list of users -> System.Collections.Generic.List`1[ReactShop.Domain.Entities.User]
+2021-08-10 11:15:44.0928 INFO 
+ Getting list of users -> System.Collections.Generic.List`1[ReactShop.Domain.Entities.User]
+2021-08-10 11:15:45.4756 INFO 
+ Getting list of users -> System.Collections.Generic.List`1[ReactShop.Domain.Entities.User]
+2021-08-10 11:15:46.6947 INFO 
+ Getting list of users -> System.Collections.Generic.List`1[ReactShop.Domain.Entities.User]
+2021-08-10 11:15:47.6595 INFO 
+ Getting list of users -> System.Collections.Generic.List`1[ReactShop.Domain.Entities.User]
+2021-08-10 11:15:48.6688 INFO 
+ Getting list of users -> System.Collections.Generic.List`1[ReactShop.Domain.Entities.User]
+2021-08-10 11:15:49.6242 INFO 
+ Getting list of users -> System.Collections.Generic.List`1[ReactShop.Domain.Entities.User]
+2021-08-10 11:15:51.0808 INFO 
+ Getting list of users -> System.Collections.Generic.List`1[ReactShop.Domain.Entities.User]
+2021-08-10 11:15:56.0737 INFO 
+ Getting list of users -> System.Collections.Generic.List`1[ReactShop.Domain.Entities.User]
+2021-08-10 11:15:57.0884 INFO 
+ Getting list of users -> System.Collections.Generic.List`1[ReactShop.Domain.Entities.User]
+2021-08-10 11:15:58.2644 INFO 
+ Getting list of users -> System.Collections.Generic.List`1[ReactShop.Domain.Entities.User]
+2021-08-10 11:16:01.4583 INFO 
+ Getting list of users -> System.Collections.Generic.List`1[ReactShop.Domain.Entities.User]
+2021-08-10 11:16:01.4975 INFO 
+ Getting list of users -> System.Collections.Generic.List`1[ReactShop.Domain.Entities.User]
+2021-08-10 11:16:01.5334 INFO 
+ Getting list of users -> System.Collections.Generic.List`1[ReactShop.Domain.Entities.User]
+2021-08-10 11:16:01.5524 INFO 
+ Getting list of users -> System.Collections.Generic.List`1[ReactShop.Domain.Entities.User]
+2021-08-10 11:16:01.5769 INFO 
+ Getting list of users -> System.Collections.Generic.List`1[ReactShop.Domain.Entities.User]
+2021-08-10 11:16:01.6024 INFO 
+ Getting list of users -> System.Collections.Generic.List`1[ReactShop.Domain.Entities.User]
+2021-08-10 11:16:01.6203 INFO 
+ Getting list of users -> System.Collections.Generic.List`1[ReactShop.Domain.Entities.User]
+2021-08-10 11:16:01.6397 INFO 
+ Getting list of users -> System.Collections.Generic.List`1[ReactShop.Domain.Entities.User]
+2021-08-10 11:16:01.6816 INFO 
+ Getting list of users -> System.Collections.Generic.List`1[ReactShop.Domain.Entities.User]
+2021-08-10 11:16:01.7057 INFO 
+ Getting list of users -> System.Collections.Generic.List`1[ReactShop.Domain.Entities.User]
+2021-08-10 11:16:01.7312 INFO 
+ Getting list of users -> System.Collections.Generic.List`1[ReactShop.Domain.Entities.User]
+2021-08-10 11:16:01.7490 INFO 
+ Getting list of users -> System.Collections.Generic.List`1[ReactShop.Domain.Entities.User]
+2021-08-10 11:16:01.7694 INFO 
+ Getting list of users -> System.Collections.Generic.List`1[ReactShop.Domain.Entities.User]
+2021-08-10 11:16:01.7916 INFO 
+ Getting list of users -> System.Collections.Generic.List`1[ReactShop.Domain.Entities.User]
+2021-08-10 11:16:01.8186 INFO 
+ Getting list of users -> System.Collections.Generic.List`1[ReactShop.Domain.Entities.User]
+2021-08-10 11:16:01.8396 INFO 
+ Getting list of users -> System.Collections.Generic.List`1[ReactShop.Domain.Entities.User]
+2021-08-10 11:16:01.9164 INFO 
+ Getting list of users -> System.Collections.Generic.List`1[ReactShop.Domain.Entities.User]
+2021-08-10 11:16:01.9438 INFO 
+ Getting list of users -> System.Collections.Generic.List`1[ReactShop.Domain.Entities.User]
+2021-08-10 11:16:01.9718 INFO 
+ Getting list of users -> System.Collections.Generic.List`1[ReactShop.Domain.Entities.User]
+2021-08-10 11:16:01.9984 INFO 
+ Getting list of users -> System.Collections.Generic.List`1[ReactShop.Domain.Entities.User]
+2021-08-10 11:16:02.0145 INFO 
+ Getting list of users -> System.Collections.Generic.List`1[ReactShop.Domain.Entities.User]
+2021-08-10 11:16:02.0456 INFO 
+ Getting list of users -> System.Collections.Generic.List`1[ReactShop.Domain.Entities.User]
+2021-08-10 11:16:02.0591 INFO 
+ Getting list of users -> System.Collections.Generic.List`1[ReactShop.Domain.Entities.User]
+2021-08-10 11:16:02.0811 INFO 
+ Getting list of users -> System.Collections.Generic.List`1[ReactShop.Domain.Entities.User]
+2021-08-10 11:16:02.0977 INFO 
+ Getting list of users -> System.Collections.Generic.List`1[ReactShop.Domain.Entities.User]
+2021-08-10 11:16:02.1212 INFO 
+ Getting list of users -> System.Collections.Generic.List`1[ReactShop.Domain.Entities.User]
+2021-08-10 11:16:02.1350 INFO 
+ Getting list of users -> System.Collections.Generic.List`1[ReactShop.Domain.Entities.User]
+2021-08-10 11:16:02.1527 INFO 
+ Getting list of users -> System.Collections.Generic.List`1[ReactShop.Domain.Entities.User]
+2021-08-10 11:16:02.1662 INFO 
+ Getting list of users -> System.Collections.Generic.List`1[ReactShop.Domain.Entities.User]
+2021-08-10 11:16:02.1798 INFO 
+ Getting list of users -> System.Collections.Generic.List`1[ReactShop.Domain.Entities.User]
+2021-08-10 11:16:02.1922 INFO 
+ Getting list of users -> System.Collections.Generic.List`1[ReactShop.Domain.Entities.User]
+2021-08-10 11:16:02.2077 INFO 
+ Getting list of users -> System.Collections.Generic.List`1[ReactShop.Domain.Entities.User]
+2021-08-10 11:16:02.2077 INFO 
+ Getting list of users -> System.Collections.Generic.List`1[ReactShop.Domain.Entities.User]
+2021-08-10 11:16:02.2415 INFO 
+ Getting list of users -> System.Collections.Generic.List`1[ReactShop.Domain.Entities.User]
+2021-08-10 11:16:02.2415 INFO 
+ Getting list of users -> System.Collections.Generic.List`1[ReactShop.Domain.Entities.User]
+2021-08-10 11:16:02.2675 INFO 
+ Getting list of users -> System.Collections.Generic.List`1[ReactShop.Domain.Entities.User]
+2021-08-10 11:16:02.2811 INFO 
+ Getting list of users -> System.Collections.Generic.List`1[ReactShop.Domain.Entities.User]
+2021-08-10 11:16:02.2950 INFO 
+ Getting list of users -> System.Collections.Generic.List`1[ReactShop.Domain.Entities.User]
+2021-08-10 11:16:02.3080 INFO 
+ Getting list of users -> System.Collections.Generic.List`1[ReactShop.Domain.Entities.User]
+2021-08-10 11:16:02.3269 INFO 
+ Getting list of users -> System.Collections.Generic.List`1[ReactShop.Domain.Entities.User]
+2021-08-10 11:16:02.3431 INFO 
+ Getting list of users -> System.Collections.Generic.List`1[ReactShop.Domain.Entities.User]
+2021-08-10 11:16:02.3638 INFO 
+ Getting list of users -> System.Collections.Generic.List`1[ReactShop.Domain.Entities.User]
+2021-08-10 11:16:02.3638 INFO 
+ Getting list of users -> System.Collections.Generic.List`1[ReactShop.Domain.Entities.User]
+2021-08-10 11:16:02.3968 INFO 
+ Getting list of users -> System.Collections.Generic.List`1[ReactShop.Domain.Entities.User]
+2021-08-10 11:16:02.4130 INFO 
+ Getting list of users -> System.Collections.Generic.List`1[ReactShop.Domain.Entities.User]
+2021-08-10 11:16:02.4301 INFO 
+ Getting list of users -> System.Collections.Generic.List`1[ReactShop.Domain.Entities.User]
+2021-08-10 11:16:02.4433 INFO 
+ Getting list of users -> System.Collections.Generic.List`1[ReactShop.Domain.Entities.User]
+2021-08-10 11:16:02.4912 INFO 
+ Getting list of users -> System.Collections.Generic.List`1[ReactShop.Domain.Entities.User]
+2021-08-10 11:16:02.5894 INFO 
+ Getting list of users -> System.Collections.Generic.List`1[ReactShop.Domain.Entities.User]
+2021-08-10 11:16:02.6163 INFO 
+ Getting list of users -> System.Collections.Generic.List`1[ReactShop.Domain.Entities.User]
+2021-08-10 11:16:02.6529 INFO 
+ Getting list of users -> System.Collections.Generic.List`1[ReactShop.Domain.Entities.User]
+2021-08-10 11:16:02.6730 INFO 
+ Getting list of users -> System.Collections.Generic.List`1[ReactShop.Domain.Entities.User]
+2021-08-10 11:16:02.7643 INFO 
+ Getting list of users -> System.Collections.Generic.List`1[ReactShop.Domain.Entities.User]
+2021-08-10 11:16:02.8059 INFO 
+ Getting list of users -> System.Collections.Generic.List`1[ReactShop.Domain.Entities.User]
+2021-08-10 11:16:02.8487 INFO 
+ Getting list of users -> System.Collections.Generic.List`1[ReactShop.Domain.Entities.User]
+2021-08-10 11:16:02.8752 INFO 
+ Getting list of users -> System.Collections.Generic.List`1[ReactShop.Domain.Entities.User]
+2021-08-10 11:16:02.9201 INFO 
+ Getting list of users -> System.Collections.Generic.List`1[ReactShop.Domain.Entities.User]
+2021-08-10 11:16:02.9885 INFO 
+ Getting list of users -> System.Collections.Generic.List`1[ReactShop.Domain.Entities.User]
+2021-08-10 11:16:03.0342 INFO 
+ Getting list of users -> System.Collections.Generic.List`1[ReactShop.Domain.Entities.User]
+2021-08-10 11:16:03.0749 INFO 
+ Getting list of users -> System.Collections.Generic.List`1[ReactShop.Domain.Entities.User]
+2021-08-10 11:16:03.1071 INFO 
+ Getting list of users -> System.Collections.Generic.List`1[ReactShop.Domain.Entities.User]
+2021-08-10 11:16:03.1262 INFO 
+ Getting list of users -> System.Collections.Generic.List`1[ReactShop.Domain.Entities.User]
+2021-08-10 11:16:03.1427 INFO 
+ Getting list of users -> System.Collections.Generic.List`1[ReactShop.Domain.Entities.User]
+2021-08-10 11:16:03.1695 INFO 
+ Getting list of users -> System.Collections.Generic.List`1[ReactShop.Domain.Entities.User]
+2021-08-10 11:16:03.2035 INFO 
+ Getting list of users -> System.Collections.Generic.List`1[ReactShop.Domain.Entities.User]
+2021-08-10 11:16:03.2198 INFO 
+ Getting list of users -> System.Collections.Generic.List`1[ReactShop.Domain.Entities.User]
+2021-08-10 11:16:03.2369 INFO 
+ Getting list of users -> System.Collections.Generic.List`1[ReactShop.Domain.Entities.User]
+2021-08-10 11:16:03.2598 INFO 
+ Getting list of users -> System.Collections.Generic.List`1[ReactShop.Domain.Entities.User]
+2021-08-10 11:16:03.2816 INFO 
+ Getting list of users -> System.Collections.Generic.List`1[ReactShop.Domain.Entities.User]
+2021-08-10 11:16:03.3005 INFO 
+ Getting list of users -> System.Collections.Generic.List`1[ReactShop.Domain.Entities.User]
+2021-08-10 11:16:03.3193 INFO 
+ Getting list of users -> System.Collections.Generic.List`1[ReactShop.Domain.Entities.User]
+2021-08-10 11:16:03.3366 INFO 
+ Getting list of users -> System.Collections.Generic.List`1[ReactShop.Domain.Entities.User]
+2021-08-10 11:16:03.3528 INFO 
+ Getting list of users -> System.Collections.Generic.List`1[ReactShop.Domain.Entities.User]
+2021-08-10 11:16:03.3693 INFO 
+ Getting list of users -> System.Collections.Generic.List`1[ReactShop.Domain.Entities.User]
+2021-08-10 11:16:03.3853 INFO 
+ Getting list of users -> System.Collections.Generic.List`1[ReactShop.Domain.Entities.User]
+2021-08-10 11:16:03.4036 INFO 
+ Getting list of users -> System.Collections.Generic.List`1[ReactShop.Domain.Entities.User]
+2021-08-10 11:16:03.4224 INFO 
+ Getting list of users -> System.Collections.Generic.List`1[ReactShop.Domain.Entities.User]
+2021-08-10 11:16:03.4380 INFO 
+ Getting list of users -> System.Collections.Generic.List`1[ReactShop.Domain.Entities.User]
+2021-08-10 11:16:03.4549 INFO 
+ Getting list of users -> System.Collections.Generic.List`1[ReactShop.Domain.Entities.User]
+2021-08-10 11:16:03.4746 INFO 
+ Getting list of users -> System.Collections.Generic.List`1[ReactShop.Domain.Entities.User]
+2021-08-10 11:16:03.4950 INFO 
+ Getting list of users -> System.Collections.Generic.List`1[ReactShop.Domain.Entities.User]
+2021-08-10 11:16:03.5098 INFO 
+ Getting list of users -> System.Collections.Generic.List`1[ReactShop.Domain.Entities.User]
+2021-08-10 11:16:03.5266 INFO 
+ Getting list of users -> System.Collections.Generic.List`1[ReactShop.Domain.Entities.User]
+2021-08-10 11:16:03.5431 INFO 
+ Getting list of users -> System.Collections.Generic.List`1[ReactShop.Domain.Entities.User]
+2021-08-10 11:16:03.5606 INFO 
+ Getting list of users -> System.Collections.Generic.List`1[ReactShop.Domain.Entities.User]
+2021-08-10 11:16:03.5787 INFO 
+ Getting list of users -> System.Collections.Generic.List`1[ReactShop.Domain.Entities.User]
+2021-08-10 11:16:03.5993 INFO 
+ Getting list of users -> System.Collections.Generic.List`1[ReactShop.Domain.Entities.User]
+2021-08-10 11:16:03.6167 INFO 
+ Getting list of users -> System.Collections.Generic.List`1[ReactShop.Domain.Entities.User]
+2021-08-10 11:16:03.6304 INFO 
+ Getting list of users -> System.Collections.Generic.List`1[ReactShop.Domain.Entities.User]
+2021-08-10 11:16:03.6461 INFO 
+ Getting list of users -> System.Collections.Generic.List`1[ReactShop.Domain.Entities.User]
+2021-08-10 11:16:03.6893 INFO 
+ Getting list of users -> System.Collections.Generic.List`1[ReactShop.Domain.Entities.User]
+2021-08-10 11:16:03.7088 INFO 
+ Getting list of users -> System.Collections.Generic.List`1[ReactShop.Domain.Entities.User]
+2021-08-10 11:16:03.7489 INFO 
+ Getting list of users -> System.Collections.Generic.List`1[ReactShop.Domain.Entities.User]
+2021-08-10 11:16:03.7632 INFO 
+ Getting list of users -> System.Collections.Generic.List`1[ReactShop.Domain.Entities.User]
+2021-08-10 11:16:03.7824 INFO 
+ Getting list of users -> System.Collections.Generic.List`1[ReactShop.Domain.Entities.User]
+2021-08-10 11:16:03.7997 INFO 
+ Getting list of users -> System.Collections.Generic.List`1[ReactShop.Domain.Entities.User]
+2021-08-10 11:16:03.8172 INFO 
+ Getting list of users -> System.Collections.Generic.List`1[ReactShop.Domain.Entities.User]
+2021-08-10 11:16:03.8172 INFO 
+ Getting list of users -> System.Collections.Generic.List`1[ReactShop.Domain.Entities.User]
+2021-08-10 11:16:03.8456 INFO 
+ Getting list of users -> System.Collections.Generic.List`1[ReactShop.Domain.Entities.User]
+2021-08-10 11:16:03.8618 INFO 
+ Getting list of users -> System.Collections.Generic.List`1[ReactShop.Domain.Entities.User]
+2021-08-10 11:16:03.8959 INFO 
+ Getting list of users -> System.Collections.Generic.List`1[ReactShop.Domain.Entities.User]
+2021-08-10 11:16:03.9212 INFO 
+ Getting list of users -> System.Collections.Generic.List`1[ReactShop.Domain.Entities.User]
+2021-08-10 11:16:03.9473 INFO 
+ Getting list of users -> System.Collections.Generic.List`1[ReactShop.Domain.Entities.User]
+2021-08-10 11:16:03.9679 INFO 
+ Getting list of users -> System.Collections.Generic.List`1[ReactShop.Domain.Entities.User]
+2021-08-10 11:16:03.9879 INFO 
+ Getting list of users -> System.Collections.Generic.List`1[ReactShop.Domain.Entities.User]
+2021-08-10 11:16:04.0083 INFO 
+ Getting list of users -> System.Collections.Generic.List`1[ReactShop.Domain.Entities.User]
+2021-08-10 11:16:04.0239 INFO 
+ Getting list of users -> System.Collections.Generic.List`1[ReactShop.Domain.Entities.User]
+2021-08-10 11:16:04.0430 INFO 
+ Getting list of users -> System.Collections.Generic.List`1[ReactShop.Domain.Entities.User]
+2021-08-10 11:16:04.0579 INFO 
+ Getting list of users -> System.Collections.Generic.List`1[ReactShop.Domain.Entities.User]
+2021-08-10 11:16:04.0774 INFO 
+ Getting list of users -> System.Collections.Generic.List`1[ReactShop.Domain.Entities.User]
+2021-08-10 11:16:04.0928 INFO 
+ Getting list of users -> System.Collections.Generic.List`1[ReactShop.Domain.Entities.User]
+2021-08-10 11:16:04.1117 INFO 
+ Getting list of users -> System.Collections.Generic.List`1[ReactShop.Domain.Entities.User]
+2021-08-10 11:16:04.1290 INFO 
+ Getting list of users -> System.Collections.Generic.List`1[ReactShop.Domain.Entities.User]
+2021-08-10 11:16:04.1474 INFO 
+ Getting list of users -> System.Collections.Generic.List`1[ReactShop.Domain.Entities.User]
+2021-08-10 11:16:04.1713 INFO 
+ Getting list of users -> System.Collections.Generic.List`1[ReactShop.Domain.Entities.User]
+2021-08-10 11:16:04.1922 INFO 
+ Getting list of users -> System.Collections.Generic.List`1[ReactShop.Domain.Entities.User]
+2021-08-10 11:16:04.2107 INFO 
+ Getting list of users -> System.Collections.Generic.List`1[ReactShop.Domain.Entities.User]
+2021-08-10 11:16:04.2298 INFO 
+ Getting list of users -> System.Collections.Generic.List`1[ReactShop.Domain.Entities.User]
+2021-08-10 11:16:04.2460 INFO 
+ Getting list of users -> System.Collections.Generic.List`1[ReactShop.Domain.Entities.User]
+2021-08-10 11:16:04.2689 INFO 
+ Getting list of users -> System.Collections.Generic.List`1[ReactShop.Domain.Entities.User]
+2021-08-10 11:16:04.2854 INFO 
+ Getting list of users -> System.Collections.Generic.List`1[ReactShop.Domain.Entities.User]
+2021-08-10 11:16:04.3039 INFO 
+ Getting list of users -> System.Collections.Generic.List`1[ReactShop.Domain.Entities.User]
+2021-08-10 11:16:04.3225 INFO 
+ Getting list of users -> System.Collections.Generic.List`1[ReactShop.Domain.Entities.User]
+2021-08-10 11:16:04.3394 INFO 
+ Getting list of users -> System.Collections.Generic.List`1[ReactShop.Domain.Entities.User]
+2021-08-10 11:16:04.3572 INFO 
+ Getting list of users -> System.Collections.Generic.List`1[ReactShop.Domain.Entities.User]
+2021-08-10 11:16:04.3729 INFO 
+ Getting list of users -> System.Collections.Generic.List`1[ReactShop.Domain.Entities.User]
+2021-08-10 11:16:04.3921 INFO 
+ Getting list of users -> System.Collections.Generic.List`1[ReactShop.Domain.Entities.User]
+2021-08-10 11:16:04.4140 INFO 
+ Getting list of users -> System.Collections.Generic.List`1[ReactShop.Domain.Entities.User]
+2021-08-10 11:16:04.4325 INFO 
+ Getting list of users -> System.Collections.Generic.List`1[ReactShop.Domain.Entities.User]
+2021-08-10 11:16:04.4527 INFO 
+ Getting list of users -> System.Collections.Generic.List`1[ReactShop.Domain.Entities.User]
+2021-08-10 11:16:04.4700 INFO 
+ Getting list of users -> System.Collections.Generic.List`1[ReactShop.Domain.Entities.User]
+2021-08-10 11:16:04.4879 INFO 
+ Getting list of users -> System.Collections.Generic.List`1[ReactShop.Domain.Entities.User]
+2021-08-10 11:16:04.5055 INFO 
+ Getting list of users -> System.Collections.Generic.List`1[ReactShop.Domain.Entities.User]
+2021-08-10 11:16:04.5226 INFO 
+ Getting list of users -> System.Collections.Generic.List`1[ReactShop.Domain.Entities.User]
+2021-08-10 11:16:04.5399 INFO 
+ Getting list of users -> System.Collections.Generic.List`1[ReactShop.Domain.Entities.User]
+2021-08-10 11:16:04.5584 INFO 
+ Getting list of users -> System.Collections.Generic.List`1[ReactShop.Domain.Entities.User]
+2021-08-10 11:16:04.5758 INFO 
+ Getting list of users -> System.Collections.Generic.List`1[ReactShop.Domain.Entities.User]
+2021-08-10 11:16:04.5976 INFO 
+ Getting list of users -> System.Collections.Generic.List`1[ReactShop.Domain.Entities.User]
+2021-08-10 11:16:04.6273 INFO 
+ Getting list of users -> System.Collections.Generic.List`1[ReactShop.Domain.Entities.User]
+2021-08-10 11:16:04.6840 INFO 
+ Getting list of users -> System.Collections.Generic.List`1[ReactShop.Domain.Entities.User]
+2021-08-10 11:16:04.7034 INFO 
+ Getting list of users -> System.Collections.Generic.List`1[ReactShop.Domain.Entities.User]
+2021-08-10 11:16:04.7249 INFO 
+ Getting list of users -> System.Collections.Generic.List`1[ReactShop.Domain.Entities.User]
+2021-08-10 11:16:04.7416 INFO 
+ Getting list of users -> System.Collections.Generic.List`1[ReactShop.Domain.Entities.User]
+2021-08-10 11:16:04.7578 INFO 
+ Getting list of users -> System.Collections.Generic.List`1[ReactShop.Domain.Entities.User]
+2021-08-10 11:16:04.7742 INFO 
+ Getting list of users -> System.Collections.Generic.List`1[ReactShop.Domain.Entities.User]
+2021-08-10 11:16:04.7906 INFO 
+ Getting list of users -> System.Collections.Generic.List`1[ReactShop.Domain.Entities.User]
+2021-08-10 11:16:04.8068 INFO 
+ Getting list of users -> System.Collections.Generic.List`1[ReactShop.Domain.Entities.User]
+2021-08-10 11:16:04.8238 INFO 
+ Getting list of users -> System.Collections.Generic.List`1[ReactShop.Domain.Entities.User]
+2021-08-10 11:16:04.8438 INFO 
+ Getting list of users -> System.Collections.Generic.List`1[ReactShop.Domain.Entities.User]
+2021-08-10 11:16:04.8632 INFO 
+ Getting list of users -> System.Collections.Generic.List`1[ReactShop.Domain.Entities.User]
+2021-08-10 11:16:04.8845 INFO 
+ Getting list of users -> System.Collections.Generic.List`1[ReactShop.Domain.Entities.User]
+2021-08-10 11:16:04.9194 INFO 
+ Getting list of users -> System.Collections.Generic.List`1[ReactShop.Domain.Entities.User]
+2021-08-10 11:16:04.9374 INFO 
+ Getting list of users -> System.Collections.Generic.List`1[ReactShop.Domain.Entities.User]
+2021-08-10 11:16:05.0270 INFO 
+ Getting list of users -> System.Collections.Generic.List`1[ReactShop.Domain.Entities.User]
+2021-08-10 11:16:05.0561 INFO 
+ Getting list of users -> System.Collections.Generic.List`1[ReactShop.Domain.Entities.User]
+2021-08-10 11:16:05.0733 INFO 
+ Getting list of users -> System.Collections.Generic.List`1[ReactShop.Domain.Entities.User]
+2021-08-10 11:16:05.0886 INFO 
+ Getting list of users -> System.Collections.Generic.List`1[ReactShop.Domain.Entities.User]
+2021-08-10 11:16:05.1119 INFO 
+ Getting list of users -> System.Collections.Generic.List`1[ReactShop.Domain.Entities.User]
+2021-08-10 11:16:05.1358 INFO 
+ Getting list of users -> System.Collections.Generic.List`1[ReactShop.Domain.Entities.User]
+2021-08-10 11:16:05.1570 INFO 
+ Getting list of users -> System.Collections.Generic.List`1[ReactShop.Domain.Entities.User]
+2021-08-10 11:16:05.1873 INFO 
+ Getting list of users -> System.Collections.Generic.List`1[ReactShop.Domain.Entities.User]
+2021-08-10 11:16:05.2033 INFO 
+ Getting list of users -> System.Collections.Generic.List`1[ReactShop.Domain.Entities.User]
+2021-08-10 11:16:05.2256 INFO 
+ Getting list of users -> System.Collections.Generic.List`1[ReactShop.Domain.Entities.User]
+2021-08-10 11:16:05.2413 INFO 
+ Getting list of users -> System.Collections.Generic.List`1[ReactShop.Domain.Entities.User]
+2021-08-10 11:16:05.2573 INFO 
+ Getting list of users -> System.Collections.Generic.List`1[ReactShop.Domain.Entities.User]
+2021-08-10 11:16:05.2739 INFO 
+ Getting list of users -> System.Collections.Generic.List`1[ReactShop.Domain.Entities.User]
+2021-08-10 11:16:05.2900 INFO 
+ Getting list of users -> System.Collections.Generic.List`1[ReactShop.Domain.Entities.User]
+2021-08-10 11:16:05.3095 INFO 
+ Getting list of users -> System.Collections.Generic.List`1[ReactShop.Domain.Entities.User]
+2021-08-10 11:16:05.3285 INFO 
+ Getting list of users -> System.Collections.Generic.List`1[ReactShop.Domain.Entities.User]
+2021-08-10 11:16:05.3513 INFO 
+ Getting list of users -> System.Collections.Generic.List`1[ReactShop.Domain.Entities.User]
+2021-08-10 11:16:05.3700 INFO 
+ Getting list of users -> System.Collections.Generic.List`1[ReactShop.Domain.Entities.User]
+2021-08-10 11:16:05.3867 INFO 
+ Getting list of users -> System.Collections.Generic.List`1[ReactShop.Domain.Entities.User]
+2021-08-10 11:16:05.4024 INFO 
+ Getting list of users -> System.Collections.Generic.List`1[ReactShop.Domain.Entities.User]
+2021-08-10 11:16:05.4176 INFO 
+ Getting list of users -> System.Collections.Generic.List`1[ReactShop.Domain.Entities.User]
+2021-08-10 11:16:05.4355 INFO 
+ Getting list of users -> System.Collections.Generic.List`1[ReactShop.Domain.Entities.User]
+2021-08-10 11:16:05.4493 INFO 
+ Getting list of users -> System.Collections.Generic.List`1[ReactShop.Domain.Entities.User]
+2021-08-10 11:16:05.4657 INFO 
+ Getting list of users -> System.Collections.Generic.List`1[ReactShop.Domain.Entities.User]
+2021-08-10 11:16:05.4819 INFO 
+ Getting list of users -> System.Collections.Generic.List`1[ReactShop.Domain.Entities.User]
+2021-08-10 11:16:05.4981 INFO 
+ Getting list of users -> System.Collections.Generic.List`1[ReactShop.Domain.Entities.User]
+2021-08-10 11:16:05.5152 INFO 
+ Getting list of users -> System.Collections.Generic.List`1[ReactShop.Domain.Entities.User]
+2021-08-10 11:16:05.5329 INFO 
+ Getting list of users -> System.Collections.Generic.List`1[ReactShop.Domain.Entities.User]
+2021-08-10 11:16:05.5536 INFO 
+ Getting list of users -> System.Collections.Generic.List`1[ReactShop.Domain.Entities.User]
+2021-08-10 11:16:05.5780 INFO 
+ Getting list of users -> System.Collections.Generic.List`1[ReactShop.Domain.Entities.User]
+2021-08-10 11:16:05.5936 INFO 
+ Getting list of users -> System.Collections.Generic.List`1[ReactShop.Domain.Entities.User]
+2021-08-10 11:16:05.6105 INFO 
+ Getting list of users -> System.Collections.Generic.List`1[ReactShop.Domain.Entities.User]
+2021-08-10 11:16:05.6255 INFO 
+ Getting list of users -> System.Collections.Generic.List`1[ReactShop.Domain.Entities.User]
+2021-08-10 11:16:05.6413 INFO 
+ Getting list of users -> System.Collections.Generic.List`1[ReactShop.Domain.Entities.User]
+2021-08-10 11:16:05.6585 INFO 
+ Getting list of users -> System.Collections.Generic.List`1[ReactShop.Domain.Entities.User]
+2021-08-10 11:16:05.6756 INFO 
+ Getting list of users -> System.Collections.Generic.List`1[ReactShop.Domain.Entities.User]
+2021-08-10 11:16:05.6912 INFO 
+ Getting list of users -> System.Collections.Generic.List`1[ReactShop.Domain.Entities.User]
+2021-08-10 11:16:05.7078 INFO 
+ Getting list of users -> System.Collections.Generic.List`1[ReactShop.Domain.Entities.User]
+2021-08-10 11:16:05.7285 INFO 
+ Getting list of users -> System.Collections.Generic.List`1[ReactShop.Domain.Entities.User]
+2021-08-10 11:16:05.7535 INFO 
+ Getting list of users -> System.Collections.Generic.List`1[ReactShop.Domain.Entities.User]
+2021-08-10 11:16:05.7771 INFO 
+ Getting list of users -> System.Collections.Generic.List`1[ReactShop.Domain.Entities.User]
+2021-08-10 11:16:05.7994 INFO 
+ Getting list of users -> System.Collections.Generic.List`1[ReactShop.Domain.Entities.User]
+2021-08-10 11:16:05.8174 INFO 
+ Getting list of users -> System.Collections.Generic.List`1[ReactShop.Domain.Entities.User]
+2021-08-10 11:16:05.8345 INFO 
+ Getting list of users -> System.Collections.Generic.List`1[ReactShop.Domain.Entities.User]
+2021-08-10 11:16:05.8501 INFO 
+ Getting list of users -> System.Collections.Generic.List`1[ReactShop.Domain.Entities.User]
+2021-08-10 11:16:05.8821 INFO 
+ Getting list of users -> System.Collections.Generic.List`1[ReactShop.Domain.Entities.User]
+2021-08-10 11:16:05.8953 INFO 
+ Getting list of users -> System.Collections.Generic.List`1[ReactShop.Domain.Entities.User]
+2021-08-10 11:16:05.9109 INFO 
+ Getting list of users -> System.Collections.Generic.List`1[ReactShop.Domain.Entities.User]
+2021-08-10 11:16:05.9265 INFO 
+ Getting list of users -> System.Collections.Generic.List`1[ReactShop.Domain.Entities.User]
+2021-08-10 11:16:05.9422 INFO 
+ Getting list of users -> System.Collections.Generic.List`1[ReactShop.Domain.Entities.User]
+2021-08-10 11:16:05.9422 INFO 
+ Getting list of users -> System.Collections.Generic.List`1[ReactShop.Domain.Entities.User]
+2021-08-10 11:16:05.9688 INFO 
+ Getting list of users -> System.Collections.Generic.List`1[ReactShop.Domain.Entities.User]
+2021-08-10 11:16:05.9876 INFO 
+ Getting list of users -> System.Collections.Generic.List`1[ReactShop.Domain.Entities.User]
+2021-08-10 11:16:06.0104 INFO 
+ Getting list of users -> System.Collections.Generic.List`1[ReactShop.Domain.Entities.User]
+2021-08-10 11:16:06.0447 INFO 
+ Getting list of users -> System.Collections.Generic.List`1[ReactShop.Domain.Entities.User]
+2021-08-10 11:16:06.0594 INFO 
+ Getting list of users -> System.Collections.Generic.List`1[ReactShop.Domain.Entities.User]
+2021-08-10 11:16:06.0734 INFO 
+ Getting list of users -> System.Collections.Generic.List`1[ReactShop.Domain.Entities.User]
+2021-08-10 11:16:06.0855 INFO 
+ Getting list of users -> System.Collections.Generic.List`1[ReactShop.Domain.Entities.User]
+2021-08-10 11:16:06.1011 INFO 
+ Getting list of users -> System.Collections.Generic.List`1[ReactShop.Domain.Entities.User]
+2021-08-10 11:16:06.1170 INFO 
+ Getting list of users -> System.Collections.Generic.List`1[ReactShop.Domain.Entities.User]
+2021-08-10 11:16:06.1312 INFO 
+ Getting list of users -> System.Collections.Generic.List`1[ReactShop.Domain.Entities.User]
+2021-08-10 11:16:06.1312 INFO 
+ Getting list of users -> System.Collections.Generic.List`1[ReactShop.Domain.Entities.User]
+2021-08-10 11:16:06.1599 INFO 
+ Getting list of users -> System.Collections.Generic.List`1[ReactShop.Domain.Entities.User]
+2021-08-10 11:16:06.1763 INFO 
+ Getting list of users -> System.Collections.Generic.List`1[ReactShop.Domain.Entities.User]
+2021-08-10 11:16:06.1936 INFO 
+ Getting list of users -> System.Collections.Generic.List`1[ReactShop.Domain.Entities.User]
+2021-08-10 11:16:06.2120 INFO 
+ Getting list of users -> System.Collections.Generic.List`1[ReactShop.Domain.Entities.User]
+2021-08-10 11:16:06.2287 INFO 
+ Getting list of users -> System.Collections.Generic.List`1[ReactShop.Domain.Entities.User]
+2021-08-10 11:16:06.2574 INFO 
+ Getting list of users -> System.Collections.Generic.List`1[ReactShop.Domain.Entities.User]
+2021-08-10 11:16:06.2834 INFO 
+ Getting list of users -> System.Collections.Generic.List`1[ReactShop.Domain.Entities.User]
+2021-08-10 11:16:06.2990 INFO 
+ Getting list of users -> System.Collections.Generic.List`1[ReactShop.Domain.Entities.User]
+2021-08-10 11:16:06.3142 INFO 
+ Getting list of users -> System.Collections.Generic.List`1[ReactShop.Domain.Entities.User]
+2021-08-10 11:16:06.3292 INFO 
+ Getting list of users -> System.Collections.Generic.List`1[ReactShop.Domain.Entities.User]
+2021-08-10 11:16:06.3434 INFO 
+ Getting list of users -> System.Collections.Generic.List`1[ReactShop.Domain.Entities.User]
+2021-08-10 11:16:06.3811 INFO 
+ Getting list of users -> System.Collections.Generic.List`1[ReactShop.Domain.Entities.User]
+2021-08-10 11:16:06.3961 INFO 
+ Getting list of users -> System.Collections.Generic.List`1[ReactShop.Domain.Entities.User]
+2021-08-10 11:16:06.4111 INFO 
+ Getting list of users -> System.Collections.Generic.List`1[ReactShop.Domain.Entities.User]
+2021-08-10 11:16:06.4111 INFO 
+ Getting list of users -> System.Collections.Generic.List`1[ReactShop.Domain.Entities.User]
+2021-08-10 11:16:06.4399 INFO 
+ Getting list of users -> System.Collections.Generic.List`1[ReactShop.Domain.Entities.User]
+2021-08-10 11:16:06.4609 INFO 
+ Getting list of users -> System.Collections.Generic.List`1[ReactShop.Domain.Entities.User]
+2021-08-10 11:16:06.4809 INFO 
+ Getting list of users -> System.Collections.Generic.List`1[ReactShop.Domain.Entities.User]
+2021-08-10 11:16:06.5068 INFO 
+ Getting list of users -> System.Collections.Generic.List`1[ReactShop.Domain.Entities.User]
+2021-08-10 11:16:06.5068 INFO 
+ Getting list of users -> System.Collections.Generic.List`1[ReactShop.Domain.Entities.User]
+2021-08-10 11:16:06.5339 INFO 
+ Getting list of users -> System.Collections.Generic.List`1[ReactShop.Domain.Entities.User]
+2021-08-10 11:16:06.5488 INFO 
+ Getting list of users -> System.Collections.Generic.List`1[ReactShop.Domain.Entities.User]
+2021-08-10 11:16:06.5812 INFO 
+ Getting list of users -> System.Collections.Generic.List`1[ReactShop.Domain.Entities.User]
+2021-08-10 11:16:06.6018 INFO 
+ Getting list of users -> System.Collections.Generic.List`1[ReactShop.Domain.Entities.User]
+2021-08-10 11:16:06.6153 INFO 
+ Getting list of users -> System.Collections.Generic.List`1[ReactShop.Domain.Entities.User]
+2021-08-10 11:16:06.6303 INFO 
+ Getting list of users -> System.Collections.Generic.List`1[ReactShop.Domain.Entities.User]
+2021-08-10 11:16:06.6303 INFO 
+ Getting list of users -> System.Collections.Generic.List`1[ReactShop.Domain.Entities.User]
+2021-08-10 11:16:06.6601 INFO 
+ Getting list of users -> System.Collections.Generic.List`1[ReactShop.Domain.Entities.User]
+2021-08-10 11:16:06.6836 INFO 
+ Getting list of users -> System.Collections.Generic.List`1[ReactShop.Domain.Entities.User]
+2021-08-10 11:16:06.7170 INFO 
+ Getting list of users -> System.Collections.Generic.List`1[ReactShop.Domain.Entities.User]
+2021-08-10 11:16:06.7435 INFO 
+ Getting list of users -> System.Collections.Generic.List`1[ReactShop.Domain.Entities.User]
+2021-08-10 11:16:06.7577 INFO 
+ Getting list of users -> System.Collections.Generic.List`1[ReactShop.Domain.Entities.User]
+2021-08-10 11:16:06.7755 INFO 
+ Getting list of users -> System.Collections.Generic.List`1[ReactShop.Domain.Entities.User]
+2021-08-10 11:16:06.7920 INFO 
+ Getting list of users -> System.Collections.Generic.List`1[ReactShop.Domain.Entities.User]
+2021-08-10 11:16:06.8110 INFO 
+ Getting list of users -> System.Collections.Generic.List`1[ReactShop.Domain.Entities.User]
+2021-08-10 11:16:06.8278 INFO 
+ Getting list of users -> System.Collections.Generic.List`1[ReactShop.Domain.Entities.User]
+2021-08-10 11:16:06.8448 INFO 
+ Getting list of users -> System.Collections.Generic.List`1[ReactShop.Domain.Entities.User]
+2021-08-10 11:16:06.8627 INFO 
+ Getting list of users -> System.Collections.Generic.List`1[ReactShop.Domain.Entities.User]
+2021-08-10 11:16:06.8838 INFO 
+ Getting list of users -> System.Collections.Generic.List`1[ReactShop.Domain.Entities.User]
+2021-08-10 11:16:06.9112 INFO 
+ Getting list of users -> System.Collections.Generic.List`1[ReactShop.Domain.Entities.User]
+2021-08-10 11:16:06.9275 INFO 
+ Getting list of users -> System.Collections.Generic.List`1[ReactShop.Domain.Entities.User]
+2021-08-10 11:16:06.9428 INFO 
+ Getting list of users -> System.Collections.Generic.List`1[ReactShop.Domain.Entities.User]
+2021-08-10 11:16:06.9793 INFO 
+ Getting list of users -> System.Collections.Generic.List`1[ReactShop.Domain.Entities.User]
+2021-08-10 11:16:06.9935 INFO 
+ Getting list of users -> System.Collections.Generic.List`1[ReactShop.Domain.Entities.User]
+2021-08-10 11:16:07.0072 INFO 
+ Getting list of users -> System.Collections.Generic.List`1[ReactShop.Domain.Entities.User]
+2021-08-10 11:16:07.0202 INFO 
+ Getting list of users -> System.Collections.Generic.List`1[ReactShop.Domain.Entities.User]
+2021-08-10 11:16:07.0404 INFO 
+ Getting list of users -> System.Collections.Generic.List`1[ReactShop.Domain.Entities.User]
+2021-08-10 11:16:07.0527 INFO 
+ Getting list of users -> System.Collections.Generic.List`1[ReactShop.Domain.Entities.User]
+2021-08-10 11:16:07.0660 INFO 
+ Getting list of users -> System.Collections.Generic.List`1[ReactShop.Domain.Entities.User]
+2021-08-10 11:16:07.0660 INFO 
+ Getting list of users -> System.Collections.Generic.List`1[ReactShop.Domain.Entities.User]
+2021-08-10 11:16:07.0949 INFO 
+ Getting list of users -> System.Collections.Generic.List`1[ReactShop.Domain.Entities.User]
+2021-08-10 11:16:07.1134 INFO 
+ Getting list of users -> System.Collections.Generic.List`1[ReactShop.Domain.Entities.User]
+2021-08-10 11:16:07.1457 INFO 
+ Getting list of users -> System.Collections.Generic.List`1[ReactShop.Domain.Entities.User]
+2021-08-10 11:16:07.1602 INFO 
+ Getting list of users -> System.Collections.Generic.List`1[ReactShop.Domain.Entities.User]
+2021-08-10 11:16:07.1765 INFO 
+ Getting list of users -> System.Collections.Generic.List`1[ReactShop.Domain.Entities.User]
+2021-08-10 11:16:07.1765 INFO 
+ Getting list of users -> System.Collections.Generic.List`1[ReactShop.Domain.Entities.User]
+2021-08-10 11:16:07.1910 INFO 
+ Getting list of users -> System.Collections.Generic.List`1[ReactShop.Domain.Entities.User]
+2021-08-10 11:16:07.2188 INFO 
+ Getting list of users -> System.Collections.Generic.List`1[ReactShop.Domain.Entities.User]
+2021-08-10 11:16:07.2339 INFO 
+ Getting list of users -> System.Collections.Generic.List`1[ReactShop.Domain.Entities.User]
+2021-08-10 11:16:07.2481 INFO 
+ Getting list of users -> System.Collections.Generic.List`1[ReactShop.Domain.Entities.User]
+2021-08-10 11:16:07.2639 INFO 
+ Getting list of users -> System.Collections.Generic.List`1[ReactShop.Domain.Entities.User]
+2021-08-10 11:16:07.2779 INFO 
+ Getting list of users -> System.Collections.Generic.List`1[ReactShop.Domain.Entities.User]
+2021-08-10 11:16:07.2943 INFO 
+ Getting list of users -> System.Collections.Generic.List`1[ReactShop.Domain.Entities.User]
+2021-08-10 11:16:07.3104 INFO 
+ Getting list of users -> System.Collections.Generic.List`1[ReactShop.Domain.Entities.User]
+2021-08-10 11:16:07.3250 INFO 
+ Getting list of users -> System.Collections.Generic.List`1[ReactShop.Domain.Entities.User]
+2021-08-10 11:16:07.3427 INFO 
+ Getting list of users -> System.Collections.Generic.List`1[ReactShop.Domain.Entities.User]
+2021-08-10 11:16:07.3607 INFO 
+ Getting list of users -> System.Collections.Generic.List`1[ReactShop.Domain.Entities.User]
+2021-08-10 11:16:07.3840 INFO 
+ Getting list of users -> System.Collections.Generic.List`1[ReactShop.Domain.Entities.User]
+2021-08-10 11:16:07.3955 INFO 
+ Getting list of users -> System.Collections.Generic.List`1[ReactShop.Domain.Entities.User]
+2021-08-10 11:16:07.4120 INFO 
+ Getting list of users -> System.Collections.Generic.List`1[ReactShop.Domain.Entities.User]
+2021-08-10 11:16:07.4280 INFO 
+ Getting list of users -> System.Collections.Generic.List`1[ReactShop.Domain.Entities.User]
+2021-08-10 11:16:07.4280 INFO 
+ Getting list of users -> System.Collections.Generic.List`1[ReactShop.Domain.Entities.User]
+2021-08-10 11:16:07.4566 INFO 
+ Getting list of users -> System.Collections.Generic.List`1[ReactShop.Domain.Entities.User]
+2021-08-10 11:16:07.4706 INFO 
+ Getting list of users -> System.Collections.Generic.List`1[ReactShop.Domain.Entities.User]
+2021-08-10 11:16:07.4851 INFO 
+ Getting list of users -> System.Collections.Generic.List`1[ReactShop.Domain.Entities.User]
+2021-08-10 11:16:07.5008 INFO 
+ Getting list of users -> System.Collections.Generic.List`1[ReactShop.Domain.Entities.User]
+2021-08-10 11:16:07.5145 INFO 
+ Getting list of users -> System.Collections.Generic.List`1[ReactShop.Domain.Entities.User]
+2021-08-10 11:16:07.5297 INFO 
+ Getting list of users -> System.Collections.Generic.List`1[ReactShop.Domain.Entities.User]
+2021-08-10 11:16:07.5446 INFO 
+ Getting list of users -> System.Collections.Generic.List`1[ReactShop.Domain.Entities.User]
+2021-08-10 11:16:07.5614 INFO 
+ Getting list of users -> System.Collections.Generic.List`1[ReactShop.Domain.Entities.User]
+2021-08-10 11:16:07.5793 INFO 
+ Getting list of users -> System.Collections.Generic.List`1[ReactShop.Domain.Entities.User]
+2021-08-10 11:16:07.5978 INFO 
+ Getting list of users -> System.Collections.Generic.List`1[ReactShop.Domain.Entities.User]
+2021-08-10 11:16:07.5981 INFO 
+ Getting list of users -> System.Collections.Generic.List`1[ReactShop.Domain.Entities.User]
+2021-08-10 11:16:07.6268 INFO 
+ Getting list of users -> System.Collections.Generic.List`1[ReactShop.Domain.Entities.User]
+2021-08-10 11:16:07.6428 INFO 
+ Getting list of users -> System.Collections.Generic.List`1[ReactShop.Domain.Entities.User]
+2021-08-10 11:16:07.6635 INFO 
+ Getting list of users -> System.Collections.Generic.List`1[ReactShop.Domain.Entities.User]
+2021-08-10 11:16:07.6784 INFO 
+ Getting list of users -> System.Collections.Generic.List`1[ReactShop.Domain.Entities.User]
+2021-08-10 11:16:07.6920 INFO 
+ Getting list of users -> System.Collections.Generic.List`1[ReactShop.Domain.Entities.User]
+2021-08-10 11:16:07.6920 INFO 
+ Getting list of users -> System.Collections.Generic.List`1[ReactShop.Domain.Entities.User]
+2021-08-10 11:16:07.7249 INFO 
+ Getting list of users -> System.Collections.Generic.List`1[ReactShop.Domain.Entities.User]
+2021-08-10 11:16:07.7437 INFO 
+ Getting list of users -> System.Collections.Generic.List`1[ReactShop.Domain.Entities.User]
+2021-08-10 11:16:07.7606 INFO 
+ Getting list of users -> System.Collections.Generic.List`1[ReactShop.Domain.Entities.User]
+2021-08-10 11:16:07.7784 INFO 
+ Getting list of users -> System.Collections.Generic.List`1[ReactShop.Domain.Entities.User]
+2021-08-10 11:16:07.7990 INFO 
+ Getting list of users -> System.Collections.Generic.List`1[ReactShop.Domain.Entities.User]
+2021-08-10 11:16:07.8254 INFO 
+ Getting list of users -> System.Collections.Generic.List`1[ReactShop.Domain.Entities.User]
+2021-08-10 11:16:07.8422 INFO 
+ Getting list of users -> System.Collections.Generic.List`1[ReactShop.Domain.Entities.User]
+2021-08-10 11:16:07.8573 INFO 
+ Getting list of users -> System.Collections.Generic.List`1[ReactShop.Domain.Entities.User]
+2021-08-10 11:16:07.8695 INFO 
+ Getting list of users -> System.Collections.Generic.List`1[ReactShop.Domain.Entities.User]
+2021-08-10 11:16:07.8868 INFO 
+ Getting list of users -> System.Collections.Generic.List`1[ReactShop.Domain.Entities.User]
+2021-08-10 11:16:07.9009 INFO 
+ Getting list of users -> System.Collections.Generic.List`1[ReactShop.Domain.Entities.User]
+2021-08-10 11:16:07.9166 INFO 
+ Getting list of users -> System.Collections.Generic.List`1[ReactShop.Domain.Entities.User]
+2021-08-10 11:16:07.9338 INFO 
+ Getting list of users -> System.Collections.Generic.List`1[ReactShop.Domain.Entities.User]
+2021-08-10 11:16:07.9485 INFO 
+ Getting list of users -> System.Collections.Generic.List`1[ReactShop.Domain.Entities.User]
+2021-08-10 11:16:07.9629 INFO 
+ Getting list of users -> System.Collections.Generic.List`1[ReactShop.Domain.Entities.User]
+2021-08-10 11:16:07.9790 INFO 
+ Getting list of users -> System.Collections.Generic.List`1[ReactShop.Domain.Entities.User]
+2021-08-10 11:16:07.9934 INFO 
+ Getting list of users -> System.Collections.Generic.List`1[ReactShop.Domain.Entities.User]
+2021-08-10 11:16:08.0116 INFO 
+ Getting list of users -> System.Collections.Generic.List`1[ReactShop.Domain.Entities.User]
+2021-08-10 11:16:08.0327 INFO 
+ Getting list of users -> System.Collections.Generic.List`1[ReactShop.Domain.Entities.User]
+2021-08-10 11:16:08.0531 INFO 
+ Getting list of users -> System.Collections.Generic.List`1[ReactShop.Domain.Entities.User]
+2021-08-10 11:16:08.0677 INFO 
+ Getting list of users -> System.Collections.Generic.List`1[ReactShop.Domain.Entities.User]
+2021-08-10 11:16:08.0836 INFO 
+ Getting list of users -> System.Collections.Generic.List`1[ReactShop.Domain.Entities.User]
+2021-08-10 11:16:08.0993 INFO 
+ Getting list of users -> System.Collections.Generic.List`1[ReactShop.Domain.Entities.User]
+2021-08-10 11:16:08.1149 INFO 
+ Getting list of users -> System.Collections.Generic.List`1[ReactShop.Domain.Entities.User]
+2021-08-10 11:16:08.1334 INFO 
+ Getting list of users -> System.Collections.Generic.List`1[ReactShop.Domain.Entities.User]
+2021-08-10 11:16:08.1489 INFO 
+ Getting list of users -> System.Collections.Generic.List`1[ReactShop.Domain.Entities.User]
+2021-08-10 11:16:08.1643 INFO 
+ Getting list of users -> System.Collections.Generic.List`1[ReactShop.Domain.Entities.User]
+2021-08-10 11:16:08.1816 INFO 
+ Getting list of users -> System.Collections.Generic.List`1[ReactShop.Domain.Entities.User]
+2021-08-10 11:16:08.1974 INFO 
+ Getting list of users -> System.Collections.Generic.List`1[ReactShop.Domain.Entities.User]
+2021-08-10 11:16:08.2120 INFO 
+ Getting list of users -> System.Collections.Generic.List`1[ReactShop.Domain.Entities.User]
+2021-08-10 11:16:08.2308 INFO 
+ Getting list of users -> System.Collections.Generic.List`1[ReactShop.Domain.Entities.User]
+2021-08-10 11:16:08.2530 INFO 
+ Getting list of users -> System.Collections.Generic.List`1[ReactShop.Domain.Entities.User]
+2021-08-10 11:16:08.2656 INFO 
+ Getting list of users -> System.Collections.Generic.List`1[ReactShop.Domain.Entities.User]
+2021-08-10 11:16:08.2829 INFO 
+ Getting list of users -> System.Collections.Generic.List`1[ReactShop.Domain.Entities.User]
+2021-08-10 11:16:08.2968 INFO 
+ Getting list of users -> System.Collections.Generic.List`1[ReactShop.Domain.Entities.User]
+2021-08-10 11:16:08.3104 INFO 
+ Getting list of users -> System.Collections.Generic.List`1[ReactShop.Domain.Entities.User]
+2021-08-10 11:16:08.3260 INFO 
+ Getting list of users -> System.Collections.Generic.List`1[ReactShop.Domain.Entities.User]
+2021-08-10 11:16:08.3417 INFO 
+ Getting list of users -> System.Collections.Generic.List`1[ReactShop.Domain.Entities.User]
+2021-08-10 11:16:08.3541 INFO 
+ Getting list of users -> System.Collections.Generic.List`1[ReactShop.Domain.Entities.User]
+2021-08-10 11:16:08.3697 INFO 
+ Getting list of users -> System.Collections.Generic.List`1[ReactShop.Domain.Entities.User]
+2021-08-10 11:16:08.3850 INFO 
+ Getting list of users -> System.Collections.Generic.List`1[ReactShop.Domain.Entities.User]
+2021-08-10 11:16:08.3997 INFO 
+ Getting list of users -> System.Collections.Generic.List`1[ReactShop.Domain.Entities.User]
+2021-08-10 11:16:08.4143 INFO 
+ Getting list of users -> System.Collections.Generic.List`1[ReactShop.Domain.Entities.User]
+2021-08-10 11:16:08.4298 INFO 
+ Getting list of users -> System.Collections.Generic.List`1[ReactShop.Domain.Entities.User]
+2021-08-10 11:16:08.4524 INFO 
+ Getting list of users -> System.Collections.Generic.List`1[ReactShop.Domain.Entities.User]
+2021-08-10 11:16:08.4703 INFO 
+ Getting list of users -> System.Collections.Generic.List`1[ReactShop.Domain.Entities.User]
+2021-08-10 11:16:08.4866 INFO 
+ Getting list of users -> System.Collections.Generic.List`1[ReactShop.Domain.Entities.User]
+2021-08-10 11:16:08.5035 INFO 
+ Getting list of users -> System.Collections.Generic.List`1[ReactShop.Domain.Entities.User]
+2021-08-10 11:16:08.5191 INFO 
+ Getting list of users -> System.Collections.Generic.List`1[ReactShop.Domain.Entities.User]
+2021-08-10 11:16:08.5342 INFO 
+ Getting list of users -> System.Collections.Generic.List`1[ReactShop.Domain.Entities.User]
+2021-08-10 11:16:08.5497 INFO 
+ Getting list of users -> System.Collections.Generic.List`1[ReactShop.Domain.Entities.User]
+2021-08-10 11:16:08.5646 INFO 
+ Getting list of users -> System.Collections.Generic.List`1[ReactShop.Domain.Entities.User]
+2021-08-10 11:16:08.5802 INFO 
+ Getting list of users -> System.Collections.Generic.List`1[ReactShop.Domain.Entities.User]
+2021-08-10 11:16:08.5953 INFO 
+ Getting list of users -> System.Collections.Generic.List`1[ReactShop.Domain.Entities.User]
+2021-08-10 11:16:08.6104 INFO 
+ Getting list of users -> System.Collections.Generic.List`1[ReactShop.Domain.Entities.User]
+2021-08-10 11:16:08.6252 INFO 
+ Getting list of users -> System.Collections.Generic.List`1[ReactShop.Domain.Entities.User]
+2021-08-10 11:16:08.6374 INFO 
+ Getting list of users -> System.Collections.Generic.List`1[ReactShop.Domain.Entities.User]
+2021-08-10 11:16:08.6515 INFO 
+ Getting list of users -> System.Collections.Generic.List`1[ReactShop.Domain.Entities.User]
+2021-08-10 11:16:08.6687 INFO 
+ Getting list of users -> System.Collections.Generic.List`1[ReactShop.Domain.Entities.User]
+2021-08-10 11:16:08.6853 INFO 
+ Getting list of users -> System.Collections.Generic.List`1[ReactShop.Domain.Entities.User]
+2021-08-10 11:16:08.7008 INFO 
+ Getting list of users -> System.Collections.Generic.List`1[ReactShop.Domain.Entities.User]
+2021-08-10 11:16:08.7293 INFO 
+ Getting list of users -> System.Collections.Generic.List`1[ReactShop.Domain.Entities.User]
+2021-08-10 11:16:08.7486 INFO 
+ Getting list of users -> System.Collections.Generic.List`1[ReactShop.Domain.Entities.User]
+2021-08-10 11:16:08.7643 INFO 
+ Getting list of users -> System.Collections.Generic.List`1[ReactShop.Domain.Entities.User]
+2021-08-10 11:16:08.7809 INFO 
+ Getting list of users -> System.Collections.Generic.List`1[ReactShop.Domain.Entities.User]
+2021-08-10 11:16:08.7960 INFO 
+ Getting list of users -> System.Collections.Generic.List`1[ReactShop.Domain.Entities.User]
+2021-08-10 11:16:08.8105 INFO 
+ Getting list of users -> System.Collections.Generic.List`1[ReactShop.Domain.Entities.User]
+2021-08-10 11:16:08.8257 INFO 
+ Getting list of users -> System.Collections.Generic.List`1[ReactShop.Domain.Entities.User]
+2021-08-10 11:16:08.8386 INFO 
+ Getting list of users -> System.Collections.Generic.List`1[ReactShop.Domain.Entities.User]
+2021-08-10 11:16:08.8539 INFO 
+ Getting list of users -> System.Collections.Generic.List`1[ReactShop.Domain.Entities.User]
+2021-08-10 11:16:08.8679 INFO 
+ Getting list of users -> System.Collections.Generic.List`1[ReactShop.Domain.Entities.User]
+2021-08-10 11:16:08.8836 INFO 
+ Getting list of users -> System.Collections.Generic.List`1[ReactShop.Domain.Entities.User]
+2021-08-10 11:16:08.8999 INFO 
+ Getting list of users -> System.Collections.Generic.List`1[ReactShop.Domain.Entities.User]
+2021-08-10 11:16:08.9145 INFO 
+ Getting list of users -> System.Collections.Generic.List`1[ReactShop.Domain.Entities.User]
+2021-08-10 11:16:08.9309 INFO 
+ Getting list of users -> System.Collections.Generic.List`1[ReactShop.Domain.Entities.User]
+2021-08-10 11:16:08.9511 INFO 
+ Getting list of users -> System.Collections.Generic.List`1[ReactShop.Domain.Entities.User]
+2021-08-10 11:16:08.9711 INFO 
+ Getting list of users -> System.Collections.Generic.List`1[ReactShop.Domain.Entities.User]
+2021-08-10 11:16:08.9916 INFO 
+ Getting list of users -> System.Collections.Generic.List`1[ReactShop.Domain.Entities.User]
+2021-08-10 11:16:09.0057 INFO 
+ Getting list of users -> System.Collections.Generic.List`1[ReactShop.Domain.Entities.User]
+2021-08-10 11:16:09.0211 INFO 
+ Getting list of users -> System.Collections.Generic.List`1[ReactShop.Domain.Entities.User]
+2021-08-10 11:16:09.0350 INFO 
+ Getting list of users -> System.Collections.Generic.List`1[ReactShop.Domain.Entities.User]
+2021-08-10 11:16:09.0879 INFO 
+ Getting list of users -> System.Collections.Generic.List`1[ReactShop.Domain.Entities.User]
+2021-08-10 11:16:09.1014 INFO 
+ Getting list of users -> System.Collections.Generic.List`1[ReactShop.Domain.Entities.User]
+2021-08-10 11:16:09.1157 INFO 
+ Getting list of users -> System.Collections.Generic.List`1[ReactShop.Domain.Entities.User]
+2021-08-10 11:16:09.1332 INFO 
+ Getting list of users -> System.Collections.Generic.List`1[ReactShop.Domain.Entities.User]
+2021-08-10 11:16:09.1500 INFO 
+ Getting list of users -> System.Collections.Generic.List`1[ReactShop.Domain.Entities.User]
+2021-08-10 11:16:09.1677 INFO 
+ Getting list of users -> System.Collections.Generic.List`1[ReactShop.Domain.Entities.User]
+2021-08-10 11:16:09.1858 INFO 
+ Getting list of users -> System.Collections.Generic.List`1[ReactShop.Domain.Entities.User]
+2021-08-10 11:16:09.2004 INFO 
+ Getting list of users -> System.Collections.Generic.List`1[ReactShop.Domain.Entities.User]
+2021-08-10 11:16:09.2146 INFO 
+ Getting list of users -> System.Collections.Generic.List`1[ReactShop.Domain.Entities.User]
+2021-08-10 11:16:09.2298 INFO 
+ Getting list of users -> System.Collections.Generic.List`1[ReactShop.Domain.Entities.User]
+2021-08-10 11:16:09.2451 INFO 
+ Getting list of users -> System.Collections.Generic.List`1[ReactShop.Domain.Entities.User]
+2021-08-10 11:16:09.2593 INFO 
+ Getting list of users -> System.Collections.Generic.List`1[ReactShop.Domain.Entities.User]
+2021-08-10 11:16:09.2747 INFO 
+ Getting list of users -> System.Collections.Generic.List`1[ReactShop.Domain.Entities.User]
+2021-08-10 11:16:09.2935 INFO 
+ Getting list of users -> System.Collections.Generic.List`1[ReactShop.Domain.Entities.User]
+2021-08-10 11:16:09.3139 INFO 
+ Getting list of users -> System.Collections.Generic.List`1[ReactShop.Domain.Entities.User]
+2021-08-10 11:16:09.3290 INFO 
+ Getting list of users -> System.Collections.Generic.List`1[ReactShop.Domain.Entities.User]
+2021-08-10 11:16:09.3445 INFO 
+ Getting list of users -> System.Collections.Generic.List`1[ReactShop.Domain.Entities.User]
+2021-08-10 11:16:09.3614 INFO 
+ Getting list of users -> System.Collections.Generic.List`1[ReactShop.Domain.Entities.User]
+2021-08-10 11:16:09.3863 INFO 
+ Getting list of users -> System.Collections.Generic.List`1[ReactShop.Domain.Entities.User]
+2021-08-10 11:16:09.3996 INFO 
+ Getting list of users -> System.Collections.Generic.List`1[ReactShop.Domain.Entities.User]
+2021-08-10 11:16:09.4242 INFO 
+ Getting list of users -> System.Collections.Generic.List`1[ReactShop.Domain.Entities.User]
+2021-08-10 11:16:09.4517 INFO 
+ Getting list of users -> System.Collections.Generic.List`1[ReactShop.Domain.Entities.User]
+2021-08-10 11:16:09.4651 INFO 
+ Getting list of users -> System.Collections.Generic.List`1[ReactShop.Domain.Entities.User]
+2021-08-10 11:16:09.4806 INFO 
+ Getting list of users -> System.Collections.Generic.List`1[ReactShop.Domain.Entities.User]
+2021-08-10 11:16:09.4991 INFO 
+ Getting list of users -> System.Collections.Generic.List`1[ReactShop.Domain.Entities.User]
+2021-08-10 11:16:09.5153 INFO 
+ Getting list of users -> System.Collections.Generic.List`1[ReactShop.Domain.Entities.User]
+2021-08-10 11:16:09.5299 INFO 
+ Getting list of users -> System.Collections.Generic.List`1[ReactShop.Domain.Entities.User]
+2021-08-10 11:16:09.5488 INFO 
+ Getting list of users -> System.Collections.Generic.List`1[ReactShop.Domain.Entities.User]
+2021-08-10 11:16:09.5645 INFO 
+ Getting list of users -> System.Collections.Generic.List`1[ReactShop.Domain.Entities.User]
+2021-08-10 11:16:09.5784 INFO 
+ Getting list of users -> System.Collections.Generic.List`1[ReactShop.Domain.Entities.User]
+2021-08-10 11:16:09.5946 INFO 
+ Getting list of users -> System.Collections.Generic.List`1[ReactShop.Domain.Entities.User]
+2021-08-10 11:16:09.6154 INFO 
+ Getting list of users -> System.Collections.Generic.List`1[ReactShop.Domain.Entities.User]
+2021-08-10 11:16:09.6392 INFO 
+ Getting list of users -> System.Collections.Generic.List`1[ReactShop.Domain.Entities.User]
+2021-08-10 11:16:09.6532 INFO 
+ Getting list of users -> System.Collections.Generic.List`1[ReactShop.Domain.Entities.User]
+2021-08-10 11:16:09.6688 INFO 
+ Getting list of users -> System.Collections.Generic.List`1[ReactShop.Domain.Entities.User]
+2021-08-10 11:16:09.6837 INFO 
+ Getting list of users -> System.Collections.Generic.List`1[ReactShop.Domain.Entities.User]
+2021-08-10 11:16:09.6977 INFO 
+ Getting list of users -> System.Collections.Generic.List`1[ReactShop.Domain.Entities.User]
+2021-08-10 11:16:09.7147 INFO 
+ Getting list of users -> System.Collections.Generic.List`1[ReactShop.Domain.Entities.User]
+2021-08-10 11:16:09.7336 INFO 
+ Getting list of users -> System.Collections.Generic.List`1[ReactShop.Domain.Entities.User]
+2021-08-10 11:16:09.7485 INFO 
+ Getting list of users -> System.Collections.Generic.List`1[ReactShop.Domain.Entities.User]
+2021-08-10 11:16:09.7647 INFO 
+ Getting list of users -> System.Collections.Generic.List`1[ReactShop.Domain.Entities.User]
+2021-08-10 11:16:09.7800 INFO 
+ Getting list of users -> System.Collections.Generic.List`1[ReactShop.Domain.Entities.User]
+2021-08-10 11:16:09.7952 INFO 
+ Getting list of users -> System.Collections.Generic.List`1[ReactShop.Domain.Entities.User]
+2021-08-10 11:16:09.8118 INFO 
+ Getting list of users -> System.Collections.Generic.List`1[ReactShop.Domain.Entities.User]
+2021-08-10 11:16:09.8290 INFO 
+ Getting list of users -> System.Collections.Generic.List`1[ReactShop.Domain.Entities.User]
+2021-08-10 11:16:09.8482 INFO 
+ Getting list of users -> System.Collections.Generic.List`1[ReactShop.Domain.Entities.User]
+2021-08-10 11:16:09.8719 INFO 
+ Getting list of users -> System.Collections.Generic.List`1[ReactShop.Domain.Entities.User]
+2021-08-10 11:16:09.8863 INFO 
+ Getting list of users -> System.Collections.Generic.List`1[ReactShop.Domain.Entities.User]
+2021-08-10 11:16:09.9008 INFO 
+ Getting list of users -> System.Collections.Generic.List`1[ReactShop.Domain.Entities.User]
+2021-08-10 11:16:09.9139 INFO 
+ Getting list of users -> System.Collections.Generic.List`1[ReactShop.Domain.Entities.User]
+2021-08-10 11:16:09.9289 INFO 
+ Getting list of users -> System.Collections.Generic.List`1[ReactShop.Domain.Entities.User]
+2021-08-10 11:16:09.9416 INFO 
+ Getting list of users -> System.Collections.Generic.List`1[ReactShop.Domain.Entities.User]
+2021-08-10 11:16:09.9416 INFO 
+ Getting list of users -> System.Collections.Generic.List`1[ReactShop.Domain.Entities.User]
+2021-08-10 11:16:09.9718 INFO 
+ Getting list of users -> System.Collections.Generic.List`1[ReactShop.Domain.Entities.User]
+2021-08-10 11:16:09.9890 INFO 
+ Getting list of users -> System.Collections.Generic.List`1[ReactShop.Domain.Entities.User]
+2021-08-10 11:16:10.0041 INFO 
+ Getting list of users -> System.Collections.Generic.List`1[ReactShop.Domain.Entities.User]
+2021-08-10 11:16:10.0041 INFO 
+ Getting list of users -> System.Collections.Generic.List`1[ReactShop.Domain.Entities.User]
+2021-08-10 11:16:10.0347 INFO 
+ Getting list of users -> System.Collections.Generic.List`1[ReactShop.Domain.Entities.User]
+2021-08-10 11:16:10.0502 INFO 
+ Getting list of users -> System.Collections.Generic.List`1[ReactShop.Domain.Entities.User]
+2021-08-10 11:16:10.0693 INFO 
+ Getting list of users -> System.Collections.Generic.List`1[ReactShop.Domain.Entities.User]
+2021-08-10 11:16:10.0859 INFO 
+ Getting list of users -> System.Collections.Generic.List`1[ReactShop.Domain.Entities.User]
+2021-08-10 11:16:10.1129 INFO 
+ Getting list of users -> System.Collections.Generic.List`1[ReactShop.Domain.Entities.User]
+2021-08-10 11:16:10.1131 INFO 
+ Getting list of users -> System.Collections.Generic.List`1[ReactShop.Domain.Entities.User]
+2021-08-10 11:16:10.1425 INFO 
+ Getting list of users -> System.Collections.Generic.List`1[ReactShop.Domain.Entities.User]
+2021-08-10 11:16:10.1570 INFO 
+ Getting list of users -> System.Collections.Generic.List`1[ReactShop.Domain.Entities.User]
+2021-08-10 11:16:10.1712 INFO 
+ Getting list of users -> System.Collections.Generic.List`1[ReactShop.Domain.Entities.User]
+2021-08-10 11:16:10.1850 INFO 
+ Getting list of users -> System.Collections.Generic.List`1[ReactShop.Domain.Entities.User]
+2021-08-10 11:16:10.2009 INFO 
+ Getting list of users -> System.Collections.Generic.List`1[ReactShop.Domain.Entities.User]
+2021-08-10 11:16:10.2153 INFO 
+ Getting list of users -> System.Collections.Generic.List`1[ReactShop.Domain.Entities.User]
+2021-08-10 11:16:10.2264 INFO 
+ Getting list of users -> System.Collections.Generic.List`1[ReactShop.Domain.Entities.User]
+2021-08-10 11:16:10.2443 INFO 
+ Getting list of users -> System.Collections.Generic.List`1[ReactShop.Domain.Entities.User]
+2021-08-10 11:16:10.2591 INFO 
+ Getting list of users -> System.Collections.Generic.List`1[ReactShop.Domain.Entities.User]
+2021-08-10 11:16:10.2846 INFO 
+ Getting list of users -> System.Collections.Generic.List`1[ReactShop.Domain.Entities.User]
+2021-08-10 11:16:10.2996 INFO 
+ Getting list of users -> System.Collections.Generic.List`1[ReactShop.Domain.Entities.User]
+2021-08-10 11:16:10.3213 INFO 
+ Getting list of users -> System.Collections.Generic.List`1[ReactShop.Domain.Entities.User]
+2021-08-10 11:16:10.3358 INFO 
+ Getting list of users -> System.Collections.Generic.List`1[ReactShop.Domain.Entities.User]
+2021-08-10 11:16:10.3511 INFO 
+ Getting list of users -> System.Collections.Generic.List`1[ReactShop.Domain.Entities.User]
+2021-08-10 11:16:10.3659 INFO 
+ Getting list of users -> System.Collections.Generic.List`1[ReactShop.Domain.Entities.User]
+2021-08-10 11:16:10.3807 INFO 
+ Getting list of users -> System.Collections.Generic.List`1[ReactShop.Domain.Entities.User]
+2021-08-10 11:16:10.3951 INFO 
+ Getting list of users -> System.Collections.Generic.List`1[ReactShop.Domain.Entities.User]
+2021-08-10 11:16:10.3951 INFO 
+ Getting list of users -> System.Collections.Generic.List`1[ReactShop.Domain.Entities.User]
+2021-08-10 11:16:10.4231 INFO 
+ Getting list of users -> System.Collections.Generic.List`1[ReactShop.Domain.Entities.User]
+2021-08-10 11:16:10.4379 INFO 
+ Getting list of users -> System.Collections.Generic.List`1[ReactShop.Domain.Entities.User]
+2021-08-10 11:16:10.4669 INFO 
+ Getting list of users -> System.Collections.Generic.List`1[ReactShop.Domain.Entities.User]
+2021-08-10 11:16:10.4829 INFO 
+ Getting list of users -> System.Collections.Generic.List`1[ReactShop.Domain.Entities.User]
+2021-08-10 11:16:10.5008 INFO 
+ Getting list of users -> System.Collections.Generic.List`1[ReactShop.Domain.Entities.User]
+2021-08-10 11:16:10.5179 INFO 
+ Getting list of users -> System.Collections.Generic.List`1[ReactShop.Domain.Entities.User]
+2021-08-10 11:16:10.5358 INFO 
+ Getting list of users -> System.Collections.Generic.List`1[ReactShop.Domain.Entities.User]
+2021-08-10 11:16:10.5537 INFO 
+ Getting list of users -> System.Collections.Generic.List`1[ReactShop.Domain.Entities.User]
+2021-08-10 11:16:10.5715 INFO 
+ Getting list of users -> System.Collections.Generic.List`1[ReactShop.Domain.Entities.User]
+2021-08-10 11:16:10.5878 INFO 
+ Getting list of users -> System.Collections.Generic.List`1[ReactShop.Domain.Entities.User]
+2021-08-10 11:16:10.6018 INFO 
+ Getting list of users -> System.Collections.Generic.List`1[ReactShop.Domain.Entities.User]
+2021-08-10 11:16:10.6173 INFO 
+ Getting list of users -> System.Collections.Generic.List`1[ReactShop.Domain.Entities.User]
+2021-08-10 11:16:10.6317 INFO 
+ Getting list of users -> System.Collections.Generic.List`1[ReactShop.Domain.Entities.User]
+2021-08-10 11:16:10.6467 INFO 
+ Getting list of users -> System.Collections.Generic.List`1[ReactShop.Domain.Entities.User]
+2021-08-10 11:16:10.6467 INFO 
+ Getting list of users -> System.Collections.Generic.List`1[ReactShop.Domain.Entities.User]
+2021-08-10 11:16:10.6748 INFO 
+ Getting list of users -> System.Collections.Generic.List`1[ReactShop.Domain.Entities.User]
+2021-08-10 11:16:10.6902 INFO 
+ Getting list of users -> System.Collections.Generic.List`1[ReactShop.Domain.Entities.User]
+2021-08-10 11:16:10.7046 INFO 
+ Getting list of users -> System.Collections.Generic.List`1[ReactShop.Domain.Entities.User]
+2021-08-10 11:16:10.7225 INFO 
+ Getting list of users -> System.Collections.Generic.List`1[ReactShop.Domain.Entities.User]
+2021-08-10 11:16:10.7429 INFO 
+ Getting list of users -> System.Collections.Generic.List`1[ReactShop.Domain.Entities.User]
+2021-08-10 11:16:10.7587 INFO 
+ Getting list of users -> System.Collections.Generic.List`1[ReactShop.Domain.Entities.User]
+2021-08-10 11:16:10.7820 INFO 
+ Getting list of users -> System.Collections.Generic.List`1[ReactShop.Domain.Entities.User]
+2021-08-10 11:16:10.7954 INFO 
+ Getting list of users -> System.Collections.Generic.List`1[ReactShop.Domain.Entities.User]
+2021-08-10 11:16:10.8127 INFO 
+ Getting list of users -> System.Collections.Generic.List`1[ReactShop.Domain.Entities.User]
+2021-08-10 11:16:10.8272 INFO 
+ Getting list of users -> System.Collections.Generic.List`1[ReactShop.Domain.Entities.User]
+2021-08-10 11:16:10.8411 INFO 
+ Getting list of users -> System.Collections.Generic.List`1[ReactShop.Domain.Entities.User]
+2021-08-10 11:16:10.8561 INFO 
+ Getting list of users -> System.Collections.Generic.List`1[ReactShop.Domain.Entities.User]
+2021-08-10 11:16:10.8711 INFO 
+ Getting list of users -> System.Collections.Generic.List`1[ReactShop.Domain.Entities.User]
+2021-08-10 11:16:10.8859 INFO 
+ Getting list of users -> System.Collections.Generic.List`1[ReactShop.Domain.Entities.User]
+2021-08-10 11:16:10.9015 INFO 
+ Getting list of users -> System.Collections.Generic.List`1[ReactShop.Domain.Entities.User]
+2021-08-10 11:16:10.9159 INFO 
+ Getting list of users -> System.Collections.Generic.List`1[ReactShop.Domain.Entities.User]
+2021-08-10 11:16:10.9308 INFO 
+ Getting list of users -> System.Collections.Generic.List`1[ReactShop.Domain.Entities.User]
+2021-08-10 11:16:10.9477 INFO 
+ Getting list of users -> System.Collections.Generic.List`1[ReactShop.Domain.Entities.User]
+2021-08-10 11:16:10.9710 INFO 
+ Getting list of users -> System.Collections.Generic.List`1[ReactShop.Domain.Entities.User]
+2021-08-10 11:16:10.9995 INFO 
+ Getting list of users -> System.Collections.Generic.List`1[ReactShop.Domain.Entities.User]
+2021-08-10 11:16:11.0219 INFO 
+ Getting list of users -> System.Collections.Generic.List`1[ReactShop.Domain.Entities.User]
+2021-08-10 11:16:11.0358 INFO 
+ Getting list of users -> System.Collections.Generic.List`1[ReactShop.Domain.Entities.User]
+2021-08-10 11:16:11.0510 INFO 
+ Getting list of users -> System.Collections.Generic.List`1[ReactShop.Domain.Entities.User]
+2021-08-10 11:16:11.0510 INFO 
+ Getting list of users -> System.Collections.Generic.List`1[ReactShop.Domain.Entities.User]
+2021-08-10 11:16:11.0807 INFO 
+ Getting list of users -> System.Collections.Generic.List`1[ReactShop.Domain.Entities.User]
+2021-08-10 11:16:11.0967 INFO 
+ Getting list of users -> System.Collections.Generic.List`1[ReactShop.Domain.Entities.User]
+2021-08-10 11:16:11.1138 INFO 
+ Getting list of users -> System.Collections.Generic.List`1[ReactShop.Domain.Entities.User]
+2021-08-10 11:16:11.1138 INFO 
+ Getting list of users -> System.Collections.Generic.List`1[ReactShop.Domain.Entities.User]
+2021-08-10 11:16:11.1422 INFO 
+ Getting list of users -> System.Collections.Generic.List`1[ReactShop.Domain.Entities.User]
+2021-08-10 11:16:11.1559 INFO 
+ Getting list of users -> System.Collections.Generic.List`1[ReactShop.Domain.Entities.User]
+2021-08-10 11:16:11.1727 INFO 
+ Getting list of users -> System.Collections.Generic.List`1[ReactShop.Domain.Entities.User]
+2021-08-10 11:16:11.1907 INFO 
+ Getting list of users -> System.Collections.Generic.List`1[ReactShop.Domain.Entities.User]
+2021-08-10 11:16:11.2152 INFO 
+ Getting list of users -> System.Collections.Generic.List`1[ReactShop.Domain.Entities.User]
+2021-08-10 11:16:11.2332 INFO 
+ Getting list of users -> System.Collections.Generic.List`1[ReactShop.Domain.Entities.User]
+2021-08-10 11:16:11.2528 INFO 
+ Getting list of users -> System.Collections.Generic.List`1[ReactShop.Domain.Entities.User]
+2021-08-10 11:16:11.2697 INFO 
+ Getting list of users -> System.Collections.Generic.List`1[ReactShop.Domain.Entities.User]
+2021-08-10 11:16:11.2850 INFO 
+ Getting list of users -> System.Collections.Generic.List`1[ReactShop.Domain.Entities.User]
+2021-08-10 11:16:11.2850 INFO 
+ Getting list of users -> System.Collections.Generic.List`1[ReactShop.Domain.Entities.User]
+2021-08-10 11:16:11.3150 INFO 
+ Getting list of users -> System.Collections.Generic.List`1[ReactShop.Domain.Entities.User]
+2021-08-10 11:16:11.3287 INFO 
+ Getting list of users -> System.Collections.Generic.List`1[ReactShop.Domain.Entities.User]
+2021-08-10 11:16:11.3434 INFO 
+ Getting list of users -> System.Collections.Generic.List`1[ReactShop.Domain.Entities.User]
+2021-08-10 11:16:11.3584 INFO 
+ Getting list of users -> System.Collections.Generic.List`1[ReactShop.Domain.Entities.User]
+2021-08-10 11:16:11.3768 INFO 
+ Getting list of users -> System.Collections.Generic.List`1[ReactShop.Domain.Entities.User]
+2021-08-10 11:16:11.3988 INFO 
+ Getting list of users -> System.Collections.Generic.List`1[ReactShop.Domain.Entities.User]
+2021-08-10 11:16:11.4260 INFO 
+ Getting list of users -> System.Collections.Generic.List`1[ReactShop.Domain.Entities.User]
+2021-08-10 11:16:11.4504 INFO 
+ Getting list of users -> System.Collections.Generic.List`1[ReactShop.Domain.Entities.User]
+2021-08-10 11:16:11.4674 INFO 
+ Getting list of users -> System.Collections.Generic.List`1[ReactShop.Domain.Entities.User]
+2021-08-10 11:16:11.4877 INFO 
+ Getting list of users -> System.Collections.Generic.List`1[ReactShop.Domain.Entities.User]
+2021-08-10 11:16:11.5046 INFO 
+ Getting list of users -> System.Collections.Generic.List`1[ReactShop.Domain.Entities.User]
+2021-08-10 11:16:11.5227 INFO 
+ Getting list of users -> System.Collections.Generic.List`1[ReactShop.Domain.Entities.User]
+2021-08-10 11:16:11.5487 INFO 
+ Getting list of users -> System.Collections.Generic.List`1[ReactShop.Domain.Entities.User]
+2021-08-10 11:16:11.5644 INFO 
+ Getting list of users -> System.Collections.Generic.List`1[ReactShop.Domain.Entities.User]
+2021-08-10 11:16:11.5769 INFO 
+ Getting list of users -> System.Collections.Generic.List`1[ReactShop.Domain.Entities.User]
+2021-08-10 11:16:11.5900 INFO 
+ Getting list of users -> System.Collections.Generic.List`1[ReactShop.Domain.Entities.User]
+2021-08-10 11:16:11.6079 INFO 
+ Getting list of users -> System.Collections.Generic.List`1[ReactShop.Domain.Entities.User]
+2021-08-10 11:16:11.6365 INFO 
+ Getting list of users -> System.Collections.Generic.List`1[ReactShop.Domain.Entities.User]
+2021-08-10 11:16:11.6643 INFO 
+ Getting list of users -> System.Collections.Generic.List`1[ReactShop.Domain.Entities.User]
+2021-08-10 11:16:11.6884 INFO 
+ Getting list of users -> System.Collections.Generic.List`1[ReactShop.Domain.Entities.User]
+2021-08-10 11:16:11.7018 INFO 
+ Getting list of users -> System.Collections.Generic.List`1[ReactShop.Domain.Entities.User]
+2021-08-10 11:16:11.7184 INFO 
+ Getting list of users -> System.Collections.Generic.List`1[ReactShop.Domain.Entities.User]
+2021-08-10 11:16:11.7361 INFO 
+ Getting list of users -> System.Collections.Generic.List`1[ReactShop.Domain.Entities.User]
+2021-08-10 11:16:11.7528 INFO 
+ Getting list of users -> System.Collections.Generic.List`1[ReactShop.Domain.Entities.User]
+2021-08-10 11:16:11.7674 INFO 
+ Getting list of users -> System.Collections.Generic.List`1[ReactShop.Domain.Entities.User]
+2021-08-10 11:16:11.7822 INFO 
+ Getting list of users -> System.Collections.Generic.List`1[ReactShop.Domain.Entities.User]
+2021-08-10 11:16:11.7967 INFO 
+ Getting list of users -> System.Collections.Generic.List`1[ReactShop.Domain.Entities.User]
+2021-08-10 11:16:11.8089 INFO 
+ Getting list of users -> System.Collections.Generic.List`1[ReactShop.Domain.Entities.User]
+2021-08-10 11:16:11.8259 INFO 
+ Getting list of users -> System.Collections.Generic.List`1[ReactShop.Domain.Entities.User]
+2021-08-10 11:16:11.8412 INFO 
+ Getting list of users -> System.Collections.Generic.List`1[ReactShop.Domain.Entities.User]
+2021-08-10 11:16:11.8576 INFO 
+ Getting list of users -> System.Collections.Generic.List`1[ReactShop.Domain.Entities.User]
+2021-08-10 11:16:11.8784 INFO 
+ Getting list of users -> System.Collections.Generic.List`1[ReactShop.Domain.Entities.User]
+2021-08-10 11:16:11.9034 INFO 
+ Getting list of users -> System.Collections.Generic.List`1[ReactShop.Domain.Entities.User]
+2021-08-10 11:16:11.9168 INFO 
+ Getting list of users -> System.Collections.Generic.List`1[ReactShop.Domain.Entities.User]
+2021-08-10 11:16:11.9343 INFO 
+ Getting list of users -> System.Collections.Generic.List`1[ReactShop.Domain.Entities.User]
+2021-08-10 11:16:11.9494 INFO 
+ Getting list of users -> System.Collections.Generic.List`1[ReactShop.Domain.Entities.User]
+2021-08-10 11:16:11.9621 INFO 
+ Getting list of users -> System.Collections.Generic.List`1[ReactShop.Domain.Entities.User]
+2021-08-10 11:16:11.9759 INFO 
+ Getting list of users -> System.Collections.Generic.List`1[ReactShop.Domain.Entities.User]
+2021-08-10 11:16:11.9900 INFO 
+ Getting list of users -> System.Collections.Generic.List`1[ReactShop.Domain.Entities.User]
+2021-08-10 11:16:12.0057 INFO 
+ Getting list of users -> System.Collections.Generic.List`1[ReactShop.Domain.Entities.User]
+2021-08-10 11:16:12.0248 INFO 
+ Getting list of users -> System.Collections.Generic.List`1[ReactShop.Domain.Entities.User]
+2021-08-10 11:16:12.0419 INFO 
+ Getting list of users -> System.Collections.Generic.List`1[ReactShop.Domain.Entities.User]
+2021-08-10 11:16:12.0656 INFO 
+ Getting list of users -> System.Collections.Generic.List`1[ReactShop.Domain.Entities.User]
+2021-08-10 11:16:12.0893 INFO 
+ Getting list of users -> System.Collections.Generic.List`1[ReactShop.Domain.Entities.User]
+2021-08-10 11:16:12.1055 INFO 
+ Getting list of users -> System.Collections.Generic.List`1[ReactShop.Domain.Entities.User]
+2021-08-10 11:16:12.1369 INFO 
+ Getting list of users -> System.Collections.Generic.List`1[ReactShop.Domain.Entities.User]
+2021-08-10 11:16:12.1541 INFO 
+ Getting list of users -> System.Collections.Generic.List`1[ReactShop.Domain.Entities.User]
+2021-08-10 11:16:12.1700 INFO 
+ Getting list of users -> System.Collections.Generic.List`1[ReactShop.Domain.Entities.User]
+2021-08-10 11:16:12.1890 INFO 
+ Getting list of users -> System.Collections.Generic.List`1[ReactShop.Domain.Entities.User]
+2021-08-10 11:16:12.2055 INFO 
+ Getting list of users -> System.Collections.Generic.List`1[ReactShop.Domain.Entities.User]
+2021-08-10 11:16:12.2235 INFO 
+ Getting list of users -> System.Collections.Generic.List`1[ReactShop.Domain.Entities.User]
+2021-08-10 11:16:12.2396 INFO 
+ Getting list of users -> System.Collections.Generic.List`1[ReactShop.Domain.Entities.User]
+2021-08-10 11:16:12.2570 INFO 
+ Getting list of users -> System.Collections.Generic.List`1[ReactShop.Domain.Entities.User]
+2021-08-10 11:16:12.2725 INFO 
+ Getting list of users -> System.Collections.Generic.List`1[ReactShop.Domain.Entities.User]
+2021-08-10 11:16:12.2915 INFO 
+ Getting list of users -> System.Collections.Generic.List`1[ReactShop.Domain.Entities.User]
+2021-08-10 11:16:12.3259 INFO 
+ Getting list of users -> System.Collections.Generic.List`1[ReactShop.Domain.Entities.User]
+2021-08-10 11:16:12.3389 INFO 
+ Getting list of users -> System.Collections.Generic.List`1[ReactShop.Domain.Entities.User]
+2021-08-10 11:16:12.3666 INFO 
+ Getting list of users -> System.Collections.Generic.List`1[ReactShop.Domain.Entities.User]
+2021-08-10 11:16:12.3899 INFO 
+ Getting list of users -> System.Collections.Generic.List`1[ReactShop.Domain.Entities.User]
+2021-08-10 11:16:12.4058 INFO 
+ Getting list of users -> System.Collections.Generic.List`1[ReactShop.Domain.Entities.User]
+2021-08-10 11:16:12.4231 INFO 
+ Getting list of users -> System.Collections.Generic.List`1[ReactShop.Domain.Entities.User]
+2021-08-10 11:16:12.4390 INFO 
+ Getting list of users -> System.Collections.Generic.List`1[ReactShop.Domain.Entities.User]
+2021-08-10 11:16:12.4579 INFO 
+ Getting list of users -> System.Collections.Generic.List`1[ReactShop.Domain.Entities.User]
+2021-08-10 11:16:12.4748 INFO 
+ Getting list of users -> System.Collections.Generic.List`1[ReactShop.Domain.Entities.User]
+2021-08-10 11:16:12.4909 INFO 
+ Getting list of users -> System.Collections.Generic.List`1[ReactShop.Domain.Entities.User]
+2021-08-10 11:16:12.5165 INFO 
+ Getting list of users -> System.Collections.Generic.List`1[ReactShop.Domain.Entities.User]
+2021-08-10 11:16:12.5414 INFO 
+ Getting list of users -> System.Collections.Generic.List`1[ReactShop.Domain.Entities.User]
+2021-08-10 11:16:12.5708 INFO 
+ Getting list of users -> System.Collections.Generic.List`1[ReactShop.Domain.Entities.User]
+2021-08-10 11:16:12.5941 INFO 
+ Getting list of users -> System.Collections.Generic.List`1[ReactShop.Domain.Entities.User]
+2021-08-10 11:16:12.6089 INFO 
+ Getting list of users -> System.Collections.Generic.List`1[ReactShop.Domain.Entities.User]
+2021-08-10 11:16:12.6321 INFO 
+ Getting list of users -> System.Collections.Generic.List`1[ReactShop.Domain.Entities.User]
+2021-08-10 11:16:12.6566 INFO 
+ Getting list of users -> System.Collections.Generic.List`1[ReactShop.Domain.Entities.User]
+2021-08-10 11:16:12.6716 INFO 
+ Getting list of users -> System.Collections.Generic.List`1[ReactShop.Domain.Entities.User]
+2021-08-10 11:16:12.6869 INFO 
+ Getting list of users -> System.Collections.Generic.List`1[ReactShop.Domain.Entities.User]
+2021-08-10 11:16:12.7012 INFO 
+ Getting list of users -> System.Collections.Generic.List`1[ReactShop.Domain.Entities.User]
+2021-08-10 11:16:12.7199 INFO 
+ Getting list of users -> System.Collections.Generic.List`1[ReactShop.Domain.Entities.User]
+2021-08-10 11:16:12.7372 INFO 
+ Getting list of users -> System.Collections.Generic.List`1[ReactShop.Domain.Entities.User]
+2021-08-10 11:16:12.7550 INFO 
+ Getting list of users -> System.Collections.Generic.List`1[ReactShop.Domain.Entities.User]
+2021-08-10 11:16:12.7729 INFO 
+ Getting list of users -> System.Collections.Generic.List`1[ReactShop.Domain.Entities.User]
+2021-08-10 11:16:12.7914 INFO 
+ Getting list of users -> System.Collections.Generic.List`1[ReactShop.Domain.Entities.User]
+2021-08-10 11:16:12.8220 INFO 
+ Getting list of users -> System.Collections.Generic.List`1[ReactShop.Domain.Entities.User]
+2021-08-10 11:16:12.8366 INFO 
+ Getting list of users -> System.Collections.Generic.List`1[ReactShop.Domain.Entities.User]
+2021-08-10 11:16:12.8524 INFO 
+ Getting list of users -> System.Collections.Generic.List`1[ReactShop.Domain.Entities.User]
+2021-08-10 11:16:12.8661 INFO 
+ Getting list of users -> System.Collections.Generic.List`1[ReactShop.Domain.Entities.User]
+2021-08-10 11:16:12.8661 INFO 
+ Getting list of users -> System.Collections.Generic.List`1[ReactShop.Domain.Entities.User]
+2021-08-10 11:16:12.8919 INFO 
+ Getting list of users -> System.Collections.Generic.List`1[ReactShop.Domain.Entities.User]
+2021-08-10 11:16:12.9075 INFO 
+ Getting list of users -> System.Collections.Generic.List`1[ReactShop.Domain.Entities.User]
+2021-08-10 11:16:12.9238 INFO 
+ Getting list of users -> System.Collections.Generic.List`1[ReactShop.Domain.Entities.User]
+2021-08-10 11:16:12.9401 INFO 
+ Getting list of users -> System.Collections.Generic.List`1[ReactShop.Domain.Entities.User]
+2021-08-10 11:16:12.9549 INFO 
+ Getting list of users -> System.Collections.Generic.List`1[ReactShop.Domain.Entities.User]
+2021-08-10 11:16:12.9705 INFO 
+ Getting list of users -> System.Collections.Generic.List`1[ReactShop.Domain.Entities.User]
+2021-08-10 11:16:12.9849 INFO 
+ Getting list of users -> System.Collections.Generic.List`1[ReactShop.Domain.Entities.User]
+2021-08-10 11:16:13.0043 INFO 
+ Getting list of users -> System.Collections.Generic.List`1[ReactShop.Domain.Entities.User]
+2021-08-10 11:16:13.0246 INFO 
+ Getting list of users -> System.Collections.Generic.List`1[ReactShop.Domain.Entities.User]
+2021-08-10 11:16:13.0415 INFO 
+ Getting list of users -> System.Collections.Generic.List`1[ReactShop.Domain.Entities.User]
+2021-08-10 11:16:13.0554 INFO 
+ Getting list of users -> System.Collections.Generic.List`1[ReactShop.Domain.Entities.User]
+2021-08-10 11:16:13.0701 INFO 
+ Getting list of users -> System.Collections.Generic.List`1[ReactShop.Domain.Entities.User]
+2021-08-10 11:16:13.0866 INFO 
+ Getting list of users -> System.Collections.Generic.List`1[ReactShop.Domain.Entities.User]
+2021-08-10 11:16:13.0992 INFO 
+ Getting list of users -> System.Collections.Generic.List`1[ReactShop.Domain.Entities.User]
+2021-08-10 11:16:13.1168 INFO 
+ Getting list of users -> System.Collections.Generic.List`1[ReactShop.Domain.Entities.User]
+2021-08-10 11:16:13.1168 INFO 
+ Getting list of users -> System.Collections.Generic.List`1[ReactShop.Domain.Entities.User]
+2021-08-10 11:16:13.1432 INFO 
+ Getting list of users -> System.Collections.Generic.List`1[ReactShop.Domain.Entities.User]
+2021-08-10 11:16:13.1602 INFO 
+ Getting list of users -> System.Collections.Generic.List`1[ReactShop.Domain.Entities.User]
+2021-08-10 11:16:13.1602 INFO 
+ Getting list of users -> System.Collections.Generic.List`1[ReactShop.Domain.Entities.User]
+2021-08-10 11:16:13.1906 INFO 
+ Getting list of users -> System.Collections.Generic.List`1[ReactShop.Domain.Entities.User]
+2021-08-10 11:16:13.2076 INFO 
+ Getting list of users -> System.Collections.Generic.List`1[ReactShop.Domain.Entities.User]
+2021-08-10 11:16:13.2076 INFO 
+ Getting list of users -> System.Collections.Generic.List`1[ReactShop.Domain.Entities.User]
+2021-08-10 11:16:13.2408 INFO 
+ Getting list of users -> System.Collections.Generic.List`1[ReactShop.Domain.Entities.User]
+2021-08-10 11:16:13.2570 INFO 
+ Getting list of users -> System.Collections.Generic.List`1[ReactShop.Domain.Entities.User]
+2021-08-10 11:16:13.2760 INFO 
+ Getting list of users -> System.Collections.Generic.List`1[ReactShop.Domain.Entities.User]
+2021-08-10 11:16:13.2948 INFO 
+ Getting list of users -> System.Collections.Generic.List`1[ReactShop.Domain.Entities.User]
+2021-08-10 11:16:13.3093 INFO 
+ Getting list of users -> System.Collections.Generic.List`1[ReactShop.Domain.Entities.User]
+2021-08-10 11:16:13.3244 INFO 
+ Getting list of users -> System.Collections.Generic.List`1[ReactShop.Domain.Entities.User]
+2021-08-10 11:16:13.3383 INFO 
+ Getting list of users -> System.Collections.Generic.List`1[ReactShop.Domain.Entities.User]
+2021-08-10 11:16:13.3524 INFO 
+ Getting list of users -> System.Collections.Generic.List`1[ReactShop.Domain.Entities.User]
+2021-08-10 11:16:13.3680 INFO 
+ Getting list of users -> System.Collections.Generic.List`1[ReactShop.Domain.Entities.User]
+2021-08-10 11:16:13.3801 INFO 
+ Getting list of users -> System.Collections.Generic.List`1[ReactShop.Domain.Entities.User]
+2021-08-10 11:16:13.3958 INFO 
+ Getting list of users -> System.Collections.Generic.List`1[ReactShop.Domain.Entities.User]
+2021-08-10 11:16:13.3958 INFO 
+ Getting list of users -> System.Collections.Generic.List`1[ReactShop.Domain.Entities.User]
+2021-08-10 11:16:13.4247 INFO 
+ Getting list of users -> System.Collections.Generic.List`1[ReactShop.Domain.Entities.User]
+2021-08-10 11:16:13.4385 INFO 
+ Getting list of users -> System.Collections.Generic.List`1[ReactShop.Domain.Entities.User]
+2021-08-10 11:16:13.4559 INFO 
+ Getting list of users -> System.Collections.Generic.List`1[ReactShop.Domain.Entities.User]
+2021-08-10 11:16:13.4754 INFO 
+ Getting list of users -> System.Collections.Generic.List`1[ReactShop.Domain.Entities.User]
+2021-08-10 11:16:13.4922 INFO 
+ Getting list of users -> System.Collections.Generic.List`1[ReactShop.Domain.Entities.User]
+2021-08-10 11:16:13.5141 INFO 
+ Getting list of users -> System.Collections.Generic.List`1[ReactShop.Domain.Entities.User]
+2021-08-10 11:16:13.5292 INFO 
+ Getting list of users -> System.Collections.Generic.List`1[ReactShop.Domain.Entities.User]
+2021-08-10 11:16:13.5451 INFO 
+ Getting list of users -> System.Collections.Generic.List`1[ReactShop.Domain.Entities.User]
+2021-08-10 11:16:13.5608 INFO 
+ Getting list of users -> System.Collections.Generic.List`1[ReactShop.Domain.Entities.User]
+2021-08-10 11:16:13.5752 INFO 
+ Getting list of users -> System.Collections.Generic.List`1[ReactShop.Domain.Entities.User]
+2021-08-10 11:16:13.5912 INFO 
+ Getting list of users -> System.Collections.Generic.List`1[ReactShop.Domain.Entities.User]
+2021-08-10 11:16:13.6051 INFO 
+ Getting list of users -> System.Collections.Generic.List`1[ReactShop.Domain.Entities.User]
+2021-08-10 11:16:13.6199 INFO 
+ Getting list of users -> System.Collections.Generic.List`1[ReactShop.Domain.Entities.User]
+2021-08-10 11:16:13.6340 INFO 
+ Getting list of users -> System.Collections.Generic.List`1[ReactShop.Domain.Entities.User]
+2021-08-10 11:16:13.6481 INFO 
+ Getting list of users -> System.Collections.Generic.List`1[ReactShop.Domain.Entities.User]
+2021-08-10 11:16:13.6617 INFO 
+ Getting list of users -> System.Collections.Generic.List`1[ReactShop.Domain.Entities.User]
+2021-08-10 11:16:13.6762 INFO 
+ Getting list of users -> System.Collections.Generic.List`1[ReactShop.Domain.Entities.User]
+2021-08-10 11:16:13.6971 INFO 
+ Getting list of users -> System.Collections.Generic.List`1[ReactShop.Domain.Entities.User]
+2021-08-10 11:16:13.7275 INFO 
+ Getting list of users -> System.Collections.Generic.List`1[ReactShop.Domain.Entities.User]
+2021-08-10 11:16:13.7421 INFO 
+ Getting list of users -> System.Collections.Generic.List`1[ReactShop.Domain.Entities.User]
+2021-08-10 11:16:13.7574 INFO 
+ Getting list of users -> System.Collections.Generic.List`1[ReactShop.Domain.Entities.User]
+2021-08-10 11:16:13.7738 INFO 
+ Getting list of users -> System.Collections.Generic.List`1[ReactShop.Domain.Entities.User]
+2021-08-10 11:16:13.7892 INFO 
+ Getting list of users -> System.Collections.Generic.List`1[ReactShop.Domain.Entities.User]
+2021-08-10 11:16:13.8044 INFO 
+ Getting list of users -> System.Collections.Generic.List`1[ReactShop.Domain.Entities.User]
+2021-08-10 11:16:13.8207 INFO 
+ Getting list of users -> System.Collections.Generic.List`1[ReactShop.Domain.Entities.User]
+2021-08-10 11:16:13.8348 INFO 
+ Getting list of users -> System.Collections.Generic.List`1[ReactShop.Domain.Entities.User]
+2021-08-10 11:16:13.8348 INFO 
+ Getting list of users -> System.Collections.Generic.List`1[ReactShop.Domain.Entities.User]
+2021-08-10 11:16:13.8634 INFO 
+ Getting list of users -> System.Collections.Generic.List`1[ReactShop.Domain.Entities.User]
+2021-08-10 11:16:13.8634 INFO 
+ Getting list of users -> System.Collections.Generic.List`1[ReactShop.Domain.Entities.User]
+2021-08-10 11:16:13.8936 INFO 
+ Getting list of users -> System.Collections.Generic.List`1[ReactShop.Domain.Entities.User]
+2021-08-10 11:16:13.9093 INFO 
+ Getting list of users -> System.Collections.Generic.List`1[ReactShop.Domain.Entities.User]
+2021-08-10 11:16:13.9323 INFO 
+ Getting list of users -> System.Collections.Generic.List`1[ReactShop.Domain.Entities.User]
+2021-08-10 11:16:13.9475 INFO 
+ Getting list of users -> System.Collections.Generic.List`1[ReactShop.Domain.Entities.User]
+2021-08-10 11:16:13.9624 INFO 
+ Getting list of users -> System.Collections.Generic.List`1[ReactShop.Domain.Entities.User]
+2021-08-10 11:16:13.9772 INFO 
+ Getting list of users -> System.Collections.Generic.List`1[ReactShop.Domain.Entities.User]
+2021-08-10 11:16:13.9919 INFO 
+ Getting list of users -> System.Collections.Generic.List`1[ReactShop.Domain.Entities.User]
+2021-08-10 11:16:14.0067 INFO 
+ Getting list of users -> System.Collections.Generic.List`1[ReactShop.Domain.Entities.User]
+2021-08-10 11:16:14.0207 INFO 
+ Getting list of users -> System.Collections.Generic.List`1[ReactShop.Domain.Entities.User]
+2021-08-10 11:16:14.0364 INFO 
+ Getting list of users -> System.Collections.Generic.List`1[ReactShop.Domain.Entities.User]
+2021-08-10 11:16:14.0538 INFO 
+ Getting list of users -> System.Collections.Generic.List`1[ReactShop.Domain.Entities.User]
+2021-08-10 11:16:14.0672 INFO 
+ Getting list of users -> System.Collections.Generic.List`1[ReactShop.Domain.Entities.User]
+2021-08-10 11:16:14.0672 INFO 
+ Getting list of users -> System.Collections.Generic.List`1[ReactShop.Domain.Entities.User]
+2021-08-10 11:16:14.0959 INFO 
+ Getting list of users -> System.Collections.Generic.List`1[ReactShop.Domain.Entities.User]
+2021-08-10 11:16:14.1113 INFO 
+ Getting list of users -> System.Collections.Generic.List`1[ReactShop.Domain.Entities.User]
+2021-08-10 11:16:14.1278 INFO 
+ Getting list of users -> System.Collections.Generic.List`1[ReactShop.Domain.Entities.User]
+2021-08-10 11:16:14.1526 INFO 
+ Getting list of users -> System.Collections.Generic.List`1[ReactShop.Domain.Entities.User]
+2021-08-10 11:16:14.1662 INFO 
+ Getting list of users -> System.Collections.Generic.List`1[ReactShop.Domain.Entities.User]
+2021-08-10 11:16:14.1939 INFO 
+ Getting list of users -> System.Collections.Generic.List`1[ReactShop.Domain.Entities.User]
+2021-08-10 11:16:14.2103 INFO 
+ Getting list of users -> System.Collections.Generic.List`1[ReactShop.Domain.Entities.User]
+2021-08-10 11:16:14.2261 INFO 
+ Getting list of users -> System.Collections.Generic.List`1[ReactShop.Domain.Entities.User]
+2021-08-10 11:16:14.2412 INFO 
+ Getting list of users -> System.Collections.Generic.List`1[ReactShop.Domain.Entities.User]
+2021-08-10 11:16:14.2574 INFO 
+ Getting list of users -> System.Collections.Generic.List`1[ReactShop.Domain.Entities.User]
+2021-08-10 11:16:14.2733 INFO 
+ Getting list of users -> System.Collections.Generic.List`1[ReactShop.Domain.Entities.User]
+2021-08-10 11:16:14.2874 INFO 
+ Getting list of users -> System.Collections.Generic.List`1[ReactShop.Domain.Entities.User]
+2021-08-10 11:16:14.3023 INFO 
+ Getting list of users -> System.Collections.Generic.List`1[ReactShop.Domain.Entities.User]
+2021-08-10 11:16:14.3173 INFO 
+ Getting list of users -> System.Collections.Generic.List`1[ReactShop.Domain.Entities.User]
+2021-08-10 11:16:14.3324 INFO 
+ Getting list of users -> System.Collections.Generic.List`1[ReactShop.Domain.Entities.User]
+2021-08-10 11:16:14.3482 INFO 
+ Getting list of users -> System.Collections.Generic.List`1[ReactShop.Domain.Entities.User]
+2021-08-10 11:16:14.3723 INFO 
+ Getting list of users -> System.Collections.Generic.List`1[ReactShop.Domain.Entities.User]
+2021-08-10 11:16:14.3924 INFO 
+ Getting list of users -> System.Collections.Generic.List`1[ReactShop.Domain.Entities.User]
+2021-08-10 11:16:14.4121 INFO 
+ Getting list of users -> System.Collections.Generic.List`1[ReactShop.Domain.Entities.User]
+2021-08-10 11:16:14.4308 INFO 
+ Getting list of users -> System.Collections.Generic.List`1[ReactShop.Domain.Entities.User]
+2021-08-10 11:16:14.4454 INFO 
+ Getting list of users -> System.Collections.Generic.List`1[ReactShop.Domain.Entities.User]
+2021-08-10 11:16:14.4634 INFO 
+ Getting list of users -> System.Collections.Generic.List`1[ReactShop.Domain.Entities.User]
+2021-08-10 11:16:14.4767 INFO 
+ Getting list of users -> System.Collections.Generic.List`1[ReactShop.Domain.Entities.User]
+2021-08-10 11:16:14.4926 INFO 
+ Getting list of users -> System.Collections.Generic.List`1[ReactShop.Domain.Entities.User]
+2021-08-10 11:16:14.5076 INFO 
+ Getting list of users -> System.Collections.Generic.List`1[ReactShop.Domain.Entities.User]
+2021-08-10 11:16:14.5218 INFO 
+ Getting list of users -> System.Collections.Generic.List`1[ReactShop.Domain.Entities.User]
+2021-08-10 11:16:14.5381 INFO 
+ Getting list of users -> System.Collections.Generic.List`1[ReactShop.Domain.Entities.User]
+2021-08-10 11:16:14.5527 INFO 
+ Getting list of users -> System.Collections.Generic.List`1[ReactShop.Domain.Entities.User]
+2021-08-10 11:16:14.5527 INFO 
+ Getting list of users -> System.Collections.Generic.List`1[ReactShop.Domain.Entities.User]
+2021-08-10 11:16:14.6046 INFO 
+ Getting list of users -> System.Collections.Generic.List`1[ReactShop.Domain.Entities.User]
+2021-08-10 11:16:14.6226 INFO 
+ Getting list of users -> System.Collections.Generic.List`1[ReactShop.Domain.Entities.User]
+2021-08-10 11:16:14.6418 INFO 
+ Getting list of users -> System.Collections.Generic.List`1[ReactShop.Domain.Entities.User]
+2021-08-10 11:16:14.6563 INFO 
+ Getting list of users -> System.Collections.Generic.List`1[ReactShop.Domain.Entities.User]
+2021-08-10 11:16:14.6719 INFO 
+ Getting list of users -> System.Collections.Generic.List`1[ReactShop.Domain.Entities.User]
+2021-08-10 11:16:14.6870 INFO 
+ Getting list of users -> System.Collections.Generic.List`1[ReactShop.Domain.Entities.User]
+2021-08-10 11:16:14.7005 INFO 
+ Getting list of users -> System.Collections.Generic.List`1[ReactShop.Domain.Entities.User]
+2021-08-10 11:16:14.7200 INFO 
+ Getting list of users -> System.Collections.Generic.List`1[ReactShop.Domain.Entities.User]
+2021-08-10 11:16:14.7385 INFO 
+ Getting list of users -> System.Collections.Generic.List`1[ReactShop.Domain.Entities.User]
+2021-08-10 11:16:14.7385 INFO 
+ Getting list of users -> System.Collections.Generic.List`1[ReactShop.Domain.Entities.User]
+2021-08-10 11:16:14.7657 INFO 
+ Getting list of users -> System.Collections.Generic.List`1[ReactShop.Domain.Entities.User]
+2021-08-10 11:16:14.7793 INFO 
+ Getting list of users -> System.Collections.Generic.List`1[ReactShop.Domain.Entities.User]
+2021-08-10 11:16:14.7952 INFO 
+ Getting list of users -> System.Collections.Generic.List`1[ReactShop.Domain.Entities.User]
+2021-08-10 11:16:14.8137 INFO 
+ Getting list of users -> System.Collections.Generic.List`1[ReactShop.Domain.Entities.User]
+2021-08-10 11:16:14.8361 INFO 
+ Getting list of users -> System.Collections.Generic.List`1[ReactShop.Domain.Entities.User]
+2021-08-10 11:16:14.8540 INFO 
+ Getting list of users -> System.Collections.Generic.List`1[ReactShop.Domain.Entities.User]
+2021-08-10 11:16:14.8695 INFO 
+ Getting list of users -> System.Collections.Generic.List`1[ReactShop.Domain.Entities.User]
+2021-08-10 11:16:14.8828 INFO 
+ Getting list of users -> System.Collections.Generic.List`1[ReactShop.Domain.Entities.User]
+2021-08-10 11:16:14.8983 INFO 
+ Getting list of users -> System.Collections.Generic.List`1[ReactShop.Domain.Entities.User]
+2021-08-10 11:16:14.9126 INFO 
+ Getting list of users -> System.Collections.Generic.List`1[ReactShop.Domain.Entities.User]
+2021-08-10 11:16:15.0802 INFO 
+ Getting list of users -> System.Collections.Generic.List`1[ReactShop.Domain.Entities.User]
+2021-08-10 11:16:15.1330 INFO 
+ Getting list of users -> System.Collections.Generic.List`1[ReactShop.Domain.Entities.User]
+2021-08-10 11:16:15.1486 INFO 
+ Getting list of users -> System.Collections.Generic.List`1[ReactShop.Domain.Entities.User]
+2021-08-10 11:16:15.1639 INFO 
+ Getting list of users -> System.Collections.Generic.List`1[ReactShop.Domain.Entities.User]
+2021-08-10 11:16:15.2811 INFO 
+ Getting list of users -> System.Collections.Generic.List`1[ReactShop.Domain.Entities.User]
+2021-08-10 11:16:15.3074 INFO 
+ Getting list of users -> System.Collections.Generic.List`1[ReactShop.Domain.Entities.User]
+2021-08-10 11:16:15.3271 INFO 
+ Getting list of users -> System.Collections.Generic.List`1[ReactShop.Domain.Entities.User]
+2021-08-10 11:16:15.3452 INFO 
+ Getting list of users -> System.Collections.Generic.List`1[ReactShop.Domain.Entities.User]
+2021-08-10 11:16:15.3650 INFO 
+ Getting list of users -> System.Collections.Generic.List`1[ReactShop.Domain.Entities.User]
+2021-08-10 11:16:15.3650 INFO 
+ Getting list of users -> System.Collections.Generic.List`1[ReactShop.Domain.Entities.User]
+2021-08-10 11:16:15.3945 INFO 
+ Getting list of users -> System.Collections.Generic.List`1[ReactShop.Domain.Entities.User]
+2021-08-10 11:16:15.4078 INFO 
+ Getting list of users -> System.Collections.Generic.List`1[ReactShop.Domain.Entities.User]
+2021-08-10 11:16:15.4257 INFO 
+ Getting list of users -> System.Collections.Generic.List`1[ReactShop.Domain.Entities.User]
+2021-08-10 11:16:15.4403 INFO 
+ Getting list of users -> System.Collections.Generic.List`1[ReactShop.Domain.Entities.User]
+2021-08-10 11:16:15.4554 INFO 
+ Getting list of users -> System.Collections.Generic.List`1[ReactShop.Domain.Entities.User]
+2021-08-10 11:16:15.4681 INFO 
+ Getting list of users -> System.Collections.Generic.List`1[ReactShop.Domain.Entities.User]
+2021-08-10 11:16:15.4838 INFO 
+ Getting list of users -> System.Collections.Generic.List`1[ReactShop.Domain.Entities.User]
+2021-08-10 11:16:15.4983 INFO 
+ Getting list of users -> System.Collections.Generic.List`1[ReactShop.Domain.Entities.User]
+2021-08-10 11:16:15.5119 INFO 
+ Getting list of users -> System.Collections.Generic.List`1[ReactShop.Domain.Entities.User]
+2021-08-10 11:16:15.5271 INFO 
+ Getting list of users -> System.Collections.Generic.List`1[ReactShop.Domain.Entities.User]
+2021-08-10 11:16:15.5429 INFO 
+ Getting list of users -> System.Collections.Generic.List`1[ReactShop.Domain.Entities.User]
+2021-08-10 11:16:15.5589 INFO 
+ Getting list of users -> System.Collections.Generic.List`1[ReactShop.Domain.Entities.User]
+2021-08-10 11:16:15.5747 INFO 
+ Getting list of users -> System.Collections.Generic.List`1[ReactShop.Domain.Entities.User]
+2021-08-10 11:16:15.5916 INFO 
+ Getting list of users -> System.Collections.Generic.List`1[ReactShop.Domain.Entities.User]
+2021-08-10 11:16:15.6050 INFO 
+ Getting list of users -> System.Collections.Generic.List`1[ReactShop.Domain.Entities.User]
+2021-08-10 11:16:15.6170 INFO 
+ Getting list of users -> System.Collections.Generic.List`1[ReactShop.Domain.Entities.User]
+2021-08-10 11:16:15.6300 INFO 
+ Getting list of users -> System.Collections.Generic.List`1[ReactShop.Domain.Entities.User]
+2021-08-10 11:16:15.6300 INFO 
+ Getting list of users -> System.Collections.Generic.List`1[ReactShop.Domain.Entities.User]
+2021-08-10 11:16:15.6589 INFO 
+ Getting list of users -> System.Collections.Generic.List`1[ReactShop.Domain.Entities.User]
+2021-08-10 11:16:15.6696 INFO 
+ Getting list of users -> System.Collections.Generic.List`1[ReactShop.Domain.Entities.User]
+2021-08-10 11:16:15.6824 INFO 
+ Getting list of users -> System.Collections.Generic.List`1[ReactShop.Domain.Entities.User]
+2021-08-10 11:16:15.6952 INFO 
+ Getting list of users -> System.Collections.Generic.List`1[ReactShop.Domain.Entities.User]
+2021-08-10 11:16:15.7084 INFO 
+ Getting list of users -> System.Collections.Generic.List`1[ReactShop.Domain.Entities.User]
+2021-08-10 11:16:15.7232 INFO 
+ Getting list of users -> System.Collections.Generic.List`1[ReactShop.Domain.Entities.User]
+2021-08-10 11:16:15.7232 INFO 
+ Getting list of users -> System.Collections.Generic.List`1[ReactShop.Domain.Entities.User]
+2021-08-10 11:16:15.7483 INFO 
+ Getting list of users -> System.Collections.Generic.List`1[ReactShop.Domain.Entities.User]
+2021-08-10 11:16:15.7634 INFO 
+ Getting list of users -> System.Collections.Generic.List`1[ReactShop.Domain.Entities.User]
+2021-08-10 11:16:15.7793 INFO 
+ Getting list of users -> System.Collections.Generic.List`1[ReactShop.Domain.Entities.User]
+2021-08-10 11:16:15.7957 INFO 
+ Getting list of users -> System.Collections.Generic.List`1[ReactShop.Domain.Entities.User]
+2021-08-10 11:16:15.8149 INFO 
+ Getting list of users -> System.Collections.Generic.List`1[ReactShop.Domain.Entities.User]
+2021-08-10 11:16:15.8275 INFO 
+ Getting list of users -> System.Collections.Generic.List`1[ReactShop.Domain.Entities.User]
+2021-08-10 11:16:15.8400 INFO 
+ Getting list of users -> System.Collections.Generic.List`1[ReactShop.Domain.Entities.User]
+2021-08-10 11:16:15.8520 INFO 
+ Getting list of users -> System.Collections.Generic.List`1[ReactShop.Domain.Entities.User]
+2021-08-10 11:16:15.8646 INFO 
+ Getting list of users -> System.Collections.Generic.List`1[ReactShop.Domain.Entities.User]
+2021-08-10 11:16:15.8646 INFO 
+ Getting list of users -> System.Collections.Generic.List`1[ReactShop.Domain.Entities.User]
+2021-08-10 11:16:15.8892 INFO 
+ Getting list of users -> System.Collections.Generic.List`1[ReactShop.Domain.Entities.User]
+2021-08-10 11:16:15.9000 INFO 
+ Getting list of users -> System.Collections.Generic.List`1[ReactShop.Domain.Entities.User]
+2021-08-10 11:16:15.9136 INFO 
+ Getting list of users -> System.Collections.Generic.List`1[ReactShop.Domain.Entities.User]
+2021-08-10 11:16:15.9268 INFO 
+ Getting list of users -> System.Collections.Generic.List`1[ReactShop.Domain.Entities.User]
+2021-08-10 11:16:15.9268 INFO 
+ Getting list of users -> System.Collections.Generic.List`1[ReactShop.Domain.Entities.User]
+2021-08-10 11:16:15.9504 INFO 
+ Getting list of users -> System.Collections.Generic.List`1[ReactShop.Domain.Entities.User]
+2021-08-10 11:16:15.9625 INFO 
+ Getting list of users -> System.Collections.Generic.List`1[ReactShop.Domain.Entities.User]
+2021-08-10 11:16:15.9749 INFO 
+ Getting list of users -> System.Collections.Generic.List`1[ReactShop.Domain.Entities.User]
+2021-08-10 11:16:15.9888 INFO 
+ Getting list of users -> System.Collections.Generic.List`1[ReactShop.Domain.Entities.User]
+2021-08-10 11:16:15.9888 INFO 
+ Getting list of users -> System.Collections.Generic.List`1[ReactShop.Domain.Entities.User]
+2021-08-10 11:16:16.0164 INFO 
+ Getting list of users -> System.Collections.Generic.List`1[ReactShop.Domain.Entities.User]
+2021-08-10 11:16:16.0303 INFO 
+ Getting list of users -> System.Collections.Generic.List`1[ReactShop.Domain.Entities.User]
+2021-08-10 11:16:16.0433 INFO 
+ Getting list of users -> System.Collections.Generic.List`1[ReactShop.Domain.Entities.User]
+2021-08-10 11:16:16.0552 INFO 
+ Getting list of users -> System.Collections.Generic.List`1[ReactShop.Domain.Entities.User]
+2021-08-10 11:16:16.0669 INFO 
+ Getting list of users -> System.Collections.Generic.List`1[ReactShop.Domain.Entities.User]
+2021-08-10 11:16:16.0669 INFO 
+ Getting list of users -> System.Collections.Generic.List`1[ReactShop.Domain.Entities.User]
+2021-08-10 11:16:16.0925 INFO 
+ Getting list of users -> System.Collections.Generic.List`1[ReactShop.Domain.Entities.User]
+2021-08-10 11:16:16.1051 INFO 
+ Getting list of users -> System.Collections.Generic.List`1[ReactShop.Domain.Entities.User]
+2021-08-10 11:16:16.1174 INFO 
+ Getting list of users -> System.Collections.Generic.List`1[ReactShop.Domain.Entities.User]
+2021-08-10 11:16:16.1291 INFO 
+ Getting list of users -> System.Collections.Generic.List`1[ReactShop.Domain.Entities.User]
+2021-08-10 11:16:16.1291 INFO 
+ Getting list of users -> System.Collections.Generic.List`1[ReactShop.Domain.Entities.User]
+2021-08-10 11:16:16.1554 INFO 
+ Getting list of users -> System.Collections.Generic.List`1[ReactShop.Domain.Entities.User]
+2021-08-10 11:16:16.1662 INFO 
+ Getting list of users -> System.Collections.Generic.List`1[ReactShop.Domain.Entities.User]
+2021-08-10 11:16:16.1796 INFO 
+ Getting list of users -> System.Collections.Generic.List`1[ReactShop.Domain.Entities.User]
+2021-08-10 11:16:16.1926 INFO 
+ Getting list of users -> System.Collections.Generic.List`1[ReactShop.Domain.Entities.User]
+2021-08-10 11:16:16.1926 INFO 
+ Getting list of users -> System.Collections.Generic.List`1[ReactShop.Domain.Entities.User]
+2021-08-10 11:16:16.2197 INFO 
+ Getting list of users -> System.Collections.Generic.List`1[ReactShop.Domain.Entities.User]
+2021-08-10 11:16:16.2401 INFO 
+ Getting list of users -> System.Collections.Generic.List`1[ReactShop.Domain.Entities.User]
+2021-08-10 11:16:16.2569 INFO 
+ Getting list of users -> System.Collections.Generic.List`1[ReactShop.Domain.Entities.User]
+2021-08-10 11:16:16.2569 INFO 
+ Getting list of users -> System.Collections.Generic.List`1[ReactShop.Domain.Entities.User]
+2021-08-10 11:16:16.2835 INFO 
+ Getting list of users -> System.Collections.Generic.List`1[ReactShop.Domain.Entities.User]
+2021-08-10 11:16:16.2998 INFO 
+ Getting list of users -> System.Collections.Generic.List`1[ReactShop.Domain.Entities.User]
+2021-08-10 11:16:16.3157 INFO 
+ Getting list of users -> System.Collections.Generic.List`1[ReactShop.Domain.Entities.User]
+2021-08-10 11:16:16.3330 INFO 
+ Getting list of users -> System.Collections.Generic.List`1[ReactShop.Domain.Entities.User]
+2021-08-10 11:16:16.3486 INFO 
+ Getting list of users -> System.Collections.Generic.List`1[ReactShop.Domain.Entities.User]
+2021-08-10 11:16:16.3648 INFO 
+ Getting list of users -> System.Collections.Generic.List`1[ReactShop.Domain.Entities.User]
+2021-08-10 11:16:16.3795 INFO 
+ Getting list of users -> System.Collections.Generic.List`1[ReactShop.Domain.Entities.User]
+2021-08-10 11:16:16.3961 INFO 
+ Getting list of users -> System.Collections.Generic.List`1[ReactShop.Domain.Entities.User]
+2021-08-10 11:16:16.4101 INFO 
+ Getting list of users -> System.Collections.Generic.List`1[ReactShop.Domain.Entities.User]
+2021-08-10 11:16:16.4295 INFO 
+ Getting list of users -> System.Collections.Generic.List`1[ReactShop.Domain.Entities.User]
+2021-08-10 11:16:16.4454 INFO 
+ Getting list of users -> System.Collections.Generic.List`1[ReactShop.Domain.Entities.User]
+2021-08-10 11:16:16.4658 INFO 
+ Getting list of users -> System.Collections.Generic.List`1[ReactShop.Domain.Entities.User]
+2021-08-10 11:16:16.4814 INFO 
+ Getting list of users -> System.Collections.Generic.List`1[ReactShop.Domain.Entities.User]
+2021-08-10 11:16:16.4968 INFO 
+ Getting list of users -> System.Collections.Generic.List`1[ReactShop.Domain.Entities.User]
+2021-08-10 11:16:16.5123 INFO 
+ Getting list of users -> System.Collections.Generic.List`1[ReactShop.Domain.Entities.User]
+2021-08-10 11:16:16.5291 INFO 
+ Getting list of users -> System.Collections.Generic.List`1[ReactShop.Domain.Entities.User]
+2021-08-10 11:16:16.5467 INFO 
+ Getting list of users -> System.Collections.Generic.List`1[ReactShop.Domain.Entities.User]
+2021-08-10 11:16:16.5630 INFO 
+ Getting list of users -> System.Collections.Generic.List`1[ReactShop.Domain.Entities.User]
+2021-08-10 11:16:16.5784 INFO 
+ Getting list of users -> System.Collections.Generic.List`1[ReactShop.Domain.Entities.User]
+2021-08-10 11:16:16.6012 INFO 
+ Getting list of users -> System.Collections.Generic.List`1[ReactShop.Domain.Entities.User]
+2021-08-10 11:16:16.6279 INFO 
+ Getting list of users -> System.Collections.Generic.List`1[ReactShop.Domain.Entities.User]
+2021-08-10 11:16:16.6788 INFO 
+ Getting list of users -> System.Collections.Generic.List`1[ReactShop.Domain.Entities.User]
+2021-08-10 11:16:16.6997 INFO 
+ Getting list of users -> System.Collections.Generic.List`1[ReactShop.Domain.Entities.User]
+2021-08-10 11:16:16.7293 INFO 
+ Getting list of users -> System.Collections.Generic.List`1[ReactShop.Domain.Entities.User]
+2021-08-10 11:16:16.7498 INFO 
+ Getting list of users -> System.Collections.Generic.List`1[ReactShop.Domain.Entities.User]
+2021-08-10 11:16:16.7662 INFO 
+ Getting list of users -> System.Collections.Generic.List`1[ReactShop.Domain.Entities.User]
+2021-08-10 11:16:16.7814 INFO 
+ Getting list of users -> System.Collections.Generic.List`1[ReactShop.Domain.Entities.User]
+2021-08-10 11:16:16.7969 INFO 
+ Getting list of users -> System.Collections.Generic.List`1[ReactShop.Domain.Entities.User]
+2021-08-10 11:16:16.8139 INFO 
+ Getting list of users -> System.Collections.Generic.List`1[ReactShop.Domain.Entities.User]
+2021-08-10 11:16:16.8283 INFO 
+ Getting list of users -> System.Collections.Generic.List`1[ReactShop.Domain.Entities.User]
+2021-08-10 11:16:16.8465 INFO 
+ Getting list of users -> System.Collections.Generic.List`1[ReactShop.Domain.Entities.User]
+2021-08-10 11:16:16.8612 INFO 
+ Getting list of users -> System.Collections.Generic.List`1[ReactShop.Domain.Entities.User]
+2021-08-10 11:16:16.8756 INFO 
+ Getting list of users -> System.Collections.Generic.List`1[ReactShop.Domain.Entities.User]
+2021-08-10 11:16:16.8872 INFO 
+ Getting list of users -> System.Collections.Generic.List`1[ReactShop.Domain.Entities.User]
+2021-08-10 11:16:16.9042 INFO 
+ Getting list of users -> System.Collections.Generic.List`1[ReactShop.Domain.Entities.User]
+2021-08-10 11:16:16.9172 INFO 
+ Getting list of users -> System.Collections.Generic.List`1[ReactShop.Domain.Entities.User]
+2021-08-10 11:16:16.9306 INFO 
+ Getting list of users -> System.Collections.Generic.List`1[ReactShop.Domain.Entities.User]
+2021-08-10 11:16:16.9438 INFO 
+ Getting list of users -> System.Collections.Generic.List`1[ReactShop.Domain.Entities.User]
+2021-08-10 11:16:16.9438 INFO 
+ Getting list of users -> System.Collections.Generic.List`1[ReactShop.Domain.Entities.User]
+2021-08-10 11:16:16.9681 INFO 
+ Getting list of users -> System.Collections.Generic.List`1[ReactShop.Domain.Entities.User]
+2021-08-10 11:16:16.9792 INFO 
+ Getting list of users -> System.Collections.Generic.List`1[ReactShop.Domain.Entities.User]
+2021-08-10 11:16:16.9920 INFO 
+ Getting list of users -> System.Collections.Generic.List`1[ReactShop.Domain.Entities.User]
+2021-08-10 11:16:17.0057 INFO 
+ Getting list of users -> System.Collections.Generic.List`1[ReactShop.Domain.Entities.User]
+2021-08-10 11:16:17.0057 INFO 
+ Getting list of users -> System.Collections.Generic.List`1[ReactShop.Domain.Entities.User]
+2021-08-10 11:16:17.0328 INFO 
+ Getting list of users -> System.Collections.Generic.List`1[ReactShop.Domain.Entities.User]
+2021-08-10 11:16:17.0672 INFO 
+ Getting list of users -> System.Collections.Generic.List`1[ReactShop.Domain.Entities.User]
+2021-08-10 11:16:17.0845 INFO 
+ Getting list of users -> System.Collections.Generic.List`1[ReactShop.Domain.Entities.User]
+2021-08-10 11:16:17.0845 INFO 
+ Getting list of users -> System.Collections.Generic.List`1[ReactShop.Domain.Entities.User]
+2021-08-10 11:16:17.1114 INFO 
+ Getting list of users -> System.Collections.Generic.List`1[ReactShop.Domain.Entities.User]
+2021-08-10 11:16:17.1284 INFO 
+ Getting list of users -> System.Collections.Generic.List`1[ReactShop.Domain.Entities.User]
+2021-08-10 11:16:17.1420 INFO 
+ Getting list of users -> System.Collections.Generic.List`1[ReactShop.Domain.Entities.User]
+2021-08-10 11:16:17.1533 INFO 
+ Getting list of users -> System.Collections.Generic.List`1[ReactShop.Domain.Entities.User]
+2021-08-10 11:16:17.1655 INFO 
+ Getting list of users -> System.Collections.Generic.List`1[ReactShop.Domain.Entities.User]
+2021-08-10 11:16:17.1789 INFO 
+ Getting list of users -> System.Collections.Generic.List`1[ReactShop.Domain.Entities.User]
+2021-08-10 11:16:17.1925 INFO 
+ Getting list of users -> System.Collections.Generic.List`1[ReactShop.Domain.Entities.User]
+2021-08-10 11:16:17.1925 INFO 
+ Getting list of users -> System.Collections.Generic.List`1[ReactShop.Domain.Entities.User]
+2021-08-10 11:16:17.2169 INFO 
+ Getting list of users -> System.Collections.Generic.List`1[ReactShop.Domain.Entities.User]
+2021-08-10 11:16:17.2297 INFO 
+ Getting list of users -> System.Collections.Generic.List`1[ReactShop.Domain.Entities.User]
+2021-08-10 11:16:17.2418 INFO 
+ Getting list of users -> System.Collections.Generic.List`1[ReactShop.Domain.Entities.User]
+2021-08-10 11:16:17.2418 INFO 
+ Getting list of users -> System.Collections.Generic.List`1[ReactShop.Domain.Entities.User]
+2021-08-10 11:16:17.2666 INFO 
+ Getting list of users -> System.Collections.Generic.List`1[ReactShop.Domain.Entities.User]
+2021-08-10 11:16:17.2809 INFO 
+ Getting list of users -> System.Collections.Generic.List`1[ReactShop.Domain.Entities.User]
+2021-08-10 11:16:17.2944 INFO 
+ Getting list of users -> System.Collections.Generic.List`1[ReactShop.Domain.Entities.User]
+2021-08-10 11:16:17.3091 INFO 
+ Getting list of users -> System.Collections.Generic.List`1[ReactShop.Domain.Entities.User]
+2021-08-10 11:16:17.3284 INFO 
+ Getting list of users -> System.Collections.Generic.List`1[ReactShop.Domain.Entities.User]
+2021-08-10 11:16:17.3449 INFO 
+ Getting list of users -> System.Collections.Generic.List`1[ReactShop.Domain.Entities.User]
+2021-08-10 11:16:17.3650 INFO 
+ Getting list of users -> System.Collections.Generic.List`1[ReactShop.Domain.Entities.User]
+2021-08-10 11:16:17.3800 INFO 
+ Getting list of users -> System.Collections.Generic.List`1[ReactShop.Domain.Entities.User]
+2021-08-10 11:16:17.3800 INFO 
+ Getting list of users -> System.Collections.Generic.List`1[ReactShop.Domain.Entities.User]
+2021-08-10 11:16:17.4064 INFO 
+ Getting list of users -> System.Collections.Generic.List`1[ReactShop.Domain.Entities.User]
+2021-08-10 11:16:17.4200 INFO 
+ Getting list of users -> System.Collections.Generic.List`1[ReactShop.Domain.Entities.User]
+2021-08-10 11:16:17.4327 INFO 
+ Getting list of users -> System.Collections.Generic.List`1[ReactShop.Domain.Entities.User]
+2021-08-10 11:16:17.4457 INFO 
+ Getting list of users -> System.Collections.Generic.List`1[ReactShop.Domain.Entities.User]
+2021-08-10 11:16:17.4609 INFO 
+ Getting list of users -> System.Collections.Generic.List`1[ReactShop.Domain.Entities.User]
+2021-08-10 11:16:17.4747 INFO 
+ Getting list of users -> System.Collections.Generic.List`1[ReactShop.Domain.Entities.User]
+2021-08-10 11:16:17.4747 INFO 
+ Getting list of users -> System.Collections.Generic.List`1[ReactShop.Domain.Entities.User]
+2021-08-10 11:16:17.4996 INFO 
+ Getting list of users -> System.Collections.Generic.List`1[ReactShop.Domain.Entities.User]
+2021-08-10 11:16:17.5139 INFO 
+ Getting list of users -> System.Collections.Generic.List`1[ReactShop.Domain.Entities.User]
+2021-08-10 11:16:17.5276 INFO 
+ Getting list of users -> System.Collections.Generic.List`1[ReactShop.Domain.Entities.User]
+2021-08-10 11:16:17.5402 INFO 
+ Getting list of users -> System.Collections.Generic.List`1[ReactShop.Domain.Entities.User]
+2021-08-10 11:16:17.5534 INFO 
+ Getting list of users -> System.Collections.Generic.List`1[ReactShop.Domain.Entities.User]
+2021-08-10 11:16:17.5709 INFO 
+ Getting list of users -> System.Collections.Generic.List`1[ReactShop.Domain.Entities.User]
+2021-08-10 11:16:17.5848 INFO 
+ Getting list of users -> System.Collections.Generic.List`1[ReactShop.Domain.Entities.User]
+2021-08-10 11:16:17.6021 INFO 
+ Getting list of users -> System.Collections.Generic.List`1[ReactShop.Domain.Entities.User]
+2021-08-10 11:16:17.6143 INFO 
+ Getting list of users -> System.Collections.Generic.List`1[ReactShop.Domain.Entities.User]
+2021-08-10 11:16:17.6143 INFO 
+ Getting list of users -> System.Collections.Generic.List`1[ReactShop.Domain.Entities.User]
+2021-08-10 11:16:17.6397 INFO 
+ Getting list of users -> System.Collections.Generic.List`1[ReactShop.Domain.Entities.User]
+2021-08-10 11:16:17.6537 INFO 
+ Getting list of users -> System.Collections.Generic.List`1[ReactShop.Domain.Entities.User]
+2021-08-10 11:16:17.6654 INFO 
+ Getting list of users -> System.Collections.Generic.List`1[ReactShop.Domain.Entities.User]
+2021-08-10 11:16:17.6774 INFO 
+ Getting list of users -> System.Collections.Generic.List`1[ReactShop.Domain.Entities.User]
+2021-08-10 11:16:17.6774 INFO 
+ Getting list of users -> System.Collections.Generic.List`1[ReactShop.Domain.Entities.User]
+2021-08-10 11:16:17.7021 INFO 
+ Getting list of users -> System.Collections.Generic.List`1[ReactShop.Domain.Entities.User]
+2021-08-10 11:16:17.7161 INFO 
+ Getting list of users -> System.Collections.Generic.List`1[ReactShop.Domain.Entities.User]
+2021-08-10 11:16:17.7293 INFO 
+ Getting list of users -> System.Collections.Generic.List`1[ReactShop.Domain.Entities.User]
+2021-08-10 11:16:17.7424 INFO 
+ Getting list of users -> System.Collections.Generic.List`1[ReactShop.Domain.Entities.User]
+2021-08-10 11:16:17.7544 INFO 
+ Getting list of users -> System.Collections.Generic.List`1[ReactShop.Domain.Entities.User]
+2021-08-10 11:16:17.7544 INFO 
+ Getting list of users -> System.Collections.Generic.List`1[ReactShop.Domain.Entities.User]
+2021-08-10 11:16:17.7862 INFO 
+ Getting list of users -> System.Collections.Generic.List`1[ReactShop.Domain.Entities.User]
+2021-08-10 11:16:17.8043 INFO 
+ Getting list of users -> System.Collections.Generic.List`1[ReactShop.Domain.Entities.User]
+2021-08-10 11:16:17.8171 INFO 
+ Getting list of users -> System.Collections.Generic.List`1[ReactShop.Domain.Entities.User]
+2021-08-10 11:16:17.8171 INFO 
+ Getting list of users -> System.Collections.Generic.List`1[ReactShop.Domain.Entities.User]
+2021-08-10 11:16:17.8434 INFO 
+ Getting list of users -> System.Collections.Generic.List`1[ReactShop.Domain.Entities.User]
+2021-08-10 11:16:17.8546 INFO 
+ Getting list of users -> System.Collections.Generic.List`1[ReactShop.Domain.Entities.User]
+2021-08-10 11:16:17.8692 INFO 
+ Getting list of users -> System.Collections.Generic.List`1[ReactShop.Domain.Entities.User]
+2021-08-10 11:16:17.8821 INFO 
+ Getting list of users -> System.Collections.Generic.List`1[ReactShop.Domain.Entities.User]
+2021-08-10 11:16:17.9010 INFO 
+ Getting list of users -> System.Collections.Generic.List`1[ReactShop.Domain.Entities.User]
+2021-08-10 11:16:17.9164 INFO 
+ Getting list of users -> System.Collections.Generic.List`1[ReactShop.Domain.Entities.User]
+2021-08-10 11:16:17.9332 INFO 
+ Getting list of users -> System.Collections.Generic.List`1[ReactShop.Domain.Entities.User]
+2021-08-10 11:16:17.9466 INFO 
+ Getting list of users -> System.Collections.Generic.List`1[ReactShop.Domain.Entities.User]
+2021-08-10 11:16:17.9623 INFO 
+ Getting list of users -> System.Collections.Generic.List`1[ReactShop.Domain.Entities.User]
+2021-08-10 11:16:17.9812 INFO 
+ Getting list of users -> System.Collections.Generic.List`1[ReactShop.Domain.Entities.User]
+2021-08-10 11:16:17.9963 INFO 
+ Getting list of users -> System.Collections.Generic.List`1[ReactShop.Domain.Entities.User]
+2021-08-10 11:16:18.0131 INFO 
+ Getting list of users -> System.Collections.Generic.List`1[ReactShop.Domain.Entities.User]
+2021-08-10 11:16:18.0306 INFO 
+ Getting list of users -> System.Collections.Generic.List`1[ReactShop.Domain.Entities.User]
+2021-08-10 11:16:18.0447 INFO 
+ Getting list of users -> System.Collections.Generic.List`1[ReactShop.Domain.Entities.User]
+2021-08-10 11:16:18.0617 INFO 
+ Getting list of users -> System.Collections.Generic.List`1[ReactShop.Domain.Entities.User]
+2021-08-10 11:16:18.0780 INFO 
+ Getting list of users -> System.Collections.Generic.List`1[ReactShop.Domain.Entities.User]
+2021-08-10 11:16:18.0915 INFO 
+ Getting list of users -> System.Collections.Generic.List`1[ReactShop.Domain.Entities.User]
+2021-08-10 11:16:18.1049 INFO 
+ Getting list of users -> System.Collections.Generic.List`1[ReactShop.Domain.Entities.User]
+2021-08-10 11:16:18.1256 INFO 
+ Getting list of users -> System.Collections.Generic.List`1[ReactShop.Domain.Entities.User]
+2021-08-10 11:16:18.1374 INFO 
+ Getting list of users -> System.Collections.Generic.List`1[ReactShop.Domain.Entities.User]
+2021-08-10 11:16:18.1502 INFO 
+ Getting list of users -> System.Collections.Generic.List`1[ReactShop.Domain.Entities.User]

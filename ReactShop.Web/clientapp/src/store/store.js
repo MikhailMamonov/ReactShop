@@ -1,8 +1,22 @@
-import { createStore, applyMiddleware, compose } from "redux"; // импорт из Redux-библиотеки
+import { createStore, applyMiddleware } from "redux"; // импорт из Redux-библиотеки
 import reducer from "./reducers/index";
 import thunk from "redux-thunk";
+import { createLogger } from 'redux-logger'
+import { composeWithDevTools } from "redux-devtools-extension";
+import { getAllUsersThunk } from './actions/users'
 
-const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;
-const store = createStore(reducer, composeEnhancers(applyMiddleware(thunk)));
+
+const middleware = [ thunk ];
+
+if (process.env.NODE_ENV !== 'production') {
+    middleware.push(createLogger());
+  }
+
+
+const store = createStore(
+    reducer,
+    composeWithDevTools(applyMiddleware(...middleware)));
+
+store.dispatch(getAllUsersThunk())
 
 export default store;

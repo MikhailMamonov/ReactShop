@@ -2,7 +2,8 @@ import { Container, Row, Col, Button } from "react-bootstrap";
 
 import AddUser from "./AddUser";
 
-const Users = (props) => (
+const Users = (props) => {
+  return (
   <div>
     <Container>
       <h2>Users</h2>
@@ -30,5 +31,6 @@ const Users = (props) => (
     </Container>
   </div>
 );
+        }
 
 export default Users;
