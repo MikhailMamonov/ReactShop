@@ -19,7 +19,11 @@ namespace ReactShop.Services.Implementations
         private readonly UserManager<User> _userManager;
         private readonly RoleManager<IdentityRole> _roleManager;
 
-        public UsersService(ApplicationDbContext db, UserManager<User> userManager, RoleManager<IdentityRole> roleManager)
+        public UsersService(
+            ApplicationDbContext db,
+            UserManager<User> userManager,
+            RoleManager<IdentityRole> roleManager
+            )
         {
             _db = db;
             _userManager = userManager;
@@ -32,8 +36,6 @@ namespace ReactShop.Services.Implementations
 
         public async Task<string> AddUserAsync(User user, string password)
         {
-            try
-            {
                 // добавляем пользователя
                 var result = await _userManager.CreateAsync(user, password);
                 if (result.Succeeded)
@@ -53,34 +55,38 @@ namespace ReactShop.Services.Implementations
                 {
                     var errors = result.Errors.ToList();
                     var sb = new StringBuilder();
-                    errors.ForEach(err => sb.Append(err.Description+ ","));
+                    errors.ForEach(err => sb.AppendLine(err.Description+ "\n"));
             
                     return sb.ToString();
                 }
-                
-            }
-            catch (Exception e)
-            {
-                return string.Join(", ",e.Message, e.StackTrace);
-            }
         }
 
-        public async Task<bool> UpdateUserAsync(int id, User user)
+        public async Task<string> UpdateUserAsync(int id, User user)
         {
-            return true;
+
+            return "";
         }
-        public async Task<bool> DeleteUser(string id)
+
+        public async Task<string> DeleteUserAsync(string id)
         {
-            try
+            var user = await _userManager.FindByIdAsync(id);
+
+            if (user == null)
             {
-                var user = await _db.Users.FindAsync(id);
-                _db.Users.Remove(user);
-                return true;
+                return "User with id not found";
             }
-            catch (Exception e)
-            {
-                return false;
-            }
+            var result = await _userManager.DeleteAsync(user);
+                if (result.Succeeded)
+                {
+                    return null;
+                }
+                else
+                {
+                    var errors = result.Errors.ToList();
+                    var errString = 
+                        string.Join("|", errors.Select(x => x.Description));
+                    return errString;
+                }
         }
     }
 }

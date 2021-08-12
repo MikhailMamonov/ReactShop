@@ -10,7 +10,7 @@ namespace ReactShop.Services.Interfaces
     {
         public Task<List<User>> GetUsersAsync();
         public Task<string> AddUserAsync(User user, string password);
-        public Task<bool> UpdateUserAsync(int id, User user);
-        public Task<bool> DeleteUser(string id);
+        public Task<string> UpdateUserAsync(int id, User user);
+        public Task<string> DeleteUserAsync(string id);
     }
 }

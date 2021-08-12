@@ -14,7 +14,7 @@ using System.Threading.Tasks;
 namespace ReactShop.Controllers
 {
     [ApiController]
-    [Route("[controller]")]
+    [Route("api/[controller]")]
     public class UsersController : Controller
     {
         private readonly IMapper _mapper;
@@ -28,21 +28,19 @@ namespace ReactShop.Controllers
             _logger = logger;
         }
 
-        [HttpPost("AddUser")]
+        [HttpPost]
         public async Task<IActionResult> AddUser([FromBody] UserDTO userDTO)
         {
             try
             {
                 if (userDTO == null)
                 {
-                    _logger.LogError("User Object is null");
-                    return BadRequest("User Object is null");
+                    return LogErrorAndReturnStatusCode("User Object is null", 400);
                 }
 
                 if (!ModelState.IsValid)
                 {
-                    _logger.LogError("User Object is null");
-                    return BadRequest("Invalid model object");
+                    return LogErrorAndReturnStatusCode("Model is invalid", 400);
                 }
 
                 var user = new User
@@ -61,60 +59,72 @@ namespace ReactShop.Controllers
                 }
                 else
                 {
-                    _logger.LogError(errorMessage);
-                    return StatusCode(500, errorMessage);
+                    return LogErrorAndReturnStatusCode(errorMessage, 500);
                 }
             }
             catch (Exception e) {
-                _logger.LogError($"{e.Message} -> {e.StackTrace}");
-                return StatusCode(500, e);
+                return LogErrorAndReturnStatusCode($"{e.Message} -> {e.StackTrace}", 500);
             }
             
         }
 
-        [HttpGet("GetUsers")]
+
+        [HttpGet]
         public async Task<IActionResult> GetUsers()
         {
             try
             {
                 var users = await _usersService.GetUsersAsync();
-                _logger.LogInfo($"\n Getting list of users -> {users}");
                 var usersDTO = _mapper.Map<List<UserDTO>>(users);
+
                 return Ok(usersDTO);
             }
-            catch (System.Exception e) 
+            catch (Exception e)
             {
-                var err = string.Join(System.Environment.NewLine, e.Message, e.StackTrace);
-                _logger.LogError(err);
-                return StatusCode(500, $"{e.Message} -> {e.StackTrace}"); 
+                return LogErrorAndReturnStatusCode($" {e.Message} -> {e.StackTrace}", 500);
             }
-            
+
         }
+
 
 
         [HttpPut("{id}")]
         public async Task<IActionResult> UpdateUser(int id, [FromBody] User user)
         {
             var result = await _usersService.UpdateUserAsync(id, user);
-            if (!result)
-                return BadRequest("User not updated");
+            if (string.IsNullOrEmpty(result))
+                return LogErrorAndReturnStatusCode("User not updated", 400);
             else
                 return Ok(user);
         }
 
+
         [HttpDelete("{id}")]
         public async Task<IActionResult> DeleteUser(string id)
         {
-            var users = await _usersService.GetUsersAsync();
-            if (!users.Any(user => user.Id == id))
-            {
-                return BadRequest("User id not found");
+            try
+            {                
+                var errorMessage = await _usersService.DeleteUserAsync(id);
+
+                if (string.IsNullOrEmpty(errorMessage))
+                    return Ok(
+                        new {id = id, message = string.Format("user with id -> {0} succes deleted", id) });
+                else
+                {
+                    return LogErrorAndReturnStatusCode(errorMessage, 500);
+                }
             }
-            var result = await _usersService.DeleteUser(id);
-            if (!result)
-                return BadRequest("User not deleted");
-            else
-                return Ok(string.Format("user with id -> {0} succes deleted",id));
+            catch (Exception e)
+            {
+                return LogErrorAndReturnStatusCode($" {e.Message} -> {e.StackTrace}", 500);
+            }
+            
+        }
+
+        private IActionResult LogErrorAndReturnStatusCode(string errMessage, int statusCode)
+        {
+            _logger.LogError(errMessage);
+            return StatusCode(statusCode, errMessage);
         }
     }
 }

@@ -1,4 +1,10 @@
-import { ADD_USER_SUCCESS, USER_ERROR, TOGGLE_FETCHING, GET_USERS_SUCCESS } from "../types";
+import { 
+  ADD_USER_SUCCESS,
+  USER_ERROR, 
+  TOGGLE_FETCHING, 
+  GET_USERS_SUCCESS,
+  DELETE_USER 
+} from "../types";
 
 const initialState = {
   users: [
@@ -34,8 +40,13 @@ export default function users(state = initialState, action) {
         ...state,
         error: action.payload.error,
       };
-    case "DELETE_USER":
-      return [...users.filter((u) => u.id !== action.payload.idForDelete)];
+    case DELETE_USER:
+      console.log(state.users);
+      console.log(state.users.filter((u) => u.id !== action.payload.idForDelete));
+      debugger;
+      return {
+        ...state,
+        users: state.users.filter((u) => u.id !== action.payload.idForDelete)};
     default:
       return state;
   }

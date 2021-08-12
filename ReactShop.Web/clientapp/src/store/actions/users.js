@@ -41,7 +41,6 @@ export const onErrorAction = (error) => ({
 });
 
 export const getAllUsersThunk = () => {
-  debugger;
   return (dispatch) => {
     dispatch(onErrorAction(null));
     dispatch(toggleIsFetching(true));
@@ -72,7 +71,8 @@ export const addUserThunk = (newUser) => {
         dispatch(toggleIsFetching(false));
       })
       .catch((e) => {
-        dispatch(onErrorAction(e.stack));
+        debugger;
+        dispatch(onErrorAction(e.response.data));
         dispatch(toggleIsFetching(false));
       });
   };
@@ -81,11 +81,10 @@ export const addUserThunk = (newUser) => {
 export const deleteUserThunk = (id) => {
   return (dispatch) => {
     dispatch(toggleIsFetching(true));
-    UsersDataService.remove( {
-        id,
-      })
+    UsersDataService.remove( id)
       .then((res) => {
-        dispatch(deleteUserAction(res.data));
+        debugger;
+        dispatch(deleteUserAction(res.data.id));
         dispatch(toggleIsFetching(false));
       })
       .catch((e) => {

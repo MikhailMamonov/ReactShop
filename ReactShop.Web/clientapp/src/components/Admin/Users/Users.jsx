@@ -7,7 +7,9 @@ const Users = (props) => {
   <div>
     <Container>
       <h2>Users</h2>
-      {props.error !== null ? <b>{props.error}</b> : null}
+      {props.error !== null ?
+       props.error.split('\n').map(str => <p><b>{str}</b></p>)
+        : null}
       {props.loading ? <b>loading...</b> : null}
       <AddUser addUser={props.onAddUserClick}></AddUser>
       <ul>
