@@ -1,5 +1,5 @@
 import { Container, Row, Col, Button } from "react-bootstrap";
-
+import Loader from "react-loader-spinner";
 import AddUser from "./AddUser";
 
 const Users = (props) => {
@@ -7,13 +7,15 @@ const Users = (props) => {
   <div>
     <Container>
       <h2>Users</h2>
+
       {props.error !== null ?
        props.error.split('\n').map(str => <p><b>{str}</b></p>)
-        : null}
-      {props.loading ? <b>loading...</b> : null}
-      <AddUser addUser={props.onAddUserClick}></AddUser>
-      <ul>
-        {console.log("before map")}
+          : null}
+            <Loader type="Bars" visible={props.isLoading}  color="#00BFFF" height={80} width={80} /> 
+            <AddUser addUser={props.onAddUserClick}></AddUser>
+
+        <ul>
+        
         {props.users.map((u) => (
           <li key={u.id}>
             <Row>
@@ -30,7 +32,7 @@ const Users = (props) => {
           </li>
         ))}
       </ul>
-    </Container>
+    </Container> 
   </div>
 );
         }

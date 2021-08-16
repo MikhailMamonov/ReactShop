@@ -1,20 +1,22 @@
 import { connect } from "react-redux";
-import { addProduct, deleteProduct } from "../../../store/actions";
+import { addProductThunk, deleteProductThunk } from "../../../store/actions/productActions";
 import Products from "./Products";
 
 const mapStateToProps = (state) => {
   return {
     products: state.products.products,
-  };
+    categories: state.products.categories,
+    isLoading: state.products.isLoading,
+    error: state.products.error  };
 };
 
 const mapDispatchToProps = (dispatch) => {
   return {
-    onAddClick: (newProduct) => {
-      dispatch(addProduct(newProduct));
+    onAddProductClick: (product) => {
+      dispatch(addProductThunk(product));
     },
-    onDeleteClick: (id) => {
-      dispatch(deleteProduct(id));
+    onDeleteProductClick: (id) => {
+      dispatch(deleteProductThunk(id));
     },
   };
 };

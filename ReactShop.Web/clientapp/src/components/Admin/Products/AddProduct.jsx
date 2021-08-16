@@ -1,18 +1,14 @@
-import React, { Component } from "react";
-import { Form } from "react-bootstrap";
-import { Row } from "react-bootstrap";
-import { Col } from "react-bootstrap";
-import { Button } from "react-bootstrap";
-import { InputGroup } from "react-bootstrap";
-import { FormControl } from "react-bootstrap";
+import React from "react";
 
-export default function AddProduct({ addProduct }) {
+
+export default function AddProduct(props) {
   const [price, setPrice] = React.useState("");
   const [name, setName] = React.useState("");
+  const [categoryId, setCategoryId] = React.useState(1);
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    addProduct({ name, price });
+    props.addProduct({ name, price, categoryId });
   };
 
   return (
@@ -27,6 +23,15 @@ export default function AddProduct({ addProduct }) {
         />
       </div>
       <div>
+        <label htmlFor="category">Category</label>
+        <p>
+          <select value={categoryId} onChange={(e) => setCategoryId(e.target.value)}>
+            {props.categories.map((c) =>(
+                <option value={c.id}>{c.name}</option>))}
+          </select>
+          </p>
+      </div>
+      <div>
         <label htmlFor="price">price</label>
         <input
           type="number"
@@ -34,7 +39,7 @@ export default function AddProduct({ addProduct }) {
           value={price}
           onChange={(e) => setPrice(e.target.value)}
         />
-        <input type="submit" value="add" />
+        <input type="submit" value="Добавить" />
       </div>
     </form>
   );

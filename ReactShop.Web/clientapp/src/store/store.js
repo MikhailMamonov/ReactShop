@@ -3,7 +3,9 @@ import reducer from "./reducers/index";
 import thunk from "redux-thunk";
 import { createLogger } from 'redux-logger'
 import { composeWithDevTools } from "redux-devtools-extension";
-import { getAllUsersThunk } from './actions/users'
+import { getAllUsersThunk } from './actions/userActions'
+import { getAllProductsThunk } from './actions/productActions'
+import { getAllCategoriesThunk } from './actions/productActions'
 
 
 const middleware = [ thunk ];
@@ -18,5 +20,6 @@ const store = createStore(
     composeWithDevTools(applyMiddleware(...middleware)));
 
 store.dispatch(getAllUsersThunk())
-
+store.dispatch(getAllProductsThunk())
+store.dispatch(getAllCategoriesThunk())
 export default store;

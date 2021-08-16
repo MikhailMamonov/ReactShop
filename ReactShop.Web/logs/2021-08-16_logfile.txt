@@ -1,0 +1,219 @@
+2021-08-16 10:41:36.7008 ERROR Passwords must have at least one non alphanumeric character.
+
+Passwords must have at least one lowercase ('a'-'z').
+
+Passwords must have at least one uppercase ('A'-'Z').
+
+
+2021-08-16 10:41:51.1748 ERROR Passwords must have at least one lowercase ('a'-'z').
+
+Passwords must have at least one uppercase ('A'-'Z').
+
+
+2021-08-16 10:42:09.2897 ERROR An error occurred while updating the entries. See the inner exception for details. ->    at Microsoft.EntityFrameworkCore.Update.ReaderModificationCommandBatch.ExecuteAsync(IRelationalConnection connection, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.Update.Internal.BatchExecutor.ExecuteAsync(IEnumerable`1 commandBatches, IRelationalConnection connection, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.Update.Internal.BatchExecutor.ExecuteAsync(IEnumerable`1 commandBatches, IRelationalConnection connection, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.Update.Internal.BatchExecutor.ExecuteAsync(IEnumerable`1 commandBatches, IRelationalConnection connection, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.ChangeTracking.Internal.StateManager.SaveChangesAsync(IList`1 entriesToSave, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.ChangeTracking.Internal.StateManager.SaveChangesAsync(DbContext _, Boolean acceptAllChangesOnSuccess, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.SqlServer.Storage.Internal.SqlServerExecutionStrategy.ExecuteAsync[TState,TResult](TState state, Func`4 operation, Func`4 verifySucceeded, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.DbContext.SaveChangesAsync(Boolean acceptAllChangesOnSuccess, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.DbContext.SaveChangesAsync(Boolean acceptAllChangesOnSuccess, CancellationToken cancellationToken)
+   at Microsoft.AspNetCore.Identity.EntityFrameworkCore.UserStore`9.CreateAsync(TUser user, CancellationToken cancellationToken)
+   at Microsoft.AspNetCore.Identity.UserManager`1.CreateAsync(TUser user)
+   at Microsoft.AspNetCore.Identity.UserManager`1.CreateAsync(TUser user, String password)
+   at ReactShop.Services.Implementations.UsersService.AddUserAsync(User user, String password) in D:\petProjects\ReactShop\ReactShop.Services\Implementations\UsersService.cs:line 40
+   at ReactShop.Controllers.UsersController.AddUser(UserDTO userDTO) in D:\petProjects\ReactShop\ReactShop.Web\Controllers\UsersController.cs:line 54
+2021-08-16 10:42:09.2897 ERROR An error occurred while updating the entries. See the inner exception for details. ->    at Microsoft.EntityFrameworkCore.Update.ReaderModificationCommandBatch.ExecuteAsync(IRelationalConnection connection, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.Update.Internal.BatchExecutor.ExecuteAsync(IEnumerable`1 commandBatches, IRelationalConnection connection, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.Update.Internal.BatchExecutor.ExecuteAsync(IEnumerable`1 commandBatches, IRelationalConnection connection, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.Update.Internal.BatchExecutor.ExecuteAsync(IEnumerable`1 commandBatches, IRelationalConnection connection, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.ChangeTracking.Internal.StateManager.SaveChangesAsync(IList`1 entriesToSave, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.ChangeTracking.Internal.StateManager.SaveChangesAsync(DbContext _, Boolean acceptAllChangesOnSuccess, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.SqlServer.Storage.Internal.SqlServerExecutionStrategy.ExecuteAsync[TState,TResult](TState state, Func`4 operation, Func`4 verifySucceeded, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.DbContext.SaveChangesAsync(Boolean acceptAllChangesOnSuccess, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.DbContext.SaveChangesAsync(Boolean acceptAllChangesOnSuccess, CancellationToken cancellationToken)
+   at Microsoft.AspNetCore.Identity.EntityFrameworkCore.UserStore`9.CreateAsync(TUser user, CancellationToken cancellationToken)
+   at Microsoft.AspNetCore.Identity.UserManager`1.CreateAsync(TUser user)
+   at Microsoft.AspNetCore.Identity.UserManager`1.CreateAsync(TUser user, String password)
+   at ReactShop.Services.Implementations.UsersService.AddUserAsync(User user, String password) in D:\petProjects\ReactShop\ReactShop.Services\Implementations\UsersService.cs:line 40
+   at ReactShop.Controllers.UsersController.AddUser(UserDTO userDTO) in D:\petProjects\ReactShop\ReactShop.Web\Controllers\UsersController.cs:line 54
+2021-08-16 10:45:29.3448 ERROR Passwords must have at least one non alphanumeric character.
+
+Passwords must have at least one lowercase ('a'-'z').
+
+Passwords must have at least one uppercase ('A'-'Z').
+
+
+2021-08-16 11:28:31.0447 ERROR Passwords must have at least one non alphanumeric character.
+
+Passwords must have at least one digit ('0'-'9').
+
+Passwords must have at least one uppercase ('A'-'Z').
+
+
+2021-08-16 11:28:58.0948 ERROR Passwords must have at least one non alphanumeric character.
+
+Passwords must have at least one digit ('0'-'9').
+
+Passwords must have at least one uppercase ('A'-'Z').
+
+
+2021-08-16 12:07:57.9756 ERROR Passwords must have at least one non alphanumeric character.
+
+Passwords must have at least one lowercase ('a'-'z').
+
+Passwords must have at least one uppercase ('A'-'Z').
+
+
+2021-08-16 12:33:31.0864 ERROR Passwords must have at least one non alphanumeric character.
+
+Passwords must have at least one lowercase ('a'-'z').
+
+Passwords must have at least one uppercase ('A'-'Z').
+
+
+2021-08-16 12:34:23.0931 ERROR Username 'jjo' is already taken.
+
+
+2021-08-16 12:34:44.5558 INFO 
+User Object added $
+ Id:821c7c1a-6a5b-4971-80b2-4521c853839a, DisplayName:joy, UserName:joy, Email:m.mamontov@krista.ru
+2021-08-16 12:35:24.7281 ERROR Passwords must be at least 6 characters.
+
+Passwords must have at least one non alphanumeric character.
+
+Passwords must have at least one digit ('0'-'9').
+
+Passwords must have at least one uppercase ('A'-'Z').
+
+
+2021-08-16 17:10:13.1851 ERROR Microsoft.Data.SqlClient.SqlException (0x80131904): The INSERT statement conflicted with the FOREIGN KEY constraint "FK_Products_Categories_CategoryId". The conflict occurred in database "OnlineShop", table "dbo.Categories", column 'Id'.
+The statement has been terminated.
+   at Microsoft.Data.SqlClient.SqlCommand.<>c.<ExecuteDbDataReaderAsync>b__203_0(Task`1 result)
+   at System.Threading.Tasks.ContinuationResultTaskFromResultTask`2.InnerInvoke()
+   at System.Threading.ExecutionContext.RunInternal(ExecutionContext executionContext, ContextCallback callback, Object state)
+--- End of stack trace from previous location ---
+   at System.Threading.Tasks.Task.ExecuteWithThreadLocal(Task& currentTaskSlot, Thread threadPoolThread)
+--- End of stack trace from previous location ---
+   at Microsoft.EntityFrameworkCore.Storage.RelationalCommand.ExecuteReaderAsync(RelationalCommandParameterObject parameterObject, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.Storage.RelationalCommand.ExecuteReaderAsync(RelationalCommandParameterObject parameterObject, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.Update.ReaderModificationCommandBatch.ExecuteAsync(IRelationalConnection connection, CancellationToken cancellationToken)
+ClientConnectionId:569aa62f-f2b4-4818-842b-a90ee9a3b64e
+Error Number:547,State:0,Class:16 ->    at Microsoft.EntityFrameworkCore.Update.ReaderModificationCommandBatch.ExecuteAsync(IRelationalConnection connection, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.Update.Internal.BatchExecutor.ExecuteAsync(IEnumerable`1 commandBatches, IRelationalConnection connection, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.Update.Internal.BatchExecutor.ExecuteAsync(IEnumerable`1 commandBatches, IRelationalConnection connection, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.Update.Internal.BatchExecutor.ExecuteAsync(IEnumerable`1 commandBatches, IRelationalConnection connection, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.ChangeTracking.Internal.StateManager.SaveChangesAsync(IList`1 entriesToSave, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.ChangeTracking.Internal.StateManager.SaveChangesAsync(DbContext _, Boolean acceptAllChangesOnSuccess, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.SqlServer.Storage.Internal.SqlServerExecutionStrategy.ExecuteAsync[TState,TResult](TState state, Func`4 operation, Func`4 verifySucceeded, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.DbContext.SaveChangesAsync(Boolean acceptAllChangesOnSuccess, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.DbContext.SaveChangesAsync(Boolean acceptAllChangesOnSuccess, CancellationToken cancellationToken)
+   at ReactShop.Services.Implementations.ProductsService.AddProductAsync(Product product) in D:\petProjects\ReactShop\ReactShop.Services\Implementations\ProductService.cs:line 29
+   at ReactShop.Controllers.ProductsController.AddProduct(ProductDTO productRequest) in D:\petProjects\ReactShop\ReactShop.Web\Controllers\ProductsController.cs:line 50
+2021-08-16 18:29:51.1697 ERROR  Error mapping types.
+
+Mapping types:
+Object -> List`1
+System.Object -> System.Collections.Generic.List`1[[ReactShop.Domain.DTOModels.CategoryDTO, ReactShop.Domain, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]] ->    at lambda_method124(Closure , Object , List`1 , ResolutionContext )
+   at ReactShop.Controllers.ProductsController.GetCategories() in D:\petProjects\ReactShop\ReactShop.Web\Controllers\ProductsController.cs:line 129
+2021-08-16 18:49:17.9245 ERROR  Error mapping types.
+
+Mapping types:
+Object -> List`1
+System.Object -> System.Collections.Generic.List`1[[ReactShop.Domain.DTOModels.CategoryDTO, ReactShop.Domain, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]] ->    at lambda_method111(Closure , Object , List`1 , ResolutionContext )
+   at ReactShop.Controllers.ProductsController.GetCategories() in D:\petProjects\ReactShop\ReactShop.Web\Controllers\ProductsController.cs:line 129
+2021-08-16 18:49:58.5457 ERROR  Error mapping types.
+
+Mapping types:
+Object -> List`1
+System.Object -> System.Collections.Generic.List`1[[ReactShop.Domain.DTOModels.CategoryDTO, ReactShop.Domain, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]] ->    at lambda_method111(Closure , Object , List`1 , ResolutionContext )
+   at ReactShop.Controllers.ProductsController.GetCategories() in D:\petProjects\ReactShop\ReactShop.Web\Controllers\ProductsController.cs:line 129
+2021-08-16 18:50:50.1557 ERROR  Error mapping types.
+
+Mapping types:
+Object -> List`1
+System.Object -> System.Collections.Generic.List`1[[ReactShop.Domain.DTOModels.CategoryDTO, ReactShop.Domain, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]] ->    at lambda_method111(Closure , Object , List`1 , ResolutionContext )
+   at ReactShop.Controllers.ProductsController.GetCategories() in D:\petProjects\ReactShop\ReactShop.Web\Controllers\ProductsController.cs:line 129
+2021-08-16 18:50:54.0267 ERROR  Error mapping types.
+
+Mapping types:
+Object -> List`1
+System.Object -> System.Collections.Generic.List`1[[ReactShop.Domain.DTOModels.CategoryDTO, ReactShop.Domain, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]] ->    at lambda_method111(Closure , Object , List`1 , ResolutionContext )
+   at ReactShop.Controllers.ProductsController.GetCategories() in D:\petProjects\ReactShop\ReactShop.Web\Controllers\ProductsController.cs:line 129
+2021-08-16 18:52:21.3619 ERROR  Error mapping types.
+
+Mapping types:
+Object -> List`1
+System.Object -> System.Collections.Generic.List`1[[ReactShop.Domain.DTOModels.CategoryDTO, ReactShop.Domain, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]] ->    at lambda_method111(Closure , Object , List`1 , ResolutionContext )
+   at ReactShop.Controllers.ProductsController.GetCategories() in D:\petProjects\ReactShop\ReactShop.Web\Controllers\ProductsController.cs:line 129
+2021-08-16 19:06:49.6428 ERROR Microsoft.Data.SqlClient.SqlException (0x80131904): The INSERT statement conflicted with the FOREIGN KEY constraint "FK_Products_Categories_CategoryId". The conflict occurred in database "OnlineShop", table "dbo.Categories", column 'Id'.
+The statement has been terminated.
+   at Microsoft.Data.SqlClient.SqlCommand.<>c.<ExecuteDbDataReaderAsync>b__203_0(Task`1 result)
+   at System.Threading.Tasks.ContinuationResultTaskFromResultTask`2.InnerInvoke()
+   at System.Threading.ExecutionContext.RunInternal(ExecutionContext executionContext, ContextCallback callback, Object state)
+--- End of stack trace from previous location ---
+   at System.Threading.Tasks.Task.ExecuteWithThreadLocal(Task& currentTaskSlot, Thread threadPoolThread)
+--- End of stack trace from previous location ---
+   at Microsoft.EntityFrameworkCore.Storage.RelationalCommand.ExecuteReaderAsync(RelationalCommandParameterObject parameterObject, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.Storage.RelationalCommand.ExecuteReaderAsync(RelationalCommandParameterObject parameterObject, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.Update.ReaderModificationCommandBatch.ExecuteAsync(IRelationalConnection connection, CancellationToken cancellationToken)
+ClientConnectionId:9caef135-e6da-4a54-abed-5e4d970198e6
+Error Number:547,State:0,Class:16 ->    at Microsoft.EntityFrameworkCore.Update.ReaderModificationCommandBatch.ExecuteAsync(IRelationalConnection connection, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.Update.Internal.BatchExecutor.ExecuteAsync(IEnumerable`1 commandBatches, IRelationalConnection connection, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.Update.Internal.BatchExecutor.ExecuteAsync(IEnumerable`1 commandBatches, IRelationalConnection connection, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.Update.Internal.BatchExecutor.ExecuteAsync(IEnumerable`1 commandBatches, IRelationalConnection connection, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.ChangeTracking.Internal.StateManager.SaveChangesAsync(IList`1 entriesToSave, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.ChangeTracking.Internal.StateManager.SaveChangesAsync(DbContext _, Boolean acceptAllChangesOnSuccess, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.SqlServer.Storage.Internal.SqlServerExecutionStrategy.ExecuteAsync[TState,TResult](TState state, Func`4 operation, Func`4 verifySucceeded, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.DbContext.SaveChangesAsync(Boolean acceptAllChangesOnSuccess, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.DbContext.SaveChangesAsync(Boolean acceptAllChangesOnSuccess, CancellationToken cancellationToken)
+   at ReactShop.Services.Implementations.ProductsService.AddProductAsync(Product product) in D:\petProjects\ReactShop\ReactShop.Services\Implementations\ProductService.cs:line 29
+   at ReactShop.Controllers.ProductsController.AddProduct(ProductDTO productRequest) in D:\petProjects\ReactShop\ReactShop.Web\Controllers\ProductsController.cs:line 50
+2021-08-16 19:06:49.6428 ERROR Microsoft.Data.SqlClient.SqlException (0x80131904): The INSERT statement conflicted with the FOREIGN KEY constraint "FK_Products_Categories_CategoryId". The conflict occurred in database "OnlineShop", table "dbo.Categories", column 'Id'.
+The statement has been terminated.
+   at Microsoft.Data.SqlClient.SqlCommand.<>c.<ExecuteDbDataReaderAsync>b__203_0(Task`1 result)
+   at System.Threading.Tasks.ContinuationResultTaskFromResultTask`2.InnerInvoke()
+   at System.Threading.ExecutionContext.RunInternal(ExecutionContext executionContext, ContextCallback callback, Object state)
+--- End of stack trace from previous location ---
+   at System.Threading.Tasks.Task.ExecuteWithThreadLocal(Task& currentTaskSlot, Thread threadPoolThread)
+--- End of stack trace from previous location ---
+   at Microsoft.EntityFrameworkCore.Storage.RelationalCommand.ExecuteReaderAsync(RelationalCommandParameterObject parameterObject, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.Storage.RelationalCommand.ExecuteReaderAsync(RelationalCommandParameterObject parameterObject, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.Update.ReaderModificationCommandBatch.ExecuteAsync(IRelationalConnection connection, CancellationToken cancellationToken)
+ClientConnectionId:486f4685-8721-4262-93e6-30c3da66fb98
+Error Number:547,State:0,Class:16 ->    at Microsoft.EntityFrameworkCore.Update.ReaderModificationCommandBatch.ExecuteAsync(IRelationalConnection connection, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.Update.Internal.BatchExecutor.ExecuteAsync(IEnumerable`1 commandBatches, IRelationalConnection connection, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.Update.Internal.BatchExecutor.ExecuteAsync(IEnumerable`1 commandBatches, IRelationalConnection connection, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.Update.Internal.BatchExecutor.ExecuteAsync(IEnumerable`1 commandBatches, IRelationalConnection connection, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.ChangeTracking.Internal.StateManager.SaveChangesAsync(IList`1 entriesToSave, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.ChangeTracking.Internal.StateManager.SaveChangesAsync(DbContext _, Boolean acceptAllChangesOnSuccess, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.SqlServer.Storage.Internal.SqlServerExecutionStrategy.ExecuteAsync[TState,TResult](TState state, Func`4 operation, Func`4 verifySucceeded, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.DbContext.SaveChangesAsync(Boolean acceptAllChangesOnSuccess, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.DbContext.SaveChangesAsync(Boolean acceptAllChangesOnSuccess, CancellationToken cancellationToken)
+   at ReactShop.Services.Implementations.ProductsService.AddProductAsync(Product product) in D:\petProjects\ReactShop\ReactShop.Services\Implementations\ProductService.cs:line 29
+   at ReactShop.Controllers.ProductsController.AddProduct(ProductDTO productRequest) in D:\petProjects\ReactShop\ReactShop.Web\Controllers\ProductsController.cs:line 50
+2021-08-16 19:12:15.0911 INFO 
+Product Object added $ReactShop.Domain.Entities.Product
+2021-08-16 19:13:34.2514 ERROR  Error mapping types.
+
+Mapping types:
+Object -> List`1
+System.Object -> System.Collections.Generic.List`1[[ReactShop.Domain.DTOModels.ProductDTO, ReactShop.Domain, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]] ->    at lambda_method102(Closure , Object , List`1 , ResolutionContext )
+   at ReactShop.Controllers.ProductsController.GetProducts() in D:\petProjects\ReactShop\ReactShop.Web\Controllers\ProductsController.cs:line 107
+2021-08-16 19:14:08.8689 INFO 
+Product Object added $ReactShop.Domain.Entities.Product
+2021-08-16 19:16:15.6951 ERROR  Error mapping types.
+
+Mapping types:
+Object -> List`1
+System.Object -> System.Collections.Generic.List`1[[ReactShop.Domain.DTOModels.ProductDTO, ReactShop.Domain, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]] ->    at lambda_method102(Closure , Object , List`1 , ResolutionContext )
+   at ReactShop.Controllers.ProductsController.GetProducts() in D:\petProjects\ReactShop\ReactShop.Web\Controllers\ProductsController.cs:line 107
+2021-08-16 19:18:09.3363 INFO 
+Product Object added $ReactShop.Domain.Entities.Product
+2021-08-16 19:19:58.0455 INFO 
+Product Object added $ReactShop.Domain.Entities.Product
+2021-08-16 19:26:14.8955 INFO 
+Product Object added $ReactShop.Domain.Entities.Product
+2021-08-16 19:26:41.8158 INFO 
+Product Object added $ReactShop.Domain.Entities.Product

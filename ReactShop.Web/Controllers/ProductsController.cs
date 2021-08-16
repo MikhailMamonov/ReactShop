@@ -2,7 +2,7 @@
 using Microsoft.AspNetCore.Mvc;
 using ReactShop.Domain.DTOModels;
 using ReactShop.Domain.Entities;
-
+using ReactShop.LoggerService;
 using ReactShop.Services.Interfaces;
 
 using System;
@@ -13,65 +13,122 @@ using System.Threading.Tasks;
 namespace ReactShop.Controllers
 {
     [ApiController]
-    [Route("[controller]")]
+    [Route("api/[controller]")]
     public class ProductsController : Controller
     {
         private readonly IProductsService _productsService;
         private readonly IMapper _mapper;
-        public ProductsController(IProductsService productsService, IMapper mapper) 
+        private ILoggerManager _logger;
+        public ProductsController(IProductsService productsService, IMapper mapper, ILoggerManager logger)
         {
             _productsService = productsService;
             _mapper = mapper;
+            _logger = logger;
         }
 
         [HttpPost]
-        public async Task<IActionResult> AddProduct([FromForm] ProductDTO productRequest)
+        public async Task<IActionResult> AddProduct([FromBody] Product productRequest)
         {
-            var productEntity = new Product() 
-            { 
-                Name = productRequest.Name,
-                Price = productRequest.Price
-            };
-            await _productsService.AddProductAsync(productEntity);
-            var productResponse = _mapper.Map<ProductDTO>(productEntity);
-            return Ok(productResponse);
+            try
+            {
+                if (productRequest == null)
+                {
+                    return LogErrorAndReturnStatusCode("Product Object is null", 400);
+                }
+
+                if (!ModelState.IsValid)
+                {
+                    return LogErrorAndReturnStatusCode("Model is invalid", 400);
+                }
+
+                
+
+                var errorMessage = 
+                    await _productsService.AddProductAsync(productRequest);
+
+                if (errorMessage == null)
+                {
+                    _logger.LogInfo($"\nProduct Object added ${productRequest}");
+                    return Ok(new { product = productRequest });
+                }
+                else
+                {
+                    return LogErrorAndReturnStatusCode(errorMessage, 500);
+                }
+            }
+            catch (Exception e)
+            {
+                return LogErrorAndReturnStatusCode($"{e.InnerException} -> {e.StackTrace}", 500);
+            }
+
         }
         [HttpPost("Category")]
-        public async  Task<IActionResult> AddCategory([FromForm] CategoryDTO categoryRequest)
+        public async Task<IActionResult> AddCategory([FromForm] CategoryDTO categoryRequest)
         {
-            var categoryEntity = new Category
-            { 
-                Name = categoryRequest.Name
-            };
+            try
+            {
+                if(categoryRequest==null)
+                    return LogErrorAndReturnStatusCode("Category Object is null", 400);
 
-            await _productsService.AddCategoryAsync(categoryEntity);
-            var categoryResponse = _mapper.Map<CategoryDTO>(categoryEntity);
-            return Ok(categoryResponse);
+                if (!ModelState.IsValid)
+                    return LogErrorAndReturnStatusCode("Model is invalid", 400);
+
+                var category = new Category
+                {
+                    Name = categoryRequest.Name
+                };
+
+                var errorMessage =  
+                    await _productsService.AddCategoryAsync(category);
+
+                if (errorMessage == null)
+                {
+                    _logger.LogInfo($"\nCategory Object added ${category}");
+                    return Ok(new { category});
+                }
+                else
+                {
+                    return LogErrorAndReturnStatusCode(errorMessage, 500);
+                }
+
+            }
+            catch (Exception e)
+            {
+                return LogErrorAndReturnStatusCode($"{e.InnerException} -> {e.StackTrace}", 500);
+            }
         }
 
         [HttpGet]
-        public async  Task<IActionResult> Products() {
-            var products =await _productsService.GetProductsAsync();
-            var productsResponse = _mapper.Map<List<ProductDTO>>(products);
-            return Ok(productsResponse);
+        public async Task<IActionResult> GetProducts()
+        {
+            try
+            {
+                var products = await _productsService.GetProductsAsync();
+                
+                return Ok(new { products = products });
+            }
+            catch (Exception e)
+            {
+                return LogErrorAndReturnStatusCode($" {e.InnerException} " +
+                    $"-> {e.StackTrace}", 500);
+            }
+            
         }
 
         [HttpGet("categories")]
-        public async  Task<IActionResult> Categories()
+        public async Task<IActionResult> GetCategories()
         {
             try
             {
                 var categories = await _productsService.GetCategoriesAsync();
-                var categoriesResponse = _mapper.Map<List<CategoryDTO>>(categories);
-                return Ok(categoriesResponse);
+                 return Ok(new { categories });
             }
-            catch (Exception)
+            catch (Exception e)
             {
-
-                throw;
-                
+                return LogErrorAndReturnStatusCode($" {e.InnerException} " +
+                    $"-> {e.StackTrace}", 500);
             }
-            
+
         }
 
         [HttpPut("{id}")]
@@ -84,7 +141,7 @@ namespace ReactShop.Controllers
         }
 
         [HttpPut("Category/{id}")]
-        public async  Task<IActionResult> UpdateCategory(int id, [FromBody] CategoryDTO categoryRequest) 
+        public async Task<IActionResult> UpdateCategory(int id, [FromBody] CategoryDTO categoryRequest)
         {
             var categoryEntity = _mapper.Map<Category>(categoryRequest);
             await _productsService.UpdateCategoryAsync(id, categoryEntity);
@@ -92,28 +149,54 @@ namespace ReactShop.Controllers
         }
 
         [HttpDelete("Category/{id}")]
-        public async  Task<IActionResult> DeleteCategory(int id) 
+        public async Task<IActionResult> DeleteCategory(int id)
         {
-            var categories =await _productsService.GetCategoriesAsync();
-            if (!categories.Any(category => category.Id == id)) 
+            try
             {
-                return BadRequest("Category id not found");
+                var errorMessage = await _productsService.DeleteCategoryAsync(id);
+
+                if (string.IsNullOrEmpty(errorMessage))
+                    return Ok(
+                        new { id = id, message = string.Format("category with id -> {0} succes deleted", id) });
+                else
+                {
+                    return LogErrorAndReturnStatusCode(errorMessage, 500);
+                }
             }
-            await _productsService.DeleteCategoryAsync(id);
-            return Ok(id);
+            catch (Exception e)
+            {
+                return LogErrorAndReturnStatusCode($" {e.Message} ->" +
+                    $" {e.StackTrace}", 500);
+            }
         }
 
         [HttpDelete("{id}")]
-        public async  Task<IActionResult> DeleteProduct(int id)
+        public async Task<IActionResult> DeleteProduct(int id)
         {
-            var products =await _productsService.GetProductsAsync();
-            if (!products.Any(product => product.Id == id))
+            try
             {
-                return BadRequest("Product id not found");
-            }
+                var errorMessage = await _productsService.DeleteProductAsync(id);
 
-            await _productsService.DeleteProductAsync(id);
-            return Ok(id); 
+                if (string.IsNullOrEmpty(errorMessage))
+                    return Ok(
+                        new { id = id, message = string.Format("product with id -> {0} succes deleted", id) });
+                else
+                {
+                    return LogErrorAndReturnStatusCode(errorMessage, 500);
+                }
+            }
+            catch (Exception e)
+            {
+                return LogErrorAndReturnStatusCode($" {e.Message} ->" +
+                    $" {e.StackTrace}", 500);
+            }
+            
+        }
+
+        private IActionResult LogErrorAndReturnStatusCode(string errMessage, int statusCode)
+        {
+            _logger.LogError(errMessage);
+            return StatusCode(statusCode, errMessage);
         }
     }
 }

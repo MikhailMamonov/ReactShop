@@ -1,0 +1,20 @@
+2021-08-13 09:42:50.5439 ERROR Passwords must have at least one non alphanumeric character.
+
+Passwords must have at least one lowercase ('a'-'z').
+
+Passwords must have at least one uppercase ('A'-'Z').
+
+
+2021-08-13 13:34:14.9978 ERROR Passwords must have at least one non alphanumeric character.
+
+Passwords must have at least one lowercase ('a'-'z').
+
+Passwords must have at least one uppercase ('A'-'Z').
+
+
+2021-08-13 13:34:38.9943 ERROR Passwords must have at least one non alphanumeric character.
+
+
+2021-08-13 13:34:50.4983 INFO 
+User Object added $
+ Id:3828a3d0-0fa5-4ca8-832a-cb70363a546b, DisplayName:jjo, UserName:jjo, Email:m.mamonov@krista.ru

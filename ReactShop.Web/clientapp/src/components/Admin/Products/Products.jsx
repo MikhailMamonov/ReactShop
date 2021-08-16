@@ -1,12 +1,20 @@
 import { Container, Row, Col, Button } from "react-bootstrap";
+import Loader from "react-loader-spinner";
 import AddProduct from "./AddProduct";
 
 const Products = (props) => (
   <div>
     <Container>
       <h2>Products</h2>
-      <AddProduct addProduct={props.onAddClick}></AddProduct>
+      {props.error !== null ?
+       props.error.split('\n').map(str => <p><b>{str}</b></p>)
+          : null}
+      <Loader type="Bars" visible={props.isLoading} color="#00BFFF" height={80} width={80} />
+      <AddProduct addProduct={props.onAddProductClick}
+            categories={props.categories}></AddProduct>
+
       <ul>
+
         {props.products.map((u) => (
           <li key={u.id}>
             <Row>
@@ -16,10 +24,10 @@ const Products = (props) => (
               <Col>
                 <Button
                   onClick={() => {
-                    this.props.onDeleteClick(u.id);
+                    this.props.onDeleteProductClick(u.id);
                   }}
                 >
-                  delete
+                  Удалить
                 </Button>
               </Col>
             </Row>

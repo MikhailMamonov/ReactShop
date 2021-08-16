@@ -55,7 +55,7 @@ namespace ReactShop.Controllers
                 if (errorMessage == null)
                 {
                     _logger.LogInfo($"\nUser Object added ${user}");
-                    return Ok(user);
+                    return Ok(new { user });
                 }
                 else
                 {
@@ -63,7 +63,7 @@ namespace ReactShop.Controllers
                 }
             }
             catch (Exception e) {
-                return LogErrorAndReturnStatusCode($"{e.Message} -> {e.StackTrace}", 500);
+                return LogErrorAndReturnStatusCode($"{e.InnerException} -> {e.StackTrace}", 500);
             }
             
         }
@@ -77,7 +77,7 @@ namespace ReactShop.Controllers
                 var users = await _usersService.GetUsersAsync();
                 var usersDTO = _mapper.Map<List<UserDTO>>(users);
 
-                return Ok(usersDTO);
+                return Ok(new { users = usersDTO });
             }
             catch (Exception e)
             {

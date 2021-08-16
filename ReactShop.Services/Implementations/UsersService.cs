@@ -73,7 +73,7 @@ namespace ReactShop.Services.Implementations
 
             if (user == null)
             {
-                return "User with id not found";
+                return $"User with id {id} not found";
             }
             var result = await _userManager.DeleteAsync(user);
                 if (result.Succeeded)

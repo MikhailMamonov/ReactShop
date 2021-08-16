@@ -10,12 +10,12 @@ namespace ReactShop.Services.Interfaces
     public interface IProductsService
     {
         public Task<List<Product>> GetProductsAsync();
-        public Task<bool> AddProductAsync(Product product);
-        public Task<bool> AddCategoryAsync(Category category);
+        public Task<string> AddProductAsync(Product product);
+        public Task<string> AddCategoryAsync(Category category);
         public Task<List<Category>> GetCategoriesAsync();
-        public Task<bool> UpdateProductAsync(int id, Product product);
-        public Task<bool> UpdateCategoryAsync(int id, Category category);
-        public Task<bool> DeleteCategoryAsync(int id);
-        public Task<bool> DeleteProductAsync(int id);
+        public Task<string> UpdateProductAsync(int id, Product product);
+        public Task<string> UpdateCategoryAsync(int id, Category category);
+        public Task<string> DeleteCategoryAsync(int id);
+        public Task<string> DeleteProductAsync(int id);
     }
 }

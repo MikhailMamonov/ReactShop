@@ -1,11 +1,11 @@
 import { connect } from "react-redux";
-import { addUserThunk, deleteUserThunk } from "../../../store/actions/users";
+import { addUserThunk, deleteUserThunk } from "../../../store/actions/userActions";
 import Users from "./Users";
 
 const mapStateToProps = (state) => {
   return {
     users: state.users.users,
-    loading: state.users.isLoading,
+    isLoading: state.users.isLoading,
     error: state.users.error,
   };
 };
