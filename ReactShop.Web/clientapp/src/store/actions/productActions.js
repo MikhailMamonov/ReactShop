@@ -4,7 +4,9 @@ import {
   PRODUCT_ERROR,
   GET_PRODUCTS_SUCCESS,
   DELETE_PRODUCT_SUCCES,
-  GET_CATEGORIES_SUCCESS
+  ADD_CATEGORY_SUCCESS,
+  GET_CATEGORIES_SUCCESS,
+  DELETE_CATEGORY_SUCCESS
 } from "../types";
 
 import { setFetchingFlag, unsetFetchingFlag } from "./index";
@@ -25,6 +27,21 @@ export const addProductActionError = (err) => ({
   payload: null,
   error: err
 });
+
+export const addCategoryActionSuccess = (newCategory) => ({
+    type: ADD_CATEGORY_SUCCESS,
+    payload: {
+      name: newCategory.name,
+      id: newCategory.id,
+    },
+    error: null
+  });
+  
+  export const addCategoryActionError = (err) => ({
+    type: PRODUCT_ERROR,
+    payload: null,
+    error: err
+  });
 
 export const getProductsActionSuccess = (products) => ({
   type: GET_PRODUCTS_SUCCESS,
@@ -63,6 +80,17 @@ export const deleteProductActionError = (err) => ({
   error: err
 });
 
+export const deleteCategoryActionSuccess = (id) => ({
+    type: DELETE_CATEGORY_SUCCESS,
+    payload: { idForDelete: id },
+  });
+  
+  export const deleteCategoryActionError = (err) => ({
+    type: PRODUCT_ERROR,
+    payload: null,
+    error: err
+  });
+  
 
 export const addProductThunk = (newProduct) => {
   return (dispatch) => {
@@ -86,6 +114,27 @@ export const addProductThunk = (newProduct) => {
       dispatch(unsetFetchingFlag())}, 2000);
   };
 };
+
+export const addCategoryThunk = (newCategory) => {
+    return (dispatch) => {
+      dispatch(setFetchingFlag())
+      debugger;
+      ProductsDataService.createCategory(
+         {
+            name: newCategory.name
+        })
+        .then((res) => {
+          dispatch(addCategoryActionSuccess(res.data.category));
+        })
+        .catch((e) => {
+          debugger;
+          dispatch(addCategoryActionError(e.response.data));
+        });
+  
+        setTimeout(() => {
+        dispatch(unsetFetchingFlag())}, 2000);
+    };
+  };
 
 export const getAllProductsThunk = () => {
   return (dispatch) => {
@@ -142,4 +191,29 @@ export const deleteProductThunk = (id) => {
         dispatch(unsetFetchingFlag())}, 2000);
   };
 };
+
+export const deleteCategoryThunk = (id) => {
+    return (dispatch) => {
+      dispatch(setFetchingFlag())
+  
+      ProductsDataService.removeCategory(id)
+        .then((res) => {
+          debugger;
+          dispatch(deleteCategoryActionSuccess(res.data.id));
+  
+        })
+        .catch((e) => {
+          dispatch(deleteCategoryActionError(e.response.data));
+  
+        });
+  
+        setTimeout(() => {
+          dispatch(unsetFetchingFlag())}, 2000);
+    };
+  };
+
+
+
+
+
   

@@ -18,6 +18,10 @@ const create = data => {
   return http.post("/products", data);
 };
 
+const createCategory = data => {
+    return http.post("/products/category",data);
+  };
+
 const update = (id, data) => {
   return http.put(`/products/${id}`, data);
 };
@@ -25,6 +29,10 @@ const update = (id, data) => {
 const remove = id => {
   return http.delete(`/products/${id}`);
 };
+
+const removeCategory = id => {
+    return http.delete(`/products/category/${id}`);
+}
 
 const removeAll = () => {
   return http.delete(`/products`);
@@ -38,9 +46,11 @@ const productsDataService = {
   getAll,
   get,
   create,
+  createCategory,
   update,
   remove,
   removeAll,
+  removeCategory,
   findByTitle,
   getAllCategories
 };

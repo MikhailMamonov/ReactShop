@@ -63,7 +63,7 @@ namespace ReactShop.Controllers
 
         }
         [HttpPost("Category")]
-        public async Task<IActionResult> AddCategory([FromForm] CategoryDTO categoryRequest)
+        public async Task<IActionResult> AddCategory([FromBody] Category categoryRequest)
         {
             try
             {
@@ -73,18 +73,13 @@ namespace ReactShop.Controllers
                 if (!ModelState.IsValid)
                     return LogErrorAndReturnStatusCode("Model is invalid", 400);
 
-                var category = new Category
-                {
-                    Name = categoryRequest.Name
-                };
-
                 var errorMessage =  
-                    await _productsService.AddCategoryAsync(category);
+                    await _productsService.AddCategoryAsync(categoryRequest);
 
                 if (errorMessage == null)
                 {
-                    _logger.LogInfo($"\nCategory Object added ${category}");
-                    return Ok(new { category});
+                    _logger.LogInfo($"\nCategory Object added ${categoryRequest}");
+                    return Ok(new { category = categoryRequest });
                 }
                 else
                 {
@@ -187,7 +182,7 @@ namespace ReactShop.Controllers
             }
             catch (Exception e)
             {
-                return LogErrorAndReturnStatusCode($" {e.Message} ->" +
+                return LogErrorAndReturnStatusCode($" {e.InnerException} ->" +
                     $" {e.StackTrace}", 500);
             }
             

@@ -69,7 +69,7 @@ namespace ReactShop.Services.Implementations
 
             if (product == null)
                 return $"Product with id {id} not found";
-            await _db.Products.AddAsync(product);
+            _db.Products.Remove(product);
 
             var result = await _db.SaveChangesAsync() > 0;
             return result ? null : "category not remove";
