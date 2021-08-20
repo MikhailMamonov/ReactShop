@@ -1,6 +1,6 @@
 import { 
   ADD_USER_SUCCESS,
-  USER_ERROR, 
+  ERROR, 
   GET_USERS_SUCCESS,
   DELETE_USER_SUCCES,
   SET_FETCHING,
@@ -51,7 +51,7 @@ export default function usersReducer(state = initialState, action) {
         users: state.users.filter((u) => u.id !== action.payload.idForDelete),
         error:null,
       };
-    case USER_ERROR:
+    case ERROR:
       return{
         ...state,
         error: action.error,

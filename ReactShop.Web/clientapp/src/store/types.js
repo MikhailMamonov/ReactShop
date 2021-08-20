@@ -21,5 +21,12 @@ export const DELETE_PRODUCT_SUCCES = "DELETE_PRODUCT_SUCCESS";
 export const ADD_CATEGORY_SUCCESS = "ADD_CATEGORY_SUCCESS";
 export const GET_CATEGORIES_SUCCESS = "GET_CATEGORIES_SUCCESS";
 export const DELETE_CATEGORY_SUCCESS = "DELETE_CATEGORY_SUCCESS";
-export const PRODUCT_ERROR = "PRODUCT_ERROR";
+export const ERROR = "ERROR";
+
+//endpoints
+export const PRODUCTS = "products";
+export const CATEGORIES = "categories";
+export const USERS = "users";
+
+
 

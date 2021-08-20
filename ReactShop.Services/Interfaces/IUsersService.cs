@@ -8,9 +8,9 @@ namespace ReactShop.Services.Interfaces
 {
     public interface IUsersService
     {
-        public Task<List<User>> GetUsersAsync();
-        public Task<string> AddUserAsync(User user, string password);
-        public Task<string> UpdateUserAsync(int id, User user);
+        public Task<List<UserDTO>> GetUsersAsync();
+        public Task<string> AddUserAsync(UserDTO user, string password);
+        public Task<string> UpdateUserAsync(int id, UserDTO user);
         public Task<string> DeleteUserAsync(string id);
     }
 }

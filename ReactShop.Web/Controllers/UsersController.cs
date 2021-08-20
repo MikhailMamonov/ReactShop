@@ -11,120 +11,55 @@ using System.Linq;
 
 using System.Threading.Tasks;
 
-namespace ReactShop.Controllers
+namespace ReactShop.Web.Controllers
 {
     [ApiController]
     [Route("api/[controller]")]
-    public class UsersController : Controller
+    public class UsersController : BaseController<UserDTO>
     {
-        private readonly IMapper _mapper;
-        private ILoggerManager _logger;
-
-        IUsersService _usersService;
-        public UsersController(IUsersService usersService, IMapper mapper, ILoggerManager logger)
+        public UsersController(IDatabaseService<UserDTO> usersService, IMapper mapper, ILoggerManager logger)
+            : base(usersService,mapper, logger)
         {
-            _usersService = usersService;
-            _mapper = mapper;
-            _logger = logger;
         }
 
-        [HttpPost]
-        public async Task<IActionResult> AddUser([FromBody] UserDTO userDTO)
-        {
-            try
-            {
-                if (userDTO == null)
-                {
-                    return LogErrorAndReturnStatusCode("User Object is null", 400);
-                }
+        //[HttpPost]
+        //public async Task<IActionResult> AddUser([FromBody] RegisterModel userDTO)
+        //{
+        //    try
+        //    {
+        //        if (userDTO == null)
+        //        {
+        //            return LogErrorAndReturnStatusCode("ApplicationUser Object is null", 400);
+        //        }
 
-                if (!ModelState.IsValid)
-                {
-                    return LogErrorAndReturnStatusCode("Model is invalid", 400);
-                }
+        //        if (!ModelState.IsValid)
+        //        {
+        //            return LogErrorAndReturnStatusCode("Model is invalid", 400);
+        //        }
 
-                var user = new User
-                {
-                    DisplayName = userDTO.DisplayName,
-                    UserName = userDTO.DisplayName,
-                    Email = userDTO.Email,
-                    PasswordHash = userDTO.Password
-                };
+        //        var user = new UserDTO
+        //        {
+        //            DisplayName = userDTO.DisplayName,
+        //            UserName = userDTO.DisplayName,
+        //            Email = userDTO.Email,
+        //            PasswordHash = userDTO.Password
+        //        };
 
-                var errorMessage = await _usersService.AddUserAsync(user, userDTO.Password);
-                if (errorMessage == null)
-                {
-                    _logger.LogInfo($"\nUser Object added ${user}");
-                    return Ok(new { user });
-                }
-                else
-                {
-                    return LogErrorAndReturnStatusCode(errorMessage, 500);
-                }
-            }
-            catch (Exception e) {
-                return LogErrorAndReturnStatusCode($"{e.InnerException} -> {e.StackTrace}", 500);
-            }
+        //        var errorMessage = await _usersService.Add(user, userDTO.Password);
+        //        if (errorMessage == null)
+        //        {
+        //            _logger.LogInfo($"\nUser Object added ${user}");
+        //            return Ok(new { user });
+        //        }
+        //        else
+        //        {
+        //            return LogErrorAndReturnStatusCode(errorMessage, 500);
+        //        }
+        //    }
+        //    catch (Exception e) {
+        //        return LogErrorAndReturnStatusCode($"{e.InnerException} -> {e.StackTrace}", 500);
+        //    }
             
-        }
-
-
-        [HttpGet]
-        public async Task<IActionResult> GetUsers()
-        {
-            try
-            {
-                var users = await _usersService.GetUsersAsync();
-                var usersDTO = _mapper.Map<List<UserDTO>>(users);
-
-                return Ok(new { users = usersDTO });
-            }
-            catch (Exception e)
-            {
-                return LogErrorAndReturnStatusCode($" {e.Message} -> {e.StackTrace}", 500);
-            }
-
-        }
-
-
-
-        [HttpPut("{id}")]
-        public async Task<IActionResult> UpdateUser(int id, [FromBody] User user)
-        {
-            var result = await _usersService.UpdateUserAsync(id, user);
-            if (string.IsNullOrEmpty(result))
-                return LogErrorAndReturnStatusCode("User not updated", 400);
-            else
-                return Ok(user);
-        }
-
-
-        [HttpDelete("{id}")]
-        public async Task<IActionResult> DeleteUser(string id)
-        {
-            try
-            {                
-                var errorMessage = await _usersService.DeleteUserAsync(id);
-
-                if (string.IsNullOrEmpty(errorMessage))
-                    return Ok(
-                        new {id = id, message = string.Format("user with id -> {0} succes deleted", id) });
-                else
-                {
-                    return LogErrorAndReturnStatusCode(errorMessage, 500);
-                }
-            }
-            catch (Exception e)
-            {
-                return LogErrorAndReturnStatusCode($" {e.Message} -> {e.StackTrace}", 500);
-            }
-            
-        }
-
-        private IActionResult LogErrorAndReturnStatusCode(string errMessage, int statusCode)
-        {
-            _logger.LogError(errMessage);
-            return StatusCode(statusCode, errMessage);
-        }
+        //}
     }
 }

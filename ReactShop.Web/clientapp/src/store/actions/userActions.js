@@ -1,7 +1,7 @@
 import UsersDataService from '../api/UserService'
 import {
   ADD_USER_SUCCESS,
-  USER_ERROR,
+  ERROR,
   GET_USERS_SUCCESS,
   DELETE_USER_SUCCES
 } from "../types";
@@ -22,7 +22,7 @@ export const addUserActionSuccess = (newUser) => ({
 });
 
 export const addUserActionError = (err) => ({
-  type: USER_ERROR,
+  type: ERROR,
   payload: null,
   error: err
 });
@@ -35,7 +35,7 @@ export const getUsersActionSuccess = (users) => ({
 });
 
 export const getUsersActionError = (err) => ({
-  type: USER_ERROR,
+  type: ERROR,
   payload: null,
   error: err
 });
@@ -46,7 +46,7 @@ export const deleteUserActionSuccess = (id) => ({
 });
 
 export const deleteUserActionError = (err) => ({
-  type: USER_ERROR,
+  type: ERROR,
   payload: null,
   error: err
 });

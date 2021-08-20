@@ -9,9 +9,9 @@ using System.Text;
 
 namespace ReactShop.Domain.Configurations
 {
-    class UserConfiguration : IEntityTypeConfiguration<User>
+    class UserConfiguration : IEntityTypeConfiguration<ApplicationUser>
     {
-        public void Configure(EntityTypeBuilder<User> builder)
+        public void Configure(EntityTypeBuilder<ApplicationUser> builder)
         {
             builder.HasIndex(e => e.NormalizedEmail, "EmailIndex");
             builder.HasIndex(e => e.Email, "IX_AspNetUsers_Email")

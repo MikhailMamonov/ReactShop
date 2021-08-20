@@ -1,9 +1,9 @@
-﻿using Microsoft.EntityFrameworkCore;
+﻿using AutoMapper;
+using Microsoft.EntityFrameworkCore;
 
 using ReactShop.Domain;
+using ReactShop.Domain.DTOModels;
 using ReactShop.Domain.Entities;
-using ReactShop.Services.Interfaces;
-
 using System;
 using System.Collections.Generic;
 using System.Text;
@@ -11,62 +11,74 @@ using System.Threading.Tasks;
 
 namespace ReactShop.Services.Implementations
 {
-    public class ProductsService : IProductsService
+    public class ProductsService : AbstractDatabaseService<ProductDTO>
     {
-        private ApplicationDbContext _db;
+        public ProductsService(ApplicationDbContext db, IMapper mapper) : base(db, mapper)
+        {
+        }
 
-        public ProductsService(ApplicationDbContext db)
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <returns></returns>
+        public override async Task<IEnumerable<ProductDTO>> GetList() 
         {
-            _db = db;
+            var response =
+                _mapper
+                .Map<IEnumerable<ProductDTO>>(await _db.Products.ToListAsync());
+            return response;
         }
-        public async Task<List<Product>> GetProductsAsync()
+
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="id"></param>
+        /// <returns></returns>
+        public override async Task<ProductDTO> GetItem(string id) 
         {
-            return await _db.Products.ToListAsync();
+            var response =
+               _mapper.Map<ProductDTO>(await _db.Products.FindAsync(id));
+            return response;
         }
-        public async Task<string> AddProductAsync(Product product)
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="model"></param>
+        /// <returns></returns>
+        public override async Task<string> Add(ProductDTO model) 
         {
-            await _db.Products.AddAsync(product);
+            var entity = _mapper.Map<Product>(model);
+            await _db.Products.AddAsync(entity);
             var result = await _db.SaveChangesAsync() > 0;
             return result ? null : "products not added";
         }
 
-        public async Task<string> AddCategoryAsync(Category category)
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="model"></param>
+        /// <returns></returns>
+        public override async Task<string> Edit(ProductDTO model)
         {
-            await _db.Categories.AddAsync(category);
-            var result = await _db.SaveChangesAsync() > 0;
-            return result ? null : "category not added";
+            var entity = _mapper.Map<Product>(model);
+            _db.Products.Update(entity);
+            if (await _db.SaveChangesAsync()>0)
+            {
+                return null;
+            }
 
+            return "product object cant de saved ";
         }
-
-        public async Task<List<Category>> GetCategoriesAsync()
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="id"></param>
+        /// <returns></returns>
+        public override async Task<string> Remove(string id)
         {
-            return await _db.Categories.ToListAsync();
-        }
 
-        public async Task<string> UpdateProductAsync(int id, Product product)
-        {
-            return "";
-        }
-        public async Task<string> UpdateCategoryAsync(int id, Category category)
-        {
-            return "";
-        }
-        public async Task<string> DeleteCategoryAsync(int id)
-        {
-            var category = await _db.Categories.FindAsync(id);
-
-            if (category == null)
-                return $"Category with id {id} not found";
-
-            _db.Categories.Remove(category);
-            var result = await _db.SaveChangesAsync() > 0;
-            return result ? null : "category not remove";
-
-        }
-        public async Task<string> DeleteProductAsync(int id)
-        {
-            var product = await _db.Products.FindAsync(id);
-
+            var product = await _db.Products.FindAsync(int.Parse(id));
             if (product == null)
                 return $"Product with id {id} not found";
             _db.Products.Remove(product);

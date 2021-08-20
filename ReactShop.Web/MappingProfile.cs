@@ -7,8 +7,17 @@ public class MappingProfile : Profile
 {
     public MappingProfile()
     {
-        // Add as many of these lines as you need to map your objects
-        CreateMap<User, UserDTO>();
-        CreateMap<UserDTO, User>();
+        // ApplicationUser
+        CreateMap<UserDTO, ApplicationUser>();
+        CreateMap<ApplicationUser, UserDTO>();
+
+        //Product
+        CreateMap<ProductDTO, Product>();
+        CreateMap<Product, ProductDTO>();
+
+        //Category
+        CreateMap<CategoryDTO, Category>();
+        CreateMap<Category, CategoryDTO>();
+
     }
 }

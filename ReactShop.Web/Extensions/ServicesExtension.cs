@@ -1,6 +1,8 @@
 ﻿using AutoMapper;
 
 using Microsoft.Extensions.DependencyInjection;
+using ReactShop.Domain.DTOModels;
+using ReactShop.Domain.Entities;
 using ReactShop.LoggerService;
 using ReactShop.Services.Implementations;
 using ReactShop.Services.Interfaces;
@@ -16,8 +18,12 @@ namespace ReactShop.Web.Extensions
     {
         public static void ConfigureCustomServices(this IServiceCollection services) 
         {
-            services.AddTransient<IUsersService, UsersService>();
-            services.AddTransient<IProductsService, ProductsService>();                     
+            services.AddTransient<IDatabaseService<UserDTO>, UsersService>();
+            //services.AddTransient<IDatabaseService<Product>, ProductsService>();
+            services.AddTransient<IDatabaseService<ProductDTO>, ProductsService>();
+            services.AddTransient<IDatabaseService<CategoryDTO>, CategoriesService>();
+
+
         }
 
         public static void ConfigureMapper(this IServiceCollection services)

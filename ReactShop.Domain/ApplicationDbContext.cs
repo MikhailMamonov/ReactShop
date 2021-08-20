@@ -11,9 +11,9 @@ using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 
 namespace ReactShop.Domain
 {
-    public class ApplicationDbContext : IdentityDbContext<User>
+    public class ApplicationDbContext : IdentityDbContext<UserDTO>
     {
-        public virtual DbSet<User> Users { get; set; }
+        public virtual DbSet<UserDTO> Users { get; set; }
 
         public virtual DbSet<CartItem> CartItems { get; set; }
         public virtual DbSet<Category> Categories { get; set; }

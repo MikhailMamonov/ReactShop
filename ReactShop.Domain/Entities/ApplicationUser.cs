@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace ReactShop.Domain.Entities
 {
-    public class User:IdentityUser
+    public class ApplicationUser:IdentityUser
     {
 
         public string DisplayName { get; set; }

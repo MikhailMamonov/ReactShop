@@ -256,7 +256,7 @@ namespace ReactShop.Domain.Migrations
                     b.ToTable("Orders");
                 });
 
-            modelBuilder.Entity("ReactShop.Entities.User", b =>
+            modelBuilder.Entity("ReactShop.Entities.ApplicationUser", b =>
                 {
                     b.Property<string>("Id")
                         .HasColumnType("nvarchar(450)");
@@ -339,7 +339,7 @@ namespace ReactShop.Domain.Migrations
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityUserClaim<string>", b =>
                 {
-                    b.HasOne("ReactShop.Entities.User", null)
+                    b.HasOne("ReactShop.Entities.ApplicationUser", null)
                         .WithMany()
                         .HasForeignKey("UserId")
                         .OnDelete(DeleteBehavior.Cascade)
@@ -348,7 +348,7 @@ namespace ReactShop.Domain.Migrations
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityUserLogin<string>", b =>
                 {
-                    b.HasOne("ReactShop.Entities.User", null)
+                    b.HasOne("ReactShop.Entities.ApplicationUser", null)
                         .WithMany()
                         .HasForeignKey("UserId")
                         .OnDelete(DeleteBehavior.Cascade)
@@ -363,7 +363,7 @@ namespace ReactShop.Domain.Migrations
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.HasOne("ReactShop.Entities.User", null)
+                    b.HasOne("ReactShop.Entities.ApplicationUser", null)
                         .WithMany()
                         .HasForeignKey("UserId")
                         .OnDelete(DeleteBehavior.Cascade)
@@ -372,7 +372,7 @@ namespace ReactShop.Domain.Migrations
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityUserToken<string>", b =>
                 {
-                    b.HasOne("ReactShop.Entities.User", null)
+                    b.HasOne("ReactShop.Entities.ApplicationUser", null)
                         .WithMany()
                         .HasForeignKey("UserId")
                         .OnDelete(DeleteBehavior.Cascade)
@@ -420,11 +420,11 @@ namespace ReactShop.Domain.Migrations
 
             modelBuilder.Entity("ReactShop.Entities.Order", b =>
                 {
-                    b.HasOne("ReactShop.Entities.User", "User")
+                    b.HasOne("ReactShop.Entities.ApplicationUser", "ApplicationUser")
                         .WithMany("Orders")
                         .HasForeignKey("UserId");
 
-                    b.Navigation("User");
+                    b.Navigation("ApplicationUser");
                 });
 
             modelBuilder.Entity("ReactShop.Domain.Entities.Category", b =>
@@ -437,7 +437,7 @@ namespace ReactShop.Domain.Migrations
                     b.Navigation("OrderDetails");
                 });
 
-            modelBuilder.Entity("ReactShop.Entities.User", b =>
+            modelBuilder.Entity("ReactShop.Entities.ApplicationUser", b =>
                 {
                     b.Navigation("Orders");
                 });

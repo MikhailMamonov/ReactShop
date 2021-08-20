@@ -4,15 +4,11 @@ import {
   ADD_PRODUCT_SUCCESS, 
   DELETE_PRODUCT_SUCCES, 
   GET_PRODUCTS_SUCCESS,
-  PRODUCT_ERROR,
-  GET_CATEGORIES_SUCCESS,
-  DELETE_CATEGORY_SUCCESS,
-  ADD_CATEGORY_SUCCESS
+  ERROR
 } from "../types";
 
 const initialState = {
   products: [],
-  categories: [],
   isLoading: false,
   error: null,
 };
@@ -53,29 +49,8 @@ export default function productsReducer(state = initialState, action) {
         ...state,
         products: state.products.filter((p) => p.id !== action.payload.idForDelete)
       } 
-    case ADD_CATEGORY_SUCCESS:
-      return {...state,
-        categories:[
-        ...state.categories,
-        {
-          id: action.payload.id,
-          name: action.payload.name,
-        },
-      ],
-      error:null,
-    };
-    case GET_CATEGORIES_SUCCESS:
-      return {
-        ...state,
-        categories: action.payload.categories,
-        error:null,
-      }
-    case DELETE_CATEGORY_SUCCESS:
-      return {
-        ...state,
-        categories: state.categories.filter((c) => c.id !== action.payload.idForDelete)
-      } 
-    case PRODUCT_ERROR:
+
+    case ERROR:
       return {
         ...state,
         error: action.error,

@@ -5,7 +5,7 @@ import Products from "./Products";
 const mapStateToProps = (state) => {
   return {
     products: state.products.products,
-    categories: state.products.categories,
+    categories: state.categories.categories,
     isLoading: state.products.isLoading,
     error: state.products.error  };
 };

@@ -33,7 +33,7 @@ namespace ReactShop
         {
 
             services.AddDbContext<ApplicationDbContext>(options => options.UseSqlServer(Configuration.GetConnectionString("DefaultConnection"))); ;
-            services.AddIdentity<User,IdentityRole>()
+            services.AddIdentity<ApplicationUser,IdentityRole>()
                 .AddEntityFrameworkStores<ApplicationDbContext>();
 
             services.AddControllersWithViews();
