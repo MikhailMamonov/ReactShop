@@ -1,4 +1,5 @@
 import GeneralDataService from '../api/GeneralService'
+import { setFetchingFlag, unsetFetchingFlag } from "./index";
 import {
     ADD_CATEGORY_SUCCESS,
     GET_CATEGORIES_SUCCESS,
@@ -76,7 +77,7 @@ export const addCategoryActionSuccess = (newCategory) => ({
   
       GeneralDataService.getAll(CATEGORIES)
         .then((res) => {   
-            dispatch(getCategoriesActionSuccess(res.data.categories));
+            dispatch(getCategoriesActionSuccess(res.data));
         })
         .catch((e) => {
             debugger;

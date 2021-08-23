@@ -5,7 +5,7 @@ import { createLogger } from 'redux-logger'
 import { composeWithDevTools } from "redux-devtools-extension";
 import { getAllUsersThunk } from './actions/userActions'
 import { getAllProductsThunk } from './actions/productActions'
-import { getAllCategoriesThunk } from './actions/productActions'
+import { getAllCategoriesThunk } from './actions/categoryActions'
 
 
 const middleware = [ thunk ];

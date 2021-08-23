@@ -1,5 +1,6 @@
 //import ProductsDataService from '../api/ProductService'
-import GeneralDataService from '../api/GeneralService'
+import GeneralDataService from '../api/GeneralService';
+import { setFetchingFlag, unsetFetchingFlag } from "./index";
 import {
   ADD_PRODUCT_SUCCESS,
   ERROR,
@@ -8,7 +9,7 @@ import {
   PRODUCTS
 } from "../types";
 
-import { setFetchingFlag, unsetFetchingFlag } from "./index";
+
 
 export const addProductActionSuccess = (newProduct) => ({
   type: ADD_PRODUCT_SUCCESS,
@@ -82,7 +83,7 @@ export const getAllProductsThunk = () => {
 
     GeneralDataService.getAll(PRODUCTS)
       .then((res) => {   
-          dispatch(getProductsActionSuccess(res.data.products));
+          dispatch(getProductsActionSuccess(res.data));
       })
       .catch((e) => {
           debugger;

@@ -1,4 +1,5 @@
 ﻿using AutoMapper;
+using Microsoft.AspNetCore.Cors;
 using Microsoft.AspNetCore.Mvc;
 using ReactShop.LoggerService;
 using ReactShop.Services.Implementations;
@@ -13,9 +14,8 @@ namespace ReactShop.Web.Controllers
     [Route("api/[controller]")]
     public class BaseController<T> : Controller where T : class
     {
-        private IDatabaseService<T> _databaseService;
-
-        private readonly IMapper _mapper;
+        protected IDatabaseService<T> _databaseService { get; private set;}
+    private readonly IMapper _mapper;
         private ILoggerManager _logger;
         
 
@@ -32,7 +32,7 @@ namespace ReactShop.Web.Controllers
             return await ExecuteCommand(async () =>
             {
                 var objectList = await _databaseService.GetList();
-                return Ok(new { objectList });
+                return Ok(objectList);
             });
            
         }
@@ -92,7 +92,7 @@ namespace ReactShop.Web.Controllers
             });
         }
 
-        [HttpDelete("{id}")]
+        [HttpDelete("{id:int}")]
         public async Task<IActionResult> Remove(int id)
         {
             return await ExecuteCommand(
@@ -111,7 +111,35 @@ namespace ReactShop.Web.Controllers
             );  
         }
 
-        private async Task<IActionResult> ExecuteCommand(Func<Task<IActionResult>> action)
+        [HttpDelete("{id:string}")]
+        public async Task<IActionResult> Remove(string id)
+        {
+            try
+            {
+                return await this.ExecuteCommand(
+                async () =>
+                {
+                    var errorMessage = await this._databaseService.Remove(id.ToString());
+
+                    if (string.IsNullOrEmpty(errorMessage))
+                        return Ok(
+                            new { id = id, message = string.Format("object with id -> {0} succes deleted", id) });
+                    else
+                    {
+                        return LogErrorAndReturnStatusCode(errorMessage, 500);
+                    }
+                }
+            );
+            }
+            catch (Exception)
+            {
+
+                throw;
+            }
+
+        }
+
+        protected async Task<IActionResult> ExecuteCommand(Func<Task<IActionResult>> action)
         {
             try
             {
@@ -124,7 +152,7 @@ namespace ReactShop.Web.Controllers
             }
         }
 
-        private IActionResult LogErrorAndReturnStatusCode(string errMessage, int statusCode)
+        protected IActionResult LogErrorAndReturnStatusCode(string errMessage, int statusCode)
         {
             _logger.LogError(errMessage);
             return StatusCode(statusCode, errMessage);

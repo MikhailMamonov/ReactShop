@@ -127,3 +127,4 @@ D:\petProjects\ReactShop\ReactShop.Services\bin\Debug\netcoreapp3.1\ReactShop.Do
 D:\petProjects\ReactShop\ReactShop.Services\bin\Debug\netcoreapp3.1\ReactShop.Domain.runtimeconfig.json
 D:\petProjects\ReactShop\ReactShop.Services\bin\Debug\netcoreapp3.1\ReactShop.Domain.runtimeconfig.dev.json
 D:\petProjects\ReactShop\ReactShop.Services\obj\Debug\netcoreapp3.1\ReactShop.Services.csproj.AssemblyReference.cache
+D:\petProjects\ReactShop\ReactShop.Services\bin\Debug\netcoreapp3.1\AutoMapper.dll

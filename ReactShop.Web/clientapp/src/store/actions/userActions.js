@@ -81,7 +81,7 @@ export const getAllUsersThunk = () => {
     
     UsersDataService.getAll()
       .then((res) => {   
-          dispatch(getUsersActionSuccess(res.data.users));
+          dispatch(getUsersActionSuccess(res.data));
          ;
       })
       .catch((e) => {

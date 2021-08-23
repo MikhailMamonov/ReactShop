@@ -8,9 +8,9 @@ namespace ReactShop.Web.Controllers
 {
     [ApiController]
     [Route("api/[controller]")]
-    public class CategoryController : BaseController<CategoryDTO>
+    public class CategoriesController : BaseController<CategoryDTO>
     {
-        public CategoryController(IDatabaseService<CategoryDTO> categoriesService, IMapper mapper, ILoggerManager logger)
+        public CategoriesController(IDatabaseService<CategoryDTO> categoriesService, IMapper mapper, ILoggerManager logger)
             : base(categoriesService, mapper, logger)
         {
         }

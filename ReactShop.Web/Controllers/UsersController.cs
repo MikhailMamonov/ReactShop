@@ -22,6 +22,8 @@ namespace ReactShop.Web.Controllers
         {
         }
 
+       
+
         //[HttpPost]
         //public async Task<IActionResult> AddUser([FromBody] RegisterModel userDTO)
         //{
@@ -59,7 +61,7 @@ namespace ReactShop.Web.Controllers
         //    catch (Exception e) {
         //        return LogErrorAndReturnStatusCode($"{e.InnerException} -> {e.StackTrace}", 500);
         //    }
-            
+
         //}
     }
 }

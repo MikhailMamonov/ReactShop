@@ -1,4 +1,5 @@
-﻿using ReactShop.Domain.Entities;
+﻿using ReactShop.Domain.DTOModels;
+using ReactShop.Domain.Entities;
 using System;
 using System.Collections.Generic;
 using System.Text;

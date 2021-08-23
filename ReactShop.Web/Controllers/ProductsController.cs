@@ -13,10 +13,10 @@ namespace ReactShop.Web.Controllers
 {
     [ApiController]
     [Route("api/[controller]")]
-    public class ProductsController : BaseController<Product>
+    public class ProductsController : BaseController<ProductDTO>
     {
 
-        public ProductsController(IDatabaseService<Product> databaseService, IMapper mapper, ILoggerManager logger)
+        public ProductsController(IDatabaseService<ProductDTO> databaseService, IMapper mapper, ILoggerManager logger)
             : base(databaseService, mapper, logger) { }
 
         //[HttpPost]

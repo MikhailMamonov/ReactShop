@@ -27,7 +27,7 @@ export default function AddProduct(props) {
         <p>
           <select value={categoryId} onChange={(e) => setCategoryId(e.target.value)}>
             {props.categories.map((c) =>(
-                <option value={c.id}>{c.name}</option>))}
+                <option key={c.id} value={c.id}>{c.name}</option>))}
           </select>
           </p>
       </div>
