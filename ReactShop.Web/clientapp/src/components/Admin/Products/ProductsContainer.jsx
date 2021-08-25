@@ -13,7 +13,11 @@ const mapStateToProps = (state) => {
 const mapDispatchToProps = (dispatch) => {
   return {
     onAddProductClick: (product) => {
+      debugger;
       dispatch(addProductThunk(product));
+    },
+    onEditProductClick: (id,item) => {
+      dispatch(deleteProductThunk(id,item));
     },
     onDeleteProductClick: (id) => {
       dispatch(deleteProductThunk(id));

@@ -42,19 +42,14 @@ namespace ReactShop
             services.ConfigureMapper();
             services.ConfigureLoggerService();
 
-            services.AddCors(options =>
+            services.AddCors(o => o.AddPolicy("MyPolicy", builder =>
             {
-                options.AddPolicy("AllowAll",
-                    builder =>
-                    {
-                        builder
-                        .AllowAnyOrigin()
-                        .AllowAnyMethod()
-                        .AllowAnyHeader();
-                    });
-            });
+                builder.AllowAnyOrigin()
+                       .AllowAnyMethod()
+                       .AllowAnyHeader();
+            }));
 
-
+            
             // In production, the React files will be served from this directory
             services.AddSpaStaticFiles(configuration =>
             {

@@ -23,6 +23,8 @@ bin/
 Bin/
 obj/
 Obj/
+internal_logs/
+logs/
 
 # Visual Studio 2015 cache/options directory
 .vs/
@@ -230,3 +232,6 @@ _Pvt_Extensions
 
 # FAKE - F# Make
 .fake/
+
+#logs
+*.txt

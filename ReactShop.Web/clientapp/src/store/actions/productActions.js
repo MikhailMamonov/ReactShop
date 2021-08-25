@@ -1,12 +1,16 @@
 //import ProductsDataService from '../api/ProductService'
 import GeneralDataService from '../api/GeneralService';
-import { setFetchingFlag, unsetFetchingFlag } from "./index";
+import { setFetchingFlag, unsetFetchingFlag, setActionError, deleteActionSuccess, getActionSuccess, editActionSuccess } from "./index";
 import {
   ADD_PRODUCT_SUCCESS,
-  ERROR,
+  PRODUCT_ERROR,
   GET_PRODUCTS_SUCCESS,
   DELETE_PRODUCT_SUCCES,
-  PRODUCTS
+  PRODUCTS,
+  SET_FETCHING_PRODUCT,
+  UNSET_FETCHING_PRODUCT,
+  EDIT_PRODUCT_SUCCES,
+  GET_USERS_SUCCESS
 } from "../types";
 
 
@@ -22,39 +26,17 @@ export const addProductActionSuccess = (newProduct) => ({
   error: null
 });
 
-export const addProductActionError = (err) => ({
-  type: ERROR,
-  payload: null,
-  error: err
-});
-
-export const getProductsActionSuccess = (products) => ({
-  type: GET_PRODUCTS_SUCCESS,
-  payload: {
-    products },
-  error: null
-});
-
-export const getProductsActionError = (err) => ({
-  type: ERROR,
-  payload: null,
-  error: err
-});
-
-export const deleteProductActionSuccess = (id) => ({
-  type: DELETE_PRODUCT_SUCCES,
-  payload: { idForDelete: id },
-});
-
-export const deleteProductActionError = (err) => ({
-  type: ERROR,
-  payload: null,
-  error: err
+export const editProductActionSuccess = (id,item) => ({
+  type: EDIT_PRODUCT_SUCCES,
+  payload: { 
+    id: id,
+    item: item 
+  },
 });
 
 export const addProductThunk = (newProduct) => {
   return (dispatch) => {
-    dispatch(setFetchingFlag())
+    dispatch(setFetchingFlag(SET_FETCHING_PRODUCT))
     debugger;
       GeneralDataService.create(
           PRODUCTS,
@@ -64,54 +46,74 @@ export const addProductThunk = (newProduct) => {
            categoryId: newProduct.categoryId,
        })
       .then((res) => {
-        dispatch(addProductActionSuccess(res.data.product));
+        dispatch(addProductActionSuccess(res.data));
       })
       .catch((e) => {
         debugger;
-        dispatch(addProductActionError(e.response.data));
+        dispatch(setActionError(PRODUCT_ERROR,e.response.data));
       });
 
       setTimeout(() => {
-      dispatch(unsetFetchingFlag())}, 2000);
+      dispatch(unsetFetchingFlag(UNSET_FETCHING_PRODUCT))}, 2000);
   };
 };
 
 
-export const getAllProductsThunk = () => {
+export const editProductThunk = (id,item) => {
   return (dispatch) => {
-    dispatch(setFetchingFlag())
+    dispatch(setFetchingFlag(SET_FETCHING_PRODUCT))
 
-    GeneralDataService.getAll(PRODUCTS)
+    GeneralDataService.update(PRODUCTS,id,item)
       .then((res) => {   
-          dispatch(getProductsActionSuccess(res.data));
+          dispatch(editActionSuccess(EDIT_PRODUCT_SUCCES,res.data.id,res.data));
       })
       .catch((e) => {
           debugger;
-        dispatch(getProductsActionError(e.response.data));
+        dispatch(setActionError(PRODUCT_ERROR,e));
       });
 
       setTimeout(() => {
-        dispatch(unsetFetchingFlag())}, 2000);
+        dispatch(unsetFetchingFlag(UNSET_FETCHING_PRODUCT))}, 2000);
+  };
+};
+
+
+
+export const getAllProductsThunk = () => {
+  return (dispatch) => {
+    dispatch(setFetchingFlag(SET_FETCHING_PRODUCT))
+
+    GeneralDataService.getAll(PRODUCTS)
+      .then((res) => {   
+          dispatch(getActionSuccess(GET_PRODUCTS_SUCCESS,res.data));
+      })
+      .catch((e) => {
+          debugger;
+        dispatch(setActionError(PRODUCT_ERROR,e));
+      });
+
+      setTimeout(() => {
+        dispatch(unsetFetchingFlag(UNSET_FETCHING_PRODUCT))}, 2000);
   };
 };
 
 export const deleteProductThunk = (id) => {
   return (dispatch) => {
-    dispatch(setFetchingFlag())
+    dispatch(setFetchingFlag(SET_FETCHING_PRODUCT))
 
     GeneralDataService.remove(PRODUCTS,id)
       .then((res) => {
         debugger;
-        dispatch(deleteProductActionSuccess(res.data.id));
+        dispatch(deleteActionSuccess(DELETE_PRODUCT_SUCCES,res.data.id));
 
       })
       .catch((e) => {
-        dispatch(deleteProductActionError(e.response.data));
+        dispatch(setActionError(PRODUCT_ERROR,e));
 
       });
 
       setTimeout(() => {
-        dispatch(unsetFetchingFlag())}, 2000);
+        dispatch(unsetFetchingFlag(UNSET_FETCHING_PRODUCT))}, 2000);
   };
 };
 

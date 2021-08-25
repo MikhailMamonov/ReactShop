@@ -1,8 +1,13 @@
 import { Container, Row, Col, Button } from "react-bootstrap";
 import Loader from "react-loader-spinner";
 import AddUser from "./AddUser";
+import AdminGrid from "./../AdminGrid";
 
 const Users = (props) => {
+  const columns = props.users[0]?Object.keys(props.users[0]):[];
+    columns = columns.map(c=> {
+      return {name:c, title:c}
+    });
   return (
   <div>
     <Container>
@@ -14,24 +19,8 @@ const Users = (props) => {
             <Loader type="Bars" visible={props.isLoading}  color="#00BFFF" height={80} width={80} /> 
             <AddUser addUser={props.onAddUserClick}></AddUser>
 
-        <ul>
-        
-        {props.users.map((u) => (
-          <li key={u.id}>
-            <Row>
-              <Col>id:{u.id}</Col>
-              <Col>DisplayName: {u.displayName}</Col>
-              <Col>Email: {u.email}</Col>
-              <Col>Password: {u.password}</Col>
-              <Col>
-                <Button onClick={() => props.onDeleteUserClick(u.id)}>
-                  delete
-                </Button>
-              </Col>
-            </Row>
-          </li>
-        ))}
-      </ul>
+            <AdminGrid columns={columns} rows={props.users}></AdminGrid>
+   
     </Container> 
   </div>
 );

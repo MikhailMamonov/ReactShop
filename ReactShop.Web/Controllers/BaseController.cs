@@ -47,8 +47,7 @@ namespace ReactShop.Web.Controllers
             });
         }
 
-        [HttpPost("{id}")]
-        public async Task<IActionResult> Post(Guid id, [FromBody] T requestValue)
+        public async Task<IActionResult> Post([FromBody] T requestValue)
         {
             Func<Task<IActionResult>> exceptionCommand = async () =>
             {
@@ -68,7 +67,7 @@ namespace ReactShop.Web.Controllers
                 if (errorMessage == null)
                 {
                     _logger.LogInfo($"\nProduct Object added ${requestValue}");
-                    return Ok(new { requestValue });
+                    return Ok(requestValue);
                 }
                 else
                 {
@@ -111,7 +110,7 @@ namespace ReactShop.Web.Controllers
             );  
         }
 
-        [HttpDelete("{id:string}")]
+        [HttpDelete("{id}")]
         public async Task<IActionResult> Remove(string id)
         {
             try

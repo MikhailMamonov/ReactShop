@@ -3,6 +3,10 @@
   "version": "0.1.0",
   "private": true,
   "dependencies": {
+    "@devexpress/dx-react-core": "^2.7.6",
+    "@devexpress/dx-react-grid": "^2.7.6",
+    "@devexpress/dx-react-grid-bootstrap4": "^2.7.6",
+    "@devexpress/dx-react-grid-material-ui": "^2.7.6",
     "@testing-library/jest-dom": "^5.14.1",
     "@testing-library/react": "^11.2.7",
     "@testing-library/user-event": "^12.8.3",
@@ -46,5 +50,8 @@
       "last 1 firefox version",
       "last 1 safari version"
     ]
+  },
+  "devDependencies": {
+    "material-ui": "^0.20.2"
   }
 }

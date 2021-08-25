@@ -21,6 +21,13 @@ const Categories = (props) => (
               <Col>Id: {u.id}</Col>
               <Col>Name: {u.name}</Col>
               <Col>
+              <Button
+                  onClick={() => {
+                    props.onEditCategoryClick(u.id,u);
+                  }}
+                >
+                  Изменить
+                </Button>
                 <Button
                   onClick={() => {
                     props.onDeleteCategoryClick(u.id);
@@ -28,6 +35,7 @@ const Categories = (props) => (
                 >
                   Удалить
                 </Button>
+                
               </Col>
             </Row>
           </li>

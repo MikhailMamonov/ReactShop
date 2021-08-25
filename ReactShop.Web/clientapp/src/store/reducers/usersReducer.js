@@ -1,10 +1,10 @@
 import { 
   ADD_USER_SUCCESS,
-  ERROR, 
   GET_USERS_SUCCESS,
   DELETE_USER_SUCCES,
-  SET_FETCHING,
-  UNSET_FETCHING
+  USER_ERROR,
+  SET_FETCHING_USER,
+  UNSET_FETCHING_USER
 } from "../types";
 
 const initialState = {
@@ -15,12 +15,12 @@ const initialState = {
 
 export default function usersReducer(state = initialState, action) {
   switch (action.type) {
-    case SET_FETCHING:
+    case SET_FETCHING_USER:
       return {
         ...state,
         isLoading: true,
       };
-      case UNSET_FETCHING:
+      case UNSET_FETCHING_USER:
         return{
           ...state,
           isLoading: false
@@ -42,7 +42,7 @@ export default function usersReducer(state = initialState, action) {
     case GET_USERS_SUCCESS:
       return {
         ...state,
-        users: action.payload.users,
+        users: action.payload,
         error:null
       }
     case DELETE_USER_SUCCES:
@@ -51,7 +51,7 @@ export default function usersReducer(state = initialState, action) {
         users: state.users.filter((u) => u.id !== action.payload.idForDelete),
         error:null,
       };
-    case ERROR:
+    case USER_ERROR:
       return{
         ...state,
         error: action.error,

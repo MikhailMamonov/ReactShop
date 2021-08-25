@@ -1,5 +1,5 @@
 import { connect } from "react-redux";
-import { addCategoryThunk, deleteCategoryThunk } from "../../../store/actions/categoryActions";
+import { addCategoryThunk, deleteCategoryThunk, editCategoryThunk } from "../../../store/actions/categoryActions";
 import Categories from "./Categories";
 
 const mapStateToProps = (state) => {
@@ -13,6 +13,9 @@ const mapDispatchToProps = (dispatch) => {
   return {
     onAddCategoryClick: (category) => {
       dispatch(addCategoryThunk(category));
+    },
+    onEditCategoryClick: (id,item) => {
+      dispatch(editCategoryThunk(id,item));
     },
     onDeleteCategoryClick: (id) => {
       dispatch(deleteCategoryThunk(id));

@@ -1,10 +1,12 @@
 import { 
-  SET_FETCHING, 
-  UNSET_FETCHING, 
   ADD_PRODUCT_SUCCESS, 
   DELETE_PRODUCT_SUCCES, 
+  EDIT_PRODUCT_SUCCES, 
   GET_PRODUCTS_SUCCESS,
-  ERROR
+  PRODUCT_ERROR,
+  SET_FETCHING_PRODUCT,
+  UNSET_FETCHING_PRODUCT,
+
 } from "../types";
 
 const initialState = {
@@ -15,12 +17,12 @@ const initialState = {
 
 export default function productsReducer(state = initialState, action) {
   switch (action.type) {
-    case SET_FETCHING:
+    case SET_FETCHING_PRODUCT:
       return {
         ...state,
         isLoading: true,
       };
-    case UNSET_FETCHING:
+    case UNSET_FETCHING_PRODUCT:
       return {
         ...state,
         isLoading: false
@@ -41,16 +43,24 @@ export default function productsReducer(state = initialState, action) {
     case GET_PRODUCTS_SUCCESS:
       return {
         ...state,
-        products: action.payload.products,
+        products: action.payload,
         error:null,
       }
     case DELETE_PRODUCT_SUCCES:
       return {
         ...state,
-        products: state.products.filter((p) => p.id !== action.payload.idForDelete)
+        products: state.products.filter((p) => p.id !== action.payload.idForDelete),
+        error:null,
       } 
+    case EDIT_PRODUCT_SUCCES:
+      return {
+        ...state,
+        products: state.products.map(p=>
+           p.id === action.payload.id?action.payload.item: p),
+        error:null
+      }
 
-    case ERROR:
+    case PRODUCT_ERROR:
       return {
         ...state,
         error: action.error,

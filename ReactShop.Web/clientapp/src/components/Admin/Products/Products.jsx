@@ -18,6 +18,13 @@ class Products extends Component
           <Col>Name: {item.name}</Col>
           <Col>Price: {item.price}</Col>
           <Col>
+          <Button
+              onClick={() => {
+                this.props.onEditProductClick(item.id, item);
+              }}
+            >
+              Изменить
+            </Button>
             <Button
               onClick={() => {
                 this.props.onDeleteProductClick(item.id);

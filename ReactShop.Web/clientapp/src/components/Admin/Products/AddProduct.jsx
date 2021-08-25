@@ -2,9 +2,10 @@ import React from "react";
 
 
 export default function AddProduct(props) {
-  const [price, setPrice] = React.useState("");
+  const [price, setPrice] = React.useState(0);
   const [name, setName] = React.useState("");
-  const [categoryId, setCategoryId] = React.useState(1);
+  const [categoryId, setCategoryId] = 
+      React.useState(props.categories[0]?props.categories[0].id:"");
 
   const handleSubmit = (e) => {
     e.preventDefault();
@@ -25,9 +26,12 @@ export default function AddProduct(props) {
       <div>
         <label htmlFor="category">Category</label>
         <p>
-          <select value={categoryId} onChange={(e) => setCategoryId(e.target.value)}>
+          <select value={categoryId} onChange={(e) => 
+            {var categoryId = e.target.value; 
+              console.log(categoryId);
+             setCategoryId(categoryId)}}>
             {props.categories.map((c) =>(
-                <option key={c.id} value={c.id}>{c.name}</option>))}
+                <option value={c.id}>{c.name}</option>))}
           </select>
           </p>
       </div>
