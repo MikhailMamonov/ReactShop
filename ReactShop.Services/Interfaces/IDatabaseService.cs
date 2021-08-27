@@ -14,7 +14,7 @@ namespace ReactShop.Services.Interfaces
 
         Task<string> Edit(T data);
 
-        Task<string> Add(T data);
+        Task<T> Add(T data);
 
         Task<string> Remove(string id);
     }

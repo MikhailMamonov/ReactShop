@@ -22,12 +22,20 @@ namespace ReactShop.Services.Implementations
         /// </summary>
         /// <param name="model"></param>
         /// <returns></returns>
-        public override async Task<string> Add(CategoryDTO model)
+        public override async Task<CategoryDTO> Add(CategoryDTO model)
         {
             var entity = _mapper.Map<Category>(model);
             await _db.Categories.AddAsync(entity);
             var result = await _db.SaveChangesAsync() > 0;
-            return result ? null : "category not added";
+            if (result) 
+            {
+                model.Id = entity.Id;
+                return model;
+            }
+            else 
+            {
+                throw new Exception("category not added");
+            }
         }
 
         /// <summary>

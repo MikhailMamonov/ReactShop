@@ -106,7 +106,7 @@ namespace ReactShop.Services.Implementations
         /// </summary>
         /// <param name="model"></param>
         /// <returns></returns>
-        public override async Task<string> Add(UserDTO model)
+        public override async Task<UserDTO> Add(UserDTO model)
         {
             ApplicationUser user = 
                 new ApplicationUser { UserName = model.Email,
@@ -123,13 +123,15 @@ namespace ReactShop.Services.Implementations
                     await _db.SaveChangesAsync(); //error points here
                 }
                 await _userManager.AddToRoleAsync(user, "general");
-                return null;
+                model.Id = user.Id;
+
+                return model;
 
             }
             else
             {
                 var errors = result.Errors.Select(er => er.Description);
-                return string.Join("\n", errors);
+                throw new Exception(string.Join("\n", errors));
             }
         }
     }

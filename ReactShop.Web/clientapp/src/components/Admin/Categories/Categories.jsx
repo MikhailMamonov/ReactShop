@@ -1,6 +1,7 @@
 import { Container, Row, Col, Button } from "react-bootstrap";
 import Loader from "react-loader-spinner";
 import AddCategory from "./AddCategory";
+import AdminGrid from "./../AdminGrid"
 
 const Categories = (props) => (
   <div>
@@ -10,37 +11,7 @@ const Categories = (props) => (
        props.error.split('\n').map(str => <p><b>{str}</b></p>)
           : null}
       <Loader type="Bars" visible={props.isLoading} color="#00BFFF" height={80} width={80} />
-      <AddCategory addCategory={props.onAddCategoryClick}
-            categories={props.categories}></AddCategory>
-
-      <ul>
-
-        {props.categories.map((u) => (
-          <li key={u.id}>
-            <Row>
-              <Col>Id: {u.id}</Col>
-              <Col>Name: {u.name}</Col>
-              <Col>
-              <Button
-                  onClick={() => {
-                    props.onEditCategoryClick(u.id,u);
-                  }}
-                >
-                  Изменить
-                </Button>
-                <Button
-                  onClick={() => {
-                    props.onDeleteCategoryClick(u.id);
-                  }}
-                >
-                  Удалить
-                </Button>
-                
-              </Col>
-            </Row>
-          </li>
-        ))}
-      </ul>
+      <AdminGrid  rows={props.categories} onAdd={props.onAddCategoryClick} onDelete={props.onDeleteCategoryClick}></AdminGrid>
     </Container>
   </div>
 );

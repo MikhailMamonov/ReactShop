@@ -2,6 +2,7 @@ import { Container, Row, Col, Button } from "react-bootstrap";
 import Loader from "react-loader-spinner";
 import React, {Component} from 'react';
 import AddProduct from "./AddProduct";
+import {ProductAdminGrid} from "./ProductAdminGrid/ProductAdminGrid"
 
 class Products extends Component 
 {
@@ -47,7 +48,9 @@ class Products extends Component
       <Loader type="Bars" visible={this.props.isLoading} color="#00BFFF" height={80} width={80} />
       <AddProduct addProduct={this.props.onAddProductClick}
             categories={this.props.categories}></AddProduct>
-            {products.length? <ul>{products}</ul>: "Products not exists"}
+            {/* {products.length? <ul>{products}</ul>: "Products not exists"} */}
+
+            <ProductAdminGrid rows={this.props.products} onDelete={this.props.onDeleteProductClick}></ProductAdminGrid>
     </Container>
   </div>)
   }

@@ -61,18 +61,10 @@ namespace ReactShop.Web.Controllers
                     return LogErrorAndReturnStatusCode("Model is invalid", 400);
                 }
 
-                var errorMessage =
+                var newObject =
                     await _databaseService.Add(requestValue);
+                return Ok(newObject);
 
-                if (errorMessage == null)
-                {
-                    _logger.LogInfo($"\nProduct Object added ${requestValue}");
-                    return Ok(requestValue);
-                }
-                else
-                {
-                    return LogErrorAndReturnStatusCode(errorMessage, 500);
-                }
             };
 
             return await ExecuteCommand(exceptionCommand);
@@ -146,8 +138,7 @@ namespace ReactShop.Web.Controllers
             }
             catch (Exception e)
             {
-                return LogErrorAndReturnStatusCode($" {e.InnerException} ->" +
-                    $" {e.StackTrace}", 500);
+                return LogErrorAndReturnStatusCode($" {e.Message}", 500);
             }
         }
 

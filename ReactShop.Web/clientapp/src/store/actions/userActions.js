@@ -16,7 +16,8 @@ export const addUserActionSuccess = (newUser) => ({
   payload: {
     displayName: newUser.displayName,
     password: newUser.password,
-    email: newUser.email  
+    email: newUser.email,
+    id: newUser.id
   },
   error: null
 });
@@ -66,6 +67,7 @@ export const getAllUsersThunk = () => {
 
 export const deleteUserThunk = (id) => {
   return (dispatch) => {
+    debugger;
     dispatch(setFetchingFlag(SET_FETCHING_USER))
     UsersDataService.remove(id)
       .then((res) => {

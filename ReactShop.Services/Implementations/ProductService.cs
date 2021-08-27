@@ -46,12 +46,20 @@ namespace ReactShop.Services.Implementations
         /// </summary>
         /// <param name="model"></param>
         /// <returns></returns>
-        public override async Task<string> Add(ProductDTO model) 
+        public override async Task<ProductDTO> Add(ProductDTO model) 
         {
             var entity = _mapper.Map<Product>(model);
             await _db.Products.AddAsync(entity);
             var result = await _db.SaveChangesAsync() > 0;
-            return result ? null : "products not added";
+            if (result) 
+            {
+                model.Id = entity.Id;
+                return model;
+            }
+            else 
+            {
+                throw new Exception("products not added");
+            } 
         }
 
         /// <summary>

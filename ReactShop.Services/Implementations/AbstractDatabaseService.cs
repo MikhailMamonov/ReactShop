@@ -17,7 +17,7 @@ namespace ReactShop.Services.Implementations
             _mapper = mapper;
         }
 
-        public abstract Task<string> Add(T data);
+        public abstract Task<T> Add(T data);
 
         public abstract Task<string> Edit(T data);
 

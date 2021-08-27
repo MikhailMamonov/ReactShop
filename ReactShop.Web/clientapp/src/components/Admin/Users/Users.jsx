@@ -4,10 +4,6 @@ import AddUser from "./AddUser";
 import AdminGrid from "./../AdminGrid";
 
 const Users = (props) => {
-  const columns = props.users[0]?Object.keys(props.users[0]):[];
-    columns = columns.map(c=> {
-      return {name:c, title:c}
-    });
   return (
   <div>
     <Container>
@@ -17,9 +13,9 @@ const Users = (props) => {
        props.error.split('\n').map(str => <p><b>{str}</b></p>)
           : null}
             <Loader type="Bars" visible={props.isLoading}  color="#00BFFF" height={80} width={80} /> 
-            <AddUser addUser={props.onAddUserClick}></AddUser>
+            {/* <AddUser addUser={props.onAddUserClick}></AddUser> */}
 
-            <AdminGrid columns={columns} rows={props.users}></AdminGrid>
+            <AdminGrid  rows={props.users} onAdd={props.onAddUserClick} onDelete={props.onDeleteUserClick}></AdminGrid>
    
     </Container> 
   </div>
