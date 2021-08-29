@@ -1,6 +1,13 @@
 //import ProductsDataService from '../api/ProductService'
-import GeneralDataService from '../api/GeneralService';
-import { setFetchingFlag, unsetFetchingFlag, setActionError, deleteActionSuccess, getActionSuccess, editActionSuccess } from "./index";
+import GeneralDataService from "../api/GeneralService";
+import {
+  setFetchingFlag,
+  unsetFetchingFlag,
+  setActionError,
+  deleteActionSuccess,
+  getActionSuccess,
+  editActionSuccess,
+} from "./index";
 import {
   ADD_PRODUCT_SUCCESS,
   PRODUCT_ERROR,
@@ -10,10 +17,8 @@ import {
   SET_FETCHING_PRODUCT,
   UNSET_FETCHING_PRODUCT,
   EDIT_PRODUCT_SUCCES,
-  GET_USERS_SUCCESS
+  GET_USERS_SUCCESS,
 } from "../types";
-
-
 
 export const addProductActionSuccess = (newProduct) => ({
   type: ADD_PRODUCT_SUCCESS,
@@ -21,103 +26,91 @@ export const addProductActionSuccess = (newProduct) => ({
     name: newProduct.name,
     price: newProduct.price,
     id: newProduct.id,
-    categoryId: newProduct.categoryId  
+    categoryId: newProduct.categoryId,
   },
-  error: null
+  error: null,
 });
 
-export const editProductActionSuccess = (id,item) => ({
+export const editProductActionSuccess = (id, item) => ({
   type: EDIT_PRODUCT_SUCCES,
-  payload: { 
+  payload: {
     id: id,
-    item: item 
+    item: item,
   },
 });
 
 export const addProductThunk = (newProduct) => {
   return (dispatch) => {
-    dispatch(setFetchingFlag(SET_FETCHING_PRODUCT))
-    debugger;
-      GeneralDataService.create(
-          PRODUCTS,
-        {
-           name: newProduct.name,
-           price: newProduct.price,
-           categoryId: newProduct.categoryId,
-       })
+    dispatch(setFetchingFlag(SET_FETCHING_PRODUCT));
+
+    GeneralDataService.create(PRODUCTS, {
+      name: newProduct.name,
+      price: newProduct.price,
+      categoryId: newProduct.categoryId,
+    })
       .then((res) => {
         dispatch(addProductActionSuccess(res.data));
       })
       .catch((e) => {
-        debugger;
-        dispatch(setActionError(PRODUCT_ERROR,e.response.data));
+        dispatch(setActionError(PRODUCT_ERROR, e.response.data));
       });
 
-      setTimeout(() => {
-      dispatch(unsetFetchingFlag(UNSET_FETCHING_PRODUCT))}, 2000);
+    setTimeout(() => {
+      dispatch(unsetFetchingFlag(UNSET_FETCHING_PRODUCT));
+    }, 2000);
   };
 };
 
-
-export const editProductThunk = (id,item) => {
+export const editProductThunk = (id, item) => {
   return (dispatch) => {
-    dispatch(setFetchingFlag(SET_FETCHING_PRODUCT))
+    dispatch(setFetchingFlag(SET_FETCHING_PRODUCT));
 
-    GeneralDataService.update(PRODUCTS,id,item)
-      .then((res) => {   
-          dispatch(editActionSuccess(EDIT_PRODUCT_SUCCES,res.data.id,res.data));
+    GeneralDataService.update(PRODUCTS, id, item)
+      .then((res) => {
+        dispatch(editActionSuccess(EDIT_PRODUCT_SUCCES, res.data.id, res.data));
       })
       .catch((e) => {
-          debugger;
-        dispatch(setActionError(PRODUCT_ERROR,e));
+        dispatch(setActionError(PRODUCT_ERROR, e));
       });
 
-      setTimeout(() => {
-        dispatch(unsetFetchingFlag(UNSET_FETCHING_PRODUCT))}, 2000);
+    setTimeout(() => {
+      dispatch(unsetFetchingFlag(UNSET_FETCHING_PRODUCT));
+    }, 2000);
   };
 };
-
-
 
 export const getAllProductsThunk = () => {
   return (dispatch) => {
-    dispatch(setFetchingFlag(SET_FETCHING_PRODUCT))
+    dispatch(setFetchingFlag(SET_FETCHING_PRODUCT));
 
     GeneralDataService.getAll(PRODUCTS)
-      .then((res) => {   
-          dispatch(getActionSuccess(GET_PRODUCTS_SUCCESS,res.data));
+      .then((res) => {
+        dispatch(getActionSuccess(GET_PRODUCTS_SUCCESS, res.data));
       })
       .catch((e) => {
-          debugger;
-        dispatch(setActionError(PRODUCT_ERROR,e));
+        dispatch(setActionError(PRODUCT_ERROR, e));
       });
 
-      setTimeout(() => {
-        dispatch(unsetFetchingFlag(UNSET_FETCHING_PRODUCT))}, 2000);
+    setTimeout(() => {
+      dispatch(unsetFetchingFlag(UNSET_FETCHING_PRODUCT));
+    }, 2000);
   };
 };
 
 export const deleteProductThunk = (id) => {
   return (dispatch) => {
-    dispatch(setFetchingFlag(SET_FETCHING_PRODUCT))
+    dispatch(setFetchingFlag(SET_FETCHING_PRODUCT));
 
-    GeneralDataService.remove(PRODUCTS,id)
+    GeneralDataService.remove(PRODUCTS, id)
       .then((res) => {
-        debugger;
-        dispatch(deleteActionSuccess(DELETE_PRODUCT_SUCCES,res.data.id));
-
+        dispatch(deleteActionSuccess(DELETE_PRODUCT_SUCCES, res.data.id));
       })
       .catch((e) => {
-        dispatch(setActionError(PRODUCT_ERROR,e));
-
+        dispatch(setActionError(PRODUCT_ERROR, e));
       });
 
-      setTimeout(() => {
-        dispatch(unsetFetchingFlag(UNSET_FETCHING_PRODUCT))}, 2000);
+    setTimeout(() => {
+      dispatch(unsetFetchingFlag(UNSET_FETCHING_PRODUCT));
+    }, 2000);
   };
 };
-
-
-
-
-  

@@ -1,13 +1,11 @@
 import React from "react";
 
-
 export default function AddUser({ addUser }) {
   const [email, setEmail] = React.useState("");
   const [displayName, setDisplayName] = React.useState("");
   const [password, setPassword] = React.useState("");
 
   const handleSubmit = (e) => {
-    debugger;
     e.preventDefault();
     addUser({ email, displayName, password });
   };

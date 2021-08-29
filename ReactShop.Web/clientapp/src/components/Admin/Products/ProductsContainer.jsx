@@ -1,5 +1,8 @@
 import { connect } from "react-redux";
-import { addProductThunk, deleteProductThunk } from "../../../store/actions/productActions";
+import {
+  addProductThunk,
+  deleteProductThunk,
+} from "../../../store/actions/productActions";
 import Products from "./Products";
 
 const mapStateToProps = (state) => {
@@ -7,17 +10,17 @@ const mapStateToProps = (state) => {
     products: state.products.products,
     categories: state.categories.categories,
     isLoading: state.products.isLoading,
-    error: state.products.error  };
+    error: state.products.error,
+  };
 };
 
 const mapDispatchToProps = (dispatch) => {
   return {
     onAddProductClick: (product) => {
-      debugger;
       dispatch(addProductThunk(product));
     },
-    onEditProductClick: (id,item) => {
-      dispatch(deleteProductThunk(id,item));
+    onEditProductClick: (id, item) => {
+      dispatch(deleteProductThunk(id, item));
     },
     onDeleteProductClick: (id) => {
       dispatch(deleteProductThunk(id));
