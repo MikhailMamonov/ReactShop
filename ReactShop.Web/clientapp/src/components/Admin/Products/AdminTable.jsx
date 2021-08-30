@@ -7,11 +7,11 @@ import {
   TableRowColumn,
 } from "material-ui/Table";
 import { makeStyles } from "@material-ui/core/styles";
-import Paper from "@material-ui/core/Paper";
 import EditIcon from "@material-ui/icons/Edit";
 import DeleteIcon from "@material-ui/icons/Delete";
 import React, { useState, useEffect } from "react";
 import TextField from "material-ui/TextField";
+import CheckIcon from '@material-ui/icons/Check';
 
 //https://github.com/benawad/basic-react-form/tree/6_edit_delete_rows
 const AdminTable = (props) => {
@@ -23,17 +23,21 @@ const AdminTable = (props) => {
   });
 
   const [editIdx, seteditIdx] = useState(-1);
+  const [currentRow, setCurrentRow] = useState({});
 
   const startEditing = (i) => {
+    debugger;
     seteditIdx(i);
+    setCurrentRow(props.rows[i]);
+    console.log("props.rows[i]", props.rows[i]);
   };
 
   const stopEditing = () => {
-    this.setState({ editIdx: -1 });
+    seteditIdx(-1);
   };
 
   const getRow = (row, i) => {
-    const currentlyEditing = editIdx === row.id;
+    const currentlyEditing = editIdx === i;
     return (
       <TableRow key={`tr-${i}`} selectable>
         {props.cols.map((y, k) => (
@@ -41,20 +45,26 @@ const AdminTable = (props) => {
             {currentlyEditing ? (
               <TextField
                 name={y.prop}
-                onChange={(e) => props.onEdit(e, y.prop, i)}
-                value={row[y.prop]}
+                 onChange={(e) => setCurrentRow(e.target.value)}
+                value={currentRow[y.prop]}
               />
+              
             ) : (
               row[y.prop]
             )}
           </TableRowColumn>
         ))}
         <TableRowColumn>
-          <EditIcon
+          {currentlyEditing ? (
+          <CheckIcon onClick={(e) => {props.onEdit(row.id, row); stopEditing()}} />
+        ) : (
+           <EditIcon
             onClick={() => {
-              startEditing(row.id);
+              startEditing(i);
             }}
           />
+        )}
+         
         </TableRowColumn>
         <TableRowColumn>
           <DeleteIcon

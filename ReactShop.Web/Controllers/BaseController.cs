@@ -138,13 +138,14 @@ namespace ReactShop.Web.Controllers
             }
             catch (Exception e)
             {
-                return LogErrorAndReturnStatusCode($" {e.Message}", 500);
+                _logger.LogError(e.Message);
+                throw;
             }
         }
 
         protected IActionResult LogErrorAndReturnStatusCode(string errMessage, int statusCode)
         {
-            _logger.LogError(errMessage);
+            
             return StatusCode(statusCode, errMessage);
         }
     }

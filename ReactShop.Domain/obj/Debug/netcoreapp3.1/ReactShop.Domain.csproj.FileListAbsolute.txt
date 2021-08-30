@@ -122,4 +122,4 @@ D:\petProjects\ReactShop\ReactShop.Domain\bin\Debug\netcoreapp3.1\Azure.Identity
 D:\petProjects\ReactShop\ReactShop.Domain\bin\Debug\netcoreapp3.1\Microsoft.Bcl.AsyncInterfaces.dll
 D:\petProjects\ReactShop\ReactShop.Domain\bin\Debug\netcoreapp3.1\Microsoft.Identity.Client.Extensions.Msal.dll
 D:\petProjects\ReactShop\ReactShop.Domain\bin\Debug\netcoreapp3.1\System.Text.Encodings.Web.dll
-D:\petProjects\ReactShop\ReactShop.Domain\obj\Debug\netcoreapp3.1\ReactShop.Domain.csproj.AssemblyReference.cache
+D:\petProjects\ReactShop\ReactShop.Domain\obj\Debug\netcoreapp3.1\ReactShop.Domain.csprojAssemblyReference.cache
