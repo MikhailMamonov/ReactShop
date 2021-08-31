@@ -1,20 +1,11 @@
 import { Container, Row, Col, Button } from "react-bootstrap";
 import Loader from "react-loader-spinner";
 
-import AddProduct from "./AddProduct";
+import CreateProduct from "./CreateProduct";
 import AdminTable from "../AdminTable";
 import { getColumns } from "../utils";
 
 const Products = (props) => {
-  // const getColumns = () => {
-  //   console.log("props", props);
-  //   if (typeof props.products !== "undefined" && props.products.length > 0) {
-  //     return Object.keys(props.products[0]).map((key) => {
-  //       return { name: key, prop: key };
-  //     });
-  //   }
-  //   return [];
-  // };
   return (
     <div>
       <Container>
@@ -27,10 +18,7 @@ const Products = (props) => {
           height={80}
           width={80}
         />
-        <AddProduct
-          addProduct={props.onAddProductClick}
-          categories={props.categories}
-        ></AddProduct>
+        <CreateProduct onAdd={props.onAddProductClick}></CreateProduct>
         {/* {products.length? <ul>{products}</ul>: "Products not exists"} */}
 
         <AdminTable
