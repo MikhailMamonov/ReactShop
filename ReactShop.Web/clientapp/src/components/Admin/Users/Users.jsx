@@ -1,7 +1,9 @@
 import { Container, Row, Col, Button } from "react-bootstrap";
 import Loader from "react-loader-spinner";
-import AddUser from "./AddUser";
-import AdminGrid from "./../AdminGrid";
+
+import AdminTable from "../AdminTable";
+import { getColumns } from "../utils";
+import CreateUser from "./CreateUser";
 
 const printError = (err) => {
   console.log("printError", err);
@@ -24,13 +26,14 @@ const Users = (props) => {
           height={80}
           width={80}
         />
-        {/* <AddUser addUser={props.onAddUserClick}></AddUser> */}
+        <CreateUser onAdd={props.onAddUserClick}></CreateUser> 
 
-        <AdminGrid
+        <AdminTable
           rows={props.users}
-          onAdd={props.onAddUserClick}
+          cols={getColumns(props.users)}
           onDelete={props.onDeleteUserClick}
-        ></AdminGrid>
+          onEdit={props.onEditUserClick}
+      ></AdminTable>
       </Container>
     </div>
   );

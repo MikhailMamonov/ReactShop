@@ -1,4 +1,4 @@
-import UsersDataService from "../api/UserService";
+import GeneralDataService from "../api/GeneralService";
 import {
   ADD_USER_SUCCESS,
   USER_ERROR,
@@ -6,6 +6,8 @@ import {
   DELETE_USER_SUCCES,
   SET_FETCHING_USER,
   UNSET_FETCHING_USER,
+  USERS,
+  EDIT_USER_SUCCES,
 } from "../types";
 
 import {
@@ -14,6 +16,7 @@ import {
   setActionError,
   setFetchingFlag,
   unsetFetchingFlag,
+  editActionSuccess
 } from "./index";
 
 export const addUserActionSuccess = (newUser) => ({
@@ -30,7 +33,7 @@ export const addUserActionSuccess = (newUser) => ({
 export const addUserThunk = (newUser) => {
   return (dispatch) => {
     dispatch(setFetchingFlag(SET_FETCHING_USER));
-    UsersDataService.create({
+    GeneralDataService.create(USERS,{
       displayName: newUser.displayName,
       email: newUser.email,
       password: newUser.password,
@@ -51,7 +54,7 @@ export const getAllUsersThunk = () => {
   return (dispatch) => {
     dispatch(setFetchingFlag(SET_FETCHING_USER));
 
-    UsersDataService.getAll()
+    GeneralDataService.getAll(USERS)
       .then((res) => {
         dispatch(getActionSuccess(GET_USERS_SUCCESS, res.data));
       })
@@ -68,9 +71,27 @@ export const getAllUsersThunk = () => {
 export const deleteUserThunk = (id) => {
   return (dispatch) => {
     dispatch(setFetchingFlag(SET_FETCHING_USER));
-    UsersDataService.remove(id)
+    GeneralDataService.remove(USERS,id)
       .then((res) => {
         dispatch(deleteActionSuccess(DELETE_USER_SUCCES, res.data.id));
+      })
+      .catch((e) => {
+        dispatch(setActionError(USER_ERROR, e.response.data));
+      });
+
+    setTimeout(() => {
+      dispatch(unsetFetchingFlag(UNSET_FETCHING_USER));
+    }, 2000);
+  };
+};
+
+export const editUserThunk = (id,item) => {
+  return (dispatch) => {
+    dispatch(setFetchingFlag(SET_FETCHING_USER));
+    GeneralDataService.update(USERS, id, item)
+      .then((res) => {
+        debugger
+        dispatch(editActionSuccess(EDIT_USER_SUCCES, res.data.id, res.data));
       })
       .catch((e) => {
         dispatch(setActionError(USER_ERROR, e.response.data));

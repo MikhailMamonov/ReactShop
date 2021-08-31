@@ -71,12 +71,26 @@ namespace ReactShop.Web.Controllers
         }
 
         [HttpPut("{id}")]
+        public async Task<IActionResult> Edit(string id, [FromBody] T requestValue)
+        {
+            return await ExecuteCommand(async () =>
+            {
+                var result = await _databaseService.Edit(requestValue);
+                if (!string.IsNullOrEmpty(result))
+                    return LogErrorAndReturnStatusCode("ApplicationUser not updated", 400);
+                else
+                    return Ok(requestValue);
+            });
+        }
+
+
+        [HttpPut("{id:int}")]
         public async Task<IActionResult> Edit(int id, [FromBody] T requestValue)
         {
             return await ExecuteCommand(async () =>
             {
                 var result = await _databaseService.Edit(requestValue);
-                if (string.IsNullOrEmpty(result))
+                if (!string.IsNullOrEmpty(result))
                     return LogErrorAndReturnStatusCode("ApplicationUser not updated", 400);
                 else
                     return Ok(requestValue);

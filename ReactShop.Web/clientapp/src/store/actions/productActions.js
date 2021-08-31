@@ -19,6 +19,7 @@ import {
   EDIT_PRODUCT_SUCCES,
   GET_USERS_SUCCESS,
 } from "../types";
+import { ContactsOutlined } from "@material-ui/icons";
 
 export const addProductActionSuccess = (newProduct) => ({
   type: ADD_PRODUCT_SUCCESS,
@@ -64,9 +65,10 @@ export const addProductThunk = (newProduct) => {
 export const editProductThunk = (id, item) => {
   return (dispatch) => {
     dispatch(setFetchingFlag(SET_FETCHING_PRODUCT));
-
+    console.log("editProductThunk -> item", item);
     GeneralDataService.update(PRODUCTS, id, item)
       .then((res) => {
+        console.log("editProductThunk -> res.data", res.data);
         dispatch(editActionSuccess(EDIT_PRODUCT_SUCCES, res.data.id, res.data));
       })
       .catch((e) => {

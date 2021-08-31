@@ -60,7 +60,10 @@ namespace ReactShop.Services.Implementations
         /// <returns></returns>
         public override async Task<string> Edit(UserDTO userDto)
         {
-            var entity = _mapper.Map<ApplicationUser>(userDto);
+            var entity = await _userManager.FindByIdAsync(userDto.Id);
+            entity.UserName = userDto.DisplayName;
+            entity.Email = userDto.Email;
+            entity.DisplayName = userDto.DisplayName;
             var result = await _userManager.UpdateAsync(entity);
             if (result.Succeeded)
             {
@@ -124,7 +127,7 @@ namespace ReactShop.Services.Implementations
                 }
                 await _userManager.AddToRoleAsync(user, "general");
                 model.Id = user.Id;
-
+                model.Password = "";
                 return model;
 
             }

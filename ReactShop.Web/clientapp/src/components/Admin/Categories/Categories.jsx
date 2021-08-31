@@ -1,12 +1,16 @@
 import { Container, Row, Col, Button } from "react-bootstrap";
 import Loader from "react-loader-spinner";
-import AddCategory from "./AddCategory";
+import CreateItem from "./CreateItem";
 import AdminGrid from "./../AdminGrid";
+import AdminTable from "../AdminTable";
+import { getColumns } from "../utils";
+
 
 const Categories = (props) => (
   <div>
     <Container>
       <h2>Categories</h2>
+      <CreateItem onAdd={props.onAddCategoryClick} ></CreateItem>
       {props.error ?? null}
       <Loader
         type="Bars"
@@ -15,11 +19,12 @@ const Categories = (props) => (
         height={80}
         width={80}
       />
-      <AdminGrid
-        rows={props.categories}
-        onAdd={props.onAddCategoryClick}
-        onDelete={props.onDeleteCategoryClick}
-      ></AdminGrid>
+      <AdminTable
+          rows={props.categories}
+          cols={getColumns(props.categories)}
+          onDelete={props.onDeleteCategoryClick}
+          onEdit={props.onEditCategoryClick}
+      ></AdminTable>
     </Container>
   </div>
 );

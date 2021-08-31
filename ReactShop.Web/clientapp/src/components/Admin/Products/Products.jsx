@@ -2,18 +2,19 @@ import { Container, Row, Col, Button } from "react-bootstrap";
 import Loader from "react-loader-spinner";
 
 import AddProduct from "./AddProduct";
-import AdminTable from "./AdminTable";
+import AdminTable from "../AdminTable";
+import { getColumns } from "../utils";
 
 const Products = (props) => {
-  const getColumns = () => {
-    console.log("props", props);
-    if (typeof props.products !== "undefined" && props.products.length > 0) {
-      return Object.keys(props.products[0]).map((key) => {
-        return { name: key, prop: key };
-      });
-    }
-    return [];
-  };
+  // const getColumns = () => {
+  //   console.log("props", props);
+  //   if (typeof props.products !== "undefined" && props.products.length > 0) {
+  //     return Object.keys(props.products[0]).map((key) => {
+  //       return { name: key, prop: key };
+  //     });
+  //   }
+  //   return [];
+  // };
   return (
     <div>
       <Container>
@@ -34,7 +35,7 @@ const Products = (props) => {
 
         <AdminTable
           rows={props.products}
-          cols={getColumns()}
+          cols={getColumns(props.products)}
           onDelete={props.onDeleteProductClick}
           onEdit={props.onEditProductClick}
         ></AdminTable>

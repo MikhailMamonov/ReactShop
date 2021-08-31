@@ -4,7 +4,8 @@ import {
   DELETE_USER_SUCCES,
   USER_ERROR,
   SET_FETCHING_USER,
-  UNSET_FETCHING_USER
+  UNSET_FETCHING_USER,
+  EDIT_USER_SUCCES
 } from "../types";
 
 const initialState = {
@@ -43,6 +44,13 @@ export default function usersReducer(state = initialState, action) {
       return {
         ...state,
         users: action.payload,
+        error:null
+      }
+    case EDIT_USER_SUCCES:
+      return {
+        ...state,
+        users: state.users.map(p=>
+           p.id === action.payload.id?action.payload.item: p),
         error:null
       }
     case DELETE_USER_SUCCES:

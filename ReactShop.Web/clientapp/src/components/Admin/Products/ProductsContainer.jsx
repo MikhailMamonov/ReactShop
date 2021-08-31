@@ -2,6 +2,7 @@ import { connect } from "react-redux";
 import {
   addProductThunk,
   deleteProductThunk,
+  editProductThunk
 } from "../../../store/actions/productActions";
 import Products from "./Products";
 
@@ -20,7 +21,7 @@ const mapDispatchToProps = (dispatch) => {
       dispatch(addProductThunk(product));
     },
     onEditProductClick: (id, item) => {
-      dispatch(deleteProductThunk(id, item));
+      dispatch(editProductThunk(id, item));
     },
     onDeleteProductClick: (id) => {
       dispatch(deleteProductThunk(id));
