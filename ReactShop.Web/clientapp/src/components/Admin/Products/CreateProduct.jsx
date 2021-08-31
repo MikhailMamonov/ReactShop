@@ -50,30 +50,27 @@ export default function CreateProduct(props) {
         className={classes.margin}
         onChange={(e) => setProduct({ ...product, name: e.target.value })}
         value={product["name"]}
-        label={"Name"} //optional
-      />
-      <TextField
-        id="standard-number"
-        label="Number"
-        type="number"
+        label="Name"
         InputLabelProps={{
           shrink: true,
         }}
       />
-      <FormControl className={classes.margin}>
-        <InputLabel htmlFor="input-price">Price (RUB)</InputLabel>
-        <Input
-          id="input-price"
-          type="number"
-          onChange={(e) => setProduct({ ...product, price: e.target.value })}
-          value={product["price"]}
-          startAdornment={
-            <InputAdornment position="start">
-              <AttachMoneyIcon />
-            </InputAdornment>
-          }
-        />
-      </FormControl>
+      <TextField
+        id="standard-number"
+        className={classes.margin}
+        label="Price (RUB)"
+        type="number"
+        onChange={(e) => setProduct({ ...product, price: e.target.value })}
+        value={product["price"]}
+        startAdornment={
+          <InputAdornment position="start">
+            <AttachMoneyIcon />
+          </InputAdornment>
+        }
+        InputLabelProps={{
+          shrink: true,
+        }}
+      />
       <FormControl className={classes.margin}>
         <InputLabel htmlFor="input-category">Category</InputLabel>
         <Select
@@ -92,8 +89,12 @@ export default function CreateProduct(props) {
         </Select>
       </FormControl>
 
-      <Button onClick={handleSubmit}>Submit</Button>
-      <Button onClick={handleReset}>Reset</Button>
+      <Button onClick={handleSubmit} className={classes.margin}>
+        Submit
+      </Button>
+      <Button onClick={handleReset} className={classes.margin}>
+        Reset
+      </Button>
     </Paper>
     // <form onSubmit={handleSubmit}>
     //   <div>
