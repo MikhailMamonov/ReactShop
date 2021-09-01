@@ -2,47 +2,40 @@ import React from "react";
 import { Link } from "react-router-dom";
 import { connect } from "react-redux";
 
-import { userActions } from "../_actions";
+import { login, logout, register } from "./../../store/actions/userActions";
 
-class LoginPage extends React.Component {
-  constructor(props) {
-    super(props);
+const LoginPage = (props) => {
 
-    // reset login status
-    this.props.logout();
+  // reset login status
+  this.props.logout();
 
-    this.state = {
-      username: "",
-      password: "",
-      submitted: false,
-    };
+  const [loginForm, setLoginForm] = React.useState({
+    username: "",
+    password: "",
+    submitted: false,
+  });
 
-    this.handleChange = this.handleChange.bind(this);
-    this.handleSubmit = this.handleSubmit.bind(this);
-  }
-
-  handleChange(e) {
+  const handleChange = (e) => {
     const { name, value } = e.target;
-    this.setState({ [name]: value });
+    setLoginForm({ ...loginForm, [name]: value });
   }
 
-  handleSubmit(e) {
+  const handleSubmit = (e) => {
     e.preventDefault();
-
-    this.setState({ submitted: true });
-    const { username, password } = this.state;
+    setLoginForm({ ...loginForm, submitted: true  });
+    const { username, password } = loginForm;
     if (username && password) {
-      this.props.login(username, password);
+      props.login(username, password);
     }
   }
-
-  render() {
-    const { loggingIn } = this.props;
-    const { username, password, submitted } = this.state;
-    return (
+  
+  const { loggingIn } = this.props;
+  
+  const { username, password, submitted } = loginForm;
+  return (
       <div className="col-md-6 col-md-offset-3">
         <h2>Login</h2>
-        <form name="form" onSubmit={this.handleSubmit}>
+        <form name="form" onSubmit={handleSubmit}>
           <div
             className={
               "form-group" + (submitted && !username ? " has-error" : "")
@@ -71,7 +64,7 @@ class LoginPage extends React.Component {
               className="form-control"
               name="password"
               value={password}
-              onChange={this.handleChange}
+              onChange={handleChange}
             />
             {submitted && !password && (
               <div className="help-block">Password is required</div>
@@ -89,7 +82,6 @@ class LoginPage extends React.Component {
         </form>
       </div>
     );
-  }
 }
 
 function mapState(state) {
@@ -98,8 +90,8 @@ function mapState(state) {
 }
 
 const actionCreators = {
-  login: userActions.login,
-  logout: userActions.logout,
+  login: login,
+  logout: logout,
 };
 
 const connectedLoginPage = connect(mapState, actionCreators)(LoginPage);

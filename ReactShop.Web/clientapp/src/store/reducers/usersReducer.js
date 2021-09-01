@@ -1,12 +1,6 @@
-import { 
-  ADD_USER_SUCCESS,
-  GET_USERS_SUCCESS,
-  DELETE_USER_SUCCES,
-  USER_ERROR,
-  SET_FETCHING_USER,
-  UNSET_FETCHING_USER,
-  EDIT_USER_SUCCES
-} from "../types";
+import {
+  userConstants
+} from "..//constants";
 
 const initialState = {
   users: [],
@@ -16,53 +10,118 @@ const initialState = {
 
 export default function usersReducer(state = initialState, action) {
   switch (action.type) {
-    case SET_FETCHING_USER:
+    case userConstants.ADD_USER_REQUEST:
       return {
         ...state,
         isLoading: true,
-      };
-      case UNSET_FETCHING_USER:
-        return{
-          ...state,
-          isLoading: false
-        } 
-    case ADD_USER_SUCCESS:
+        error: null
+      }
+    case userConstants.ADD_USER_SUCCESS:
       return {
         ...state,
         users: [
           ...state.users,
           {
-            id: action.payload.id,
-            displayName: action.payload.displayName,
-            email: action.payload.email,
-            password:action.payload.password
+            id: action.user.id,
+            displayName: action.user.displayName,
+            email: action.user.email,
+            password: action.user.password
           },
         ],
-        error: null
+        error: null,
+        isLoading: false
       };
-    case GET_USERS_SUCCESS:
+    case userConstants.ADD_USER_FAILURE:
       return {
         ...state,
-        users: action.payload,
-        error:null
+        error: action.error,
+        isLoading: false
       }
-    case EDIT_USER_SUCCES:
+            
+
+
+    case userConstants.GET_USERS_REQUEST:
       return {
         ...state,
-        users: state.users.map(p=>
-           p.id === action.payload.id?action.payload.item: p),
-        error:null
+        error: null, 
+        isLoading :true 
       }
-    case DELETE_USER_SUCCES:
+    case userConstants.GET_USERS_SUCCESS:
+      {
+        debugger;
+        return {
+        ...state,
+        users: action.users,
+        error: null,
+        isLoading: false
+      }}
+      case userConstants.GET_USERS_FAILURE:
+        return {
+          ...state,
+          error: action.error,
+          isLoading: false
+        }
+
+
+    case userConstants.EDIT_USER_REQUEST:
+      return {
+        ...state,
+        error: null, 
+        isLoading :true 
+      }
+    case userConstants.EDIT_USER_SUCCESS:
+      return {
+        ...state,
+        users: state.users.map(p =>
+          p.id === action.payload.id ? action.payload.item : p),
+        error: null,
+        isLoading: false
+      }
+      case userConstants.EDIT_USER_FAILURE:
+        return {
+          ...state,
+          error: action.error,
+          isLoading: false
+        }
+
+
+      case userConstants.DELETE_USER_REQUEST:
+        return {
+          ...state,
+          error: null, 
+          isLoading :true 
+        }
+    case userConstants.DELETE_USER_SUCCES:
       return {
         ...state,
         users: state.users.filter((u) => u.id !== action.payload.idForDelete),
-        error:null,
+        error: null,
+        isLoading: false
       };
-    case USER_ERROR:
-      return{
+
+      case userConstants.DELETE_USER_FAILURE:
+        return {
+          ...state,
+          error: action.error,
+          isLoading: false
+        }
+
+    case userConstants.USER_ERROR:
+      return {
         ...state,
         error: action.error,
+      }
+
+    case userConstants.SET_FETCHING_USER:
+      return {
+        ...state,
+        isLoading: true,
+      };
+
+    case userConstants.UNSET_FETCHING_USER:
+      return {
+        ...state,
+        isLoading: false
       }
     default:
       return state;

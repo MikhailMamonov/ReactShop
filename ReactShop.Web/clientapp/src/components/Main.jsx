@@ -16,10 +16,11 @@ class Main extends Component {
       <main>
         <Switch>
           <Route exact path="/" component={HomePage} />
-          <Route path="/login" component={LoginPage} />
-          <Route path="/register" component={RegisterPage} />
           <Route path="/catalog" component={Catalog} />
           <Route path="/admin" component={Admin} />
+          <Route path="/login" component={LoginPage} />
+          <Route path="/register" component={RegisterPage} />
+
         </Switch>
       </main>
     );
