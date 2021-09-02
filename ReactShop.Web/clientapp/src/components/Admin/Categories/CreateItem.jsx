@@ -8,7 +8,7 @@ export default function CreateItem(props) {
   const handleSubmit = (e) => {
     e.preventDefault();
     setItem({...item, name: ""});
-    debugger;
+
     props.onAdd(item);
   };
   const handleReset = () => setItem({});

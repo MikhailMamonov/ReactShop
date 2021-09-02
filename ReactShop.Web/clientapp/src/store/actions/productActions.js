@@ -1,12 +1,9 @@
 //import ProductsDataService from '../api/ProductService'
 import GeneralDataService from "../api/GeneralService";
 import {
-  setFetchingFlag,
+
   unsetFetchingFlag,
-  setActionError,
-  deleteActionSuccess,
-  getActionSuccess,
-  editActionSuccess,
+
 } from "./index";
 import {
   productConstants
@@ -45,14 +42,14 @@ export const addProductThunk = (newProduct) => {
         dispatch(success(res.data));
       })
       .catch((e) => {
-        dispatch(failure(e));
+        dispatch(failure(e.response.data));
       });
 
 
 
-    const request = (product) =>{return { type: productConstants.ADD_PRODUCT_REQUEST, product }}
-    const success = (product) => {return { type: productConstants.ADD_PRODUCT_SUCCESS, product }}
-    const failure = (error) =>{return  { type: productConstants.ADD_PRODUCT_FAILURE, error }}
+    function request(product){return { type: productConstants.ADD_PRODUCT_REQUEST, product }}
+    function success(product){return { type: productConstants.ADD_PRODUCT_SUCCESS, product }}
+    function failure(error){return  { type: productConstants.ADD_PRODUCT_FAILURE, error }}
   };
 };
 
@@ -68,12 +65,9 @@ export const editProductThunk = (id, item) => {
         dispatch(success(res.data.id, res.data))
       })
       .catch((e) => {
-        dispatch(failure(e));
+        dispatch(failure(e.response.data));
       });
 
-    // setTimeout(() => {
-    //   dispatch(unsetFetchingFlag(productConstants.UNSET_FETCHING_PRODUCT));
-    // }, 2000);
 
     function request (id) {return  { type: productConstants.EDIT_PRODUCT_REQUEST, id }}
     function success (id,product) {return { type: productConstants.EDIT_PRODUCT_SUCCESS, id, product }} 
@@ -91,12 +85,9 @@ export const getAllProductsThunk = () => {
         dispatch(success(res.data));
       })
       .catch((e) => {
-        dispatch(failure(e));
+        dispatch(failure(e.response.data));
       });
 
-    // setTimeout(() => {
-    //   dispatch(unsetFetchingFlag(productConstants.UNSET_FETCHING_PRODUCT));
-    // }, 2000);
 
     function request () {return { type: productConstants.GET_PRODUCTS_REQUEST}}
     function success (products) {return { type: productConstants.GET_PRODUCTS_SUCCESS,products }} 
@@ -107,21 +98,18 @@ export const getAllProductsThunk = () => {
 export const deleteProductThunk = (id) => {
   return (dispatch) => {
     //dispatch(setFetchingFlag(productConstants.SET_FETCHING_PRODUCT));
-    dispatch(request());
+    dispatch(request(IDBFactory));
     GeneralDataService.remove(productConstants.PRODUCTS, id)
       .then((res) => {
         dispatch(success(res.data.id));
       })
       .catch((e) => {
-        dispatch(failure(e));
+        dispatch(failure(e.response.data));
       });
 
-    setTimeout(() => {
-      dispatch(unsetFetchingFlag(productConstants.UNSET_FETCHING_PRODUCT));
-    }, 2000);
 
-    const request = (id) => {return { type: productConstants.DELETE_PRODUCT_REQUEST, id }}
-    const success = (id) => {return { type: productConstants.DELETE_PRODUCT_SUCCESS, id }}
-    const failure = (error) => {return { type: productConstants.EDIT_PRODUCT_FAILURE, error,id }}
+    function request(id){return { type: productConstants.DELETE_PRODUCT_REQUEST, id }}
+    function success(id){return { type: productConstants.DELETE_PRODUCT_SUCCESS, id }}
+    function failure(error){return { type: productConstants.EDIT_PRODUCT_FAILURE, error }}
   };
 };

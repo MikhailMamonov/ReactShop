@@ -33,7 +33,7 @@ const  login = (username, password) => {
       body: JSON.stringify({ username, password })
   };
 
-  return http(`/users/authenticate`, requestOptions)
+  return http(`/users/login`, requestOptions)
       
       .then(res => {
           // store user details and jwt token in local storage to keep user logged in between page refreshes

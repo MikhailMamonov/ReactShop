@@ -7,7 +7,7 @@ import {
   // SET_FETCHING_PRODUCT,
   // UNSET_FETCHING_PRODUCT,
   productConstants
-} from "..//constants/product.constants";
+} from "../constants/product.constants";
 
 const initialState = {
   products: [],

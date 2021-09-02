@@ -1,4 +1,5 @@
 ﻿using AutoMapper;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Cors;
 using Microsoft.AspNetCore.Mvc;
 using ReactShop.LoggerService;
@@ -11,6 +12,7 @@ using System.Threading.Tasks;
 
 namespace ReactShop.Web.Controllers
 {
+    [Authorize]
     [Route("api/[controller]")]
     public class BaseController<T> : Controller where T : class
     {

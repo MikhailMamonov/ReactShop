@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React from "react";
 import { makeStyles } from "@material-ui/core/styles";
 import { useSelector } from "react-redux";
 import {
@@ -62,11 +62,7 @@ export default function CreateProduct(props) {
         type="number"
         onChange={(e) => setProduct({ ...product, price: e.target.value })}
         value={product["price"]}
-        startAdornment={
-          <InputAdornment position="start">
-            <AttachMoneyIcon />
-          </InputAdornment>
-        }
+        
         InputLabelProps={{
           shrink: true,
         }}

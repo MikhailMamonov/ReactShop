@@ -1,6 +1,6 @@
 import {
   userConstants
-} from "..//constants";
+} from "../constants";
 
 const initialState = {
   users: [],
@@ -48,7 +48,6 @@ export default function usersReducer(state = initialState, action) {
       }
     case userConstants.GET_USERS_SUCCESS:
       {
-        debugger;
         return {
         ...state,
         users: action.users,

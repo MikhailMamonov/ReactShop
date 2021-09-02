@@ -54,7 +54,7 @@ export const addUserThunk = (newUser) => {
         }, 2000);
       })
       .catch((e) => {
-        dispatch(failure(e));
+        dispatch(failure(e.response.data));
       });
     // setTimeout(() => {
     //   dispatch(unsetFetchingFlag(UNSET_FETCHING_USER));
@@ -77,7 +77,7 @@ export const getAllUsersThunk = () => {
           dispatch(success(res.data));
       })
       .catch((e) => {
-        dispatch(failure(e));
+        dispatch(failure(e.response.data));
       });
 
     // setTimeout(() => {
@@ -102,7 +102,7 @@ export const deleteUserThunk = (id) => {
         }, 2000);
       })
       .catch((e) => {
-        dispatch(failure(e));
+        dispatch(failure(e.response.data));
       });
 
     // setTimeout(() => {
@@ -121,13 +121,13 @@ export const editUserThunk = (id, user) => {
     dispatch(request());
     userService.update(id, user)
       .then((res) => {
-        debugger
+
         setTimeout(() => {
           dispatch(success(res.data.id, res.data));
         }, 2000);
       })
       .catch((e) => {
-        dispatch(failure(e));
+        dispatch(failure(e.response.data));
       });
 
     // setTimeout(() => {
@@ -136,7 +136,7 @@ export const editUserThunk = (id, user) => {
 
     function request (id) {return  { type: userConstants.EDIT_USER_REQUEST, id }}
     function success (id,user) {return { type: userConstants.DELETE_USER_SUCCES, id, user }} 
-    function failure (error) {return { type: userConstants.DELETE_USER_FAILURE, error,id }} 
+    function failure (error) {return { type: userConstants.DELETE_USER_FAILURE, error }} 
   };
 };
 
