@@ -1,13 +1,14 @@
 import React from "react";
 import { Link } from "react-router-dom";
 import { connect } from "react-redux";
+import { Redirect } from 'react-router-dom';
 
-import { login, logout, register } from "./../../store/actions/userActions";
+import { login, logout } from "./../../store/actions/authActions";
 
 const LoginPage = (props) => {
 
   // reset login status
-  this.props.logout();
+  props.logout();
 
   const [loginForm, setLoginForm] = React.useState({
     username: "",
@@ -29,7 +30,7 @@ const LoginPage = (props) => {
     }
   }
   
-  const { loggingIn } = this.props;
+  const { loggingIn } = props;
   
   const { username, password, submitted } = loginForm;
   return (
@@ -47,7 +48,7 @@ const LoginPage = (props) => {
               className="form-control"
               name="username"
               value={username}
-              onChange={this.handleChange}
+              onChange={handleChange}
             />
             {submitted && !username && (
               <div className="help-block">Username is required</div>
@@ -85,7 +86,7 @@ const LoginPage = (props) => {
 }
 
 function mapState(state) {
-  const { loggingIn } = state.authentication;
+  const { loggingIn } = state.auth;
   return { loggingIn };
 }
 

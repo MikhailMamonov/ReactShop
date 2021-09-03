@@ -14,21 +14,28 @@ using System.Text;
 using Microsoft.AspNetCore.Http;
 using ReactShop.Web.Handling.Authentication;
 using ReactShop.Web.Authentication;
+using AutoMapper;
+using ReactShop.Domain.DTOModels;
 
 namespace ReactShop.Web.Controllers
 {
     [ApiController]
     [Route("api/[controller]")]
-    public class AccountController : Controller
+    public class AuthController : Controller
     {
         private readonly UserManager<ApplicationUser> userManager;
         private readonly RoleManager<IdentityRole> roleManager;
         private readonly IConfiguration _configuration;
+        private readonly IMapper _mapper;
 
-        public AccountController(UserManager<ApplicationUser> userManager, RoleManager<IdentityRole> roleManager, IConfiguration configuration) {
+        public AuthController(UserManager<ApplicationUser> userManager,
+            RoleManager<IdentityRole> roleManager,
+            IConfiguration configuration,
+            IMapper mapper) {
             this.userManager = userManager;
             this.roleManager = roleManager;
             _configuration = configuration;
+            _mapper = mapper;
         }
 
 
@@ -61,11 +68,12 @@ namespace ReactShop.Web.Controllers
                     claims: authClaims,
                     signingCredentials: new SigningCredentials(authSigningKey, SecurityAlgorithms.HmacSha256)
                     );
-
+                var userDTO = _mapper.Map<UserDTO>(user);
                 return Ok(new
                 {
-                    token = new JwtSecurityTokenHandler().WriteToken(token),
-                    expiration = token.ValidTo
+                    accessToken = new JwtSecurityTokenHandler().WriteToken(token),
+                    expiration = token.ValidTo,
+                    user = userDTO
                 });
             }
             return Unauthorized();

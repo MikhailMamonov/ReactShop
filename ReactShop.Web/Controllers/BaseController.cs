@@ -29,6 +29,7 @@ namespace ReactShop.Web.Controllers
         }
 
         [HttpGet]
+
         public async Task<IActionResult> Get()
         {
             return await ExecuteCommand(async () =>

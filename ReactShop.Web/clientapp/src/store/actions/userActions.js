@@ -1,42 +1,11 @@
-import GeneralDataService from "../api/GeneralService";
 import userService from "../api/user.service";
 import {
-  // ADD_USER_SUCCESS,
-  // USER_ERROR,
-  // GET_USERS_SUCCESS,
-  // DELETE_USER_SUCCES,
-  // SET_FETCHING_USER,
-  // UNSET_FETCHING_USER,
-  // USERS,
-  // EDIT_USER_SUCCES,
-  // LOGIN_REQUEST,
-  // LOGIN_SUCCESS,
-  // LOGIN_FAILURE,
-  // REGISTER_REQUEST,
-  // REGISTER_SUCCESS,
-  // REGISTER_FAILURE
   userConstants
 } from "../constants";
 
-import {
-  deleteActionSuccess,
-  getActionSuccess,
-  setActionError,
-  setFetchingFlag,
-  unsetFetchingFlag,
-  editActionSuccess
-} from "./index";
 
-// export const addUserActionSuccess = (newUser) => ({
-//   type: ADD_USER_SUCCESS,
-//   payload: {
-//     displayName: newUser.displayName,
-//     password: newUser.password,
-//     email: newUser.email,
-//     id: newUser.id,
-//   },
-//   error: null,
-// });
+
+
 
 export const addUserThunk = (newUser) => {
   return (dispatch) => {
@@ -141,49 +110,3 @@ export const editUserThunk = (id, user) => {
 };
 
 
-export const login = (username, password) => {
-  return dispatch => {
-    dispatch(request({ username }));
-
-    userService.login(username, password)
-      .then(
-        user => {
-          dispatch(success(user));
-          //history.push('/');
-        }).catch(
-        err => {
-          dispatch(failure(err.toString()));
-        });
-  };
-
-  function request(user) { return { type: userConstants.LOGIN_REQUEST, user } }
-  function success(user) { return { type: userConstants.LOGIN_SUCCESS, user } }
-  function failure(error) { return { type: userConstants.LOGIN_FAILURE, error } }
-}
-
-export const logout = () => {
-  userService.logout();                                               
-  return { type: userConstants.LOGOUT };
-}
-
-export const register = (user) => {
-  return dispatch => {
-    dispatch(request(user));
-    userService.register(user)
-      .then(
-        user => {
-          dispatch(success());
-          //history.push('/login');
-          //dispatch(alertActions.success('Registration successful'));
-        },
-        error => {
-          dispatch(failure(error.toString()));
-          //dispatch(alertActions.error(error.toString()));
-        }
-      );
-  };
-
-  function request(user) { return { type: userConstants.REGISTER_REQUEST, user } }
-  function success(user) { return { type: userConstants.REGISTER_SUCCESS, user } }
-  function failure(error) { return { type: userConstants.REGISTER_FAILURE, error } }
-}

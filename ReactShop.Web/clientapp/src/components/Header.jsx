@@ -1,27 +1,58 @@
 import React, { Component } from "react";
-import { Nav } from "react-bootstrap";
-import { Navbar } from "react-bootstrap";
-import { Container } from "react-bootstrap";
+import {Button, Typography, Toolbar, AppBar, Link, makeStyles, IconButton, MenuIcon} from '@material-ui/core';
 
-class Header extends Component {
-  render() {
+
+const useStyles = makeStyles((theme) => ({
+  menuButton: {
+    marginRight: theme.spacing(8),
+  },
+  menuLink:{
+    marginLeft: theme.spacing(2),
+  }
+
+}));
+
+const Header = (props) => {
+
+  const classes = useStyles();
     return (
-      <div>
-        <Navbar bg="dark" variant="dark">
+      <div >
+        <AppBar position="static" color="black">
+          <Toolbar>
+          <Typography variant="h6" noWrap>
+          Online Shop 
+          </Typography>
+          {props.currentUser&&<Link href="/admin">Admin</Link>}
+              <Button href="/catalog" className={classes.menuLink} color="inherit" >Catalog</Button>
+              <Button href="/" className={classes.menuLink}  color="inherit" button>Home</Button>
+              {props.currentUser && <Link href="/login">User</Link>}
+              {props.currentUser ? (
+              
+                //<Nav.Link href="/profile">{props.currentUser.username}</Nav.Link>
+                <Link href="/login" className="nav-link" onClick={props.logOut}>LogOut</Link>
+              
+              ) :
+                (<div>
+                <Link className={classes.menuLink} href="/login">Login</Link> 
+                <Link className={classes.menuLink} href="/register" button>Register</Link>
+                </div>
+                )}
+                <Button className={classes.menuLink} color="inherit">Signup</Button>
+          </Toolbar>
+        
+        </AppBar>
+        {/* <Navbar bg="dark" variant="dark">
           <Container>
             <Navbar.Brand href="/">Navbar</Navbar.Brand>
             <Nav className="me-auto">
-              <Nav.Link href="/admin">Admin</Nav.Link>
-              <Nav.Link href="/catalog">Catalog</Nav.Link>
-              <Nav.Link href="/">Home</Nav.Link>
-              <Nav.Link href="/login">Login</Nav.Link>
-              <Nav.Link href="/register">Register</Nav.Link>
+              
+
             </Nav>
           </Container>
-        </Navbar>
+        </Navbar> */}
       </div>
     );
   }
-}
+
 
 export default Header;

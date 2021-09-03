@@ -2,15 +2,14 @@ import React from "react";
 import { Link } from "react-router-dom";
 import { connect } from "react-redux";
 
-import { register } from "./../../store/actions/userActions";
+import { register } from "./../../store/actions/authActions";
 
 const RegisterPage = (props) => {
   const [registerForm, setRegisterForm] = React.useState(
     {
       user: {
-        firstName: "",
-        lastName: "",
         username: "",
+        email:"",
         password: "",
       },
       submitted: false
@@ -33,51 +32,19 @@ const RegisterPage = (props) => {
     event.preventDefault();
     setRegisterForm({ ...registerForm, submitted: true });
     const { user } = registerForm;
-    if (user.firstName && user.lastName && user.username && user.password) {
-      props.register(user);
+    if (user.username&& user.email && user.password) {
+      props.register(user.username, user.email, user.password);
     }
   }
 
-  const { registering } = this.props;
+  const { registering } = props;
   const { user, submitted } = registerForm;
   return (
     <div className="col-md-6 col-md-offset-3">
       <h2>Register</h2>
+      {props.error?props.error.toString():null}
       <form name="form" onSubmit={handleSubmit}>
-        <div
-          className={
-            "form-group" + (submitted && !user.firstName ? " has-error" : "")
-          }
-        >
-          <label htmlFor="firstName">First Name</label>
-          <input
-            type="text"
-            className="form-control"
-            name="firstName"
-            value={user.firstName}
-            onChange={handleChange}
-          />
-          {submitted && !user.firstName && (
-            <div className="help-block">First Name is required</div>
-          )}
-        </div>
-        <div
-          className={
-            "form-group" + (submitted && !user.lastName ? " has-error" : "")
-          }
-        >
-          <label htmlFor="lastName">Last Name</label>
-          <input
-            type="text"
-            className="form-control"
-            name="lastName"
-            value={user.lastName}
-            onChange={handleChange}
-          />
-          {submitted && !user.lastName && (
-            <div className="help-block">Last Name is required</div>
-          )}
-        </div>
+          
         <div
           className={
             "form-group" + (submitted && !user.username ? " has-error" : "")
@@ -93,6 +60,25 @@ const RegisterPage = (props) => {
           />
           {submitted && !user.username && (
             <div className="help-block">Username is required</div>
+          )}
+        </div>
+
+        <div
+          className={
+            "form-group" + (submitted && !user.email ? " has-error" : "")
+          }
+        >
+          <label htmlFor="username">Email</label>
+          <input
+            type="text"
+            className="form-control"
+            name="email"
+            type="email"
+            value={user.email}
+            onChange={handleChange}
+          />
+          {submitted && !user.email && (
+            <div className="help-block">Email is required</div>
           )}
         </div>
         <div
@@ -127,7 +113,7 @@ const RegisterPage = (props) => {
 }
 
 function mapState(state) {
-  const { registering } = state.registration;
+  const { registering, error } = state.auth;
   return { registering };
 }
 
