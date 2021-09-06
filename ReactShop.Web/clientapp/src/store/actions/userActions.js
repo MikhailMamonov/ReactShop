@@ -29,9 +29,9 @@ export const addUserThunk = (newUser) => {
     //   dispatch(unsetFetchingFlag(UNSET_FETCHING_USER));
     // }, 2000);
 
-    const request = (user) =>{return { type: userConstants.ADD_USER_REQUEST, user }}
-    const success = (user) => {return { type: userConstants.ADD_USER_SUCCESS, user }}
-    const failure = (error) =>{return  { type: userConstants.ADD_USER_FAILURE, error }}
+    function request(user) {return { type: userConstants.ADD_USER_REQUEST, user }}
+    function success(user) {return { type: userConstants.ADD_USER_SUCCESS, user }}
+    function failure(error){return  { type: userConstants.ADD_USER_FAILURE, error }}
 
   };
 };
@@ -46,7 +46,7 @@ export const getAllUsersThunk = () => {
           dispatch(success(res.data));
       })
       .catch((e) => {
-        dispatch(failure(e.response.data));
+        dispatch(failure(e.message));
       });
 
     // setTimeout(() => {
@@ -78,9 +78,9 @@ export const deleteUserThunk = (id) => {
     //   dispatch(unsetFetchingFlag(UNSET_FETCHING_USER));
     // }, 2000);
 
-    const request = (id) => {return { type: userConstants.DELETE_USER_REQUEST, id }}
-    const success = (id) => {return { type: userConstants.DELETE_USER_SUCCES, id }}
-    const failure = (error) => {return { type: userConstants.DELETE_USER_FAILURE, error,id }}
+    function request (id)  {return { type: userConstants.DELETE_USER_REQUEST, id }}
+    function success (id)  {return { type: userConstants.DELETE_USER_SUCCES, id }}
+    function failure (error)  {return { type: userConstants.DELETE_USER_FAILURE, error,id }}
   };
 };
 

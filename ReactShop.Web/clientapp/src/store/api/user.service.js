@@ -1,5 +1,4 @@
 
-import { userConstants } from "..//constants";
 import http from './../../http-common';
 
 const getAll = () => {

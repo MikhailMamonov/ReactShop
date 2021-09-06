@@ -6,12 +6,9 @@ import {
   Paper,
   Select,
   TextField,
-  Input,
   InputLabel,
-  InputAdornment,
   FormControl,
 } from "@material-ui/core";
-import AttachMoneyIcon from "@material-ui/icons/AttachMoney";
 
 const useStyles = makeStyles((theme) => ({
   root: {

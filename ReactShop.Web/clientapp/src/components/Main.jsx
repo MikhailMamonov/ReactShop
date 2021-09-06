@@ -4,7 +4,7 @@ import Catalog from "./Catalog/Catalog";
 import Admin from "./Admin/Admin";
 import HomePage from "./HomePage";
 import { LoginPage } from "./LoginPage";
-import { RegisterPage } from "./RegisterPage";
+import {RegisterPage}  from "./RegisterPage";
 
 class Main extends Component {
   state = {};

@@ -5,9 +5,11 @@ const localStorageService = LocalStorageService.getService();
 
 
 const axiosInstance = axios.create({
-  baseURL: "https://localhost:44364/api",
+  baseURL: "http://localhost:58976/api",
   headers: {
     "Content-type": "application/json",
+    "Access-Control-Allow-Origin": "*",
+    "Access-Control-Allow-Methods": "GET,PUT,POST,DELETE,PATCH,OPTIONS"
   }
 });
 

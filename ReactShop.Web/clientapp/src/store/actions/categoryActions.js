@@ -1,10 +1,5 @@
 import GeneralDataService from "../api/GeneralService";
 import {
-  deleteActionSuccess,
-  editActionSuccess,
-  getActionSuccess,
-  setActionError,
-  setFetchingFlag,
   unsetFetchingFlag,
 } from "./index";
 import {

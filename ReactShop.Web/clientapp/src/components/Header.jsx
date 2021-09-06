@@ -1,5 +1,5 @@
-import React, { Component } from "react";
-import {Button, Typography, Toolbar, AppBar, Link, makeStyles, IconButton, MenuIcon} from '@material-ui/core';
+import React from "react";
+import {Button, Typography, Toolbar, AppBar, Link, makeStyles} from '@material-ui/core';
 
 
 const useStyles = makeStyles((theme) => ({
@@ -17,14 +17,14 @@ const Header = (props) => {
   const classes = useStyles();
     return (
       <div >
-        <AppBar position="static" color="black">
+        <AppBar position="static">
           <Toolbar>
           <Typography variant="h6" noWrap>
           Online Shop 
           </Typography>
           {props.currentUser&&<Link href="/admin">Admin</Link>}
               <Button href="/catalog" className={classes.menuLink} color="inherit" >Catalog</Button>
-              <Button href="/" className={classes.menuLink}  color="inherit" button>Home</Button>
+              <Button href="/" className={classes.menuLink}  color="inherit" >Home</Button>
               {props.currentUser && <Link href="/login">User</Link>}
               {props.currentUser ? (
               
@@ -33,11 +33,11 @@ const Header = (props) => {
               
               ) :
                 (<div>
-                <Link className={classes.menuLink} href="/login">Login</Link> 
-                <Link className={classes.menuLink} href="/register" button>Register</Link>
+                <Button className={classes.menuLink} color="inherit"  href="/login">Login</Button> 
+                <Button className={classes.menuLink} color="inherit"  href="/register">Register</Button>
                 </div>
                 )}
-                <Button className={classes.menuLink} color="inherit">Signup</Button>
+                <Button className={classes.menuLink} >Signup</Button>
           </Toolbar>
         
         </AppBar>

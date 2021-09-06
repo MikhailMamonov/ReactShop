@@ -1,6 +1,5 @@
  
 import http from "./../../http-common";
-import authHeader from './auth-header';
 
 const  login = (username, password) => {
     // const requestOptions = {

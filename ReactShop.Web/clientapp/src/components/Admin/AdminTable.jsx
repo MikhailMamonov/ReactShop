@@ -6,20 +6,15 @@ import {
   TableRow,
   TableRowColumn,
 } from "material-ui/Table";
-import { makeStyles } from "@material-ui/core/styles";
 import EditIcon from "@material-ui/icons/Edit";
 import DeleteIcon from "@material-ui/icons/Delete";
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 import TextField from "material-ui/TextField";
 import CheckIcon from '@material-ui/icons/Check';
 
 //https://github.com/benawad/basic-react-form/tree/6_edit_delete_rows
 const AdminTable = (props) => {
-  const useStyles = makeStyles({
-    table: {
-      minWidth: 650,
-    },
-  });
+
 
   const [editIdx, setEditIdx] = useState(-1);
   const [currentRow, setCurrentRow] = useState({});
@@ -83,7 +78,6 @@ const AdminTable = (props) => {
     );
   };
 
-  const classes = useStyles();
   return (
     <Table>
       <TableHeader>

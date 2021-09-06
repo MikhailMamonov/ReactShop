@@ -1,11 +1,8 @@
 import TextField from "@material-ui/core/TextField";
-import React, { useState } from "react";
+import React from "react";
 import { Button, Paper } from "@material-ui/core";
 
 export default function CreateUser(props) {
-  // const [email, setEmail] = React.useState("");
-  // const [displayName, setDisplayName] = React.useState("");
-  // const [password, setPassword] = React.useState("");
   const [user, setUser] = React.useState("");
 
   const handleSubmit = (e) => {
