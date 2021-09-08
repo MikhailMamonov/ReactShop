@@ -12,14 +12,14 @@ using System.Threading.Tasks;
 
 namespace ReactShop.Web.Controllers
 {
-    [Authorize]
+
     [Route("api/[controller]")]
     public class BaseController<T> : Controller where T : class
     {
-        protected IDatabaseService<T> _databaseService { get; private set;}
-    private readonly IMapper _mapper;
+        protected IDatabaseService<T> _databaseService { get; private set; }
+        private readonly IMapper _mapper;
         private ILoggerManager _logger;
-        
+
 
         public BaseController(IDatabaseService<T> databaseService, IMapper mapper, ILoggerManager logger)
         {
@@ -37,7 +37,7 @@ namespace ReactShop.Web.Controllers
                 var objectList = await _databaseService.GetList();
                 return Ok(objectList);
             });
-           
+
         }
 
         [HttpGet("{id}")]
@@ -50,6 +50,8 @@ namespace ReactShop.Web.Controllers
             });
         }
 
+        [Authorize]
+        [HttpPost]
         public async Task<IActionResult> Post([FromBody] T requestValue)
         {
             Func<Task<IActionResult>> exceptionCommand = async () =>
@@ -73,6 +75,7 @@ namespace ReactShop.Web.Controllers
             return await ExecuteCommand(exceptionCommand);
         }
 
+        [Authorize]
         [HttpPut("{id}")]
         public async Task<IActionResult> Edit(string id, [FromBody] T requestValue)
         {
@@ -86,7 +89,7 @@ namespace ReactShop.Web.Controllers
             });
         }
 
-
+        [Authorize]
         [HttpPut("{id:int}")]
         public async Task<IActionResult> Edit(int id, [FromBody] T requestValue)
         {
@@ -100,6 +103,7 @@ namespace ReactShop.Web.Controllers
             });
         }
 
+        [Authorize]
         [HttpDelete("{id:int}")]
         public async Task<IActionResult> Remove(int id)
         {
@@ -119,6 +123,7 @@ namespace ReactShop.Web.Controllers
             );  
         }
 
+        [Authorize]
         [HttpDelete("{id}")]
         public async Task<IActionResult> Remove(string id)
         {

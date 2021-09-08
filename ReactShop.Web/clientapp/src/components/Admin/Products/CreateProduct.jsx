@@ -31,7 +31,6 @@ export default function CreateProduct(props) {
   const handleSubmit = (e) => {
     e.preventDefault();
     handleReset();
-    debugger;
     props.onAdd(product);
   };
 
@@ -59,7 +58,6 @@ export default function CreateProduct(props) {
         type="number"
         onChange={(e) => setProduct({ ...product, price: e.target.value })}
         value={product["price"]}
-        
         InputLabelProps={{
           shrink: true,
         }}

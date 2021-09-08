@@ -1,9 +1,7 @@
 import GeneralDataService from "../api/GeneralService";
+import { unsetFetchingFlag } from "./index";
 import {
-  unsetFetchingFlag,
-} from "./index";
-import {
-  categoryConstants
+  categoryConstants,
   // ADD_CATEGORY_SUCCESS,
   // GET_CATEGORIES_SUCCESS,
   // DELETE_CATEGORY_SUCCESS,
@@ -32,20 +30,26 @@ export const addCategoryThunk = (newCategory) => {
     })
       .then((res) => {
         //dispatch(addCategoryActionSuccess(res.data));
-        dispatch(success(res.data))
+        dispatch(success(res.data));
       })
       .catch((e) => {
         //dispatch(setActionError(categoryConstants.CATEGORY_ERROR, e.response.data));
         dispatch(failure(e.response.data));
       });
 
-    setTimeout(() => {
-      dispatch(unsetFetchingFlag(categoryConstants.UNSET_FETCHING_CATEGORY));
-    }, 2000);
+    // setTimeout(() => {
+    //   dispatch(unsetFetchingFlag(categoryConstants.UNSET_FETCHING_CATEGORY));
+    // }, 2000);
 
-    function request(category) {return { type: categoryConstants.ADD_CATEGORY_REQUEST, category }}
-    function success(category){return { type: categoryConstants.ADD_CATEGORY_SUCCESS, category }}
-    function failure(error) {return  { type: categoryConstants.ADD_CATEGORY_FAILURE, error }}
+    function request(category) {
+      return { type: categoryConstants.ADD_CATEGORY_REQUEST, category };
+    }
+    function success(category) {
+      return { type: categoryConstants.ADD_CATEGORY_SUCCESS, category };
+    }
+    function failure(error) {
+      return { type: categoryConstants.ADD_CATEGORY_FAILURE, error };
+    }
   };
 };
 
@@ -56,20 +60,22 @@ export const getAllCategoriesThunk = () => {
     GeneralDataService.getAll(categoryConstants.CATEGORIES)
       .then((res) => {
         //dispatch(getActionSuccess(categoryConstants.GET_CATEGORIES_SUCCESS, res.data));
-        dispatch(success(res.data))
+        dispatch(success(res.data));
       })
       .catch((e) => {
         //dispatch(setActionError(categoryConstants.CATEGORY_ERROR, e));
-        dispatch(failure(e.response.data));
+        dispatch(failure(e.message));
       });
 
-    setTimeout(() => {
-      dispatch(unsetFetchingFlag(categoryConstants.UNSET_FETCHING_CATEGORY));
-    }, 2000);
-
-    function request(){return { type: categoryConstants.GET_CATEGORIES_REQUEST}}
-    function success(categories)  {return { type: categoryConstants.GET_CATEGORIES_SUCCESS, categories }}
-    function failure(error) {return  { type: categoryConstants.GET_CATEGORIES_FAILURE, error }}
+    function request() {
+      return { type: categoryConstants.GET_CATEGORIES_REQUEST };
+    }
+    function success(categories) {
+      return { type: categoryConstants.GET_CATEGORIES_SUCCESS, categories };
+    }
+    function failure(error) {
+      return { type: categoryConstants.GET_CATEGORIES_FAILURE, error };
+    }
   };
 };
 
@@ -78,15 +84,21 @@ export const deleteCategoryThunk = (id) => {
     dispatch(request(id));
     GeneralDataService.remove(categoryConstants.CATEGORIES, id)
       .then((res) => {
-        dispatch(success(res.data.id, res.data))
+        dispatch(success(res.data.id, res.data));
       })
       .catch((e) => {
         dispatch(failure(e.response.data));
       });
 
-    function request (id){return { type: categoryConstants.ADD_CATEGORY_REQUEST, id }}
-    function success (id) {return { type: categoryConstants.ADD_CATEGORY_SUCCESS, id }}
-    function failure (error){return  { type: categoryConstants.ADD_CATEGORY_FAILURE, error }}
+    function request(id) {
+      return { type: categoryConstants.ADD_CATEGORY_REQUEST, id };
+    }
+    function success(id) {
+      return { type: categoryConstants.ADD_CATEGORY_SUCCESS, id };
+    }
+    function failure(error) {
+      return { type: categoryConstants.ADD_CATEGORY_FAILURE, error };
+    }
   };
 };
 
@@ -110,8 +122,14 @@ export const editCategoryThunk = (id, item) => {
       dispatch(unsetFetchingFlag(categoryConstants.UNSET_FETCHING_CATEGORY));
     }, 2000);
 
-    function request (id) {return  { type: categoryConstants.EDIT_CATEGORY_REQUEST, id }}
-    function success (id,category) {return { type: categoryConstants.EDIT_CATEGORY_SUCCESS, id, category }} 
-    function failure (error) {return { type: categoryConstants.EDIT_CATEGORY_FAILURE, error,id }} 
+    function request(id) {
+      return { type: categoryConstants.EDIT_CATEGORY_REQUEST, id };
+    }
+    function success(id, category) {
+      return { type: categoryConstants.EDIT_CATEGORY_SUCCESS, id, category };
+    }
+    function failure(error) {
+      return { type: categoryConstants.EDIT_CATEGORY_FAILURE, error, id };
+    }
   };
 };

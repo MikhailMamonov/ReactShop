@@ -96,7 +96,10 @@ namespace ReactShop.Web.Controllers
             };
             var result = await userManager.CreateAsync(user, model.Password);
             if (!result.Succeeded)
-                return StatusCode(StatusCodes.Status500InternalServerError, new Response { Status = "Error", Message = "User creation failed! Please check user details and try again." });
+            {
+                var errors = result.Errors.Select(er => er.Description);
+                return StatusCode(StatusCodes.Status500InternalServerError, new Response { Status = "Error", Message = string.Join("\n", errors) });
+            }
 
             return Ok(new Response { Status = "Success", Message = "User created successfully!" });
         }

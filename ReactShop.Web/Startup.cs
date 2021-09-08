@@ -10,11 +10,14 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.IdentityModel.Tokens;
+
 using NLog;
+
 using ReactShop.Domain;
 using ReactShop.Domain.Entities;
 using ReactShop.LoggerService;
 using ReactShop.Web.Extensions;
+
 using System;
 using System.IO;
 using System.Net;
@@ -39,7 +42,7 @@ namespace ReactShop
             //For Entity Framework
             services.AddDbContext<ApplicationDbContext>(options => options.UseSqlServer(Configuration.GetConnectionString("DefaultConnection")));
             // For Identity  
-            services.AddIdentity<ApplicationUser,IdentityRole>()
+            services.AddIdentity<ApplicationUser, IdentityRole>()
                 .AddEntityFrameworkStores<ApplicationDbContext>();
 
             // Adding Authentication  
@@ -49,7 +52,7 @@ namespace ReactShop
                 options.DefaultChallengeScheme = JwtBearerDefaults.AuthenticationScheme;
                 options.DefaultScheme = JwtBearerDefaults.AuthenticationScheme;
             })
-             // Adding Jwt Bearer  
+            // Adding Jwt Bearer  
             .AddJwtBearer(options =>
             {
                 options.SaveToken = true;
@@ -101,7 +104,7 @@ namespace ReactShop
                        .AllowAnyHeader();
             }));
 
-            
+
             // In production, the React files will be served from this directory
             services.AddSpaStaticFiles(configuration =>
             {
@@ -124,14 +127,19 @@ namespace ReactShop
                 app.UseHsts();
             }
 
-           
+
 
             app.UseHttpsRedirection();
 
-            
+            app.UseCors(x => x
+                .AllowAnyOrigin()
+                .AllowAnyMethod()
+                .AllowAnyHeader());
+
+
             app.UseStaticFiles();
             app.UseSpaStaticFiles();
-            
+
             app.UseRouting();
             app.UseAuthorization();
 
