@@ -3,7 +3,10 @@ import { Link } from "react-router-dom";
 import { connect } from "react-redux";
 import { useSelector } from "react-redux";
 import { useHistory } from "react-router-dom";
-import { register, resetRegisterForm } from "./../../store/actions/authActions";
+import {
+  register,
+  resetRegisterForm,
+} from "../store/reducers/auth/authActions";
 import { compose } from "redux";
 import { withRouter } from "react-router";
 

@@ -49,8 +49,4 @@ const mapDispatchToProps = (dispatch) => {
   return {};
 };
 
-const connectedErrorPage = connect(
-  mapStateToProps,
-  mapDispatchToProps
-)(ErrorPage);
-export { connectedErrorPage as ErrorPage };
+export default connect(mapStateToProps, mapDispatchToProps)(ErrorPage);

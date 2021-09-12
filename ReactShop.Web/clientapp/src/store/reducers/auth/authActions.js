@@ -1,6 +1,6 @@
-import authService from "../api/auth.service";
-import { authConstants } from "../constants";
-import { history } from "./../../helpers/history";
+import authService from "../../api/auth.service";
+import { authConstants } from "../../constants";
+import { history } from "./../../../helpers/history";
 
 export const login = (username, password) => {
   return (dispatch) => {
@@ -8,8 +8,8 @@ export const login = (username, password) => {
 
     authService
       .login(username, password)
-      .then((user) => {
-        dispatch(success(user));
+      .then((res) => {
+        dispatch(success(res.user, res.accessToken));
         history.push("/");
       })
       .catch((err) => {
@@ -20,8 +20,8 @@ export const login = (username, password) => {
   function request(user) {
     return { type: authConstants.LOGIN_REQUEST, user };
   }
-  function success(user) {
-    return { type: authConstants.LOGIN_SUCCESS, user };
+  function success(user, accessToken) {
+    return { type: authConstants.LOGIN_SUCCESS, user, accessToken };
   }
   function failure(error) {
     return { type: authConstants.LOGIN_FAILURE, error };

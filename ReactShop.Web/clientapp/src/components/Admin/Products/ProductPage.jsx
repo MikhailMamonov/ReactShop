@@ -1,15 +1,15 @@
-import { Container} from "react-bootstrap";
+import { Container } from "react-bootstrap";
 import Loader from "react-loader-spinner";
 
 import CreateProduct from "./CreateProduct";
 import AdminTable from "../AdminTable";
 import { getColumns } from "../utils";
 
-const Products = (props) => {
+const Product = (props) => {
   return (
     <div>
       <Container>
-        <h2>Products</h2>
+        <h2>Product</h2>
         {props.error ?? null}
         <Loader
           type="Bars"
@@ -19,7 +19,7 @@ const Products = (props) => {
           width={80}
         />
         <CreateProduct onAdd={props.onAddProductClick}></CreateProduct>
-        {/* {products.length? <ul>{products}</ul>: "Products not exists"} */}
+        {/* {products.length? <ul>{products}</ul>: "Product not exists"} */}
 
         <AdminTable
           rows={props.products}
@@ -32,4 +32,4 @@ const Products = (props) => {
   );
 };
 
-export default Products;
+export default Product;

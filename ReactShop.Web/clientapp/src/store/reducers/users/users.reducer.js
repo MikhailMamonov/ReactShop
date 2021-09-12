@@ -1,6 +1,4 @@
-import {
-  userConstants
-} from "../constants";
+import { userConstants } from "../../constants";
 
 const initialState = {
   users: [],
@@ -14,8 +12,8 @@ export default function usersReducer(state = initialState, action) {
       return {
         ...state,
         isLoading: true,
-        error: null
-      }
+        error: null,
+      };
     case userConstants.ADD_USER_SUCCESS:
       return {
         ...state,
@@ -25,91 +23,86 @@ export default function usersReducer(state = initialState, action) {
             id: action.user.id,
             displayName: action.user.displayName,
             email: action.user.email,
-            password: action.user.password
+            password: action.user.password,
           },
         ],
         error: null,
-        isLoading: false
+        isLoading: false,
       };
     case userConstants.ADD_USER_FAILURE:
       return {
         ...state,
         error: action.error,
-        isLoading: false
-      }
-            
-
+        isLoading: false,
+      };
 
     case userConstants.GET_USERS_REQUEST:
       return {
         ...state,
-        error: null, 
-        isLoading :true 
-      }
-    case userConstants.GET_USERS_SUCCESS:
-      {
-        return {
+        error: null,
+        isLoading: true,
+      };
+    case userConstants.GET_USERS_SUCCESS: {
+      return {
         ...state,
         users: action.users,
         error: null,
-        isLoading: false
-      }}
-      case userConstants.GET_USERS_FAILURE:
-        return {
-          ...state,
-          error: action.error,
-          isLoading: false
-        }
-
+        isLoading: false,
+      };
+    }
+    case userConstants.GET_USERS_FAILURE:
+      return {
+        ...state,
+        error: action.error,
+        isLoading: false,
+      };
 
     case userConstants.EDIT_USER_REQUEST:
       return {
         ...state,
-        error: null, 
-        isLoading :true 
-      }
+        error: null,
+        isLoading: true,
+      };
     case userConstants.EDIT_USER_SUCCESS:
       return {
         ...state,
-        users: state.users.map(p =>
-          p.id === action.payload.id ? action.payload.item : p),
+        users: state.users.map((p) => (p.id === action.id ? action.user : p)),
         error: null,
-        isLoading: false
-      }
-      case userConstants.EDIT_USER_FAILURE:
-        return {
-          ...state,
-          error: action.error,
-          isLoading: false
-        }
+        isLoading: false,
+      };
+    case userConstants.EDIT_USER_FAILURE:
+      return {
+        ...state,
+        error: action.error,
+        isLoading: false,
+      };
 
-
-      case userConstants.DELETE_USER_REQUEST:
-        return {
-          ...state,
-          error: null, 
-          isLoading :true 
-        }
+    case userConstants.DELETE_USER_REQUEST:
+      return {
+        ...state,
+        error: null,
+        isLoading: true,
+      };
     case userConstants.DELETE_USER_SUCCES:
       return {
         ...state,
-        users: state.users.filter((u) => u.id !== action.payload.idForDelete),
+        users: state.users.filter((u) => u.id !== action.id),
         error: null,
-        isLoading: false
+        isLoading: false,
       };
 
-      case userConstants.DELETE_USER_FAILURE:
-        return {
-          ...state,
-          error: action.error,
-          isLoading: false
-        }
+    case userConstants.DELETE_USER_FAILURE:
+      return {
+        ...state,
+        error: action.error,
+        isLoading: false,
+      };
 
     case userConstants.USER_ERROR:
       return {
         ...state,
         error: action.error,
-      }
+      };
 
     case userConstants.SET_FETCHING_USER:
       return {
@@ -120,8 +113,8 @@ export default function usersReducer(state = initialState, action) {
     case userConstants.UNSET_FETCHING_USER:
       return {
         ...state,
-        isLoading: false
-      }
+        isLoading: false,
+      };
     default:
       return state;
   }

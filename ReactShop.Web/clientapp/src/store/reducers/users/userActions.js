@@ -1,5 +1,5 @@
-import userService from "../api/user.service";
-import { userConstants } from "../constants";
+import userService from "../../api/user.service";
+import { userConstants } from "../../constants";
 
 export const addUserThunk = (newUser) => {
   return (dispatch) => {

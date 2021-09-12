@@ -2,9 +2,9 @@ import { connect } from "react-redux";
 import {
   addProductThunk,
   deleteProductThunk,
-  editProductThunk
-} from "../../../store/actions/productActions";
-import Products from "./Products";
+  editProductThunk,
+} from "../../../store/reducers/products/productActions";
+import Products from "./ProductPage";
 
 const mapStateToProps = (state) => {
   return {

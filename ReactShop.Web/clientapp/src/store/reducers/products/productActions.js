@@ -1,10 +1,10 @@
 //import ProductsDataService from '../api/ProductService'
-import GeneralDataService from "../api/GeneralService";
-import { productConstants } from "..//constants/product.constants";
+import GeneralDataService from "../../api/GeneralService";
+import { productConstants } from "../../constants/product.constants";
 
 export const addProductActionSuccess = (newProduct) => ({
   type: productConstants.ADD_PRODUCT_SUCCESS,
-  payload: {
+  product: {
     name: newProduct.name,
     price: newProduct.price,
     id: newProduct.id,
@@ -15,7 +15,7 @@ export const addProductActionSuccess = (newProduct) => ({
 
 export const editProductActionSuccess = (id, item) => ({
   type: productConstants.EDIT_PRODUCT_SUCCESS,
-  payload: {
+  product: {
     id: id,
     item: item,
   },

@@ -1,5 +1,9 @@
 import { connect } from "react-redux";
-import { addUserThunk, deleteUserThunk,editUserThunk } from "../../../store/actions/userActions";
+import {
+  addUserThunk,
+  deleteUserThunk,
+  editUserThunk,
+} from "../../../store/reducers/users/userActions";
 import Users from "./Users";
 
 const mapStateToProps = (state) => {
@@ -20,7 +24,7 @@ const mapDispatchToProps = (dispatch) => {
     },
     onEditUserClick: (id, item) => {
       dispatch(editUserThunk(id, item));
-    }
+    },
   };
 };
 

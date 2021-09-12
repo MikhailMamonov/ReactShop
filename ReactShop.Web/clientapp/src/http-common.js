@@ -3,28 +3,28 @@ import LocalStorageService from "./LocalStorageService";
 
 const localStorageService = LocalStorageService.getService();
 
-
 const axiosInstance = axios.create({
   baseURL: "http://localhost:58976/api",
   headers: {
     "Content-type": "application/json",
     "Access-Control-Allow-Origin": "*",
-    "Access-Control-Allow-Methods": "GET,PUT,POST,DELETE,PATCH,OPTIONS"
-  }
+    "Access-Control-Allow-Methods": "GET,PUT,POST,DELETE,PATCH,OPTIONS",
+  },
 });
 
 // Request interceptor for API calls
 axiosInstance.interceptors.request.use(
-  config => {
+  (config) => {
     const token = localStorageService.getAccessToken();
     if (token) {
-      config.headers['Authorization'] = 'Bearer ' + token;
+      config.headers["Authorization"] = "Bearer " + token;
     }
     return config;
   },
-  error => {
-    Promise.reject(error)
-  });
+  (error) => {
+    Promise.reject(error);
+  }
+);
 
 // axiosInstance.interceptors.response.use((response) => {
 //   return response
@@ -38,9 +38,8 @@ axiosInstance.interceptors.request.use(
 //       return axios_instance(config);
 //     }
 
-    
 //     if (error.response.status === ANOTHER_STATUS_CODE) {
-//       // Do something 
+//       // Do something
 //       return Promise.reject(error.response.data);
 //     }
 //   }

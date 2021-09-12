@@ -1,20 +1,10 @@
-import GeneralDataService from "../api/GeneralService";
-import { unsetFetchingFlag } from "./index";
-import {
-  categoryConstants,
-  // ADD_CATEGORY_SUCCESS,
-  // GET_CATEGORIES_SUCCESS,
-  // DELETE_CATEGORY_SUCCESS,
-  // CATEGORIES,
-  // CATEGORY_ERROR,
-  // SET_FETCHING_CATEGORY,
-  // UNSET_FETCHING_CATEGORY,
-  // EDIT_CATEGORY_SUCCES,
-} from "../constants";
+import GeneralDataService from "../../api/GeneralService";
+//import { unsetFetchingFlag } from "./index";
+import { categoryConstants } from "../../constants";
 
 export const addCategoryActionSuccess = (newCategory) => ({
   type: categoryConstants.ADD_CATEGORY_SUCCESS,
-  payload: {
+  category: {
     name: newCategory.name,
     id: newCategory.id,
   },
@@ -36,10 +26,6 @@ export const addCategoryThunk = (newCategory) => {
         //dispatch(setActionError(categoryConstants.CATEGORY_ERROR, e.response.data));
         dispatch(failure(e.response.data));
       });
-
-    // setTimeout(() => {
-    //   dispatch(unsetFetchingFlag(categoryConstants.UNSET_FETCHING_CATEGORY));
-    // }, 2000);
 
     function request(category) {
       return { type: categoryConstants.ADD_CATEGORY_REQUEST, category };
@@ -117,10 +103,6 @@ export const editCategoryThunk = (id, item) => {
         //dispatch(setActionError(categoryConstants.CATEGORY_ERROR, e));
         dispatch(failure(e.response.data));
       });
-
-    setTimeout(() => {
-      dispatch(unsetFetchingFlag(categoryConstants.UNSET_FETCHING_CATEGORY));
-    }, 2000);
 
     function request(id) {
       return { type: categoryConstants.EDIT_CATEGORY_REQUEST, id };

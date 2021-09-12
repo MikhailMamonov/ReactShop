@@ -7,7 +7,7 @@ import {
   // DELETE_CATEGORY_SUCCESS,
   // ADD_CATEGORY_SUCCESS,
   // EDIT_CATEGORY_SUCCES
-} from "../constants/category.constants";
+} from "../../constants/category.constants";
 
 const initialState = {
   categories: [],
@@ -40,8 +40,8 @@ export default function categoriesReducer(state = initialState, action) {
         categories: [
           ...state.categories,
           {
-            id: action.payload.id,
-            name: action.payload.name,
+            id: action.category.id,
+            name: action.category.name,
           },
         ],
         error: null,
@@ -84,9 +84,7 @@ export default function categoriesReducer(state = initialState, action) {
     case categoryConstants.DELETE_CATEGORY_SUCCESS:
       return {
         ...state,
-        categories: state.categories.filter(
-          (c) => c.id !== action.payload.idForDelete
-        ),
+        categories: state.categories.filter((c) => c.id !== action.id),
         error: null,
       };
 
@@ -107,7 +105,7 @@ export default function categoriesReducer(state = initialState, action) {
       return {
         ...state,
         categories: state.categories.map((p) =>
-          p.id === action.payload.id ? action.payload.item : p
+          p.id === action.category.id ? action.category.item : p
         ),
         error: null,
       };
