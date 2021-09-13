@@ -8,7 +8,7 @@ import {
   makeStyles,
 } from "@material-ui/core";
 import { connect } from "react-redux";
-import { logout } from "../store/reducers/auth/authActions";
+import { logout } from "../store/reducers/auth/auth.actions";
 import { useHistory } from "react-router-dom";
 
 const useStyles = makeStyles((theme) => ({

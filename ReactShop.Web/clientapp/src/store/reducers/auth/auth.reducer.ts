@@ -1,19 +1,31 @@
-import { authConstants } from "../../constants";
+import { IUser } from "../../../models/User";
+import { initialState } from "./auth.state";
+import {
+  loginFailureActionCreator,
+  loginSuccessActionCreator,
+} from "./auth.actions";
+import { authConstants } from "./../../constants/auth.constants";
 
-let currentUser = JSON.parse(localStorage.getItem("user"));
-let accessToken = localStorage.getItem("accessToken");
-const initialState = currentUser
-  ? { isLoggedIn: true, currentUser, accessToken }
-  : { isLoggedIn: false, currentUser: null, accessToken: null };
+export interface ILoginSuccessAction {
+  type: authConstants.LOGIN_SUCCESS;
+  user: IUser;
+  accessToken: string;
+}
 
-export default function auth(state = initialState, action) {
+export interface IRegisterRequestAction {
+  type: authConstants.REGISTER_REQUEST;
+}
+
+type ActionTypes = ILoginSuccessAction | IRegisterRequestAction;
+
+export default function auth(state = initialState, action: ActionTypes) {
   switch (action.type) {
     case authConstants.REGISTER_REQUEST:
       return {
         ...state,
         isLoggedIn: false,
         registering: true,
-        error: null,
+        error: 5,
       };
     case authConstants.REGISTER_SUCCESS:
       return {

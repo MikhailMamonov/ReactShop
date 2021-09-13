@@ -2,7 +2,7 @@ import React from "react";
 import { Link } from "react-router-dom";
 import { connect } from "react-redux";
 import { makeStyles } from "@material-ui/core/styles";
-import { login } from "./../store/reducers/auth/authActions";
+import { login } from "../store/reducers/auth/auth.actions";
 import {
   Paper,
   Grid,
@@ -13,6 +13,11 @@ import {
   withStyles,
 } from "@material-ui/core";
 import { Face, Fingerprint } from "@material-ui/icons";
+import { RootState } from "../store/store";
+
+interface ILoginProps {
+  loggingIn: boolean;
+}
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -36,17 +41,17 @@ const LoginPage = (props) => {
     submitted: false,
   });
 
-  const handleChange = (e) => {
-    const { name, value } = e.target;
+  const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+    const { name, value } = event.target;
     setLoginForm({ ...loginForm, [name]: value });
   };
 
-  const handleSubmit = (e) => {
-    e.preventDefault();
+  const handleSubmit = (event: React.MouseEvent<HTMLElement>) => {
+    event.preventDefault();
     setLoginForm({ ...loginForm, submitted: true });
     const { username, password } = loginForm;
     if (username && password) {
-      props.login(username, password);
+      login({ username, password });
     }
   };
 
@@ -88,7 +93,7 @@ const LoginPage = (props) => {
                 name="password"
                 type="password"
                 value={password}
-                onChange={() => handleChange()}
+                onChange={handleChange}
                 fullWidth
                 required
               />
@@ -125,63 +130,14 @@ const LoginPage = (props) => {
           </Grid>
         </div>
       </Paper>
-      {/* 
-      <form name="form" onSubmit={handleSubmit}>
-        <div
-          className={
-            "form-group" + (submitted && !username ? " has-error" : "")
-          }
-        >
-          <label htmlFor="username">Username</label>
-          <input
-            type="text"
-            className="form-control"
-            name="username"
-            value={username}
-            onChange={handleChange}
-          />
-          {submitted && !username && (
-            <div className="help-block">Username is required</div>
-          )}
-        </div>
-        <div
-          className={
-            "form-group" + (submitted && !password ? " has-error" : "")
-          }
-        >
-          <label htmlFor="password">Password</label>
-          <input
-            type="password"
-            className="form-control"
-            name="password"
-            value={password}
-            onChange={handleChange}
-          />
-          {submitted && !password && (
-            <div className="help-block">Password is required</div>
-          )}
-        </div>
-        <div className="form-group">
-          <button className="btn btn-primary">Login</button>
-          {loggingIn && (
-            <img
-              src="data:image/gif;base64,R0lGODlhEAAQAPIAAP///wAAAMLCwkJCQgAAAGJiYoKCgpKSkiH/C05FVFNDQVBFMi4wAwEAAAAh/hpDcmVhdGVkIHdpdGggYWpheGxvYWQuaW5mbwAh+QQJCgAAACwAAAAAEAAQAAADMwi63P4wyklrE2MIOggZnAdOmGYJRbExwroUmcG2LmDEwnHQLVsYOd2mBzkYDAdKa+dIAAAh+QQJCgAAACwAAAAAEAAQAAADNAi63P5OjCEgG4QMu7DmikRxQlFUYDEZIGBMRVsaqHwctXXf7WEYB4Ag1xjihkMZsiUkKhIAIfkECQoAAAAsAAAAABAAEAAAAzYIujIjK8pByJDMlFYvBoVjHA70GU7xSUJhmKtwHPAKzLO9HMaoKwJZ7Rf8AYPDDzKpZBqfvwQAIfkECQoAAAAsAAAAABAAEAAAAzMIumIlK8oyhpHsnFZfhYumCYUhDAQxRIdhHBGqRoKw0R8DYlJd8z0fMDgsGo/IpHI5TAAAIfkECQoAAAAsAAAAABAAEAAAAzIIunInK0rnZBTwGPNMgQwmdsNgXGJUlIWEuR5oWUIpz8pAEAMe6TwfwyYsGo/IpFKSAAAh+QQJCgAAACwAAAAAEAAQAAADMwi6IMKQORfjdOe82p4wGccc4CEuQradylesojEMBgsUc2G7sDX3lQGBMLAJibufbSlKAAAh+QQJCgAAACwAAAAAEAAQAAADMgi63P7wCRHZnFVdmgHu2nFwlWCI3WGc3TSWhUFGxTAUkGCbtgENBMJAEJsxgMLWzpEAACH5BAkKAAAALAAAAAAQABAAAAMyCLrc/jDKSatlQtScKdceCAjDII7HcQ4EMTCpyrCuUBjCYRgHVtqlAiB1YhiCnlsRkAAAOwAAAAAAAAAAAA=="
-              alt=""
-            />
-          )}
-          <Link to="/register" className="btn btn-link">
-            Register
-          </Link>
-        </div>
-      </form> */}
     </div>
   );
 };
 
-function mapState(state) {
-  const { loggingIn } = state.auth;
+const mapState = (state: RootState): ILoginProps => {
+  const { loggingIn }: { loggingIn: boolean } = state.auth;
   return { loggingIn };
-}
+};
 
 const actionCreators = {
   login: login,

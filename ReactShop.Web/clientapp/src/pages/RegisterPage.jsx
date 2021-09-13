@@ -6,7 +6,7 @@ import { useHistory } from "react-router-dom";
 import {
   register,
   resetRegisterForm,
-} from "../store/reducers/auth/authActions";
+} from "../store/reducers/auth/auth.actions";
 import { compose } from "redux";
 import { withRouter } from "react-router";
 
