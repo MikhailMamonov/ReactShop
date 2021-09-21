@@ -1,8 +1,7 @@
 import React from "react";
-import { Link } from "react-router-dom";
 import { connect } from "react-redux";
-import { makeStyles } from "@material-ui/core/styles";
-import { login } from "../store/reducers/auth/auth.actions";
+import { makeStyles, Theme } from "@material-ui/core/styles";
+import { login } from "../store/action-creators/auth";
 import {
   Paper,
   Grid,
@@ -10,33 +9,38 @@ import {
   Checkbox,
   Button,
   TextField,
-  withStyles,
+  CircularProgress,
 } from "@material-ui/core";
 import { Face, Fingerprint } from "@material-ui/icons";
-import { RootState } from "../store/store";
+import { RootStateType } from "../store/store";
+import { Dispatch } from "redux";
+import { ActionTypes } from "../types/actionCreators";
+import { ThunkDispatch } from "redux-thunk";
+import { User } from "../types/users";
 
-interface ILoginProps {
+type LoginProps = {
   loggingIn: boolean;
-}
+  login: (user: User) => void;
+};
 
-const useStyles = makeStyles((theme) => ({
+const useStyles = makeStyles(({ palette, spacing }: Theme) => ({
   root: {
     "& .MuiTextField-root": {
-      margin: theme.spacing(1),
+      margin: spacing(1),
       width: "25ch",
     },
   },
   margin: {
-    margin: theme.spacing.unit * 2,
+    margin: spacing.length * 2,
   },
   padding: {
-    padding: theme.spacing.unit,
+    padding: spacing.length,
   },
 }));
 
-const LoginPage = (props) => {
+const LoginPage: React.FC<LoginProps> = (props) => {
   const [loginForm, setLoginForm] = React.useState({
-    username: "",
+    userName: "",
     password: "",
     submitted: false,
   });
@@ -47,21 +51,27 @@ const LoginPage = (props) => {
   };
 
   const handleSubmit = (event: React.MouseEvent<HTMLElement>) => {
-    event.preventDefault();
-    setLoginForm({ ...loginForm, submitted: true });
-    const { username, password } = loginForm;
-    if (username && password) {
-      login({ username, password });
+    try {
+      event.preventDefault();
+      setLoginForm({ ...loginForm, submitted: true });
+      const { userName, password } = loginForm;
+      if (userName && password) {
+        props.login({ userName, password });
+      }
+      debugger;
+    } catch (e: any) {
+      debugger;
     }
   };
 
   const classes = useStyles();
   const { loggingIn } = props;
 
-  const { username, password, submitted } = loginForm;
+  const { userName, password } = loginForm;
   return (
     <div className={classes.root}>
       <h2>Login</h2>
+      {loggingIn ?? <CircularProgress color="secondary" />}
       <Paper className={classes.padding}>
         <div className={classes.margin}>
           <Grid container spacing={8} alignItems="flex-end">
@@ -70,11 +80,11 @@ const LoginPage = (props) => {
             </Grid>
             <Grid item md={true} sm={true} xs={true}>
               <TextField
-                id="username"
+                id="userName"
                 label="Username"
-                name="username"
+                name="userName"
                 type="email"
-                value={username}
+                value={userName}
                 onChange={handleChange}
                 fullWidth
                 autoFocus
@@ -99,7 +109,7 @@ const LoginPage = (props) => {
               />
             </Grid>
           </Grid>
-          <Grid container alignItems="center" justify="space-between">
+          <Grid container alignItems="center">
             <Grid item>
               <FormControlLabel
                 control={<Checkbox color="primary" />}
@@ -118,7 +128,7 @@ const LoginPage = (props) => {
               </Button>
             </Grid>
           </Grid>
-          <Grid container justify="center" style={{ marginTop: "10px" }}>
+          <Grid container style={{ marginTop: "10px" }}>
             <Button
               variant="outlined"
               color="primary"
@@ -134,13 +144,19 @@ const LoginPage = (props) => {
   );
 };
 
-const mapState = (state: RootState): ILoginProps => {
+const mapState = (state: RootStateType) => {
   const { loggingIn }: { loggingIn: boolean } = state.auth;
   return { loggingIn };
 };
 
-const actionCreators = {
-  login: login,
+const actionCreators = (
+  dispatch: ThunkDispatch<RootStateType, void, ActionTypes>
+) => {
+  return {
+    login: (user: User) => {
+      return dispatch(login(user));
+    },
+  };
 };
 
 export default connect(mapState, actionCreators)(LoginPage);

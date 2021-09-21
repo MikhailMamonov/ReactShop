@@ -1,85 +1,53 @@
-import { IUser } from "../../../models/User";
 import { initialState } from "./auth.state";
-import {
-  loginFailureActionCreator,
-  loginSuccessActionCreator,
-} from "./auth.actions";
-import { authConstants } from "./../../constants/auth.constants";
+import { AuthActions, authActionTypes, AuthState } from "../../../types/auth";
 
-export interface ILoginSuccessAction {
-  type: authConstants.LOGIN_SUCCESS;
-  user: IUser;
-  accessToken: string;
-}
-
-export interface IRegisterRequestAction {
-  type: authConstants.REGISTER_REQUEST;
-}
-
-type ActionTypes = ILoginSuccessAction | IRegisterRequestAction;
-
-export default function auth(state = initialState, action: ActionTypes) {
+export default function auth(
+  state = initialState,
+  action: AuthActions
+): AuthState {
   switch (action.type) {
-    case authConstants.REGISTER_REQUEST:
+    case authActionTypes.REGISTER_REQUEST:
       return {
         ...state,
         isLoggedIn: false,
-        registering: true,
-        error: 5,
       };
-    case authConstants.REGISTER_SUCCESS:
+    case authActionTypes.REGISTER_SUCCESS:
       return {
         ...state,
         isLoggedIn: false,
-        registering: false,
-        error: null,
-        isSubmitted: true,
       };
-    case authConstants.REGISTER_FAILURE:
+    case authActionTypes.REGISTER_FAILURE:
       return {
         ...state,
         isLoggedIn: false,
-        registering: false,
         error: action.error,
-        isSubmitted: true,
       };
-    case authConstants.RESET_REGISTER_FORM:
+    case authActionTypes.LOGIN_REQUEST:
       return {
         ...state,
-        registering: false,
-        isSubmitted: null,
-      };
-    case authConstants.LOGIN_REQUEST:
-      return {
-        ...state,
-        loggedIn: false,
+        isLoggedIn: false,
         currentUser: action.user,
         loggingIn: true,
-        error: null,
       };
-    case authConstants.LOGIN_SUCCESS:
+    case authActionTypes.LOGIN_SUCCESS:
       return {
         ...state,
-        loggedIn: true,
+        isLoggedIn: true,
         loggingIn: false,
         currentUser: action.user,
         accessToken: action.accessToken,
-        error: null,
       };
-    case authConstants.LOGIN_FAILURE:
+    case authActionTypes.LOGIN_FAILURE:
       return {
         ...state,
-        loggedIn: false,
+        isLoggedIn: false,
         loggingIn: false,
         error: action.error,
       };
-    case authConstants.LOGOUT:
+    case authActionTypes.LOGOUT:
       return {
         ...state,
-        loggedIn: false,
-        currentUser: null,
-        accessToken: null,
-        error: null,
+        isLoggedIn: false,
       };
     default:
       return state;

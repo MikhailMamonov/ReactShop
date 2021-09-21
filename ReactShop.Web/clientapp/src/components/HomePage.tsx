@@ -16,7 +16,7 @@ import React, { FC, useEffect } from "react";
 
 // export default HomePage;
 
-const HomePage: FC<any> = ({}) => {
+const HomePage: FC<any> = () => {
   useEffect(() => {
     console.log("I was triggered during componentDidMount");
   }, []);

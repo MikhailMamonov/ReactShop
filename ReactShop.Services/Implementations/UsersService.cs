@@ -61,9 +61,9 @@ namespace ReactShop.Services.Implementations
         public override async Task<string> Edit(UserDTO userDto)
         {
             var entity = await _userManager.FindByIdAsync(userDto.Id);
-            entity.UserName = userDto.DisplayName;
+            entity.UserName = userDto.UserName;
             entity.Email = userDto.Email;
-            entity.DisplayName = userDto.DisplayName;
+
             var result = await _userManager.UpdateAsync(entity);
             if (result.Succeeded)
             {
@@ -113,7 +113,7 @@ namespace ReactShop.Services.Implementations
         {
             ApplicationUser user = 
                 new ApplicationUser { UserName = model.Email,
-                    Email = model.Email, DisplayName = model.DisplayName };
+                    Email = model.Email };
             // добавляем пользователя
             var result = await _userManager.CreateAsync(user, model.Password);
             if (result.Succeeded)

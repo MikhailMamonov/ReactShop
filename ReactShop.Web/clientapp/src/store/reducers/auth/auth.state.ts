@@ -1,18 +1,13 @@
-import { IUser } from "../../../models/User";
+import { User } from "../../../types/users";
+import { AuthState } from "../../../types/auth";
 
-interface IAuthState {
-  isLoggedIn: boolean;
-  currentUser?: IUser;
-  accessToken: string;
-  loggingIn: boolean;
-  error?: string;
-}
-
-const user: IUser = JSON.parse(localStorage.getItem("user") || "{}");
+const user: User = localStorage.getItem("user")
+  ? JSON.parse(localStorage.getItem("user") || "{}")
+  : null;
 
 let accessToken: string = localStorage.getItem("accessToken") || "";
 
-export const initialState: IAuthState = user
+export const initialState: AuthState = user
   ? { isLoggedIn: true, currentUser: user, accessToken, loggingIn: false }
   : {
       isLoggedIn: false,
