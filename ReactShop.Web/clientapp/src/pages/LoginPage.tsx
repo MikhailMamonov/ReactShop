@@ -1,15 +1,18 @@
 import React from "react";
 import { connect } from "react-redux";
 import { login } from "../store/action-creators/auth";
-import { CircularProgress } from "@material-ui/core";
+import { Typography, Space } from "antd";
 import { RootStateType } from "../store/store";
 import { ActionTypes } from "../types/actionCreators";
 import { ThunkDispatch } from "redux-thunk";
 import { User } from "../types/users";
 import { Form, Input, Button, Checkbox } from "antd";
 
+const { Text } = Typography;
+
 type LoginProps = {
   loggingIn: boolean;
+  error: string | undefined;
   login: (user: User) => void;
 };
 
@@ -27,11 +30,11 @@ const LoginPage: React.FC<LoginProps> = (props) => {
   const onFinishFailed = (errorInfo: any) => {
     console.log("Failed:", errorInfo);
   };
-  const { loggingIn } = props;
+  const { loggingIn, error } = props;
   return (
     <div>
       <h2>Login</h2>
-      {loggingIn ?? <CircularProgress color="secondary" />}
+      {error ?? <Text type="danger">{error}</Text>}
       <Form
         name="basic"
         labelCol={{ span: 8 }}
@@ -142,8 +145,8 @@ const LoginPage: React.FC<LoginProps> = (props) => {
 };
 
 const mapState = (state: RootStateType) => {
-  const { loggingIn }: { loggingIn: boolean } = state.auth;
-  return { loggingIn };
+  const { loggingIn, error } = state.auth;
+  return { loggingIn, error };
 };
 
 const actionCreators = (

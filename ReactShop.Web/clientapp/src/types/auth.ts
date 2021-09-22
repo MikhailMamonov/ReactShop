@@ -3,7 +3,7 @@ import { User } from "../types/users";
 export type AuthState = {
   isLoggedIn: boolean;
   currentUser?: User;
-  accessToken: string;
+  accessToken?: string;
   loggingIn: boolean;
   error?: string;
 };

@@ -1,6 +1,6 @@
 import React, { useEffect } from "react";
 import { connect } from "react-redux";
-import { Grid, Button } from "@material-ui/core";
+import { Row, Col, Button } from "antd";
 import { AppDispatch, RootStateType } from "../store/store";
 
 type ErrorPagePropsType = {
@@ -20,26 +20,20 @@ const ErrorPage: React.FC<ErrorPagePropsType> = (props) => {
 
   return (
     <div>
-      <Grid container spacing={3}>
-        <Grid item xs={12}>
+      <Row>
+        <Col>
           <h1>Error</h1>
           {Object.entries(props.errors).map(function ([key, value]) {
             return value ? <div>{`${key} => ${value} \n`}</div> : null;
           })}
-        </Grid>
-        <Grid item xs={12} sm={6}>
-          <Button
-            onClick={() => props.history.go(-1)}
-            variant="contained"
-            color="primary"
-          >
+        </Col>
+        <Col>
+          <Button onClick={() => props.history.go(-1)} color="primary">
             Back
           </Button>
-          <Button variant="contained" color="secondary">
-            Secondary
-          </Button>
-        </Grid>
-      </Grid>
+          <Button color="secondary">Secondary</Button>
+        </Col>
+      </Row>
     </div>
   );
 };

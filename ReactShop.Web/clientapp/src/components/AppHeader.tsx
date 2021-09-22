@@ -2,10 +2,11 @@ import React from "react";
 import { connect } from "react-redux";
 import { logout } from "../store/action-creators/auth";
 import { useHistory } from "react-router-dom";
-import { RootStateType } from "../store/store";
+import { AppDispatch, RootStateType } from "../store/store";
 import { Dispatch } from "redux";
 import { User } from "../types/users";
 import { Layout, Menu } from "antd";
+import { ActionTypes } from "../types/actionCreators";
 const { Header } = Layout;
 
 type Props = {
@@ -46,19 +47,19 @@ const AppHeader: React.FC<Props> = (props) => {
               Home
             </Menu.Item>
             <Menu.Item
-              key="3"
+              key="4"
               onClick={() => {
                 props.logout();
                 router.push("login");
               }}
             >
-              Home
+              Logout
             </Menu.Item>
           </Menu>
         ) : (
           <Menu theme="dark" mode="horizontal" defaultSelectedKeys={["2"]}>
             <Menu.Item
-              key="3"
+              key="5"
               onClick={() => {
                 router.push("/login");
               }}
@@ -66,7 +67,7 @@ const AppHeader: React.FC<Props> = (props) => {
               Login
             </Menu.Item>
             <Menu.Item
-              key="3"
+              key="6"
               onClick={() => {
                 router.push("register");
               }}

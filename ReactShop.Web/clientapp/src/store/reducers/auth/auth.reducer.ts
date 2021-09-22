@@ -26,7 +26,6 @@ export default function auth(
       return {
         ...state,
         isLoggedIn: false,
-        currentUser: action.user,
         loggingIn: true,
       };
     case authActionTypes.LOGIN_SUCCESS:
@@ -48,6 +47,8 @@ export default function auth(
       return {
         ...state,
         isLoggedIn: false,
+        currentUser: undefined,
+        accessToken: undefined,
       };
     default:
       return state;

@@ -1,8 +1,7 @@
 import http from "./http-common";
 import LocalStorageService from "./LocalStorageService";
-import { LoginResponseType } from "../../types/api.services";
 
-const localStorageService = LocalStorageService.getService();
+const localStorageService = new LocalStorageService();
 
 const login = (username: string, password: string) => {
   return http.post(`/auth/login`, { username, password }).then((response) => {

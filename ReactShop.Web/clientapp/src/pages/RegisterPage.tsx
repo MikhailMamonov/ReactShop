@@ -57,7 +57,6 @@ const RegisterPage: React.FC<RegisterPageProps> = (props) => {
   return (
     <div className="col-md-6 col-md-offset-3">
       <h2>Register</h2>
-      {/* {submitted && props.error ? props.history.push("/error") : null} */}
       <form name="form" onSubmit={handleSubmit}>
         <div
           className={

@@ -1,111 +1,70 @@
-import React, { Component, FC } from "react";
-import { makeStyles } from "@material-ui/core/styles";
+import React, { FC } from "react";
 
-import {
-  Grid,
-  MenuList,
-  Paper,
-  Typography,
-  MenuItem,
-  Button,
-  Card,
-  CardActionArea,
-  CardActions,
-  CardContent,
-  CardMedia,
-} from "@material-ui/core";
+import { Row, Col, Typography, Menu, Card } from "antd";
 import { CatalogProps } from "./CatalogContainer";
 
-const useStyles = makeStyles((theme) => ({
-  root: {
-    flexGrow: 1,
-  },
-  paper: {
-    padding: theme.spacing(2),
-    margin: "auto",
-    maxWidth: 1000,
-  },
-  image: {
-    width: 128,
-    height: 128,
-  },
-  media: {
-    height: 40,
-  },
-  img: {
-    margin: "auto",
-    display: "block",
-    maxWidth: "100%",
-    maxHeight: "100%",
-  },
-}));
+const { Text } = Typography;
+const { Meta } = Card;
+
 const Catalog: FC<CatalogProps> = (props) => {
-  const classes = useStyles();
   const categoryMenu = props.categories.map((category) => (
-    <MenuItem>
-      <Typography variant="inherit">{category.name}</Typography>
-    </MenuItem>
+    <Menu.Item key={category.name}>
+      <Text>{category.name}</Text>
+    </Menu.Item>
   ));
 
   const productCards = props.products.map((product) => (
-    <Card className={classes.root}>
-      <CardActionArea>
-        <CardMedia
-          className={classes.media}
-          image="https://oir.mobi/uploads/posts/2020-01/thumbs/1579616694_6-p-zelenie-lyagushki-9.jpg"
-          title="Contemplative Reptile"
+    <Card
+      hoverable
+      style={{ width: 240 }}
+      cover={
+        <img
+          alt="example"
+          src="https://oir.mobi/uploads/posts/2020-01/thumbs/1579616694_6-p-zelenie-lyagushki-9.jpg"
         />
-        <CardContent>
-          <Typography gutterBottom variant="h5" component="h2">
-            {product.name}
-          </Typography>
-          <Typography variant="body2" color="textSecondary" component="p">
-            Lizards are a widespread group of squamate reptiles, with over 6,000
-            species, ranging across all continents except Antarctica
-          </Typography>
-        </CardContent>
-      </CardActionArea>
-      <CardActions>
-        <Button size="small" color="primary">
-          Share
-        </Button>
-        <Button size="small" color="primary">
-          Learn More
-        </Button>
-      </CardActions>
+      }
+    >
+      <Meta title="Europe Street beat" description="www.instagram.com" />
+      <Text>{product.name}</Text>
+      <Text>
+        Lizards are a widespread group of squamate reptiles, with over 6,000
+        species, ranging across all continents except Antarctica
+      </Text>
     </Card>
   ));
 
   return (
     <div>
-      <div className={classes.root}>
-        <Paper className={classes.paper}>
-          <Grid container spacing={12}>
-            <Grid item>
-              <MenuList>
-                <MenuItem>
-                  <Typography variant="inherit">Categories</Typography>
-                </MenuItem>
-                {categoryMenu}
-              </MenuList>
-            </Grid>
-            <Grid item xs={12} sm container>
-              <Grid item xs container direction="column" spacing={2}>
-                <Grid item xs>
-                  {productCards}
-                </Grid>
-                <Grid item>
-                  <Typography variant="body2" style={{ cursor: "pointer" }}>
-                    Remove
-                  </Typography>
-                </Grid>
-              </Grid>
-              <Grid item>
-                <Typography variant="subtitle1">$19.00</Typography>
-              </Grid>
-            </Grid>
-          </Grid>
-        </Paper>
+      <div>
+        <Row>
+          <Col>
+            <Menu
+              // onClick={this.handleClick}
+              style={{ width: 256 }}
+              defaultSelectedKeys={["1"]}
+              defaultOpenKeys={["sub1"]}
+              mode="inline"
+            >
+              <Menu.Item key="0">
+                <Typography.Text>Categories</Typography.Text>
+              </Menu.Item>
+              {categoryMenu}
+            </Menu>
+          </Col>
+          <Col>
+            <Row>
+              <Col>{productCards}</Col>
+            </Row>
+            <Row>
+              <Col>
+                <Text>Remove</Text>
+              </Col>
+            </Row>
+          </Col>
+          <Col>
+            <Text>$19.00</Text>
+          </Col>
+        </Row>
       </div>
     </div>
   );
