@@ -1,6 +1,5 @@
-import TextField from "@material-ui/core/TextField";
 import React, { FC } from "react";
-import { Button, Paper } from "@material-ui/core";
+import { Button, Input } from "antd";
 import { CreateUserProps } from "./UsersContainer";
 import { User } from "../../../types/users";
 
@@ -17,27 +16,28 @@ const CreateUser: FC<CreateUserProps> = (props) => {
     setUser({ ...user, email: "", userName: "", password: "" });
 
   return (
-    <Paper>
+    <div>
       <h2>Create User </h2>
-      <TextField
+      <Input
         onChange={(e) => setUser({ ...user, email: e.target.value })}
         value={user["email"]}
-        label={"Email"} //optional
+        //label={"Email"} //optional
+        placeholder="Email"
       />
-      <TextField
+      <Input
         onChange={(e) => setUser({ ...user, password: e.target.value })}
         value={user["password"]}
-        label={"Password"} //optional
+        placeholder="password"
       />
-      <TextField
+      <Input
         onChange={(e) => setUser({ ...user, userName: e.target.value })}
         value={user["userName"]}
-        label={"UserName"} //optional
+        placeholder="username"
       />
 
       <Button onClick={handleSubmit}>Submit</Button>
       <Button onClick={handleReset}>Reset</Button>
-    </Paper>
+    </div>
   );
 };
 

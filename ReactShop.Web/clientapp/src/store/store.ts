@@ -8,6 +8,7 @@ import { getAllProductsThunk } from "./action-creators/products";
 import { getAllCategoriesThunk } from "./action-creators/categories";
 import { ActionTypes } from "../types/actionCreators";
 import { ThunkDispatch } from "redux-thunk";
+import { useDispatch } from "react-redux";
 
 const middleware = [thunk as ThunkMiddleware];
 
@@ -30,7 +31,9 @@ const dispatch = store.dispatch as ThunkDispatch<
 >;
 
 // Inferred type: {posts: PostsState, comments: CommentsState, users: UsersState}
-export type AppDispatch = typeof store.dispatch;
+export type AppDispatch = typeof dispatch;
+export const useAppDispatch = () => useDispatch<AppDispatch>(); //
+
 dispatch(getAllUsersThunk());
 dispatch(getAllProductsThunk());
 dispatch(getAllCategoriesThunk());

@@ -1,6 +1,5 @@
-import TextField from "@material-ui/core/TextField";
+import { Input, Button } from "antd";
 import React, { FC } from "react";
-import { Button, Paper } from "@material-ui/core";
 import { CreateCategoryProps } from "./CategoriesContainer";
 import { Category } from "./../../../types/categories";
 
@@ -15,17 +14,17 @@ const CreateCategory: FC<CreateCategoryProps> = (props) => {
   const handleReset = () => setItem({} as Category);
 
   return (
-    <Paper>
+    <div>
       <h2>Create Category </h2>
-      <TextField
+      <Input
         onChange={(e) => setItem({ ...item, name: e.target.value })}
         value={item["name"]}
-        label={"Name"} //optional
+        placeholder="category name"
       />
 
       <Button onClick={handleSubmit}>Submit</Button>
       <Button onClick={handleReset}>Reset</Button>
-    </Paper>
+    </div>
   );
 };
 

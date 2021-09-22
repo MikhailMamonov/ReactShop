@@ -1,8 +1,7 @@
 import axios from "axios";
 import LocalStorageService from "./store/api/LocalStorageService";
 
-const localStorageService = LocalStorageService.getService();
-
+const localStorageService = new LocalStorageService();
 const axiosInstance = axios.create({
   baseURL: "http://localhost:58976/api",
   headers: {

@@ -10,11 +10,15 @@ import { ActionTypes } from "../../types/actionCreators";
 import { LoginResponseType } from "../../types/api.services";
 import { User } from "../../types/users";
 
-type thunkType = ThunkAction<void, RootStateType, unknown, ActionTypes>;
+type thunkType = ThunkAction<
+  Promise<void>,
+  RootStateType,
+  unknown,
+  ActionTypes
+>;
 
 export const login = (user: User): thunkType => {
-  return (dispatch): void => {
-    debugger;
+  return async (dispatch) => {
     dispatch({ type: authActionTypes.LOGIN_REQUEST, user });
     authService
       .login(user.userName, user.password)
@@ -27,11 +31,10 @@ export const login = (user: User): thunkType => {
         history.push("/");
       })
       .catch((err: Error | AxiosError) => {
-        debugger;
         if (axios.isAxiosError(err)) {
           dispatch({
             type: authActionTypes.LOGIN_FAILURE,
-            error: err.response?.data.ToString(),
+            error: err.message,
           });
         } else {
           dispatch({

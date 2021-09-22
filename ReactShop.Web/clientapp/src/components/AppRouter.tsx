@@ -2,8 +2,14 @@ import { connect } from "react-redux";
 import { Switch, Route, Redirect } from "react-router-dom";
 import ErrorPage from "../pages/ErrorPage";
 import { privateRoutes, publicRoutes } from "../router";
+import { RootStateType } from "../store/store";
+import { User } from "../types/users";
 
-function AppRouter(props) {
+type AppRouterProps = {
+  currentUser: User | undefined;
+};
+
+const AppRouter: React.FC<AppRouterProps> = (props) => {
   return props.currentUser ? (
     <Switch>
       {privateRoutes.map((r) => (
@@ -31,9 +37,9 @@ function AppRouter(props) {
       <Redirect to="/login" />
     </Switch>
   );
-}
+};
 
-const mapStateToProps = (state) => {
+const mapStateToProps = (state: RootStateType) => {
   const { currentUser } = state.auth;
   return { currentUser };
 };
