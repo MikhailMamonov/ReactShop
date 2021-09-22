@@ -1,78 +1,75 @@
 import React from "react";
 import { connect } from "react-redux";
-import { makeStyles, Theme } from "@material-ui/core/styles";
 import { login } from "../store/action-creators/auth";
-import {
-  Paper,
-  Grid,
-  FormControlLabel,
-  Checkbox,
-  Button,
-  TextField,
-  CircularProgress,
-} from "@material-ui/core";
-import { Face, Fingerprint } from "@material-ui/icons";
+import { CircularProgress } from "@material-ui/core";
 import { RootStateType } from "../store/store";
-import { Dispatch } from "redux";
 import { ActionTypes } from "../types/actionCreators";
 import { ThunkDispatch } from "redux-thunk";
 import { User } from "../types/users";
+import { Form, Input, Button, Checkbox } from "antd";
 
 type LoginProps = {
   loggingIn: boolean;
   login: (user: User) => void;
 };
 
-const useStyles = makeStyles(({ palette, spacing }: Theme) => ({
-  root: {
-    "& .MuiTextField-root": {
-      margin: spacing(1),
-      width: "25ch",
-    },
-  },
-  margin: {
-    margin: spacing.length * 2,
-  },
-  padding: {
-    padding: spacing.length,
-  },
-}));
-
 const LoginPage: React.FC<LoginProps> = (props) => {
-  const [loginForm, setLoginForm] = React.useState({
-    userName: "",
-    password: "",
-    submitted: false,
-  });
-
-  const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
-    const { name, value } = event.target;
-    setLoginForm({ ...loginForm, [name]: value });
-  };
-
-  const handleSubmit = (event: React.MouseEvent<HTMLElement>) => {
+  const onFinish = (values: any) => {
+    console.log("Success:", values);
     try {
-      event.preventDefault();
-      setLoginForm({ ...loginForm, submitted: true });
-      const { userName, password } = loginForm;
+      const { userName, password } = values;
       if (userName && password) {
         props.login({ userName, password });
       }
-      debugger;
-    } catch (e: any) {
-      debugger;
-    }
+    } catch (e: any) {}
   };
 
-  const classes = useStyles();
+  const onFinishFailed = (errorInfo: any) => {
+    console.log("Failed:", errorInfo);
+  };
   const { loggingIn } = props;
-
-  const { userName, password } = loginForm;
   return (
-    <div className={classes.root}>
+    <div>
       <h2>Login</h2>
       {loggingIn ?? <CircularProgress color="secondary" />}
-      <Paper className={classes.padding}>
+      <Form
+        name="basic"
+        labelCol={{ span: 8 }}
+        wrapperCol={{ span: 16 }}
+        initialValues={{ remember: true }}
+        onFinish={onFinish}
+        onFinishFailed={onFinishFailed}
+        autoComplete="off"
+      >
+        <Form.Item
+          label="Username"
+          name="userName"
+          rules={[{ required: true, message: "Please input your username!" }]}
+        >
+          <Input />
+        </Form.Item>
+        <Form.Item
+          label="Password"
+          name="password"
+          rules={[{ required: true, message: "Please input your password!" }]}
+        >
+          <Input.Password />
+        </Form.Item>
+        <Form.Item
+          name="remember"
+          valuePropName="checked"
+          wrapperCol={{ offset: 8, span: 16 }}
+        >
+          <Checkbox>Remember me</Checkbox>
+        </Form.Item>
+
+        <Form.Item wrapperCol={{ offset: 8, span: 16 }}>
+          <Button type="primary" htmlType="submit">
+            Submit
+          </Button>
+        </Form.Item>
+      </Form>
+      {/* <Paper className={classes.padding}>
         <div className={classes.margin}>
           <Grid container spacing={8} alignItems="flex-end">
             <Grid item>
@@ -139,7 +136,7 @@ const LoginPage: React.FC<LoginProps> = (props) => {
             </Button>
           </Grid>
         </div>
-      </Paper>
+      </Paper> */}
     </div>
   );
 };

@@ -1,4 +1,4 @@
-import React, { Component } from "react";
+import React, { Component, FC } from "react";
 import { makeStyles } from "@material-ui/core/styles";
 
 import {
@@ -14,6 +14,7 @@ import {
   CardContent,
   CardMedia,
 } from "@material-ui/core";
+import { CatalogProps } from "./CatalogContainer";
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -38,7 +39,7 @@ const useStyles = makeStyles((theme) => ({
     maxHeight: "100%",
   },
 }));
-const Catalog = (props) => {
+const Catalog: FC<CatalogProps> = (props) => {
   const classes = useStyles();
   const categoryMenu = props.categories.map((category) => (
     <MenuItem>

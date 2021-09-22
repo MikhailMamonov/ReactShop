@@ -5,18 +5,16 @@ import { LoginResponseType } from "../../types/api.services";
 const localStorageService = LocalStorageService.getService();
 
 const login = (username: string, password: string) => {
-  return http
-    .post<LoginResponseType>(`/auth/login`, { username, password })
-    .then((response) => {
-      if (response.data.accessToken) {
-        localStorageService.setToken(
-          response.data.user,
-          response.data.accessToken
-        );
-      }
+  return http.post(`/auth/login`, { username, password }).then((response) => {
+    if (response.data.accessToken) {
+      localStorageService.setToken(
+        response.data.user,
+        response.data.accessToken
+      );
+    }
 
-      return response.data;
-    });
+    return response.data;
+  });
 };
 
 const logout = () => {

@@ -2,8 +2,8 @@ import React, { FC, useEffect } from "react";
 import "./App.css";
 
 import Content from "./components/Content";
-import Header from "./components/Header";
-import MuiThemeProvider from "material-ui/styles/MuiThemeProvider";
+import AppHeader from "./components/AppHeader";
+import { Layout } from "antd";
 import { Router } from "react-router-dom";
 
 import { history } from "./helpers/history";
@@ -19,12 +19,12 @@ const App: FC = () => {
   });
   return (
     <Router history={history}>
-      <MuiThemeProvider>
+      <Layout className="layout">
         <div className="App">
-          <Header></Header>
+          <AppHeader></AppHeader>
           <Content></Content>
         </div>
-      </MuiThemeProvider>
+      </Layout>
     </Router>
   );
 };

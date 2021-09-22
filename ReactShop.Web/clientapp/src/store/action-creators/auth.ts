@@ -14,7 +14,6 @@ type thunkType = ThunkAction<void, RootStateType, unknown, ActionTypes>;
 
 export const login = (user: User): thunkType => {
   return (dispatch): void => {
-    debugger;
     dispatch({ type: authActionTypes.LOGIN_REQUEST, user });
     authService
       .login(user.userName, user.password)
@@ -27,7 +26,6 @@ export const login = (user: User): thunkType => {
         history.push("/");
       })
       .catch((err: Error | AxiosError) => {
-        debugger;
         if (axios.isAxiosError(err)) {
           dispatch({
             type: authActionTypes.LOGIN_FAILURE,
