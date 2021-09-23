@@ -15,6 +15,7 @@ export default function auth(
       return {
         ...state,
         isLoggedIn: false,
+        error: undefined,
       };
     case authActionTypes.REGISTER_FAILURE:
       return {
@@ -33,6 +34,7 @@ export default function auth(
         ...state,
         isLoggedIn: true,
         loggingIn: false,
+        error: undefined,
         currentUser: action.user,
         accessToken: action.accessToken,
       };

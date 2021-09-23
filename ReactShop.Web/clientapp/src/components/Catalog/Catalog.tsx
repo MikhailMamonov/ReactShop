@@ -16,7 +16,7 @@ const Catalog: FC<CatalogProps> = (props) => {
   const productCards = props.products.map((product) => (
     <Card
       hoverable
-      style={{ width: 240 }}
+      style={{ width: "100%" }}
       cover={
         <img
           alt="example"
@@ -37,10 +37,10 @@ const Catalog: FC<CatalogProps> = (props) => {
     <div>
       <div>
         <Row>
-          <Col>
+          <Col span={4}>
             <Menu
               // onClick={this.handleClick}
-              style={{ width: 256 }}
+              style={{ width: "100%" }}
               defaultSelectedKeys={["1"]}
               defaultOpenKeys={["sub1"]}
               mode="inline"
@@ -51,7 +51,7 @@ const Catalog: FC<CatalogProps> = (props) => {
               {categoryMenu}
             </Menu>
           </Col>
-          <Col>
+          <Col span={12}>
             <Row>
               <Col>{productCards}</Col>
             </Row>
@@ -61,7 +61,7 @@ const Catalog: FC<CatalogProps> = (props) => {
               </Col>
             </Row>
           </Col>
-          <Col>
+          <Col span={8}>
             <Text>$19.00</Text>
           </Col>
         </Row>

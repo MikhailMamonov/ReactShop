@@ -53,7 +53,7 @@ const AppHeader: React.FC<Props> = (props) => {
                 router.push("login");
               }}
             >
-              Logout
+              Logout {props.currentUser.userName}
             </Menu.Item>
           </Menu>
         ) : (
