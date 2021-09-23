@@ -6,6 +6,7 @@ using ReactShop.Domain.DTOModels;
 using ReactShop.Domain.Entities;
 using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Text;
 using System.Threading.Tasks;
 
@@ -49,7 +50,20 @@ namespace ReactShop.Services.Implementations
         public override async Task<ProductDTO> Add(ProductDTO model) 
         {
             var entity = _mapper.Map<Product>(model);
-            await _db.Products.AddAsync(entity);
+            
+            if (model.Image!= null)
+            {
+                byte[] imageData = null;
+                // считываем переданный файл в массив байтов
+                using (var binaryReader = new BinaryReader(model.Image.OpenReadStream()))
+                {
+                    imageData = binaryReader.ReadBytes((int)model.Image.Length);
+                }
+                // установка массива байтов
+                entity.Image = imageData;
+
+            }
+                await _db.Products.AddAsync(entity);
             var result = await _db.SaveChangesAsync() > 0;
             if (result) 
             {

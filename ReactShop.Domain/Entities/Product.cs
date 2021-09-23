@@ -17,6 +17,7 @@ namespace ReactShop.Domain.Entities
         public string Name { get; set; }
         public int CategoryId { get; set; }
         public int Price { get; set; }
+        public byte[] Image { get; set; }
 
         public virtual Category Category { get; set; }
         public virtual ICollection<CartItem> CartItems { get; set; }

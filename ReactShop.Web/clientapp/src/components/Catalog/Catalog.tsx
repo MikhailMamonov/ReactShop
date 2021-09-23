@@ -1,4 +1,4 @@
-import React, { FC } from "react";
+import React, { FC, useState } from "react";
 
 import { Row, Col, Typography, Menu, Card } from "antd";
 import { CatalogProps } from "./CatalogContainer";
@@ -7,40 +7,42 @@ const { Text } = Typography;
 const { Meta } = Card;
 
 const Catalog: FC<CatalogProps> = (props) => {
+  const [filteredProducts, setFilteredProducts] = useState(props.products);
+  const handleClick = (e: any) => {
+    console.log(e);
+    const newProducts = props.products.filter(
+      (p) => p.categoryId.toString() === e.key
+    );
+    setFilteredProducts(newProducts);
+  };
   const categoryMenu = props.categories.map((category) => (
-    <Menu.Item key={category.name}>
+    <Menu.Item key={category.id}>
       <Text>{category.name}</Text>
     </Menu.Item>
   ));
 
-  const productCards = props.products.map((product) => (
-    <Card
-      hoverable
-      style={{ width: "100%" }}
-      cover={
-        <img
-          alt="example"
-          src="https://oir.mobi/uploads/posts/2020-01/thumbs/1579616694_6-p-zelenie-lyagushki-9.jpg"
-        />
-      }
-    >
-      <Meta title="Europe Street beat" description="www.instagram.com" />
-      <Text>{product.name}</Text>
-      <Text>
-        Lizards are a widespread group of squamate reptiles, with over 6,000
-        species, ranging across all continents except Antarctica
-      </Text>
-    </Card>
+  const productCards = filteredProducts.map((product) => (
+    <Row gutter={16} style={{ marginLeft: 20, marginBottom: 10 }}>
+      <Col span={8}>
+        <Card
+          style={{ width: "100%", background: "#A9A9A9" }}
+          bordered={false}
+          title={product.name}
+        >
+          {product.price}
+        </Card>
+      </Col>
+    </Row>
   ));
 
   return (
     <div>
       <div>
-        <Row>
+        <Row style={{ background: "#FFFFF0", padding: "30px" }}>
           <Col span={4}>
             <Menu
-              // onClick={this.handleClick}
-              style={{ width: "100%" }}
+              onClick={handleClick}
+              style={{ width: "100%", background: "#AFEEEE" }}
               defaultSelectedKeys={["1"]}
               defaultOpenKeys={["sub1"]}
               mode="inline"
@@ -52,9 +54,7 @@ const Catalog: FC<CatalogProps> = (props) => {
             </Menu>
           </Col>
           <Col span={12}>
-            <Row>
-              <Col>{productCards}</Col>
-            </Row>
+            {productCards}
             <Row>
               <Col>
                 <Text>Remove</Text>

@@ -1,15 +1,18 @@
 import React, { FC } from "react";
 import { useSelector } from "react-redux";
 
-import { Input, Button, Select } from "antd";
+import { Input, Button, Select, Upload } from "antd";
+import { UploadOutlined } from "@ant-design/icons";
 import { CreateProductType } from "./ProductsContainer";
 import { RootStateType } from "../../../store/store";
 import { Product } from "./../../../types/products";
+import ImageUploader from "./ImageUploader";
 
 const { Option } = Select;
 
 const CreateProduct: FC<CreateProductType> = (props) => {
   const [product, setProduct] = React.useState({} as Product);
+
   const categories = useSelector(
     (state: RootStateType) => state.categories.categories
   );
@@ -55,7 +58,7 @@ const CreateProduct: FC<CreateProductType> = (props) => {
           </Option>
         ))}
       </Select>
-
+      <ImageUploader />
       <Button onClick={handleSubmit}>Submit</Button>
       <Button onClick={handleReset}>Reset</Button>
     </div>
