@@ -10,6 +10,8 @@ import { Dispatch } from "redux";
 import { Product } from "./../../../types/products";
 import { Category } from "./../../../types/categories";
 import { User } from "../../../types/users";
+import { ThunkDispatch } from "redux-thunk";
+import { ActionTypes } from "../../../types/actionCreators";
 
 export type ProductsPropsType = {
   products: Array<Product>;
@@ -34,16 +36,18 @@ const mapStateToProps = (state: RootStateType) => {
   };
 };
 
-const mapDispatchToProps = (dispatch: Dispatch) => {
+const mapDispatchToProps = (
+  dispatch: ThunkDispatch<RootStateType, void, ActionTypes>
+) => {
   return {
     onAddProductClick: (product: Product) => {
-      addProductThunk(product);
+      dispatch(addProductThunk(product));
     },
     onEditProductClick: (id: number, item: User | Category | Product) => {
-      editProductThunk(id, item as Product);
+      dispatch(editProductThunk(id, item as Product));
     },
     onDeleteProductClick: (id: number) => {
-      deleteProductThunk(id);
+      dispatch(deleteProductThunk(id));
     },
   };
 };

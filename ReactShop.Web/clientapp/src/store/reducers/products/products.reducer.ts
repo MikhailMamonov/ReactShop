@@ -30,6 +30,7 @@ export default function productsReducer(
             name: action.product.name,
             price: action.product.price,
             categoryId: action.product.categoryId,
+            image: action.product.image,
           },
         ],
         isLoading: false,

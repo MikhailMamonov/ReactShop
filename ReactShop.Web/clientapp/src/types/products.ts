@@ -3,6 +3,7 @@ export type Product = {
   name: string;
   price?: number;
   categoryId: number;
+  image: string | undefined;
 };
 
 export type ProductsState = {

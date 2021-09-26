@@ -20,6 +20,7 @@ export const addProductThunk = (newProduct: Product): thunkType => {
         name: newProduct.name,
         price: newProduct.price,
         categoryId: newProduct.categoryId,
+        image: newProduct.image,
       })
       .then((product) => {
         dispatch({
