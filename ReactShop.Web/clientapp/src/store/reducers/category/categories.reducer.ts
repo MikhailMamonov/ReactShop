@@ -31,6 +31,7 @@ export default function categoriesReducer(
             name: action.category.name,
           },
         ],
+        isLoading: false,
       };
 
     case categoriesActionTypes.ADD_CATEGORY_FAILURE:
@@ -68,6 +69,7 @@ export default function categoriesReducer(
       return {
         ...state,
         categories: state.categories.filter((c) => c.id !== action.id),
+        isLoading: false,
       };
 
     case categoriesActionTypes.DELETE_CATEGORY_FAILURE:
@@ -88,6 +90,7 @@ export default function categoriesReducer(
         categories: state.categories.map((p) =>
           p.id === action.id ? action.category : p
         ),
+        isLoading: false,
       };
 
     case categoriesActionTypes.EDIT_CATEGORY_FAILURE:

@@ -42,7 +42,6 @@ export type RegisterFailureAction = {
 
 export type LoginRequestAction = {
   type: authActionTypes.LOGIN_REQUEST;
-  user: User;
 };
 
 export type Logout = {

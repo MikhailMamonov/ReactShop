@@ -6,16 +6,16 @@ import {
 } from "../../../store/action-creators/categories";
 import { RootStateType } from "../../../store/store";
 import Categories from "./Categories";
-import { Dispatch } from "redux";
 import { Category } from "./../../../types/categories";
-import { RowType } from "./../../../types/admin";
+import { ThunkDispatch } from "redux-thunk";
+import { ActionTypes } from "../../../types/actionCreators";
 
 export type CategoriesProps = {
   categories: Array<Category>;
   isLoading: boolean;
   error: string | undefined;
   onAddCategoryClick: (category: Category) => void;
-  onEditCategoryClick: (id: number, item: RowType) => void;
+  onEditCategoryClick: (id: number, item: Category) => void;
   onDeleteCategoryClick: (id: number) => void;
 };
 
@@ -31,16 +31,18 @@ const mapStateToProps = (state: RootStateType) => {
   };
 };
 
-const mapDispatchToProps = (dispatch: Dispatch) => {
+const mapDispatchToProps = (
+  dispatch: ThunkDispatch<RootStateType, void, ActionTypes>
+) => {
   return {
     onAddCategoryClick: (category: Category) => {
-      addCategoryThunk(category);
+      dispatch(addCategoryThunk(category));
     },
-    onEditCategoryClick: (id: number, item: RowType) => {
-      editCategoryThunk(id, item as Category);
+    onEditCategoryClick: (id: number, item: Category) => {
+      dispatch(editCategoryThunk(id, item));
     },
     onDeleteCategoryClick: (id: number) => {
-      deleteCategoryThunk(id);
+      dispatch(deleteCategoryThunk(id));
     },
   };
 };

@@ -1,9 +1,11 @@
 ﻿using AutoMapper;
+
 using Microsoft.EntityFrameworkCore;
 
 using ReactShop.Domain;
 using ReactShop.Domain.DTOModels;
 using ReactShop.Domain.Entities;
+
 using System;
 using System.Collections.Generic;
 using System.IO;
@@ -22,7 +24,7 @@ namespace ReactShop.Services.Implementations
         /// 
         /// </summary>
         /// <returns></returns>
-        public override async Task<IEnumerable<ProductDTO>> GetList() 
+        public override async Task<IEnumerable<ProductDTO>> GetList()
         {
             var response =
                 _mapper
@@ -36,7 +38,7 @@ namespace ReactShop.Services.Implementations
         /// </summary>
         /// <param name="id"></param>
         /// <returns></returns>
-        public override async Task<ProductDTO> GetItem(string id) 
+        public override async Task<ProductDTO> GetItem(string id)
         {
             var response =
                _mapper.Map<ProductDTO>(await _db.Products.FindAsync(id));
@@ -47,33 +49,28 @@ namespace ReactShop.Services.Implementations
         /// </summary>
         /// <param name="model"></param>
         /// <returns></returns>
-        public override async Task<ProductDTO> Add(ProductDTO model) 
+        public override async Task<ProductDTO> Add(ProductDTO model)
         {
-            var entity = _mapper.Map<Product>(model);
-            
-            if (model.Image!= null)
-            {
-                byte[] imageData = null;
-                // считываем переданный файл в массив байтов
-                using (var binaryReader = new BinaryReader(model.Image.OpenReadStream()))
-                {
-                    imageData = binaryReader.ReadBytes((int)model.Image.Length);
-                }
-                // установка массива байтов
-                entity.Image = imageData;
+            //if (model.Image != null)
+            //{
+            //    model.Image = model.Image.Replace("data:image/png;base64,", String.Empty);
+            //}
 
-            }
-                await _db.Products.AddAsync(entity);
+            var entity = _mapper.Map<Product>(model);
+
+            await _db.Products.AddAsync(entity);
+
             var result = await _db.SaveChangesAsync() > 0;
-            if (result) 
+
+            if (result)
             {
                 model.Id = entity.Id;
                 return model;
             }
-            else 
+            else
             {
                 throw new Exception("products not added");
-            } 
+            }
         }
 
         /// <summary>
@@ -85,7 +82,7 @@ namespace ReactShop.Services.Implementations
         {
             var entity = _mapper.Map<Product>(model);
             _db.Products.Update(entity);
-            if (await _db.SaveChangesAsync()>0)
+            if (await _db.SaveChangesAsync() > 0)
             {
                 return null;
             }

@@ -1,9 +1,5 @@
 import { ThunkAction } from "redux-thunk";
-import {
-  Product,
-  ProductsActions,
-  productsActionTypes,
-} from "./../../types/products";
+import { Product, productsActionTypes } from "./../../types/products";
 
 import axios, { AxiosError } from "axios";
 import productsDataService from "./../api/product.service";
@@ -15,8 +11,11 @@ type thunkType = ThunkAction<void, RootStateType, unknown, ActionTypes>;
 export const addProductThunk = (newProduct: Product): thunkType => {
   return (dispatch) => {
     dispatch({ type: productsActionTypes.ADD_PRODUCT_REQUEST });
+    debugger;
+    console.log("newProduct", newProduct);
     productsDataService
       .create({
+        id: -1,
         name: newProduct.name,
         price: newProduct.price,
         categoryId: newProduct.categoryId,
@@ -28,18 +27,11 @@ export const addProductThunk = (newProduct: Product): thunkType => {
           product: product,
         });
       })
-      .catch((err: Error | AxiosError) => {
-        if (axios.isAxiosError(err)) {
-          dispatch({
-            type: productsActionTypes.ADD_PRODUCT_FAILURE,
-            error: err.response?.data.ToString(),
-          });
-        } else {
-          dispatch({
-            type: productsActionTypes.ADD_PRODUCT_FAILURE,
-            error: err.message,
-          });
-        }
+      .catch((err: any) => {
+        dispatch({
+          type: productsActionTypes.ADD_PRODUCT_FAILURE,
+          error: err.message,
+        });
       });
   };
 };
@@ -87,6 +79,7 @@ export const getAllProductsThunk = (): thunkType => {
       })
       .catch((err: Error | AxiosError) => {
         if (axios.isAxiosError(err)) {
+          console.log(err);
           dispatch({
             type: productsActionTypes.GET_PRODUCTS_FAILURE,
             error: err.response?.data.ToString(),

@@ -9,14 +9,13 @@
     "outDir": "bin",
     "rootDir": "src",
     "checkJs": true,
-    "noImplicitAny": true,
     "strictNullChecks": true,
     "esModuleInterop": true,
     "forceConsistentCasingInFileNames": true,
     "removeComments": true,
     "pretty": true,
-    "strict": true,
     "skipLibCheck": true,
+    "noImplicitAny": false,
     "noImplicitThis": true,
     "lib": [
       "dom",
@@ -28,7 +27,8 @@
     "noFallthroughCasesInSwitch": true,
     "resolveJsonModule": true,
     "isolatedModules": true,
-    "noEmit": true
+    "noEmit": true,
+    "strict": true
   },
   "exclude": [
     "node_modules"

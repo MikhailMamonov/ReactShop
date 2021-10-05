@@ -2,11 +2,10 @@ import React from "react";
 import { connect } from "react-redux";
 import { logout } from "../store/action-creators/auth";
 import { useHistory } from "react-router-dom";
-import { AppDispatch, RootStateType } from "../store/store";
+import { RootStateType } from "../store/store";
 import { Dispatch } from "redux";
 import { User } from "../types/users";
 import { Layout, Menu } from "antd";
-import { ActionTypes } from "../types/actionCreators";
 const { Header } = Layout;
 
 type Props = {
@@ -21,7 +20,7 @@ const AppHeader: React.FC<Props> = (props) => {
       <Header>
         <div className="logo" />
         {props.currentUser ? (
-          <Menu theme="dark" mode="horizontal" defaultSelectedKeys={["2"]}>
+          <Menu theme="dark" mode="horizontal">
             <Menu.Item
               key="1"
               onClick={() => {
@@ -57,7 +56,7 @@ const AppHeader: React.FC<Props> = (props) => {
             </Menu.Item>
           </Menu>
         ) : (
-          <Menu theme="dark" mode="horizontal" defaultSelectedKeys={["2"]}>
+          <Menu theme="dark" mode="horizontal">
             <Menu.Item
               key="5"
               onClick={() => {

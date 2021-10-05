@@ -6,7 +6,6 @@ import {
 } from "../../../store/action-creators/products";
 import { RootStateType } from "../../../store/store";
 import Products from "./Products";
-import { Dispatch } from "redux";
 import { Product } from "./../../../types/products";
 import { Category } from "./../../../types/categories";
 import { User } from "../../../types/users";
@@ -24,7 +23,7 @@ export type ProductsPropsType = {
 };
 
 export type CreateProductType = {
-  onAdd: (product: Product) => void;
+  onSubmit: (product: Product) => void;
 };
 
 const mapStateToProps = (state: RootStateType) => {

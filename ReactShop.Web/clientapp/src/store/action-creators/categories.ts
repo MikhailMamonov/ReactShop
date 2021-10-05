@@ -1,9 +1,5 @@
 import { ThunkAction } from "redux-thunk";
-import {
-  CategoriesActions,
-  categoriesActionTypes,
-  Category,
-} from "../../types/categories";
+import { categoriesActionTypes, Category } from "../../types/categories";
 import axios, { AxiosError } from "axios";
 import categoriessDataService from "./../api/category.service";
 import { RootStateType } from "../store";
@@ -108,6 +104,7 @@ export const editCategoryThunk = (id: number, item: Category): thunkType => {
         });
       })
       .catch((err: Error | AxiosError) => {
+        console.log(err);
         if (axios.isAxiosError(err)) {
           dispatch({
             type: categoriesActionTypes.EDIT_CATEGORY_FAILURE,

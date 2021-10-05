@@ -91,7 +91,7 @@ namespace ReactShop
                     }
                 };
             });
-            services.AddControllersWithViews();
+            services.AddControllersWithViews().AddNewtonsoftJson();
 
             services.ConfigureCustomServices();
             services.ConfigureMapper();

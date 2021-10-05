@@ -6,7 +6,7 @@ import LoginPage from "../pages/LoginPage";
 import RegisterPage from "../pages/RegisterPage";
 
 export const privateRoutes = [
-  { path: "/", exact: true, component: HomePage },
+  { path: "/home", exact: false, component: HomePage },
   { path: "/catalog", exact: false, component: CatalogPage },
   { path: "/admin", exact: false, component: AdminPage },
 

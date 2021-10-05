@@ -13,7 +13,7 @@ const { Text } = Typography;
 type LoginProps = {
   loggingIn: boolean;
   error: string | undefined;
-  login: (user: User) => void;
+  login: (userName: string, password: string) => void;
 };
 
 const LoginPage: React.FC<LoginProps> = (props) => {
@@ -22,7 +22,7 @@ const LoginPage: React.FC<LoginProps> = (props) => {
     try {
       const { userName, password } = values;
       if (userName && password) {
-        props.login({ userName, password });
+        props.login(userName, password);
       }
     } catch (e: any) {}
   };
@@ -72,74 +72,6 @@ const LoginPage: React.FC<LoginProps> = (props) => {
           </Button>
         </Form.Item>
       </Form>
-      {/* <Paper className={classes.padding}>
-        <div className={classes.margin}>
-          <Grid container spacing={8} alignItems="flex-end">
-            <Grid item>
-              <Face />
-            </Grid>
-            <Grid item md={true} sm={true} xs={true}>
-              <TextField
-                id="userName"
-                label="Username"
-                name="userName"
-                type="email"
-                value={userName}
-                onChange={handleChange}
-                fullWidth
-                autoFocus
-                required
-              />
-            </Grid>
-          </Grid>
-          <Grid container spacing={8} alignItems="flex-end">
-            <Grid item>
-              <Fingerprint />
-            </Grid>
-            <Grid item md={true} sm={true} xs={true}>
-              <TextField
-                id="username"
-                label="Password"
-                name="password"
-                type="password"
-                value={password}
-                onChange={handleChange}
-                fullWidth
-                required
-              />
-            </Grid>
-          </Grid>
-          <Grid container alignItems="center">
-            <Grid item>
-              <FormControlLabel
-                control={<Checkbox color="primary" />}
-                label="Remember me"
-              />
-            </Grid>
-            <Grid item>
-              <Button
-                disableFocusRipple
-                disableRipple
-                style={{ textTransform: "none" }}
-                variant="text"
-                color="primary"
-              >
-                Forgot password ?
-              </Button>
-            </Grid>
-          </Grid>
-          <Grid container style={{ marginTop: "10px" }}>
-            <Button
-              variant="outlined"
-              color="primary"
-              style={{ textTransform: "none" }}
-              onClick={handleSubmit}
-            >
-              Login
-            </Button>
-          </Grid>
-        </div>
-      </Paper> */}
     </div>
   );
 };
@@ -153,8 +85,8 @@ const actionCreators = (
   dispatch: ThunkDispatch<RootStateType, void, ActionTypes>
 ) => {
   return {
-    login: (user: User) => {
-      return dispatch(login(user));
+    login: (userName: string, password: string) => {
+      return dispatch(login(userName, password));
     },
   };
 };

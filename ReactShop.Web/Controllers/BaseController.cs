@@ -160,7 +160,7 @@ namespace ReactShop.Web.Controllers
             }
             catch (Exception e)
             {
-                _logger.LogError(e.Message);
+                _logger.LogError($"{e.Message} \n {e.InnerException} \n {e.StackTrace}");
                 throw;
             }
         }
