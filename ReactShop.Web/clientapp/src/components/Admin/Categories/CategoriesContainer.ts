@@ -9,13 +9,14 @@ import Categories from "./Categories";
 import { Category } from "./../../../types/categories";
 import { ThunkDispatch } from "redux-thunk";
 import { ActionTypes } from "../../../types/actionCreators";
+import { RowType } from "../../../types/admin";
 
 export type CategoriesProps = {
   categories: Array<Category>;
   isLoading: boolean;
   error: string | undefined;
-  onAddCategoryClick: (category: Category) => void;
-  onEditCategoryClick: (id: number, item: Category) => void;
+  onAddCategoryClick: (category: RowType) => void;
+  onEditCategoryClick: (id: number, item: RowType) => void;
   onDeleteCategoryClick: (id: number) => void;
 };
 
@@ -35,11 +36,11 @@ const mapDispatchToProps = (
   dispatch: ThunkDispatch<RootStateType, void, ActionTypes>
 ) => {
   return {
-    onAddCategoryClick: (category: Category) => {
-      dispatch(addCategoryThunk(category));
+    onAddCategoryClick: (item: RowType) => {
+      dispatch(addCategoryThunk(item as Category));
     },
-    onEditCategoryClick: (id: number, item: Category) => {
-      dispatch(editCategoryThunk(id, item));
+    onEditCategoryClick: (id: number, item: RowType) => {
+      dispatch(editCategoryThunk(id, item as Category));
     },
     onDeleteCategoryClick: (id: number) => {
       dispatch(deleteCategoryThunk(id));

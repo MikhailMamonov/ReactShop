@@ -5,6 +5,16 @@ import { FC, useEffect, useState } from "react";
 import { ProductsPropsType } from "./ProductsContainer";
 import { Product } from "../../../types/products";
 import { EditableCell } from "../EditableCell";
+import AdminTable from "./../AdminTable";
+
+export type ColumnType = {
+  title: string;
+  dataIndex: string;
+  key?: string;
+  width?: number;
+  editable?: boolean;
+  render?: (...args: any) => JSX.Element | "";
+};
 
 const Products: FC<ProductsPropsType> = (props) => {
   const originData = props.products.map((row) => {
@@ -71,6 +81,13 @@ const Products: FC<ProductsPropsType> = (props) => {
       editable: true,
     },
     {
+      title: "Description",
+      dataIndex: "description",
+      key: "description",
+      width: 100,
+      editable: true,
+    },
+    {
       title: "Price",
       dataIndex: "price",
       key: "price",
@@ -84,6 +101,7 @@ const Products: FC<ProductsPropsType> = (props) => {
       width: 100,
       editable: true,
     },
+
     {
       title: "Image",
       dataIndex: "image",
@@ -93,56 +111,57 @@ const Products: FC<ProductsPropsType> = (props) => {
         return text ? <img width="50px" height="50px" src={text} alt="" /> : "";
       },
     },
-    {
-      title: "operation",
-      dataIndex: "operation",
-      render: (_, record: Product) => {
-        const editable = isEditing(record);
-        return (
-          <Row>
-            {editable ? (
-              <span>
-                <Button
-                  onClick={() => save(record.id)}
-                  style={{ marginRight: 8 }}
-                >
-                  Save
-                </Button>
-                <Button title="Sure to cancel?" onClick={cancel}>
-                  Cancel
-                </Button>
-              </span>
-            ) : (
-              <Button onClick={() => edit(record)}>Edit</Button>
-            )}
+    // {
+    //   title: "operation",
+    //   dataIndex: "operation",
+    //   render: (_, record: Product) => {
+    //     const editable = isEditing(record);
+    //     return (
+    //       <Row>
+    //         {editable ? (
+    //           <span>
+    //             <Button
+    //               onClick={() => save(record.id)}
+    //               style={{ marginRight: 8 }}
+    //             >
+    //               Save
+    //             </Button>
+    //             <Button title="Sure to cancel?" onClick={cancel}>
+    //               Cancel
+    //             </Button>
+    //           </span>
+    //         ) : (
+    //           <Button onClick={() => edit(record)}>Edit</Button>
+    //         )}
 
-            <Button onClick={() => props.onDeleteProductClick(record.id)}>
-              Delete
-            </Button>
-          </Row>
-        );
-      },
-    },
+    //         <Button onClick={() => props.onDeleteProductClick(record.id)}>
+    //           Delete
+    //         </Button>
+    //       </Row>
+    //     );
+    //   },
+    // },
   ];
 
-  const mergedColumns = columns.map((col) => {
-    if (!col.editable) {
-      return col;
-    }
-    return {
-      ...col,
-      onCell: (record: Product) => ({
-        record,
-        inputType:
-          col.dataIndex === "price" || col.dataIndex === "categoryId"
-            ? "number"
-            : "text",
-        dataIndex: col.dataIndex,
-        title: col.title,
-        editing: isEditing(record),
-      }),
-    };
-  });
+  // const mergedColumns = columns.map((col) => {
+  //   if (!col.editable) {
+  //     return col;
+  //   }
+  //   return {
+  //     ...col,
+  //     onCell: (record: Product) => ({
+  //       record,
+  //       inputType:
+  //         col.dataIndex === "price" || col.dataIndex === "categoryId"
+  //           ? "number"
+  //           : "text",
+  //       dataIndex: col.dataIndex,
+  //       title: col.title,
+  //       editing: isEditing(record),
+  //     }),
+  //   };
+  // });
+
   return (
     <div>
       <h2>Product</h2>
@@ -159,7 +178,7 @@ const Products: FC<ProductsPropsType> = (props) => {
           <CreateProduct onSubmit={props.onAddProductClick}></CreateProduct>
         </Col>
         <Col span={12}>
-          <Form form={form} component={false}>
+          {/* <Form form={form} component={false}>
             <Table
               components={{
                 body: {
@@ -170,7 +189,14 @@ const Products: FC<ProductsPropsType> = (props) => {
               columns={mergedColumns}
               dataSource={dataSource}
             ></Table>
-          </Form>
+          </Form> */}
+          <AdminTable
+            rows={props.products}
+            cols={columns}
+            onAdd={props.onAddProductClick}
+            onDelete={props.onDeleteProductClick}
+            onEdit={props.onEditProductClick}
+          ></AdminTable>
         </Col>
       </Row>
     </div>

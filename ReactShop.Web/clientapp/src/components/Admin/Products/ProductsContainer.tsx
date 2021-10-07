@@ -17,7 +17,7 @@ export type ProductsPropsType = {
   categories: Array<Category>;
   isLoading: boolean;
   error: string | undefined;
-  onAddProductClick: (product: Product) => void;
+  onAddProductClick: (product: User | Category | Product) => void;
   onEditProductClick: (id: number, item: User | Category | Product) => void;
   onDeleteProductClick: (id: number) => void;
 };
@@ -39,8 +39,8 @@ const mapDispatchToProps = (
   dispatch: ThunkDispatch<RootStateType, void, ActionTypes>
 ) => {
   return {
-    onAddProductClick: (product: Product) => {
-      dispatch(addProductThunk(product));
+    onAddProductClick: (product: User | Category | Product) => {
+      dispatch(addProductThunk(product as Product));
     },
     onEditProductClick: (id: number, item: User | Category | Product) => {
       dispatch(editProductThunk(id, item as Product));

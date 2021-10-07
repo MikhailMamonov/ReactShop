@@ -15,7 +15,7 @@ export const addProductThunk = (newProduct: Product): thunkType => {
     console.log("newProduct", newProduct);
     productsDataService
       .create({
-        id: -1,
+        id: 0,
         name: newProduct.name,
         price: newProduct.price,
         categoryId: newProduct.categoryId,

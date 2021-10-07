@@ -22,17 +22,11 @@ export const addCategoryThunk = (newCategory: Category): thunkType => {
         });
       })
       .catch((err: Error | AxiosError) => {
-        if (axios.isAxiosError(err)) {
-          dispatch({
-            type: categoriesActionTypes.ADD_CATEGORY_FAILURE,
-            error: err.response?.data.ToString(),
-          });
-        } else {
-          dispatch({
-            type: categoriesActionTypes.ADD_CATEGORY_FAILURE,
-            error: err.message,
-          });
-        }
+        debugger;
+        dispatch({
+          type: categoriesActionTypes.ADD_CATEGORY_FAILURE,
+          error: err.message,
+        });
       });
   };
 };

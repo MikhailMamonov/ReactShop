@@ -1,3 +1,4 @@
+import { Layout } from "antd";
 import CatalogContainer from "../components/Catalog/CatalogContainer";
 
 const CatalogPage: React.FC = () => {
