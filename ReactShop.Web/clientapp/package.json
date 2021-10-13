@@ -15,12 +15,12 @@
     "@testing-library/react": "^11.2.7",
     "@testing-library/user-event": "^12.8.3",
     "antd": "^4.16.13",
+    "antd-img-crop": "^3.16.0",
     "axios": "^0.21.1",
     "bootstrap": "^5.0.2",
     "clsx": "^1.1.1",
     "history": "^4.10.1",
     "react": "^17.0.2",
-    "react-bootstrap": "^1.6.1",
     "react-compose": "^2.0.0",
     "react-dom": "^17.0.2",
     "react-loader-spinner": "^4.0.0",
@@ -61,13 +61,11 @@
     ]
   },
   "devDependencies": {
-    "@types/material-ui": "^0.21.9",
     "@types/node": "^16.9.1",
     "@types/react": "^17.0.20",
     "@types/react-dom": "^17.0.9",
     "@types/react-redux": "^7.1.18",
     "@types/react-router-dom": "^5.1.8",
-    "@types/redux-logger": "^3.0.9",
-    "material-ui": "^0.20.2"
+    "@types/redux-logger": "^3.0.9"
   }
 }

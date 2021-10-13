@@ -15,6 +15,7 @@ export const addUserThunk = (newUser: User): thunkType => {
     dispatch({ type: usersActionTypes.ADD_USER_REQUEST });
     userService
       .create({
+        id: "",
         userName: newUser.userName,
         email: newUser.email,
         password: newUser.password,

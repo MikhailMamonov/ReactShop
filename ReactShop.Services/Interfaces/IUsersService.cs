@@ -7,11 +7,11 @@ using System.Threading.Tasks;
 
 namespace ReactShop.Services.Interfaces
 {
-    public interface IUsersService
+    public interface IUsersService : IRestService<ApplicationUser,UserDTO>
     {
-        public Task<List<UserDTO>> GetUsersAsync();
-        public Task<string> AddUserAsync(UserDTO user, string password);
-        public Task<string> UpdateUserAsync(int id, UserDTO user);
-        public Task<string> DeleteUserAsync(string id);
+        //public Task<List<UserDTO>> GetUsersAsync();
+        //public Task<string> AddUserAsync(UserDTO user, string password);
+        //public Task<string> UpdateUserAsync(int id, UserDTO user);
+        //public Task<string> DeleteUserAsync(string id);
     }
 }

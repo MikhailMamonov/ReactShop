@@ -1,88 +1,147 @@
-import { Table, Tag, Space, Input } from "antd";
+import { Button, Form, Row, Table } from "antd";
 
-import React, { FC, useState } from "react";
+import React, { FC, useEffect, useState } from "react";
 
-import { User } from "./../../types/users";
-import { Category } from "./../../types/categories";
-import { Product } from "./../../types/products";
+import { EditableCell } from "./EditableCell";
+import { ColumnType } from "./Products/Products";
 import { RowType } from "../../types/admin";
 
-type ChangeEventType = React.ChangeEvent<HTMLInputElement>;
-
 type AdminTablePropsType = {
-  rows: Array<User | Category | Product>;
-  cols: Array<{ name: string }>;
+  rows: Array<RowType>;
+  cols: Array<ColumnType>;
   onDelete: (id: any) => void;
-  onEdit: (id: any, item: User | Category | Product) => void;
+  onEdit: (id: any, item: RowType) => void;
+  onAdd: (item: RowType) => void;
 };
 
 //https://github.com/benawad/basic-react-form/tree/6_edit_delete_rows
 const AdminTable: FC<AdminTablePropsType> = (props) => {
-  const [editIdx, setEditIdx] = useState(-1);
-  const [currentRow, setCurrentRow] = useState({} as typeof props.rows[0]);
-  const columns = props.cols.map((col) => {
-    return { title: col.name, dataIndex: col.name, key: col.name };
+  const originData = props.rows.map((row) => {
+    return { ...row, key: row.id };
   });
-  const startEditing = (i: number) => {
-    setEditIdx(i);
-    setCurrentRow(props.rows[i]);
-    console.log("props.rows[i]", props.rows[i]);
+
+  console.log(originData);
+  const [form] = Form.useForm();
+  const [editingKey, setEditingKey] = useState<string | number>(-1);
+  const isEditing = (record: RowType) => record.id === editingKey;
+  const [dataSource, setDataSource] = useState(originData);
+
+  useEffect(() => {
+    const data = props.rows.map((row) => {
+      return { ...row, key: row.id };
+    });
+    setDataSource(data);
+  }, [props.rows]);
+  // const columns = props.cols.map((col) => {
+  //   return { title: col.name, dataIndex: col.name, key: col.name };
+  // });
+  // const dataSource = props.rows.map((row) => {
+  //   return { ...row, key: row.id };
+  // });
+
+  const edit = (record: RowType) => {
+    form.setFieldsValue({ ...record });
+    setEditingKey(record.id as number);
   };
 
-  const handleChange = (e: ChangeEventType, name: string, i: number) => {
-    const { value } = e.target;
-    setCurrentRow({ ...currentRow, [name]: value });
+  const cancel = () => {
+    setEditingKey(-1);
   };
 
-  const stopEditing = () => {
-    setEditIdx(-1);
+  const save = async (key: number | string) => {
+    try {
+      const row = (await form.validateFields()) as RowType;
+      const newDataSource = [...dataSource];
+      const index = newDataSource.findIndex((item) => key === item.key);
+
+      if (index > -1) {
+        const item = newDataSource[index];
+        const newProduct = {
+          ...item,
+          ...row,
+        };
+
+        newDataSource.splice(index, 1, newProduct);
+        props.onEdit(newProduct.id, newProduct);
+        setDataSource(newDataSource);
+        setEditingKey(-1);
+      } else {
+        newDataSource.push({ ...row, key: row.id });
+        props.onAdd(row);
+
+        setDataSource(newDataSource);
+        setEditingKey(-1);
+      }
+    } catch (errInfo) {
+      console.log("Validate Failed:", errInfo);
+    }
   };
 
-  const getRow = (row: RowType, i: number) => {
-    // const currentlyEditing = editIdx === i;
-    // return (
-    //   <TableRow key={`tr-${i}`} selectable>
-    //     {props.cols.map((y, k) => (
-    //       <TableRowColumn key={`trc-${k}`}>
-    //         {currentlyEditing ? (
-    //           <Input
-    //             name={y.prop}
-    //             onChange={(e) => handleChange(e, y.prop, i)}
-    //             value={currentRow[y.prop]}
-    //           />
-    //         ) : (
-    //           row[y.prop]
-    //         )}
-    //       </TableRowColumn>
-    //     ))}
-    //     <TableRowColumn>
-    //       {currentlyEditing ? (
-    //         <CheckIcon
-    //           onClick={(e) => {
-    //             props.onEdit(currentRow.id, currentRow);
-    //             stopEditing();
-    //           }}
-    //         />
-    //       ) : (
-    //         <EditIcon
-    //           onClick={() => {
-    //             startEditing(i);
-    //           }}
-    //         />
-    //       )}
-    //     </TableRowColumn>
-    //     <TableRowColumn>
-    //       <DeleteIcon
-    //         onClick={() => {
-    //           props.onDelete(row.id);
-    //         }}
-    //       />
-    //     </TableRowColumn>
-    //   </TableRow>
-    // );
-  };
+  const columns = props.cols.concat({
+    title: "operation",
+    dataIndex: "operation",
+    render: (_, record: RowType) => {
+      const editable = isEditing(record);
+      return (
+        <Row>
+          {editable ? (
+            <span>
+              <Button
+                onClick={() => save(record.id)}
+                style={{ marginRight: 8 }}
+              >
+                Save
+              </Button>
+              <Button title="Sure to cancel?" onClick={cancel}>
+                Cancel
+              </Button>
+            </span>
+          ) : (
+            <Button onClick={() => edit(record)}>Edit</Button>
+          )}
 
-  return <Table columns={columns} dataSource={props.rows}></Table>;
+          <Button onClick={() => props.onDelete(record.id)}>Delete</Button>
+        </Row>
+      );
+    },
+  });
+  const mergedColumns = columns.map((col) => {
+    if (!col.editable) {
+      return col;
+    }
+    return {
+      ...col,
+      onCell: (record: RowType) => ({
+        record,
+        inputType:
+          col.dataIndex === "price" || col.dataIndex === "categoryId"
+            ? "number"
+            : "text",
+        dataIndex: col.dataIndex,
+        title: col.title,
+        editing: isEditing(record),
+      }),
+    };
+  });
+
+  return (
+    <Form form={form} component={false}>
+      <Table
+        components={{
+          body: {
+            cell: EditableCell,
+          },
+        }}
+        bordered
+        columns={mergedColumns}
+        dataSource={dataSource}
+        pagination={{
+          onChange: cancel,
+          defaultPageSize: 4,
+        }}
+      ></Table>
+    </Form>
+  );
 };
 
 export default AdminTable;

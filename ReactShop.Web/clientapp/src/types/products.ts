@@ -1,8 +1,10 @@
 export type Product = {
-  id?: number;
+  id: number;
   name: string;
   price?: number;
+  description?: string;
   categoryId: number;
+  image: string | undefined;
 };
 
 export type ProductsState = {

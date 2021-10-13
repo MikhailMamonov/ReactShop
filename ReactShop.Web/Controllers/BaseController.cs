@@ -1,10 +1,13 @@
 ﻿using AutoMapper;
+
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Cors;
 using Microsoft.AspNetCore.Mvc;
+
 using ReactShop.LoggerService;
 using ReactShop.Services.Implementations;
 using ReactShop.Services.Interfaces;
+
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -14,16 +17,16 @@ namespace ReactShop.Web.Controllers
 {
 
     [Route("api/[controller]")]
-    public class BaseController<T> : Controller where T : class
+    public class BaseController<TDomain, TViewModel> : Controller where TDomain : class where TViewModel : class
     {
-        protected IDatabaseService<T> _databaseService { get; private set; }
+        protected IRestService<TDomain, TViewModel> _restService { get; private set; }
         private readonly IMapper _mapper;
         private ILoggerManager _logger;
 
 
-        public BaseController(IDatabaseService<T> databaseService, IMapper mapper, ILoggerManager logger)
+        public BaseController(IRestService<TDomain, TViewModel> restService, IMapper mapper, ILoggerManager logger)
         {
-            _databaseService = databaseService;
+            _restService = restService;
             _mapper = mapper;
             _logger = logger;
         }
@@ -32,95 +35,75 @@ namespace ReactShop.Web.Controllers
 
         public async Task<IActionResult> Get()
         {
-            return await ExecuteCommand(async () =>
+            try
             {
-                var objectList = await _databaseService.GetList();
+                var objectList = await _restService.GetAll();
                 return Ok(objectList);
-            });
-
+            }
+            catch (Exception e)
+            {
+                return LogErrorAndReturnStatusCode(e.Message + e.InnerException + e.StackTrace, 500);
+            }
         }
 
         [HttpGet("{id}")]
         public async Task<IActionResult> Get(int id)
         {
-            return await ExecuteCommand(async () =>
-            {
-                var item = await _databaseService.GetItem(id.ToString());
-                return Ok(new { item });
-            });
+            var item =await _restService.GetById(id.ToString());
+            return Ok(new { item });
         }
 
         [Authorize]
         [HttpPost]
-        public async Task<IActionResult> Post([FromBody] T requestValue)
+        public async Task<IActionResult> Post([FromBody] TViewModel requestValue)
         {
-            Func<Task<IActionResult>> exceptionCommand = async () =>
+            if (requestValue == null)
             {
-                if (requestValue == null)
-                {
-                    return LogErrorAndReturnStatusCode("Product Object is null", 400);
-                }
+                return LogErrorAndReturnStatusCode("Product Object is null", 400);
+            }
 
-                if (!ModelState.IsValid)
-                {
-                    return LogErrorAndReturnStatusCode("Model is invalid", 400);
-                }
+            if (!ModelState.IsValid)
+            {
+                return LogErrorAndReturnStatusCode("Model is invalid", 400);
+            }
 
-                var newObject =
-                    await _databaseService.Add(requestValue);
-                return Ok(newObject);
+            var newObject =
+                await _restService.Add(requestValue);
+            return Ok(newObject);
 
-            };
-
-            return await ExecuteCommand(exceptionCommand);
         }
 
         [Authorize]
         [HttpPut("{id}")]
-        public async Task<IActionResult> Edit(string id, [FromBody] T requestValue)
+        public async Task<IActionResult> Edit(string id, [FromBody] TViewModel requestValue)
         {
-            return await ExecuteCommand(async () =>
-            {
-                var result = await _databaseService.Edit(requestValue);
-                if (!string.IsNullOrEmpty(result))
-                    return LogErrorAndReturnStatusCode("ApplicationUser not updated", 400);
-                else
-                    return Ok(requestValue);
-            });
+            await _restService.Edit(requestValue);
+            return Ok(requestValue);
+
         }
 
         [Authorize]
         [HttpPut("{id:int}")]
-        public async Task<IActionResult> Edit(int id, [FromBody] T requestValue)
+        public async Task<IActionResult> Edit(int id, [FromBody] TViewModel requestValue)
         {
-            return await ExecuteCommand(async () =>
-            {
-                var result = await _databaseService.Edit(requestValue);
-                if (!string.IsNullOrEmpty(result))
-                    return LogErrorAndReturnStatusCode("ApplicationUser not updated", 400);
-                else
-                    return Ok(requestValue);
-            });
+            await _restService.Edit(requestValue);
+            return Ok(requestValue);
         }
 
         [Authorize]
         [HttpDelete("{id:int}")]
         public async Task<IActionResult> Remove(int id)
         {
-            return await ExecuteCommand(
-                async () =>
-                {
-                    var errorMessage = await _databaseService.Remove(id.ToString());
-
-                    if (string.IsNullOrEmpty(errorMessage))
-                        return Ok(
-                            new { id = id, message = string.Format("object with id -> {0} succes deleted", id) });
-                    else
-                    {
-                        return LogErrorAndReturnStatusCode(errorMessage, 500);
-                    }
-                }
-            );  
+            try
+            {
+                await _restService.Remove(id.ToString());
+                return Ok(
+                    new { id = id, message = string.Format("object with id -> {0} succes deleted", id) });
+            }
+            catch (Exception e)
+            {
+                return LogErrorAndReturnStatusCode(e.Message + e.InnerException + e.StackTrace, 500);
+            }
         }
 
         [Authorize]
@@ -129,45 +112,33 @@ namespace ReactShop.Web.Controllers
         {
             try
             {
-                return await this.ExecuteCommand(
-                async () =>
-                {
-                    var errorMessage = await this._databaseService.Remove(id.ToString());
+                await _restService.Remove(id.ToString());
+                return Ok(new { id, message = string.Format("object with id -> {0} succes deleted", id) });
 
-                    if (string.IsNullOrEmpty(errorMessage))
-                        return Ok(
-                            new { id = id, message = string.Format("object with id -> {0} succes deleted", id) });
-                    else
-                    {
-                        return LogErrorAndReturnStatusCode(errorMessage, 500);
-                    }
-                }
-            );
-            }
-            catch (Exception)
-            {
-
-                throw;
-            }
-
-        }
-
-        protected async Task<IActionResult> ExecuteCommand(Func<Task<IActionResult>> action)
-        {
-            try
-            {
-               return await action();
             }
             catch (Exception e)
             {
-                _logger.LogError(e.Message);
-                throw;
+                return LogErrorAndReturnStatusCode(e.Message + e.InnerException + e.StackTrace, 500);
             }
+
         }
+
+        //protected async Task<IActionResult> ExecuteCommand(Func<IActionResult> action)
+        //{
+        //    try
+        //    {
+        //        return await action();
+        //    }
+        //    catch (Exception e)
+        //    {
+        //        _logger.LogError($"{e.Message} \n {e.InnerException} \n {e.StackTrace}");
+        //        throw;
+        //    }
+        //}
 
         protected IActionResult LogErrorAndReturnStatusCode(string errMessage, int statusCode)
         {
-            
+
             return StatusCode(statusCode, errMessage);
         }
     }

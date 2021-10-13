@@ -15,20 +15,22 @@ const get = (id: number) => {
 };
 
 const create = (newCategory: Category) => {
-  return http.post<Category>("/category", newCategory).then((response) => {
+  return http.post<Category>("/categories", newCategory).then((response) => {
     return response.data;
   });
 };
 
 const remove = (id: number) => {
-  return http.delete<DeleteResponseType>(`/category/${id}`).then((response) => {
-    return response.data;
-  });
+  return http
+    .delete<DeleteResponseType>(`/categories/${id}`)
+    .then((response) => {
+      return response.data;
+    });
 };
 
 const update = (id: number, updatedCategory: Category) => {
   return http
-    .put<Category>(`/category/${id}`, updatedCategory)
+    .put<Category>(`/categories/${id}`, updatedCategory)
     .then((response) => {
       return response.data;
     });

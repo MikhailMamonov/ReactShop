@@ -1,7 +1,7 @@
 import React, { FC, useEffect } from "react";
 import "./App.css";
 
-import Content from "./components/Content";
+import AppContent from "./components/AppContent";
 import AppHeader from "./components/AppHeader";
 import { Layout } from "antd";
 import { Router } from "react-router-dom";
@@ -22,7 +22,7 @@ const App: FC = () => {
       <Layout className="layout">
         <div className="App">
           <AppHeader></AppHeader>
-          <Content></Content>
+          <AppContent></AppContent>
         </div>
       </Layout>
     </Router>

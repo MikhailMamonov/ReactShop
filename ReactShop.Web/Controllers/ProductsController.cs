@@ -13,11 +13,11 @@ namespace ReactShop.Web.Controllers
 {
     [ApiController]
     [Route("api/[controller]")]
-    public class ProductsController : BaseController<ProductDTO>
+    public class ProductsController : BaseController<Product,ProductDTO>
     {
 
-        public ProductsController(IDatabaseService<ProductDTO> databaseService, IMapper mapper, ILoggerManager logger)
-            : base(databaseService, mapper, logger) { }
+        public ProductsController(IProductsService productsService, IMapper mapper, ILoggerManager logger)
+            : base(productsService, mapper, logger) { }
 
         //[HttpPost]
         //public async Task<IActionResult> AddProduct([FromBody] Product productRequest)

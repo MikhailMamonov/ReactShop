@@ -17,18 +17,18 @@ type thunkType = ThunkAction<
   ActionTypes
 >;
 
-export const login = (user: User): thunkType => {
+export const login = (userName: string, password: string): thunkType => {
   return async (dispatch) => {
-    dispatch({ type: authActionTypes.LOGIN_REQUEST, user });
+    dispatch({ type: authActionTypes.LOGIN_REQUEST });
     authService
-      .login(user.userName, user.password)
+      .login(userName, password)
       .then((res: LoginResponseType) => {
         dispatch({
           type: authActionTypes.LOGIN_SUCCESS,
           user: res.user,
           accessToken: res.accessToken,
         });
-        history.push("/");
+        history.push("/home");
       })
       .catch((err: Error | AxiosError) => {
         if (axios.isAxiosError(err)) {

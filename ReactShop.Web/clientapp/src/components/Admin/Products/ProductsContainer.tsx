@@ -6,23 +6,24 @@ import {
 } from "../../../store/action-creators/products";
 import { RootStateType } from "../../../store/store";
 import Products from "./Products";
-import { Dispatch } from "redux";
 import { Product } from "./../../../types/products";
 import { Category } from "./../../../types/categories";
 import { User } from "../../../types/users";
+import { ThunkDispatch } from "redux-thunk";
+import { ActionTypes } from "../../../types/actionCreators";
 
 export type ProductsPropsType = {
   products: Array<Product>;
   categories: Array<Category>;
   isLoading: boolean;
   error: string | undefined;
-  onAddProductClick: (product: Product) => void;
+  onAddProductClick: (product: User | Category | Product) => void;
   onEditProductClick: (id: number, item: User | Category | Product) => void;
   onDeleteProductClick: (id: number) => void;
 };
 
 export type CreateProductType = {
-  onAdd: (product: Product) => void;
+  onSubmit: (product: Product) => void;
 };
 
 const mapStateToProps = (state: RootStateType) => {
@@ -34,16 +35,18 @@ const mapStateToProps = (state: RootStateType) => {
   };
 };
 
-const mapDispatchToProps = (dispatch: Dispatch) => {
+const mapDispatchToProps = (
+  dispatch: ThunkDispatch<RootStateType, void, ActionTypes>
+) => {
   return {
-    onAddProductClick: (product: Product) => {
-      addProductThunk(product);
+    onAddProductClick: (product: User | Category | Product) => {
+      dispatch(addProductThunk(product as Product));
     },
     onEditProductClick: (id: number, item: User | Category | Product) => {
-      editProductThunk(id, item as Product);
+      dispatch(editProductThunk(id, item as Product));
     },
     onDeleteProductClick: (id: number) => {
-      deleteProductThunk(id);
+      dispatch(deleteProductThunk(id));
     },
   };
 };
