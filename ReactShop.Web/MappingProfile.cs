@@ -21,5 +21,7 @@ public class MappingProfile : Profile
         CreateMap<CategoryDTO, Category>();
         CreateMap<Category, CategoryDTO>();
 
+
+
     }
 }

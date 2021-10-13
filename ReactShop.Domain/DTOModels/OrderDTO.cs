@@ -1,17 +1,11 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Text;
 
-#nullable disable
-
-namespace ReactShop.Domain.Entities
+namespace ReactShop.Domain.DTOModels
 {
-    public partial class Order
+    public class OrderDTO
     {
-        public Order()
-        {
-            OrderDetails = new HashSet<OrderDetail>();
-        }
-
         public int Id { get; set; }
 
         public string ZipCode { get; set; }
@@ -27,8 +21,5 @@ namespace ReactShop.Domain.Entities
         public DateTime OrderPlaced { get; set; }
 
         public string UserId { get; set; }
-
-        public virtual ApplicationUser User { get; set; }
-        public virtual ICollection<OrderDetail> OrderDetails { get; set; }
     }
 }

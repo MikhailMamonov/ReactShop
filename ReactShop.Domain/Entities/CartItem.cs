@@ -7,12 +7,13 @@ namespace ReactShop.Domain.Entities
 {
     public partial class CartItem
     {
-        public string Id { get; set; }
-        public string CartId { get; set; }
+        public int Id { get; set; }
+        public int CartId { get; set; }
         public decimal Amount { get; set; }
         public DateTime DateCreated { get; set; }
         public int? ProductId { get; set; }
 
         public virtual Product Product { get; set; }
+        public virtual ShoppingCart ShoppingCart { get; set; }
     }
 }

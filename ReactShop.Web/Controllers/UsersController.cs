@@ -15,9 +15,9 @@ namespace ReactShop.Web.Controllers
 {
     [ApiController]
     [Route("api/[controller]")]
-    public class UsersController : BaseController<UserDTO>
+    public class UsersController : BaseController<ApplicationUser,UserDTO>
     {
-        public UsersController(IDatabaseService<UserDTO> usersService, IMapper mapper, ILoggerManager logger)
+        public UsersController(IUsersService usersService, IMapper mapper, ILoggerManager logger)
             : base(usersService,mapper, logger)
         {
         }

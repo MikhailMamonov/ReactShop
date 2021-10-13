@@ -18,10 +18,12 @@ namespace ReactShop.Web.Extensions
     {
         public static void ConfigureCustomServices(this IServiceCollection services) 
         {
-            services.AddTransient<IDatabaseService<UserDTO>, UsersService>();
-            //services.AddTransient<IDatabaseService<Product>, ProductsService>();
-            services.AddTransient<IDatabaseService<ProductDTO>, ProductsService>();
-            services.AddTransient<IDatabaseService<CategoryDTO>, CategoriesService>();
+            services.AddTransient(typeof(IRepository<>), typeof(EFRepository<>));
+            services.AddTransient(typeof(IRestService<,>), typeof(RestService<,>));
+
+            services.AddTransient(typeof(IUsersService), typeof(UsersService));
+            services.AddTransient(typeof(IProductsService), typeof(ProductsService));   
+            services.AddTransient(typeof(ICategoryService), typeof(CategoryService));
 
 
         }
