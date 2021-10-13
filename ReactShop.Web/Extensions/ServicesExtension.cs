@@ -24,6 +24,8 @@ namespace ReactShop.Web.Extensions
             services.AddTransient(typeof(IUsersService), typeof(UsersService));
             services.AddTransient(typeof(IProductsService), typeof(ProductsService));   
             services.AddTransient(typeof(ICategoryService), typeof(CategoryService));
+            services.AddTransient(typeof(IOrdersService), typeof(OrdersService));
+            
 
 
         }
