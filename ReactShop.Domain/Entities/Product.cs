@@ -1,11 +1,10 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 
 #nullable disable
 
 namespace ReactShop.Domain.Entities
 {
-    public partial class Product
+    public class Product
     {
         public Product()
         {
@@ -22,7 +21,7 @@ namespace ReactShop.Domain.Entities
 
 
         public virtual Category Category { get; set; }
-        public virtual ICollection<CartItem> CartItems { get; set; }
-        public virtual ICollection<OrderDetail> OrderDetails { get; set; }
+        public ICollection<CartItem> CartItems { get; set; }
+        public ICollection<OrderDetail> OrderDetails { get; set; }
     }
 }

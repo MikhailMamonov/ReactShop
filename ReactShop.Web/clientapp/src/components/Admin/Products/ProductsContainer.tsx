@@ -3,7 +3,7 @@ import {
   addProductThunk,
   deleteProductThunk,
   editProductThunk,
-} from "../../../store/action-creators/products";
+} from "../../../store/products/products";
 import { RootStateType } from "../../../store/store";
 import Products from "./Products";
 import { Product } from "./../../../types/products";

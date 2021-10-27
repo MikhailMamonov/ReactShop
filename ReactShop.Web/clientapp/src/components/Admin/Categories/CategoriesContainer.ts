@@ -3,7 +3,7 @@ import {
   addCategoryThunk,
   deleteCategoryThunk,
   editCategoryThunk,
-} from "../../../store/action-creators/categories";
+} from "../../../store/categories/categories";
 import { RootStateType } from "../../../store/store";
 import Categories from "./Categories";
 import { Category } from "./../../../types/categories";

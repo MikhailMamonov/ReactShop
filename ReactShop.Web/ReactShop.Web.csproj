@@ -11,6 +11,8 @@
 
   <ItemGroup>
     <PackageReference Include="AutoMapper" Version="10.1.1" />
+    <PackageReference Include="AutoMapper.Extensions.Microsoft.DependencyInjection" Version="8.1.1" />
+    <PackageReference Include="MediatR.Extensions.Microsoft.DependencyInjection" Version="9.0.0" />
     <PackageReference Include="Microsoft.AspNetCore.Authentication.JwtBearer" Version="5.0.9" />
     <PackageReference Include="Microsoft.AspNetCore.Mvc.NewtonsoftJson" Version="5.0.10" />
     <PackageReference Include="Microsoft.AspNetCore.SpaServices.Extensions" Version="5.0.7" />
@@ -19,6 +21,7 @@
       <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
     </PackageReference>
     <PackageReference Include="NLog.Extensions.Logging" Version="1.7.3" />
+    <PackageReference Include="Swashbuckle.AspNetCore" Version="6.2.3" />
   </ItemGroup>
 
   <ItemGroup>
@@ -35,7 +38,9 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\ReactShop.Domain\ReactShop.Domain.csproj" />
+    <ProjectReference Include="..\ReactShop.Application\ReactShop.Application.csproj" />
+    <ProjectReference Include="..\ReactShop.Domain\ReactShop.Core.csproj" />
+    <ProjectReference Include="..\ReactShop.Infrastucture\ReactShop.Infrastructure.csproj" />
     <ProjectReference Include="..\ReactShop.LoggerService\ReactShop.LoggerService.csproj" />
     <ProjectReference Include="..\ReactShop.Services\ReactShop.Services.csproj" />
   </ItemGroup>

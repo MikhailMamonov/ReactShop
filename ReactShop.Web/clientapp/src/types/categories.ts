@@ -28,7 +28,7 @@ export enum categoriesActionTypes {
   CATEGORIES = "categories",
 }
 
-export type AddCategoryReguestAction = {
+export type AddCategoryRequestAction = {
   type: categoriesActionTypes.ADD_CATEGORY_REQUEST;
 };
 
@@ -86,7 +86,7 @@ export type DeleteCategoryFailureAction = {
 };
 
 export type CategoriesActions =
-  | AddCategoryReguestAction
+  | AddCategoryRequestAction
   | AddCategorySuccessAction
   | AddCategoryFailureAction
   | GetCategoriesSuccessAction

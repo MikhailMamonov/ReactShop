@@ -3,7 +3,7 @@ import {
   addUserThunk,
   deleteUserThunk,
   editUserThunk,
-} from "../../../store/action-creators/users";
+} from "../../../store/users/users";
 import { RootStateType } from "../../../store/store";
 import Users from "./Users";
 import { User } from "./../../../types/users";

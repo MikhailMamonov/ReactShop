@@ -1,33 +1,34 @@
 ﻿using AutoMapper;
-
+using Microsoft.AspNetCore.Http;
 using Microsoft.Extensions.DependencyInjection;
-using ReactShop.Domain.DTOModels;
-using ReactShop.Domain.Entities;
+using ReactShop.Core.Repositories;
+using ReactShop.Core.Repositories.Base;
+using ReactShop.Infrastructure.Repositories;
+using ReactShop.Infrastructure.Repositories.Base;
 using ReactShop.LoggerService;
-using ReactShop.Services.Implementations;
-using ReactShop.Services.Interfaces;
-
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
+using ReactShop.Services.Categories;
+using ReactShop.Services.Orders;
+using ReactShop.Services.Products;
+using ReactShop.Services.RestService;
+using ReactShop.Services.ShoppingCartService;
+using ReactShop.Services.Users;
 
 namespace ReactShop.Web.Extensions
 {
     public static class ServicesExtension
     {
-        public static void ConfigureCustomServices(this IServiceCollection services) 
+        public static void CustomServices(this IServiceCollection services) 
         {
-            services.AddTransient(typeof(IRepository<>), typeof(EFRepository<>));
-            services.AddTransient(typeof(IRestService<,>), typeof(RestService<,>));
+            services.AddScoped(typeof(IRepository<>), typeof(EfRepository<>));
+            services.AddScoped<IProductRepository,ProductRepository>();
+            services.AddTransient(typeof(IRestService<>), typeof(RestService<,>));
 
             services.AddTransient(typeof(IUsersService), typeof(UsersService));
             services.AddTransient(typeof(IProductsService), typeof(ProductsService));   
             services.AddTransient(typeof(ICategoryService), typeof(CategoryService));
             services.AddTransient(typeof(IOrdersService), typeof(OrdersService));
-            
-
-
+            services.AddTransient(typeof(IShoppingCartService), typeof(ShoppingCartService));
+            services.AddSingleton<IHttpContextAccessor, HttpContextAccessor>();
         }
 
         public static void ConfigureMapper(this IServiceCollection services)

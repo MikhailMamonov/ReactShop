@@ -1,22 +1,18 @@
-﻿using AutoMapper;
+﻿//using AutoMapper;
 
-using ReactShop.Domain.DTOModels;
-using ReactShop.Domain.Entities;
-using ReactShop.LoggerService;
-using ReactShop.Services.Interfaces;
+//using ReactShop.Domain.DTOModels;
+//using ReactShop.LoggerService;
 
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
+//using ReactShop.Services.Orders;
 
-namespace ReactShop.Web.Controllers
-{
-    public class OrdersController : BaseController<Order, OrderDTO>
-    {
+//namespace ReactShop.Web.Controllers
+//{
+//    public class OrdersController : BaseController<OrderDTO>
+//    {
 
-        public OrdersController(IOrdersService ordersService, IMapper mapper, ILoggerManager logger) : base(ordersService, mapper,logger) { }
+//        public OrdersController(IOrdersService ordersService, IMapper mapper, ILoggerManager logger) : base(ordersService, mapper,logger) {
+//        }
 
 
-    }
-}
+//    }
+//}

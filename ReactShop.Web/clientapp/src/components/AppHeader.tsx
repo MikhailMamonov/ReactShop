@@ -1,6 +1,6 @@
 import React from "react";
 import { connect } from "react-redux";
-import { logout } from "../store/action-creators/auth";
+import { logout } from "../store/auth/auth";
 import { useHistory } from "react-router-dom";
 import { RootStateType } from "../store/store";
 import { Dispatch } from "redux";
@@ -47,6 +47,14 @@ const AppHeader: React.FC<Props> = (props) => {
             </Menu.Item>
             <Menu.Item
               key="4"
+              onClick={() => {
+                router.push("/shopping-cart");
+              }}
+            >
+              ShoppingCartPage
+            </Menu.Item>
+            <Menu.Item
+              key="5"
               onClick={() => {
                 props.logout();
                 router.push("login");

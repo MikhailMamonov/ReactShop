@@ -3,7 +3,7 @@
   <Class Name="ReactShop.Domain.Entities.ApplicationUser">
     <Position X="10.25" Y="0.5" Width="1.5" />
     <TypeIdentifier>
-      <HashCode>AAEAAAAAAAAAAAAEAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <HashCode>AAEAAAAAAAAAAAAEAAAAAAAAAgAAAAAAAAAAAAAAAAA=</HashCode>
       <FileName>Entities\ApplicationUser.cs</FileName>
     </TypeIdentifier>
     <ShowAsCollectionAssociation>
@@ -13,7 +13,7 @@
   <Class Name="ReactShop.Domain.Entities.CartItem">
     <Position X="12" Y="4.25" Width="1.5" />
     <TypeIdentifier>
-      <HashCode>EAACAAAAAAAAAAAAAAAAAACAAgAAAAAAAAAEAAAACAA=</HashCode>
+      <HashCode>EAACAAAAAAAAAAAAAAAAAACAAgAAAAACAAAEAAAACAA=</HashCode>
       <FileName>Entities\CartItem.cs</FileName>
     </TypeIdentifier>
   </Class>
@@ -64,9 +64,12 @@
   <Class Name="ReactShop.Domain.Entities.ShoppingCart">
     <Position X="13.25" Y="1.5" Width="1.5" />
     <TypeIdentifier>
-      <HashCode>AAACAAAAgAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <HashCode>AAADAAAAgAAAAAAAAAAAAAgAAAAAAAAAAAAAAAAAAAA=</HashCode>
       <FileName>Entities\ShoppingCart.cs</FileName>
     </TypeIdentifier>
+    <ShowAsAssociation>
+      <Property Name="User" />
+    </ShowAsAssociation>
     <ShowAsCollectionAssociation>
       <Property Name="CartItems" />
     </ShowAsCollectionAssociation>

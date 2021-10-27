@@ -1,11 +1,9 @@
-﻿using System;
-using System.Collections.Generic;
-
+﻿
 #nullable disable
 
 namespace ReactShop.Domain.Entities
 {
-    public partial class OrderDetail
+    public class OrderDetail
     {
         public int Id { get; set; }
         public int OrderId { get; set; }

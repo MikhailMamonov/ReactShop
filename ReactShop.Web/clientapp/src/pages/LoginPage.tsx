@@ -1,6 +1,6 @@
 import React from "react";
 import { connect } from "react-redux";
-import { login } from "../store/action-creators/auth";
+import { login } from "../store/auth/auth";
 import { Typography, Space } from "antd";
 import { RootStateType } from "../store/store";
 import { ActionTypes } from "../types/actionCreators";

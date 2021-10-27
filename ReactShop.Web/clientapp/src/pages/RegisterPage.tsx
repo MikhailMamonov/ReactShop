@@ -1,7 +1,7 @@
 import React, { useEffect } from "react";
 import { Link } from "react-router-dom";
 import { connect } from "react-redux";
-import { register, resetRegisterForm } from "../store/action-creators/auth";
+import { register, resetRegisterForm } from "../store/auth/auth";
 import { RootStateType } from "../store/store";
 
 type RegisterPageProps = {

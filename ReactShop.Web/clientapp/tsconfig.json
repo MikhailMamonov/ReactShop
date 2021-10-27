@@ -23,6 +23,7 @@
       "esnext",
       "es6"
     ],
+     "baseUrl": "./src", 
     "allowSyntheticDefaultImports": true,
     "noFallthroughCasesInSwitch": true,
     "resolveJsonModule": true,

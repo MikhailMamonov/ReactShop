@@ -1557,7 +1557,7 @@
           }
         }
       },
-      "ReactShop.Domain/1.0.0": {
+      "ReactShop.Core/1.0.0": {
         "type": "project",
         "framework": ".NETCoreApp,Version=v3.1",
         "dependencies": {
@@ -1570,10 +1570,23 @@
           "Microsoft.Extensions.Identity.Stores": "5.0.7"
         },
         "compile": {
-          "bin/placeholder/ReactShop.Domain.dll": {}
+          "bin/placeholder/ReactShop.Core.dll": {}
         },
         "runtime": {
-          "bin/placeholder/ReactShop.Domain.dll": {}
+          "bin/placeholder/ReactShop.Core.dll": {}
+        }
+      },
+      "ReactShop.Infrastructure/1.0.0": {
+        "type": "project",
+        "framework": ".NETCoreApp,Version=v3.1",
+        "dependencies": {
+          "ReactShop.Core": "1.0.0"
+        },
+        "compile": {
+          "bin/placeholder/ReactShop.Infrastructure.dll": {}
+        },
+        "runtime": {
+          "bin/placeholder/ReactShop.Infrastructure.dll": {}
         }
       }
     }
@@ -3994,16 +4007,22 @@
         "version.txt"
       ]
     },
-    "ReactShop.Domain/1.0.0": {
+    "ReactShop.Core/1.0.0": {
       "type": "project",
-      "path": "../ReactShop.Domain/ReactShop.Domain.csproj",
-      "msbuildProject": "../ReactShop.Domain/ReactShop.Domain.csproj"
+      "path": "../ReactShop.Domain/ReactShop.Core.csproj",
+      "msbuildProject": "../ReactShop.Domain/ReactShop.Core.csproj"
+    },
+    "ReactShop.Infrastructure/1.0.0": {
+      "type": "project",
+      "path": "../ReactShop.Infrastucture/ReactShop.Infrastructure.csproj",
+      "msbuildProject": "../ReactShop.Infrastucture/ReactShop.Infrastructure.csproj"
     }
   },
   "projectFileDependencyGroups": {
     ".NETCoreApp,Version=v3.1": [
       "AutoMapper >= 10.1.1",
-      "ReactShop.Domain >= 1.0.0"
+      "ReactShop.Core >= 1.0.0",
+      "ReactShop.Infrastructure >= 1.0.0"
     ]
   },
   "packageFolders": {
@@ -4037,8 +4056,11 @@
         "netcoreapp3.1": {
           "targetAlias": "netcoreapp3.1",
           "projectReferences": {
-            "D:\\petProjects\\ReactShop\\ReactShop.Domain\\ReactShop.Domain.csproj": {
-              "projectPath": "D:\\petProjects\\ReactShop\\ReactShop.Domain\\ReactShop.Domain.csproj"
+            "D:\\petProjects\\ReactShop\\ReactShop.Domain\\ReactShop.Core.csproj": {
+              "projectPath": "D:\\petProjects\\ReactShop\\ReactShop.Domain\\ReactShop.Core.csproj"
+            },
+            "D:\\petProjects\\ReactShop\\ReactShop.Infrastucture\\ReactShop.Infrastructure.csproj": {
+              "projectPath": "D:\\petProjects\\ReactShop\\ReactShop.Infrastucture\\ReactShop.Infrastructure.csproj"
             }
           }
         }

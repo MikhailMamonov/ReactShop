@@ -5,7 +5,7 @@ using System.Collections.Generic;
 
 namespace ReactShop.Domain.Entities
 {
-    public partial class Order
+    public class Order
     {
         public Order()
         {
@@ -28,7 +28,7 @@ namespace ReactShop.Domain.Entities
 
         public string UserId { get; set; }
 
-        public virtual ApplicationUser User { get; set; }
-        public virtual ICollection<OrderDetail> OrderDetails { get; set; }
+        public ApplicationUser User { get; set; }
+        public ICollection<OrderDetail> OrderDetails { get; set; }
     }
 }

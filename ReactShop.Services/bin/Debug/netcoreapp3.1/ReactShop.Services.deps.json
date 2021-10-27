@@ -9,7 +9,8 @@
       "ReactShop.Services/1.0.0": {
         "dependencies": {
           "AutoMapper": "10.1.1",
-          "ReactShop.Domain": "1.0.0"
+          "ReactShop.Core": "1.0.0",
+          "ReactShop.Infrastructure": "1.0.0"
         },
         "runtime": {
           "ReactShop.Services.dll": {}
@@ -1326,7 +1327,7 @@
           }
         }
       },
-      "ReactShop.Domain/1.0.0": {
+      "ReactShop.Core/1.0.0": {
         "dependencies": {
           "Microsoft.AspNetCore": "2.2.0",
           "Microsoft.AspNetCore.Identity": "2.2.0",
@@ -1337,7 +1338,15 @@
           "Microsoft.Extensions.Identity.Stores": "5.0.7"
         },
         "runtime": {
-          "ReactShop.Domain.dll": {}
+          "ReactShop.Core.dll": {}
+        }
+      },
+      "ReactShop.Infrastructure/1.0.0": {
+        "dependencies": {
+          "ReactShop.Core": "1.0.0"
+        },
+        "runtime": {
+          "ReactShop.Infrastructure.dll": {}
         }
       }
     }
@@ -2132,7 +2141,12 @@
       "path": "system.windows.extensions/4.7.0",
       "hashPath": "system.windows.extensions.4.7.0.nupkg.sha512"
     },
-    "ReactShop.Domain/1.0.0": {
+    "ReactShop.Core/1.0.0": {
+      "type": "project",
+      "serviceable": false,
+      "sha512": ""
+    },
+    "ReactShop.Infrastructure/1.0.0": {
       "type": "project",
       "serviceable": false,
       "sha512": ""
