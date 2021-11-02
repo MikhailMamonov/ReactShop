@@ -3,6 +3,7 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using ReactShop.Infrastructure.Data;
 
 namespace ReactShop.Infrastructure.Migrations
@@ -150,6 +151,37 @@ namespace ReactShop.Infrastructure.Migrations
                     b.ToTable("AspNetUserTokens");
                 });
 
+            modelBuilder.Entity("ReactShop.Core.Entities.CartItem", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int")
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.Property<decimal>("Amount")
+                        .HasColumnType("decimal(18,2)");
+
+                    b.Property<int>("CartId")
+                        .HasColumnType("int");
+
+                    b.Property<DateTime>("DateCreated")
+                        .HasColumnType("datetime2");
+
+                    b.Property<int>("InStock")
+                        .HasColumnType("int");
+
+                    b.Property<int?>("ProductId")
+                        .HasColumnType("int");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("CartId");
+
+                    b.HasIndex(new[] { "ProductId" }, "IX_CartItems_ProductId1");
+
+                    b.ToTable("CartItems");
+                });
+
             modelBuilder.Entity("ReactShop.Domain.Entities.ApplicationUser", b =>
                 {
                     b.Property<string>("Id")
@@ -225,34 +257,6 @@ namespace ReactShop.Infrastructure.Migrations
                     b.ToTable("AspNetUsers");
                 });
 
-            modelBuilder.Entity("ReactShop.Domain.Entities.CartItem", b =>
-                {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int")
-                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
-
-                    b.Property<decimal>("Amount")
-                        .HasColumnType("decimal(18,2)");
-
-                    b.Property<int>("CartId")
-                        .HasColumnType("int");
-
-                    b.Property<DateTime>("DateCreated")
-                        .HasColumnType("datetime2");
-
-                    b.Property<int?>("ProductId")
-                        .HasColumnType("int");
-
-                    b.HasKey("Id");
-
-                    b.HasIndex("CartId");
-
-                    b.HasIndex(new[] { "ProductId" }, "IX_CartItems_ProductId1");
-
-                    b.ToTable("CartItems");
-                });
-
             modelBuilder.Entity("ReactShop.Domain.Entities.Category", b =>
                 {
                     b.Property<int>("Id")
@@ -275,8 +279,26 @@ namespace ReactShop.Infrastructure.Migrations
                         .HasColumnType("int")
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
+                    b.Property<string>("Address")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("City")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Country")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<DateTime>("OrderPlaced")
+                        .HasColumnType("datetime2");
+
+                    b.Property<decimal>("OrderTotal")
+                        .HasColumnType("decimal(18,2)");
+
                     b.Property<string>("UserId")
                         .HasColumnType("nvarchar(450)");
+
+                    b.Property<string>("ZipCode")
+                        .HasColumnType("nvarchar(max)");
 
                     b.HasKey("Id");
 
@@ -346,7 +368,14 @@ namespace ReactShop.Infrastructure.Migrations
                         .HasColumnType("int")
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
+                    b.Property<string>("UserId")
+                        .HasColumnType("nvarchar(450)");
+
                     b.HasKey("Id");
+
+                    b.HasIndex("UserId")
+                        .IsUnique()
+                        .HasFilter("[UserId] IS NOT NULL");
 
                     b.ToTable("ShoppingCart");
                 });
@@ -402,7 +431,7 @@ namespace ReactShop.Infrastructure.Migrations
                         .IsRequired();
                 });
 
-            modelBuilder.Entity("ReactShop.Domain.Entities.CartItem", b =>
+            modelBuilder.Entity("ReactShop.Core.Entities.CartItem", b =>
                 {
                     b.HasOne("ReactShop.Domain.Entities.ShoppingCart", "ShoppingCart")
                         .WithMany("CartItems")
@@ -458,9 +487,20 @@ namespace ReactShop.Infrastructure.Migrations
                     b.Navigation("Category");
                 });
 
+            modelBuilder.Entity("ReactShop.Domain.Entities.ShoppingCart", b =>
+                {
+                    b.HasOne("ReactShop.Domain.Entities.ApplicationUser", "User")
+                        .WithOne("ShoppingCart")
+                        .HasForeignKey("ReactShop.Domain.Entities.ShoppingCart", "UserId");
+
+                    b.Navigation("User");
+                });
+
             modelBuilder.Entity("ReactShop.Domain.Entities.ApplicationUser", b =>
                 {
                     b.Navigation("Orders");
+
+                    b.Navigation("ShoppingCart");
                 });
 
             modelBuilder.Entity("ReactShop.Domain.Entities.Category", b =>

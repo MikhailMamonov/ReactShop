@@ -6,7 +6,8 @@ using Microsoft.AspNetCore.Mvc;
 using ReactShop.LoggerService;
 using System;
 using System.Threading.Tasks;
-using ReactShop.Services.RestService;
+using ReactShop.Application.Services.Rest;
+
 
 namespace ReactShop.Web.Controllers
 {

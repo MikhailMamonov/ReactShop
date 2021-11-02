@@ -17,13 +17,13 @@ using Microsoft.Extensions.Hosting;
 using Microsoft.IdentityModel.Tokens;
 using NLog;
 using ReactShop.Domain;
-using ReactShop.Domain.Entities;
 using ReactShop.LoggerService;
 using ReactShop.Web.Extensions;
 using Microsoft.AspNetCore.Http;
 using Microsoft.OpenApi.Models;
 using ReactShop.Application;
 using ReactShop.Application.Handlers;
+using ReactShop.Core.Entities;
 using ReactShop.Infrastructure.Data;
 
 namespace ReactShop.Web

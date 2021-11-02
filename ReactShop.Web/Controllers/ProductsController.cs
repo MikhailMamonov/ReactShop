@@ -4,21 +4,18 @@ using AutoMapper;
 using MediatR;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
-using ReactShop.Application.Commands;
-using ReactShop.Application.Queries;
-using ReactShop.Core.DTOModels;
-
-using ReactShop.Domain.Entities;
+using ReactShop.Application.Features.Products.CreateProduct;
+using ReactShop.Application.Features.Products.GetAllProducts;
+using ReactShop.Application.Features.Products.GetProductById;
+using ReactShop.Application.Services.Products;
 using ReactShop.LoggerService;
-
-using ReactShop.Services.Products;
 
 namespace ReactShop.Web.Controllers
 {
     [ApiController]
     [Route("api/[controller]")]
     public class ProductsController :Controller
-    //: BaseController<ProductDTO>
+    //: BaseController<ProductModel>
     {
         private readonly IMediator _mediator;
 

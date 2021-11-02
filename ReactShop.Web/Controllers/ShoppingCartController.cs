@@ -13,7 +13,7 @@
 
 //namespace ReactShop.Web.Controllers
 //{
-//    public class ShoppingCartController : BaseController<CartItemDto>
+//    public class ShoppingCartController : BaseController<CartItemModel>
 //    {
         
 //        public ShoppingCart CurrentShoppingCart { get; }

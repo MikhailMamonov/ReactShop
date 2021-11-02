@@ -2,12 +2,13 @@
 using System.Collections.Generic;
 using System.Threading.Tasks;
 using Microsoft.EntityFrameworkCore;
+using ReactShop.Core.Entities.Base;
 using ReactShop.Core.Repositories.Base;
 using ReactShop.Infrastructure.Data;
 
 namespace ReactShop.Infrastructure.Repositories.Base
 {
-    public class EfRepository<TDomain>: IRepository<TDomain>  where TDomain : class 
+    public class EfRepository<TDomain>: IRepository<TDomain>  where TDomain : class
     {
         protected readonly ApplicationDbContext Context;
         public EfRepository(ApplicationDbContext context)
@@ -15,7 +16,11 @@ namespace ReactShop.Infrastructure.Repositories.Base
             Context = context;
         }
 
-
+        public async Task ClearAll()
+        {
+            Context.RemoveRange();
+            //await Context.SaveChangesAsync();
+        }
 
         public async Task<IEnumerable<TDomain>> GetAllAsync()
         {

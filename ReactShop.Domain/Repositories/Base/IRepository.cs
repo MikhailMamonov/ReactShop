@@ -1,10 +1,11 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Threading.Tasks;
+using ReactShop.Core.Entities.Base;
 
 namespace ReactShop.Core.Repositories.Base
 {
-    public interface IRepository<TDomain>: IDisposable
+    public interface IRepository<TDomain>
     where TDomain : class
     {
         
@@ -13,6 +14,8 @@ namespace ReactShop.Core.Repositories.Base
         Task EditAsync(TDomain data);
 
         Task<TDomain> AddAsync(TDomain data);
+
+        Task ClearAll();
 
         Task<int> SaveAsync();  // сохранение изменений
 

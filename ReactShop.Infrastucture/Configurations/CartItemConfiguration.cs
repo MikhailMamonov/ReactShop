@@ -1,6 +1,6 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
-using ReactShop.Domain.Entities;
+using ReactShop.Core.Entities;
 
 namespace ReactShop.Infrastructure.Configurations
 {
@@ -18,7 +18,7 @@ namespace ReactShop.Infrastructure.Configurations
 
             builder.HasOne(i => i.ShoppingCart)
                 .WithMany(c => c.CartItems)
-                .HasForeignKey(c => c.CartId);
+                .HasForeignKey(c => c.ShoppingCartId);
         }
     }
 }

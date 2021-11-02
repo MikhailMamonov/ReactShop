@@ -5,7 +5,6 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
-using ReactShop.Domain.Entities;
 using ReactShop.Web.Handling.Authentication.Models;
 using System.Security.Claims;
 using System.IdentityModel.Tokens.Jwt;
@@ -15,8 +14,9 @@ using Microsoft.AspNetCore.Http;
 using ReactShop.Web.Handling.Authentication;
 using ReactShop.Web.Authentication;
 using AutoMapper;
-using ReactShop.Domain.DTOModels;
-using ReactShop.Services.Users;
+using ReactShop.Application.Models;
+using ReactShop.Application.Services.Users;
+using ReactShop.Core.Entities;
 
 namespace ReactShop.Web.Controllers
 {
@@ -92,13 +92,13 @@ namespace ReactShop.Web.Controllers
                         claims: authClaims,
                         signingCredentials: new SigningCredentials(authSigningKey, SecurityAlgorithms.HmacSha256)
                         );
-                    var userDto = _mapper.Map<UserDTO>(user);
+                    var UserModel = _mapper.Map<UserModel>(user);
 
                     return Ok(new
                     {
                         accessToken = new JwtSecurityTokenHandler().WriteToken(token),
                         expiration = token.ValidTo,
-                        user = userDto
+                        user = UserModel
                     });
                 }
                 
@@ -113,7 +113,7 @@ namespace ReactShop.Web.Controllers
         {
             var userExists = await _userManager.FindByNameAsync(model.Username);
             if (userExists != null)
-                return StatusCode(StatusCodes.Status500InternalServerError, new Response { Status = "Error", Message = "User already exists!" });
+                return StatusCode(StatusCodes.Status500InternalServerError, new Model { Status = "Error", Message = "User already exists!" });
 
             ApplicationUser user = new ApplicationUser()
             {
@@ -128,10 +128,10 @@ namespace ReactShop.Web.Controllers
                 await _signInManager.SignInAsync(user, false);
 
                 var errors = result.Errors.Select(er => er.Description);
-                return StatusCode(StatusCodes.Status500InternalServerError, new Response { Status = "Error", Message = string.Join("\n", errors) });
+                return StatusCode(StatusCodes.Status500InternalServerError, new Model { Status = "Error", Message = string.Join("\n", errors) });
             }
 
-            return Ok(new Response { Status = "Success", Message = "User created successfully!" });
+            return Ok(new Model { Status = "Success", Message = "User created successfully!" });
         }
 
         [HttpPost]
@@ -140,7 +140,7 @@ namespace ReactShop.Web.Controllers
         {
             var userExists = await _userManager.FindByNameAsync(model.Username);
             if (userExists != null)
-                return StatusCode(StatusCodes.Status500InternalServerError, new Response { Status = "Error", Message = "User already exists!" });
+                return StatusCode(StatusCodes.Status500InternalServerError, new Model { Status = "Error", Message = "User already exists!" });
 
             ApplicationUser user = new ApplicationUser()
             {
@@ -150,7 +150,7 @@ namespace ReactShop.Web.Controllers
             };
             var result = await _userManager.CreateAsync(user, model.Password);
             if (!result.Succeeded)
-                return StatusCode(StatusCodes.Status500InternalServerError, new Response { Status = "Error", Message = "User creation failed! Please check user details and try again." });
+                return StatusCode(StatusCodes.Status500InternalServerError, new Model { Status = "Error", Message = "User creation failed! Please check user details and try again." });
 
             if (!await _roleManager.RoleExistsAsync(UserRoles.Admin))
                 await _roleManager.CreateAsync(new IdentityRole(UserRoles.Admin));
@@ -162,7 +162,7 @@ namespace ReactShop.Web.Controllers
                 await _userManager.AddToRoleAsync(user, UserRoles.Admin);
             }
 
-            return Ok(new Response { Status = "Success", Message = "User created successfully!" });
+            return Ok(new Model { Status = "Success", Message = "User created successfully!" });
         }
 
     }

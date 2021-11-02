@@ -1,17 +1,18 @@
 ﻿using AutoMapper;
 using Microsoft.AspNetCore.Http;
 using Microsoft.Extensions.DependencyInjection;
+using ReactShop.Application.Services.Category;
+using ReactShop.Application.Services.Order;
+using ReactShop.Application.Services.Products;
+using ReactShop.Application.Services.Rest;
+using ReactShop.Application.Services.ShoppingCart;
+using ReactShop.Application.Services.Users;
 using ReactShop.Core.Repositories;
 using ReactShop.Core.Repositories.Base;
 using ReactShop.Infrastructure.Repositories;
 using ReactShop.Infrastructure.Repositories.Base;
 using ReactShop.LoggerService;
-using ReactShop.Services.Categories;
-using ReactShop.Services.Orders;
-using ReactShop.Services.Products;
-using ReactShop.Services.RestService;
-using ReactShop.Services.ShoppingCartService;
-using ReactShop.Services.Users;
+
 
 namespace ReactShop.Web.Extensions
 {
@@ -20,7 +21,10 @@ namespace ReactShop.Web.Extensions
         public static void CustomServices(this IServiceCollection services) 
         {
             services.AddScoped(typeof(IRepository<>), typeof(EfRepository<>));
-            services.AddScoped<IProductRepository,ProductRepository>();
+            services.AddScoped<IProductsRepository,ProductsRepository>();
+            services.AddScoped<ICategoriesRepository, CategoriesRepository>();
+            services.AddScoped<IOrdersRepository, OrdersRepository>();
+            services.AddScoped<IUsersRepository, UsersRepository>();
             services.AddTransient(typeof(IRestService<>), typeof(RestService<,>));
 
             services.AddTransient(typeof(IUsersService), typeof(UsersService));

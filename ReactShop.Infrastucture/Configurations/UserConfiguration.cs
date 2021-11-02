@@ -1,6 +1,6 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
-using ReactShop.Domain.Entities;
+using ReactShop.Core.Entities;
 
 namespace ReactShop.Infrastructure.Configurations
 {

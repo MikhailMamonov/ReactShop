@@ -5,7 +5,7 @@ using System.Threading.Tasks;
 
 namespace ReactShop.Web.Authentication
 {
-    public class Response
+    public class Model
     {
         public string Status { get; set; }
         public string Message { get; set; }

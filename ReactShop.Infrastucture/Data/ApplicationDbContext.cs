@@ -1,6 +1,6 @@
 ﻿using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
-using ReactShop.Domain.Entities;
+using ReactShop.Core.Entities;
 using ReactShop.Infrastructure.Configurations;
 using ProductConfiguration = ReactShop.Infrastructure.Configurations.ProductConfiguration;
 

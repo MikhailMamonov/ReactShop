@@ -6,17 +6,26 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <Compile Remove="Handlers\**" />
+    <EmbeddedResource Remove="Handlers\**" />
+    <None Remove="Handlers\**" />
+  </ItemGroup>
+
+  <ItemGroup>
     <PackageReference Include="AutoMapper" Version="10.1.1" />
     <PackageReference Include="FluentValidation" Version="10.3.4" />
+    <PackageReference Include="FluentValidation.AspNetCore" Version="10.3.4" />
     <PackageReference Include="MediatR.Extensions.Microsoft.DependencyInjection" Version="9.0.0" />
   </ItemGroup>
 
   <ItemGroup>
     <ProjectReference Include="..\ReactShop.Domain\ReactShop.Core.csproj" />
+    <ProjectReference Include="..\ReactShop.Infrastucture\ReactShop.Infrastructure.csproj" />
   </ItemGroup>
 
   <ItemGroup>
-    <Folder Include="Commands\Categories\" />
+    <Folder Include="Contracts\Infrastructure\Extensions\" />
+    <Folder Include="Contracts\Persistence\" />
   </ItemGroup>
 
 </Project>

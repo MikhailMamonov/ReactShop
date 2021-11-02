@@ -1,10 +1,11 @@
 ﻿using System.Collections.Generic;
+using ReactShop.Core.Entities.Base;
 
 #nullable disable
 
-namespace ReactShop.Domain.Entities
+namespace ReactShop.Core.Entities
 {
-    public class Category
+    public class Category : Entity
     {
         public ICollection<Product> Products { get; set; }
 
@@ -13,9 +14,17 @@ namespace ReactShop.Domain.Entities
             Products = new HashSet<Product>();
         }
 
-        public int Id { get; set; }
         public string Name { get; set; }
 
-        
+        public static Category Create(int categoryId, string name)
+        {
+            var category = new Category()
+            {
+                Id = categoryId,
+                Name = name
+            };
+
+            return category;
+        }
     }
 }

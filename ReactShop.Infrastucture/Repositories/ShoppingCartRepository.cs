@@ -1,7 +1,7 @@
 ﻿using System.Threading.Tasks;
+using ReactShop.Core.Entities;
 using ReactShop.Core.Repositories;
 using ReactShop.Core.Repositories.Base;
-using ReactShop.Domain.Entities;
 using ReactShop.Infrastructure.Data;
 using ReactShop.Infrastructure.Repositories.Base;
 
@@ -13,10 +13,15 @@ namespace ReactShop.Infrastructure.Repositories
         {
         }
 
-        public async Task ClearShoppingCart()
+        public async Task<CartItem> GetByIdAsync(int id)
         {
-            Context.RemoveRange();
-            await Context.SaveChangesAsync();
+            return await Context.Set<CartItem>().FindAsync(id);
+        }
+
+        public async Task RemoveAsync(int id)
+        {
+            var entity = await Context.Set<Product>().FindAsync(id);
+            Context.Set<Product>().Remove(entity);
         }
     }
 }

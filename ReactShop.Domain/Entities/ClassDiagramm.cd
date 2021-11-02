@@ -1,56 +1,57 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <ClassDiagram MajorVersion="1" MinorVersion="1">
-  <Class Name="ReactShop.Domain.Entities.ApplicationUser">
+  <Class Name="ReactShop.Core.Entities.ApplicationUser">
     <Position X="10.25" Y="0.5" Width="1.5" />
     <TypeIdentifier>
-      <HashCode>AAEAAAAAAAAAAAAEAAAAAAAAAgAAAAAAAAAAAAAAAAA=</HashCode>
+      <HashCode>AAEAAAAAAAAAAAAEAAAAAAAAAgAAAEAAAAAAAAAAAAA=</HashCode>
       <FileName>Entities\ApplicationUser.cs</FileName>
     </TypeIdentifier>
     <ShowAsCollectionAssociation>
       <Property Name="Orders" />
     </ShowAsCollectionAssociation>
+    <Lollipop Position="0.2" />
   </Class>
-  <Class Name="ReactShop.Domain.Entities.CartItem">
+  <Class Name="ReactShop.Core.Entities.CartItem">
     <Position X="12" Y="4.25" Width="1.5" />
     <TypeIdentifier>
-      <HashCode>EAACAAAAAAAAAAAAAAAAAACAAgAAAAACAAAEAAAACAA=</HashCode>
+      <HashCode>EAACAAAAAAAAAAAAEAAAAACAAgAAAEACAAAEAAAAAAA=</HashCode>
       <FileName>Entities\CartItem.cs</FileName>
     </TypeIdentifier>
   </Class>
-  <Class Name="ReactShop.Domain.Entities.Category">
+  <Class Name="ReactShop.Core.Entities.Category">
     <Position X="6" Y="1.5" Width="1.5" />
     <TypeIdentifier>
-      <HashCode>AAACAAAAAAAAAAAAAAAAAAQAAAAAAAAAAAAAAAAAAAQ=</HashCode>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAQAAAAAAEAAAAAAAAAAAAQ=</HashCode>
       <FileName>Entities\Category.cs</FileName>
     </TypeIdentifier>
     <ShowAsCollectionAssociation>
       <Property Name="Products" />
     </ShowAsCollectionAssociation>
   </Class>
-  <Class Name="ReactShop.Domain.Entities.Order">
+  <Class Name="ReactShop.Core.Entities.Order">
     <Position X="4.25" Y="1.5" Width="1.5" />
     <TypeIdentifier>
-      <HashCode>AAADgAAAAAAAAAAIABAAAAgAAAIAAAADAAAABAAAAAA=</HashCode>
+      <HashCode>AAABgAAAAAAAAAAIABAAAAgAAAIAAEADAAAABAAAAAA=</HashCode>
       <FileName>Entities\Order.cs</FileName>
     </TypeIdentifier>
     <ShowAsCollectionAssociation>
       <Property Name="OrderDetails" />
     </ShowAsCollectionAssociation>
   </Class>
-  <Class Name="ReactShop.Domain.Entities.OrderDetail">
+  <Class Name="ReactShop.Core.Entities.OrderDetail">
     <Position X="4.75" Y="5.25" Width="1.5" />
     <TypeIdentifier>
       <HashCode>EAECAAAAAAAAAAAAAAAAAACAAAAAAAAAAAAAAAAAAAA=</HashCode>
       <FileName>Entities\OrderDetail.cs</FileName>
     </TypeIdentifier>
   </Class>
-  <Class Name="ReactShop.Domain.Entities.Product">
+  <Class Name="ReactShop.Core.Entities.Product">
     <Position X="8.25" Y="4.5" Width="1.5" />
     <Members>
       <Property Name="Category" Hidden="true" />
     </Members>
     <TypeIdentifier>
-      <HashCode>AAACAAAAgQAgAgAAABAAAAQAAAAAABAAAAAAAAAACAA=</HashCode>
+      <HashCode>AAAAAAAAgQAgAgAAABAAAAQAAAAAAFAAAAAAAAAgCAA=</HashCode>
       <FileName>Entities\Product.cs</FileName>
     </TypeIdentifier>
     <ShowAsAssociation>
@@ -61,10 +62,10 @@
       <Property Name="OrderDetails" />
     </ShowAsCollectionAssociation>
   </Class>
-  <Class Name="ReactShop.Domain.Entities.ShoppingCart">
+  <Class Name="ReactShop.Core.Entities.ShoppingCart">
     <Position X="13.25" Y="1.5" Width="1.5" />
     <TypeIdentifier>
-      <HashCode>AAADAAAAgAAAAAAAAAAAAAgAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <HashCode>AAABAAAAgAAAAAAAAAAAAAgAAAAAAEAAAAAAAAAAAAA=</HashCode>
       <FileName>Entities\ShoppingCart.cs</FileName>
     </TypeIdentifier>
     <ShowAsAssociation>

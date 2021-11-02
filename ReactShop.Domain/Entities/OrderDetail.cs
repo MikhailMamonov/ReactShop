@@ -1,11 +1,12 @@
-﻿
+﻿using ReactShop.Core.Entities.Base;
+
 #nullable disable
 
-namespace ReactShop.Domain.Entities
+namespace ReactShop.Core.Entities
 {
-    public class OrderDetail
+    public class OrderDetail :Entity
     {
-        public int Id { get; set; }
+
         public int OrderId { get; set; }
         public int ProductId { get; set; }
         public int Amount { get; set; }
