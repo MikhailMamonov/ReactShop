@@ -1,24 +1,28 @@
-import { Product, thunkType } from "../../types";
-import { shoppingCartItemsActionTypes } from "../../types/shoppingCart";
+import shoppingCartDataService from "store/shoppingCart/shoppingCart.service";
+import { shoppingCartItemsActionTypes, CartItem, thunkType } from "types";
+import axios, { AxiosError } from "axios";
 
-export const addToCartThunk = (product: Product): thunkType => {
+export const addToCartThunk = (newCartItem: CartItem): thunkType => {
   return (dispatch) => {
     dispatch({ type: shoppingCartItemsActionTypes.ADD_CART_ITEM_REQUEST });
-    categoriessDataService
+    shoppingCartDataService
       .create({
-        id: newCategory.id,
-        name: newCategory.name,
+        id: newCartItem.id,
+        cartId: newCartItem.cartId,
+        amount: newCartItem.amount,
+        dateCreated: newCartItem.dateCreated,
+        productId: newCartItem.productId,
       })
-      .then((newCategory: Category) => {
+      .then((newCartItem: CartItem) => {
         dispatch({
           type: shoppingCartItemsActionTypes.ADD_CART_ITEM_SUCCESS,
-          category: newCategory,
+          cartItem: newCartItem,
         });
       })
       .catch((err: Error | AxiosError) => {
         debugger;
         dispatch({
-          type: categoriesActionTypes.ADD_CATEGORY_FAILURE,
+          type: shoppingCartItemsActionTypes.ADD_CART_ITEM_FAILURE,
           error: err.message,
         });
       });
@@ -27,24 +31,24 @@ export const addToCartThunk = (product: Product): thunkType => {
 
 export const getAllCategoriesThunk = (): thunkType => {
   return (dispatch) => {
-    dispatch({ type: categoriesActionTypes.GET_CATEGORIES_REQUEST });
-    categoriessDataService
+    dispatch({ type: shoppingCartItemsActionTypes.GET_CART_ITEMS_REQUEST });
+    shoppingCartDataService
       .getAll()
-      .then((categories: Category[]) => {
+      .then((cartItems: CartItem[]) => {
         dispatch({
-          type: categoriesActionTypes.GET_CATEGORIES_SUCCESS,
-          categories,
+          type: shoppingCartItemsActionTypes.GET_CART_ITEMS_SUCCESS,
+          cartItems: cartItems,
         });
       })
       .catch((err: Error | AxiosError) => {
         if (axios.isAxiosError(err)) {
           dispatch({
-            type: categoriesActionTypes.GET_CATEGORIES_FAILURE,
+            type: shoppingCartItemsActionTypes.GET_CART_ITEMS_FAILURE,
             error: err.response?.data.ToString(),
           });
         } else {
           dispatch({
-            type: categoriesActionTypes.GET_CATEGORIES_FAILURE,
+            type: shoppingCartItemsActionTypes.GET_CART_ITEMS_FAILURE,
             error: err.message,
           });
         }
@@ -52,26 +56,26 @@ export const getAllCategoriesThunk = (): thunkType => {
   };
 };
 
-export const deleteCategoryThunk = (id: number): thunkType => {
+export const deleteCartItemThunk = (id: number): thunkType => {
   return (dispatch) => {
-    dispatch({ type: categoriesActionTypes.DELETE_CATEGORY_REQUEST });
-    categoriessDataService
+    dispatch({ type: shoppingCartItemsActionTypes.DELETE_CART_ITEM_REQUEST });
+    shoppingCartDataService
       .remove(id)
       .then((deleteRespone) => {
         dispatch({
-          type: categoriesActionTypes.DELETE_CATEGORY_SUCCESS,
+          type: shoppingCartItemsActionTypes.DELETE_CART_ITEM_SUCCESS,
           id: deleteRespone.id,
         });
       })
       .catch((err: Error | AxiosError) => {
         if (axios.isAxiosError(err)) {
           dispatch({
-            type: categoriesActionTypes.GET_CATEGORIES_FAILURE,
+            type: shoppingCartItemsActionTypes.DELETE_CART_ITEM_FAILURE,
             error: err.response?.data.ToString(),
           });
         } else {
           dispatch({
-            type: categoriesActionTypes.GET_CATEGORIES_FAILURE,
+            type: shoppingCartItemsActionTypes.EDIT_CART_ITEM_FAILURE,
             error: err.message,
           });
         }
@@ -79,28 +83,28 @@ export const deleteCategoryThunk = (id: number): thunkType => {
   };
 };
 
-export const editCategoryThunk = (id: number, item: Category): thunkType => {
+export const editCartItemThunk = (id: number, item: CartItem): thunkType => {
   return (dispatch) => {
-    dispatch({ type: categoriesActionTypes.EDIT_CATEGORY_REQUEST });
-    categoriessDataService
+    dispatch({ type: shoppingCartItemsActionTypes.EDIT_CART_ITEM_REQUEST });
+    shoppingCartDataService
       .update(id, item)
-      .then((editedCategory: Category) => {
+      .then((editedCartItem: CartItem) => {
         dispatch({
-          type: categoriesActionTypes.EDIT_CATEGORY_SUCCESS,
-          id: id,
-          category: editedCategory,
+          type: shoppingCartItemsActionTypes.EDIT_CART_ITEM_SUCCESS,
+          id: editedCartItem.id,
+          cartItem: editedCartItem,
         });
       })
       .catch((err: Error | AxiosError) => {
         console.log(err);
         if (axios.isAxiosError(err)) {
           dispatch({
-            type: categoriesActionTypes.EDIT_CATEGORY_FAILURE,
+            type: shoppingCartItemsActionTypes.EDIT_CART_ITEM_FAILURE,
             error: err.response?.data.ToString(),
           });
         } else {
           dispatch({
-            type: categoriesActionTypes.EDIT_CATEGORY_FAILURE,
+            type: shoppingCartItemsActionTypes.EDIT_CART_ITEM_FAILURE,
             error: err.message,
           });
         }

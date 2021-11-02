@@ -6,7 +6,7 @@ import {
 } from "types/shoppingCart";
 
 const initialState: ShoppingCartItemsState = {
-  shoppingCartItems: [] as Array<CartItem>,
+  cartItems: [] as Array<CartItem>,
   isLoading: false,
   error: "",
 };
@@ -16,86 +16,87 @@ export default function shoppingCartItemsReducer(
   action: ShoppingCartItemsActions
 ): ShoppingCartItemsState {
   switch (action.type) {
-    case shoppingCartItemsActionTypes.ADD_CATEGORY_REQUEST:
+    case shoppingCartItemsActionTypes.ADD_CART_ITEM_REQUEST:
       return {
         ...state,
         isLoading: true,
       };
-    case shoppingCartItemsActionTypes.ADD_CATEGORY_SUCCESS:
+    case shoppingCartItemsActionTypes.ADD_CART_ITEM_SUCCESS:
       return {
         ...state,
-        shoppingCartItems: [
-          ...state.shoppingCartItems,
+        cartItems: [
+          ...state.cartItems,
           {
             id: action.cartItem.id,
-            name: action.cartItem.name,
+            cartId: action.cartItem.cartId,
+            amount: action.cartItem.amount,
+            dateCreated: action.cartItem.dateCreated,
+            productId: action.cartItem.productId,
           },
         ],
         isLoading: false,
       };
 
-    case shoppingCartItemsActionTypes.ADD_CATEGORY_FAILURE:
+    case shoppingCartItemsActionTypes.ADD_CART_ITEM_FAILURE:
       return {
         ...state,
         error: action.error,
         isLoading: false,
       };
 
-    case shoppingCartItemsActionTypes.GET_CATEGORIES_REQUEST:
+    case shoppingCartItemsActionTypes.GET_CART_ITEMS_REQUEST:
       return {
         ...state,
         isLoading: true,
       };
-    case shoppingCartItemsActionTypes.GET_CATEGORIES_SUCCESS:
+    case shoppingCartItemsActionTypes.GET_CART_ITEMS_SUCCESS:
       return {
         ...state,
-        shoppingCartItems: action.shoppingCartItems,
+        cartItems: action.cartItems,
         isLoading: false,
       };
 
-    case shoppingCartItemsActionTypes.GET_CATEGORIES_FAILURE:
+    case shoppingCartItemsActionTypes.GET_CART_ITEMS_FAILURE:
       return {
         ...state,
         error: action.error,
         isLoading: false,
       };
 
-    case shoppingCartItemsActionTypes.DELETE_CATEGORY_REQUEST:
+    case shoppingCartItemsActionTypes.DELETE_CART_ITEM_REQUEST:
       return {
         ...state,
         isLoading: true,
       };
-    case shoppingCartItemsActionTypes.DELETE_CATEGORY_SUCCESS:
+    case shoppingCartItemsActionTypes.DELETE_CART_ITEM_SUCCESS:
       return {
         ...state,
-        shoppingCartItems: state.shoppingCartItems.filter(
-          (c) => c.id !== action.id
-        ),
+        cartItems: state.cartItems.filter((c) => c.id !== action.id),
         isLoading: false,
       };
 
-    case shoppingCartItemsActionTypes.DELETE_CATEGORY_FAILURE:
+    case shoppingCartItemsActionTypes.DELETE_CART_ITEM_FAILURE:
       return {
         ...state,
         error: action.error,
         isLoading: false,
       };
 
-    case shoppingCartItemsActionTypes.EDIT_CATEGORY_REQUEST:
+    case shoppingCartItemsActionTypes.EDIT_CART_ITEM_REQUEST:
       return {
         ...state,
         isLoading: true,
       };
-    case shoppingCartItemsActionTypes.EDIT_CATEGORY_SUCCESS:
+    case shoppingCartItemsActionTypes.EDIT_CART_ITEM_SUCCESS:
       return {
         ...state,
-        shoppingCartItems: state.shoppingCartItems.map((p) =>
+        cartItems: state.cartItems.map((p) =>
           p.id === action.id ? action.cartItem : p
         ),
         isLoading: false,
       };
 
-    case shoppingCartItemsActionTypes.EDIT_CATEGORY_FAILURE:
+    case shoppingCartItemsActionTypes.EDIT_CART_ITEM_FAILURE:
       return {
         ...state,
         error: action.error,

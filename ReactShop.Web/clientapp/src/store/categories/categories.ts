@@ -1,6 +1,6 @@
 import { categoriesActionTypes, Category } from "../../types/categories";
 import axios, { AxiosError } from "axios";
-import categoriessDataService from "./../api/category.service";
+import categoriessDataService from "./category.service";
 import { thunkType } from "../../types";
 
 export const addCategoryThunk = (newCategory: Category): thunkType => {

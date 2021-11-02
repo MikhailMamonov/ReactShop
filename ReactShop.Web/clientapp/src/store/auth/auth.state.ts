@@ -1,5 +1,5 @@
-import { User } from "../../../types/users";
-import { AuthState } from "../../../types/auth";
+import { User } from "types/users";
+import { AuthState } from "types/auth";
 
 const user: User = localStorage.getItem("user")
   ? JSON.parse(localStorage.getItem("user") || "{}")

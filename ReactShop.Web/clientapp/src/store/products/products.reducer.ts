@@ -3,7 +3,7 @@ import {
   ProductsState,
   ProductsActions,
   productsActionTypes,
-} from "./../../../types/products";
+} from "types/products";
 
 const initialState: ProductsState = {
   products: [] as Array<Product>,

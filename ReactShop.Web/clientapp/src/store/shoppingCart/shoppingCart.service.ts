@@ -1,42 +1,42 @@
-import http from "./store/";
-import { Category } from "../../types/categories";
-import { DeleteResponseType } from "../../types/api.services";
+import http from "store/api/http-common";
+import { CartItem } from "types/shoppingCart";
+import { DeleteResponseType } from "types/api.services";
 
 const getAll = () => {
-  return http.get<Category[]>("/categories").then((response) => {
+  return http.get<CartItem[]>("/shoppingCart").then((response) => {
     return response.data;
   });
 };
 
 const get = (id: number) => {
-  return http.get<Category[]>(`/categories/${id}`).then((response) => {
+  return http.get<CartItem[]>(`/shoppingCart/${id}`).then((response) => {
     return response.data;
   });
 };
 
-const create = (newCategory: Category) => {
-  return http.post<Category>("/categories", newCategory).then((response) => {
+const create = (newCartItem: CartItem) => {
+  return http.post<CartItem>("/shoppingCart", newCartItem).then((response) => {
     return response.data;
   });
 };
 
 const remove = (id: number) => {
   return http
-    .delete<DeleteResponseType>(`/categories/${id}`)
+    .delete<DeleteResponseType>(`/shoppingCart/${id}`)
     .then((response) => {
       return response.data;
     });
 };
 
-const update = (id: number, updatedCategory: Category) => {
+const update = (id: number, updatedCartItem: CartItem) => {
   return http
-    .put<Category>(`/categories/${id}`, updatedCategory)
+    .put<CartItem>(`/shoppingCart/${id}`, updatedCartItem)
     .then((response) => {
       return response.data;
     });
 };
 
-const categoriessDataService = {
+const shoppingCartsDataService = {
   getAll,
   get,
   create,
@@ -44,4 +44,4 @@ const categoriessDataService = {
   remove,
 };
 
-export default categoriessDataService;
+export default shoppingCartsDataService;

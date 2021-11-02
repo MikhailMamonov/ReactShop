@@ -1,18 +1,15 @@
-import http from "./http-common";
-import LocalStorageService from "./LocalStorageService";
+import http from "../api/http-common";
+import LocalStorageService from "../api/LocalStorageService";
 
 const localStorageService = new LocalStorageService();
 
 const login = (username: string, password: string) => {
-  return http.post(`/auth/login`, { username, password }).then((response) => {
-    if (response.data.accessToken) {
-      localStorageService.setToken(
-        response.data.user,
-        response.data.accessToken
-      );
+  return http.post(`/auth/login`, { username, password }).then((Model) => {
+    if (Model.data.accessToken) {
+      localStorageService.setToken(Model.data.user, Model.data.accessToken);
     }
 
-    return response.data;
+    return Model.data;
   });
 };
 

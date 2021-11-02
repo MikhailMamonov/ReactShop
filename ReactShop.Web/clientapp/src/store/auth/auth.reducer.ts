@@ -1,4 +1,4 @@
-import { initialState } from "../reducers/auth/auth.state";
+import { initialState } from "./auth.state";
 import { AuthActions, authActionTypes, AuthState } from "../../types/auth";
 
 export default function auth(

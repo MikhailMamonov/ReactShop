@@ -1,4 +1,4 @@
-import authService from "../api/auth.service";
+import authService from "./auth.service";
 
 import { history } from "../../helpers/history";
 import { ThunkAction } from "redux-thunk";

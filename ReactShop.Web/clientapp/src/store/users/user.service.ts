@@ -3,8 +3,8 @@ import { DeleteResponseType } from "../../types/api.services";
 import { User } from "../../types/users";
 
 const getAll = () => {
-  return http.get<User[]>("/users").then((response) => {
-    return response.data;
+  return http.get<User[]>("/users").then((Model) => {
+    return Model.data;
   });
 };
 

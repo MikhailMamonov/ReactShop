@@ -1,7 +1,12 @@
 import { connect } from "react-redux";
 import { ThunkDispatch } from "redux-thunk";
+import {
+  addProductThunk,
+  deleteProductThunk,
+  editProductThunk,
+} from "store/products/products";
 import { RootStateType } from "../../store/store";
-import { ActionTypes } from "../../types";
+import { ActionTypes, User } from "types";
 import { Category } from "../../types/categories";
 import { Product } from "../../types/products";
 
@@ -36,6 +41,6 @@ const mapDispatchToProps = (
   };
 };
 
-const CatalogContainer = connect(mapStateToProps)(Catalog);
+const CatalogContainer = connect(mapStateToProps, mapDispatchToProps)(Catalog);
 
 export default CatalogContainer;

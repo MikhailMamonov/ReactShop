@@ -71,7 +71,7 @@ export const deleteUserThunk = (id: string): thunkType => {
     dispatch({ type: usersActionTypes.DELETE_USER_REQUEST });
     userService
       .remove(id)
-      .then((deleteResponse) => {
+      .then((deleteModel) => {
         setTimeout(() => {
           dispatch({
             type: usersActionTypes.DELETE_USER_SUCCES,
