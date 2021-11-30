@@ -94,7 +94,8 @@ namespace ReactShop.Web
                     }
                 };
             });
-            services.AddControllersWithViews().AddNewtonsoftJson();
+            services.AddControllersWithViews()
+                .AddNewtonsoftJson();
 
 
             #region Swagger

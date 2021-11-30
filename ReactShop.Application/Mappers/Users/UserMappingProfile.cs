@@ -8,9 +8,12 @@ namespace ReactShop.Application.Mappers.Users
 {
     public class UserMappingProfile : Profile
     {
-        public UserMappingProfile()
+        public UserMappingProfile() 
         {
-            CreateMap<ApplicationUser, UserModel>().ReverseMap();
+            CreateMap<ApplicationUser, UserModel>();
+            CreateMap<ShoppingCart, ShoppingCartModel>();
+            CreateMap<CartItem, CartItemModel>().ReverseMap();
+
             CreateMap<ApplicationUser, CreateUserCommand>().ReverseMap();
             CreateMap<ApplicationUser, UpdateUserCommand>().ReverseMap();
         }

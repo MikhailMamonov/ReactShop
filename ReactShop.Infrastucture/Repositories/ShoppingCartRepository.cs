@@ -7,9 +7,9 @@ using ReactShop.Infrastructure.Repositories.Base;
 
 namespace ReactShop.Infrastructure.Repositories
 {
-    public class ShoppingCartRepository : EfRepository<CartItem>,IShoppingCartRepository
+    public class ShoppingCartRepository : EfRepository<ShoppingCart>,IShoppingCartRepository
     {
-        ShoppingCartRepository(ApplicationDbContext context) : base(context)
+        public ShoppingCartRepository(ApplicationDbContext context) : base(context)
         {
         }
 
@@ -23,5 +23,7 @@ namespace ReactShop.Infrastructure.Repositories
             var entity = await Context.Set<Product>().FindAsync(id);
             Context.Set<Product>().Remove(entity);
         }
+
+        
     }
 }

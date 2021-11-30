@@ -8,7 +8,6 @@ namespace ReactShop.Infrastructure.Configurations
     {
         public void Configure(EntityTypeBuilder<Product> builder) 
         {
-            builder.HasIndex(e => e.CategoryId, "IX_Products_CategoryId");
             builder.HasOne(d => d.Category)
                 .WithMany(p => p.Products)
                 .HasForeignKey(d => d.CategoryId);

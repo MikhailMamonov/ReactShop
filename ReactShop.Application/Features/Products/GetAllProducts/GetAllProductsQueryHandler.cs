@@ -1,16 +1,11 @@
-﻿using MediatR;
-
-using ReactShop.Application.Queries;
-using ReactShop.Core.Repositories;
-using System;
-using System.Collections.Generic;
-using System.Text;
+﻿using System.Collections.Generic;
 using System.Threading;
 using System.Threading.Tasks;
-using ReactShop.Application.Features.Products.GetAllProducts;
+using MediatR;
 using ReactShop.Core.Entities;
+using ReactShop.Core.Repositories;
 
-namespace ReactShop.Application.Handlers
+namespace ReactShop.Application.Features.Products.GetAllProducts
 {
     public class GetAllProductsQueryHandler : IRequestHandler<GetAllProductsQuery, IEnumerable<Product>>
     {

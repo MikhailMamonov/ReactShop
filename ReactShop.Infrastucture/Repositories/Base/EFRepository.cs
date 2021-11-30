@@ -22,7 +22,7 @@ namespace ReactShop.Infrastructure.Repositories.Base
             //await Context.SaveChangesAsync();
         }
 
-        public async Task<IEnumerable<TDomain>> GetAllAsync()
+        public virtual async Task<IEnumerable<TDomain>> GetAllAsync()
         {
             return await Context.Set<TDomain>().ToListAsync();
         }

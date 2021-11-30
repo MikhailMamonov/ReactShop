@@ -9,8 +9,9 @@ namespace ReactShop.Core.Entities
     {
         public Product()
         {
-            CartItems = new HashSet<CartItem>();
-            OrderDetails = new HashSet<OrderDetail>();
+            //CartItems = new HashSet<CartItem>();
+            //OrderDetails = new HashSet<OrderDetail>();
+            //Category = new Category();
         }
 
         public string Name { get; set; }
@@ -22,8 +23,8 @@ namespace ReactShop.Core.Entities
 
 
         public virtual Category Category { get; set; }
-        public ICollection<CartItem> CartItems { get; set; }
-        public ICollection<OrderDetail> OrderDetails { get; set; }
+        public virtual ICollection<CartItem> CartItems { get; set; }
+        public virtual ICollection<OrderDetail> OrderDetails { get; set; }
 
         public static Product Create(int productId, int categoryId, string name, decimal? unitPrice = null, short? unitsInStock = null)
         {

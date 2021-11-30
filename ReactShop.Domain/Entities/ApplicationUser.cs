@@ -6,9 +6,11 @@ namespace ReactShop.Core.Entities
 {
     public class ApplicationUser : IdentityUser,IEntityBase<string>
     {
+        
+
         public virtual ShoppingCart ShoppingCart { get; set; }
 
-        public IEnumerable<Order> Orders { get; set; }
+        public virtual IEnumerable<Order> Orders { get; set; }
 
         public override string ToString()
         {

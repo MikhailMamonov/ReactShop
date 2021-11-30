@@ -14,6 +14,7 @@ namespace ReactShop.Core.Repositories.Base
         Task EditAsync(TDomain data);
 
         Task<TDomain> AddAsync(TDomain data);
+        
 
         Task ClearAll();
 

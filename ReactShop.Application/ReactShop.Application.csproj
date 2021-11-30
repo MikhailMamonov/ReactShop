@@ -2,7 +2,7 @@
 
   <PropertyGroup>
     <OutputType>Exe</OutputType>
-    <TargetFramework>netcoreapp3.1</TargetFramework>
+    <TargetFramework>net5.0</TargetFramework>
   </PropertyGroup>
 
   <ItemGroup>
@@ -26,6 +26,7 @@
   <ItemGroup>
     <Folder Include="Contracts\Infrastructure\Extensions\" />
     <Folder Include="Contracts\Persistence\" />
+    <Folder Include="Features\CartItems\CreateShoppingCart\" />
   </ItemGroup>
 
 </Project>

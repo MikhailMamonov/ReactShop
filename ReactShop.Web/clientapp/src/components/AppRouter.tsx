@@ -2,7 +2,7 @@ import { connect } from "react-redux";
 import { Switch, Route, Redirect } from "react-router-dom";
 import ErrorPage from "../pages/ErrorPage";
 import { privateRoutes, publicRoutes } from "../router";
-import { RootStateType } from "../store/store";
+import { RootStateType } from "../store";
 import { User } from "../types/users";
 
 type AppRouterProps = {

@@ -3,8 +3,8 @@ import {
   addCategoryThunk,
   deleteCategoryThunk,
   editCategoryThunk,
-} from "../../../store/categories/categories";
-import { RootStateType } from "../../../store/store";
+} from "store/action-creators/categories";
+import { RootStateType } from "../../../store";
 import Categories from "./Categories";
 import { Category } from "./../../../types/categories";
 import { ThunkDispatch } from "redux-thunk";

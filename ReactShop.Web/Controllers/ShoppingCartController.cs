@@ -1,45 +1,46 @@
-﻿//using AutoMapper;
+﻿using AutoMapper;
 
-//using Microsoft.AspNetCore.Identity;
-//using Microsoft.AspNetCore.Mvc;
+using MediatR;
 
-//using ReactShop.Domain.DTOModels;
-//using ReactShop.Domain.Entities;
-//using ReactShop.LoggerService;
-//using System;
+using Microsoft.AspNetCore.Mvc;
+using ReactShop.LoggerService;
+using System;
+using System.Threading.Tasks;
+using ReactShop.Application.Features.ShoppingCarts.CreateShoppingCart;
+using ReactShop.Application.Features.ShoppingCarts.GetAllShoppingCarts;
+using ReactShop.Application.Features.ShoppingCarts.GetShoppingCartById;
+using ReactShop.Application.Services.ShoppingCart;
 
-//using System.Threading.Tasks;
-//using ReactShop.Services.ShoppingCartService;
+namespace ReactShop.Web.Controllers
+{
+    [ApiController]
+    [Route("api/[controller]")]
+    public class ShoppingCartController : Controller
+    {
+        private readonly IMediator _mediator;
 
-//namespace ReactShop.Web.Controllers
-//{
-//    public class ShoppingCartController : BaseController<CartItemModel>
-//    {
-        
-//        public ShoppingCart CurrentShoppingCart { get; }
-//        private readonly IShoppingCartService _shoppingCartService;
+        public ShoppingCartController(IMapper mapper, ILoggerManager logger,
+                IMediator mediator)
+        {
+            _mediator = mediator ?? throw new ArgumentNullException(nameof(mediator));
+        }
 
-//        public ShoppingCartController(IShoppingCartService shoppingCartService,  IMapper mapper, ILoggerManager logger, ShoppingCart currentShoppingCart)
-//            : base(shoppingCartService, mapper, logger)
-//        {
-            
-//            CurrentShoppingCart = currentShoppingCart;
-//            _shoppingCartService = shoppingCartService;
-//        }
+        [HttpGet]
+        public async Task<IActionResult> GetAll()
+        {
+            return Ok(await _mediator.Send(new GetAllShoppingCartsQuery()));
+        }
 
-//        [HttpPost]
-//        public async Task<IActionResult> ClearShoppingCart() 
-//        {
-//            try
-//            {
-//                await _shoppingCartService.ClearShoppingCart();
-//                return Ok();
-//            }
-//            catch (Exception e)
-//            {
-//                return LogErrorAndReturnStatusCode(e.Message + e.InnerException + e.StackTrace, 500);
-//            }
-            
-//        }
-//    }
-//}
+        [HttpGet("{id}")]
+        public async Task<IActionResult> GetById(int id)
+        {
+            return Ok(await _mediator.Send(new GetShoppingCartsByIdQuery() { Id = id }));
+        }
+
+        [HttpPost]
+        public async Task<IActionResult> CreateProduct([FromBody] CreateShoppingCartCommand command)
+        {
+            return Ok(await _mediator.Send(command));
+        }
+    }
+}

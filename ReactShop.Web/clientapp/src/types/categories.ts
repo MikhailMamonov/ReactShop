@@ -42,7 +42,7 @@ export type AddCategoryFailureAction = {
   error: string;
 };
 
-export type GetCategoriesReguestAction = {
+export type GetCategoriesRequestAction = {
   type: categoriesActionTypes.GET_CATEGORIES_REQUEST;
 };
 
@@ -56,7 +56,7 @@ export type GetCategoriesFailureAction = {
   error: string;
 };
 
-export type EditCategoryReguestAction = {
+export type EditCategoryRequestAction = {
   type: categoriesActionTypes.EDIT_CATEGORY_REQUEST;
 };
 
@@ -71,7 +71,7 @@ export type EditCategoryFailureAction = {
   error: string;
 };
 
-export type DeleteCategoryReguestAction = {
+export type DeleteCategoryRequestAction = {
   type: categoriesActionTypes.DELETE_CATEGORY_REQUEST;
 };
 
@@ -90,11 +90,11 @@ export type CategoriesActions =
   | AddCategorySuccessAction
   | AddCategoryFailureAction
   | GetCategoriesSuccessAction
-  | GetCategoriesReguestAction
+  | GetCategoriesRequestAction
   | GetCategoriesFailureAction
   | EditCategorySuccessAction
-  | EditCategoryReguestAction
+  | EditCategoryRequestAction
   | EditCategoryFailureAction
   | DeleteCategorySuccessAction
-  | DeleteCategoryReguestAction
+  | DeleteCategoryRequestAction
   | DeleteCategoryFailureAction;

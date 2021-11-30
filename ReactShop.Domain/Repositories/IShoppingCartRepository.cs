@@ -4,7 +4,7 @@ using ReactShop.Core.Repositories.Base;
 
 namespace ReactShop.Core.Repositories
 {
-    public interface IShoppingCartRepository : IRepository<CartItem>
+    public interface IShoppingCartRepository : IRepository<ShoppingCart>
     {
         Task<CartItem> GetByIdAsync(int id);
 

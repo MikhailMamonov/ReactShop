@@ -14,6 +14,9 @@ using Microsoft.AspNetCore.Http;
 using ReactShop.Web.Handling.Authentication;
 using ReactShop.Web.Authentication;
 using AutoMapper;
+using MediatR;
+using Microsoft.EntityFrameworkCore;
+using ReactShop.Application.Features.ShoppingCarts.CreateShoppingCart;
 using ReactShop.Application.Models;
 using ReactShop.Application.Services.Users;
 using ReactShop.Core.Entities;
@@ -30,6 +33,7 @@ namespace ReactShop.Web.Controllers
         private readonly IConfiguration _configuration;
         private readonly IMapper _mapper;
         public IUsersService Service { get; }
+        private readonly IMediator _mediator;
 
         public AuthController(
             IUsersService usersService,
@@ -37,13 +41,15 @@ namespace ReactShop.Web.Controllers
             RoleManager<IdentityRole> roleManager,
             SignInManager<ApplicationUser> signInManager,
             IConfiguration configuration,
-            IMapper mapper) {
+            IMapper mapper, IMediator mediator)
+        {
             this._userManager = userManager;
             this._roleManager = roleManager;
             _configuration = configuration;
             _mapper = mapper;
             Service = usersService;
             _signInManager = signInManager;
+            _mediator = mediator ?? throw new ArgumentNullException(nameof(mediator));
         }
 
 
@@ -51,59 +57,81 @@ namespace ReactShop.Web.Controllers
         [Route("login")]
         public async Task<IActionResult> Login([FromBody] LoginModel model)
         {
-            var user = await _userManager.FindByNameAsync(model.Username);
-            if (user != null && await _userManager.CheckPasswordAsync(user, model.Password))
+            try
             {
-                var userRoles = await _userManager.GetRolesAsync(user);
-
-                var authClaims = new List<Claim>
+                var user = await _userManager.Users.Include(u => u.ShoppingCart)
+                    .FirstOrDefaultAsync(u => u.UserName == model.Username);
+                if (user != null && await _userManager.CheckPasswordAsync(user, model.Password))
                 {
-                    new Claim(ClaimTypes.Name, user.UserName),
-                    new Claim(JwtRegisteredClaimNames.Jti, Guid.NewGuid().ToString()),
-                };
+                    var userRoles = await _userManager.GetRolesAsync(user);
 
-                if (user.ShoppingCart == null) 
-                {
-                    var shoppingCartEntity = new ShoppingCart()
+                    var authClaims = new List<Claim>
                     {
-                        UserId = user.Id,
-                        User = user
+                        new Claim(ClaimTypes.Name, user.UserName),
+                        new Claim(JwtRegisteredClaimNames.Jti, Guid.NewGuid().ToString()),
                     };
 
-                    user.ShoppingCart = shoppingCartEntity;
-
-                    await _userManager.UpdateAsync(user);
-                }
-
-                var result = await _signInManager.PasswordSignInAsync(user.Email, model.Password, false, false);
-                if (result.Succeeded) 
-                {
-                    foreach (var userRole in userRoles)
+                    if (user.ShoppingCart == null)
                     {
-                        authClaims.Add(new Claim(ClaimTypes.Role, userRole));
+                        var createShoppingCartCommand = new CreateShoppingCartCommand()
+                        {
+                            UserId = user.Id,
+                        };
+
+                        var shoppingCartEntity = await _mediator.Send(createShoppingCartCommand);
+
+                        if (shoppingCartEntity != null)
+                        {
+                            user.ShoppingCart = shoppingCartEntity;
+                            //user.ShoppingCart = shoppingCartEntity;
+                        }
+
+                        await _userManager.UpdateAsync(user);
                     }
 
-                    var authSigningKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(_configuration["JWT:Secret"]));
-
-                    var token = new JwtSecurityToken(
-                        issuer: _configuration["JWT:ValidIssuer"],
-                        audience: _configuration["JWT:ValidAudience"],
-                        expires: DateTime.Now.AddHours(3),
-                        claims: authClaims,
-                        signingCredentials: new SigningCredentials(authSigningKey, SecurityAlgorithms.HmacSha256)
-                        );
-                    var UserModel = _mapper.Map<UserModel>(user);
-
-                    return Ok(new
+                    var result = await _signInManager.PasswordSignInAsync(user.UserName, model.Password, false, false);
+                    if (result.Succeeded)
                     {
-                        accessToken = new JwtSecurityTokenHandler().WriteToken(token),
-                        expiration = token.ValidTo,
-                        user = UserModel
-                    });
+                        foreach (var userRole in userRoles)
+                        {
+                            authClaims.Add(new Claim(ClaimTypes.Role, userRole));
+                        }
+
+                        var authSigningKey =
+                            new SymmetricSecurityKey(Encoding.UTF8.GetBytes(_configuration["JWT:Secret"]));
+
+                        var token = new JwtSecurityToken(
+                            issuer: _configuration["JWT:ValidIssuer"],
+                            audience: _configuration["JWT:ValidAudience"],
+                            expires: DateTime.Now.AddHours(3),
+                            claims: authClaims,
+                            signingCredentials: new SigningCredentials(authSigningKey, SecurityAlgorithms.HmacSha256)
+                        );
+
+                        var config = new MapperConfiguration(cfg => {
+                            cfg.CreateMap<ApplicationUser, UserModel>();
+                            cfg.CreateMap<ShoppingCart, ShoppingCartModel>();
+                        });
+
+                        var mapper = config.CreateMapper();
+                        UserModel userModel = mapper.Map<ApplicationUser,UserModel>(user);
+
+                        return Ok(new
+                        {
+                            accessToken = new JwtSecurityTokenHandler().WriteToken(token),
+                            expiration = token.ValidTo,
+                            user = userModel
+                        });
+                    }
                 }
-                
+
+                return Unauthorized();
             }
-            return Unauthorized();
+            catch (Exception e)
+            {
+                Console.WriteLine(e);
+                throw;
+            }
         }
 
 
@@ -113,7 +141,8 @@ namespace ReactShop.Web.Controllers
         {
             var userExists = await _userManager.FindByNameAsync(model.Username);
             if (userExists != null)
-                return StatusCode(StatusCodes.Status500InternalServerError, new Model { Status = "Error", Message = "User already exists!" });
+                return StatusCode(StatusCodes.Status500InternalServerError,
+                    new Model { Status = "Error", Message = "User already exists!" });
 
             ApplicationUser user = new ApplicationUser()
             {
@@ -128,7 +157,8 @@ namespace ReactShop.Web.Controllers
                 await _signInManager.SignInAsync(user, false);
 
                 var errors = result.Errors.Select(er => er.Description);
-                return StatusCode(StatusCodes.Status500InternalServerError, new Model { Status = "Error", Message = string.Join("\n", errors) });
+                return StatusCode(StatusCodes.Status500InternalServerError,
+                    new Model { Status = "Error", Message = string.Join("\n", errors) });
             }
 
             return Ok(new Model { Status = "Success", Message = "User created successfully!" });
@@ -140,7 +170,8 @@ namespace ReactShop.Web.Controllers
         {
             var userExists = await _userManager.FindByNameAsync(model.Username);
             if (userExists != null)
-                return StatusCode(StatusCodes.Status500InternalServerError, new Model { Status = "Error", Message = "User already exists!" });
+                return StatusCode(StatusCodes.Status500InternalServerError,
+                    new Model { Status = "Error", Message = "User already exists!" });
 
             ApplicationUser user = new ApplicationUser()
             {
@@ -150,7 +181,11 @@ namespace ReactShop.Web.Controllers
             };
             var result = await _userManager.CreateAsync(user, model.Password);
             if (!result.Succeeded)
-                return StatusCode(StatusCodes.Status500InternalServerError, new Model { Status = "Error", Message = "User creation failed! Please check user details and try again." });
+                return StatusCode(StatusCodes.Status500InternalServerError,
+                    new Model
+                    {
+                        Status = "Error", Message = "User creation failed! Please check user details and try again."
+                    });
 
             if (!await _roleManager.RoleExistsAsync(UserRoles.Admin))
                 await _roleManager.CreateAsync(new IdentityRole(UserRoles.Admin));
@@ -164,6 +199,5 @@ namespace ReactShop.Web.Controllers
 
             return Ok(new Model { Status = "Success", Message = "User created successfully!" });
         }
-
     }
 }

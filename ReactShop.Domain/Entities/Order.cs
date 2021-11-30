@@ -9,10 +9,10 @@ namespace ReactShop.Core.Entities
 {
     public class Order : Entity
     {
-        public Order()
-        {
-            OrderDetails = new HashSet<OrderDetail>();
-        }
+        //public Order()
+        //{
+        //    OrderDetails = new HashSet<OrderDetail>();
+        //}
 
         public string ZipCode { get; set; }
 
@@ -28,8 +28,8 @@ namespace ReactShop.Core.Entities
 
         public string UserId { get; set; }
 
-        public ApplicationUser User { get; set; }
-        public ICollection<OrderDetail> OrderDetails { get; set; }
+        public virtual ApplicationUser User { get; set; }
+        public virtual ICollection<OrderDetail> OrderDetails { get; set; }
 
         public static Order Create(int orderId, string userId, string address, string city, string country, decimal orderTotal, DateTime orderPlaced, string zipCode)
         {

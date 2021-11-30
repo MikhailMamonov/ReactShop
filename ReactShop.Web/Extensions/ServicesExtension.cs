@@ -25,6 +25,8 @@ namespace ReactShop.Web.Extensions
             services.AddScoped<ICategoriesRepository, CategoriesRepository>();
             services.AddScoped<IOrdersRepository, OrdersRepository>();
             services.AddScoped<IUsersRepository, UsersRepository>();
+            services.AddScoped<IShoppingCartRepository, ShoppingCartRepository>();
+            services.AddScoped<ICartItemRepository, CartItemRepository>();
             services.AddTransient(typeof(IRestService<>), typeof(RestService<,>));
 
             services.AddTransient(typeof(IUsersService), typeof(UsersService));

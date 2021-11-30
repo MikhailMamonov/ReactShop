@@ -31,6 +31,10 @@ export type RegisterRequestAction = {
   type: authActionTypes.REGISTER_REQUEST;
 };
 
+export type ResetRegisterFormAction = {
+  type: authActionTypes.RESET_REGISTER_FORM;
+};
+
 export type RegisterSuccessAction = {
   type: authActionTypes.REGISTER_SUCCESS;
 };
@@ -44,7 +48,7 @@ export type LoginRequestAction = {
   type: authActionTypes.LOGIN_REQUEST;
 };
 
-export type Logout = {
+export type LogoutAction = {
   type: authActionTypes.LOGOUT;
 };
 
@@ -57,7 +61,7 @@ export type AuthActions =
   | LoginSuccessAction
   | RegisterRequestAction
   | LoginRequestAction
-  | Logout
+  | LogoutAction
   | LoginFailureAction
   | RegisterSuccessAction
   | RegisterFailureAction;

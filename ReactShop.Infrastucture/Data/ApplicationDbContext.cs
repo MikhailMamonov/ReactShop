@@ -24,6 +24,7 @@ namespace ReactShop.Infrastructure.Data
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
+
             if (!optionsBuilder.IsConfigured)
             {
                optionsBuilder.UseSqlServer("Server=.\\SQLEXPRESS; Database=OnlineShop;Trusted_Connection=True;");
@@ -33,7 +34,7 @@ namespace ReactShop.Infrastructure.Data
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             modelBuilder.HasAnnotation("Relational:Collation", "Cyrillic_General_CI_AS");
-
+            modelBuilder.Entity<ShoppingCart>().HasIndex(sc => sc.UserId);
 
             modelBuilder.Entity<CartItem>()
                 .HasOne(ci => ci.Product);

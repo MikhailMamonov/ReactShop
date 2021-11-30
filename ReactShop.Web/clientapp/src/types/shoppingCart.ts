@@ -1,18 +1,17 @@
-export type CartItem = {
+import { CartItem } from ".";
+
+export type ShoppingCart = {
   id: number;
-  cartId: number;
-  amount: number;
-  dateCreated: Date;
-  productId: number;
+  cartItems: CartItem[];
 };
 
-export type ShoppingCartItemsState = {
+export type CartItemsState = {
   cartItems: Array<CartItem>;
   isLoading: boolean;
   error?: string;
 };
 
-export enum shoppingCartItemsActionTypes {
+export enum cartItemsActionTypes {
   ADD_CART_ITEM_REQUEST = "ADD_CART_ITEM_REQUEST",
   ADD_CART_ITEM_FAILURE = "ADD_CART_ITEM_FAILURE",
   ADD_CART_ITEM_SUCCESS = "ADD_CART_ITEM_SUCCESS",
@@ -32,72 +31,72 @@ export enum shoppingCartItemsActionTypes {
 }
 
 export type AddCartItemRequestAction = {
-  type: shoppingCartItemsActionTypes.ADD_CART_ITEM_REQUEST;
+  type: cartItemsActionTypes.ADD_CART_ITEM_REQUEST;
 };
 
 export type AddCartItemSuccessAction = {
-  type: shoppingCartItemsActionTypes.ADD_CART_ITEM_SUCCESS;
+  type: cartItemsActionTypes.ADD_CART_ITEM_SUCCESS;
   cartItem: CartItem;
 };
 
 export type AddCartItemFailureAction = {
-  type: shoppingCartItemsActionTypes.ADD_CART_ITEM_FAILURE;
+  type: cartItemsActionTypes.ADD_CART_ITEM_FAILURE;
   error: string;
 };
 
-export type GetShoppingCartItemsReguestAction = {
-  type: shoppingCartItemsActionTypes.GET_CART_ITEMS_REQUEST;
+export type GetCartItemsRequestAction = {
+  type: cartItemsActionTypes.GET_CART_ITEMS_REQUEST;
 };
 
-export type GetShoppingCartItemsSuccessAction = {
-  type: shoppingCartItemsActionTypes.GET_CART_ITEMS_SUCCESS;
+export type GetCartItemsSuccessAction = {
+  type: cartItemsActionTypes.GET_CART_ITEMS_SUCCESS;
   cartItems: CartItem[];
 };
 
-export type GetShoppingCartItemsFailureAction = {
-  type: shoppingCartItemsActionTypes.GET_CART_ITEMS_FAILURE;
+export type GetCartItemsFailureAction = {
+  type: cartItemsActionTypes.GET_CART_ITEMS_FAILURE;
   error: string;
 };
 
 export type EditCartItemRequestAction = {
-  type: shoppingCartItemsActionTypes.EDIT_CART_ITEM_REQUEST;
+  type: cartItemsActionTypes.EDIT_CART_ITEM_REQUEST;
 };
 
 export type EditCartItemSuccessAction = {
-  type: shoppingCartItemsActionTypes.EDIT_CART_ITEM_SUCCESS;
+  type: cartItemsActionTypes.EDIT_CART_ITEM_SUCCESS;
   cartItem: CartItem;
   id: number;
 };
 
 export type EditCartItemFailureAction = {
-  type: shoppingCartItemsActionTypes.EDIT_CART_ITEM_FAILURE;
+  type: cartItemsActionTypes.EDIT_CART_ITEM_FAILURE;
   error: string;
 };
 
-export type DeleteCartItemReguestAction = {
-  type: shoppingCartItemsActionTypes.DELETE_CART_ITEM_REQUEST;
+export type DeleteCartItemRequestAction = {
+  type: cartItemsActionTypes.DELETE_CART_ITEM_REQUEST;
 };
 
 export type DeleteCartItemSuccessAction = {
-  type: shoppingCartItemsActionTypes.DELETE_CART_ITEM_SUCCESS;
+  type: cartItemsActionTypes.DELETE_CART_ITEM_SUCCESS;
   id: number;
 };
 
 export type DeleteCartItemFailureAction = {
-  type: shoppingCartItemsActionTypes.DELETE_CART_ITEM_FAILURE;
+  type: cartItemsActionTypes.DELETE_CART_ITEM_FAILURE;
   error: string;
 };
 
-export type ShoppingCartItemsActions =
+export type CartItemsActions =
   | AddCartItemRequestAction
   | AddCartItemSuccessAction
   | AddCartItemFailureAction
-  | GetShoppingCartItemsSuccessAction
-  | GetShoppingCartItemsReguestAction
-  | GetShoppingCartItemsFailureAction
+  | GetCartItemsSuccessAction
+  | GetCartItemsRequestAction
+  | GetCartItemsFailureAction
   | EditCartItemSuccessAction
   | EditCartItemRequestAction
   | EditCartItemFailureAction
   | DeleteCartItemSuccessAction
-  | DeleteCartItemReguestAction
+  | DeleteCartItemRequestAction
   | DeleteCartItemFailureAction;

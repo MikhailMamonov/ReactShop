@@ -17,7 +17,7 @@ namespace ReactShop.Infrastructure.Migrations
             modelBuilder
                 .HasAnnotation("Relational:Collation", "Cyrillic_General_CI_AS")
                 .HasAnnotation("Relational:MaxIdentifierLength", 128)
-                .HasAnnotation("ProductVersion", "5.0.7")
+                .HasAnnotation("ProductVersion", "5.0.12")
                 .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRole", b =>
@@ -151,38 +151,7 @@ namespace ReactShop.Infrastructure.Migrations
                     b.ToTable("AspNetUserTokens");
                 });
 
-            modelBuilder.Entity("ReactShop.Core.Entities.CartItem", b =>
-                {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int")
-                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
-
-                    b.Property<decimal>("Amount")
-                        .HasColumnType("decimal(18,2)");
-
-                    b.Property<int>("CartId")
-                        .HasColumnType("int");
-
-                    b.Property<DateTime>("DateCreated")
-                        .HasColumnType("datetime2");
-
-                    b.Property<int>("InStock")
-                        .HasColumnType("int");
-
-                    b.Property<int?>("ProductId")
-                        .HasColumnType("int");
-
-                    b.HasKey("Id");
-
-                    b.HasIndex("CartId");
-
-                    b.HasIndex(new[] { "ProductId" }, "IX_CartItems_ProductId1");
-
-                    b.ToTable("CartItems");
-                });
-
-            modelBuilder.Entity("ReactShop.Domain.Entities.ApplicationUser", b =>
+            modelBuilder.Entity("ReactShop.Core.Entities.ApplicationUser", b =>
                 {
                     b.Property<string>("Id")
                         .HasColumnType("nvarchar(450)");
@@ -257,7 +226,38 @@ namespace ReactShop.Infrastructure.Migrations
                     b.ToTable("AspNetUsers");
                 });
 
-            modelBuilder.Entity("ReactShop.Domain.Entities.Category", b =>
+            modelBuilder.Entity("ReactShop.Core.Entities.CartItem", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int")
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.Property<decimal>("Amount")
+                        .HasColumnType("decimal(18,2)");
+
+                    b.Property<DateTime>("DateCreated")
+                        .HasColumnType("datetime2");
+
+                    b.Property<int>("InStock")
+                        .HasColumnType("int");
+
+                    b.Property<int>("ProductId")
+                        .HasColumnType("int");
+
+                    b.Property<int>("ShoppingCartId")
+                        .HasColumnType("int");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("ShoppingCartId");
+
+                    b.HasIndex(new[] { "ProductId" }, "IX_CartItems_ProductId1");
+
+                    b.ToTable("CartItems");
+                });
+
+            modelBuilder.Entity("ReactShop.Core.Entities.Category", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
@@ -272,7 +272,7 @@ namespace ReactShop.Infrastructure.Migrations
                     b.ToTable("Categories");
                 });
 
-            modelBuilder.Entity("ReactShop.Domain.Entities.Order", b =>
+            modelBuilder.Entity("ReactShop.Core.Entities.Order", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
@@ -307,7 +307,7 @@ namespace ReactShop.Infrastructure.Migrations
                     b.ToTable("Orders");
                 });
 
-            modelBuilder.Entity("ReactShop.Domain.Entities.OrderDetail", b =>
+            modelBuilder.Entity("ReactShop.Core.Entities.OrderDetail", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
@@ -332,7 +332,7 @@ namespace ReactShop.Infrastructure.Migrations
                     b.ToTable("OrderDetails");
                 });
 
-            modelBuilder.Entity("ReactShop.Domain.Entities.Product", b =>
+            modelBuilder.Entity("ReactShop.Core.Entities.Product", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
@@ -351,17 +351,20 @@ namespace ReactShop.Infrastructure.Migrations
                     b.Property<string>("Name")
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<int>("Price")
-                        .HasColumnType("int");
+                    b.Property<decimal?>("Price")
+                        .HasColumnType("decimal(18,2)");
+
+                    b.Property<short?>("UnitsInStock")
+                        .HasColumnType("smallint");
 
                     b.HasKey("Id");
 
-                    b.HasIndex(new[] { "CategoryId" }, "IX_Products_CategoryId");
+                    b.HasIndex("CategoryId");
 
                     b.ToTable("Products");
                 });
 
-            modelBuilder.Entity("ReactShop.Domain.Entities.ShoppingCart", b =>
+            modelBuilder.Entity("ReactShop.Core.Entities.ShoppingCart", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
@@ -391,7 +394,7 @@ namespace ReactShop.Infrastructure.Migrations
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityUserClaim<string>", b =>
                 {
-                    b.HasOne("ReactShop.Domain.Entities.ApplicationUser", null)
+                    b.HasOne("ReactShop.Core.Entities.ApplicationUser", null)
                         .WithMany()
                         .HasForeignKey("UserId")
                         .OnDelete(DeleteBehavior.Cascade)
@@ -400,7 +403,7 @@ namespace ReactShop.Infrastructure.Migrations
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityUserLogin<string>", b =>
                 {
-                    b.HasOne("ReactShop.Domain.Entities.ApplicationUser", null)
+                    b.HasOne("ReactShop.Core.Entities.ApplicationUser", null)
                         .WithMany()
                         .HasForeignKey("UserId")
                         .OnDelete(DeleteBehavior.Cascade)
@@ -415,7 +418,7 @@ namespace ReactShop.Infrastructure.Migrations
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.HasOne("ReactShop.Domain.Entities.ApplicationUser", null)
+                    b.HasOne("ReactShop.Core.Entities.ApplicationUser", null)
                         .WithMany()
                         .HasForeignKey("UserId")
                         .OnDelete(DeleteBehavior.Cascade)
@@ -424,7 +427,7 @@ namespace ReactShop.Infrastructure.Migrations
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityUserToken<string>", b =>
                 {
-                    b.HasOne("ReactShop.Domain.Entities.ApplicationUser", null)
+                    b.HasOne("ReactShop.Core.Entities.ApplicationUser", null)
                         .WithMany()
                         .HasForeignKey("UserId")
                         .OnDelete(DeleteBehavior.Cascade)
@@ -433,39 +436,41 @@ namespace ReactShop.Infrastructure.Migrations
 
             modelBuilder.Entity("ReactShop.Core.Entities.CartItem", b =>
                 {
-                    b.HasOne("ReactShop.Domain.Entities.ShoppingCart", "ShoppingCart")
+                    b.HasOne("ReactShop.Core.Entities.Product", "Product")
                         .WithMany("CartItems")
-                        .HasForeignKey("CartId")
+                        .HasForeignKey("ProductId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.HasOne("ReactShop.Domain.Entities.Product", "Product")
+                    b.HasOne("ReactShop.Core.Entities.ShoppingCart", "ShoppingCart")
                         .WithMany("CartItems")
-                        .HasForeignKey("ProductId");
+                        .HasForeignKey("ShoppingCartId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
 
                     b.Navigation("Product");
 
                     b.Navigation("ShoppingCart");
                 });
 
-            modelBuilder.Entity("ReactShop.Domain.Entities.Order", b =>
+            modelBuilder.Entity("ReactShop.Core.Entities.Order", b =>
                 {
-                    b.HasOne("ReactShop.Domain.Entities.ApplicationUser", "User")
+                    b.HasOne("ReactShop.Core.Entities.ApplicationUser", "User")
                         .WithMany("Orders")
                         .HasForeignKey("UserId");
 
                     b.Navigation("User");
                 });
 
-            modelBuilder.Entity("ReactShop.Domain.Entities.OrderDetail", b =>
+            modelBuilder.Entity("ReactShop.Core.Entities.OrderDetail", b =>
                 {
-                    b.HasOne("ReactShop.Domain.Entities.Order", "Order")
+                    b.HasOne("ReactShop.Core.Entities.Order", "Order")
                         .WithMany("OrderDetails")
                         .HasForeignKey("OrderId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.HasOne("ReactShop.Domain.Entities.Product", "Product")
+                    b.HasOne("ReactShop.Core.Entities.Product", "Product")
                         .WithMany("OrderDetails")
                         .HasForeignKey("ProductId")
                         .OnDelete(DeleteBehavior.Cascade)
@@ -476,9 +481,9 @@ namespace ReactShop.Infrastructure.Migrations
                     b.Navigation("Product");
                 });
 
-            modelBuilder.Entity("ReactShop.Domain.Entities.Product", b =>
+            modelBuilder.Entity("ReactShop.Core.Entities.Product", b =>
                 {
-                    b.HasOne("ReactShop.Domain.Entities.Category", "Category")
+                    b.HasOne("ReactShop.Core.Entities.Category", "Category")
                         .WithMany("Products")
                         .HasForeignKey("CategoryId")
                         .OnDelete(DeleteBehavior.Cascade)
@@ -487,40 +492,40 @@ namespace ReactShop.Infrastructure.Migrations
                     b.Navigation("Category");
                 });
 
-            modelBuilder.Entity("ReactShop.Domain.Entities.ShoppingCart", b =>
+            modelBuilder.Entity("ReactShop.Core.Entities.ShoppingCart", b =>
                 {
-                    b.HasOne("ReactShop.Domain.Entities.ApplicationUser", "User")
+                    b.HasOne("ReactShop.Core.Entities.ApplicationUser", "User")
                         .WithOne("ShoppingCart")
-                        .HasForeignKey("ReactShop.Domain.Entities.ShoppingCart", "UserId");
+                        .HasForeignKey("ReactShop.Core.Entities.ShoppingCart", "UserId");
 
                     b.Navigation("User");
                 });
 
-            modelBuilder.Entity("ReactShop.Domain.Entities.ApplicationUser", b =>
+            modelBuilder.Entity("ReactShop.Core.Entities.ApplicationUser", b =>
                 {
                     b.Navigation("Orders");
 
                     b.Navigation("ShoppingCart");
                 });
 
-            modelBuilder.Entity("ReactShop.Domain.Entities.Category", b =>
+            modelBuilder.Entity("ReactShop.Core.Entities.Category", b =>
                 {
                     b.Navigation("Products");
                 });
 
-            modelBuilder.Entity("ReactShop.Domain.Entities.Order", b =>
+            modelBuilder.Entity("ReactShop.Core.Entities.Order", b =>
                 {
                     b.Navigation("OrderDetails");
                 });
 
-            modelBuilder.Entity("ReactShop.Domain.Entities.Product", b =>
+            modelBuilder.Entity("ReactShop.Core.Entities.Product", b =>
                 {
                     b.Navigation("CartItems");
 
                     b.Navigation("OrderDetails");
                 });
 
-            modelBuilder.Entity("ReactShop.Domain.Entities.ShoppingCart", b =>
+            modelBuilder.Entity("ReactShop.Core.Entities.ShoppingCart", b =>
                 {
                     b.Navigation("CartItems");
                 });

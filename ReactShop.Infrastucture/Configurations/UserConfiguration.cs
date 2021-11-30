@@ -19,6 +19,8 @@ namespace ReactShop.Infrastructure.Configurations
             builder.Property(e => e.NormalizedEmail).HasMaxLength(256);
             builder.Property(e => e.NormalizedUserName).HasMaxLength(256);
             builder.Property(e => e.UserName).HasMaxLength(256);
+            builder.HasOne(u => u.ShoppingCart).WithOne(s => s.User)
+                .HasForeignKey<ShoppingCart>(p => p.UserId); 
         }
     }
 }

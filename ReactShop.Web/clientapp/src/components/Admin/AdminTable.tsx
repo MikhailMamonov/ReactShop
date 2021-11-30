@@ -20,7 +20,7 @@ const AdminTable: FC<AdminTablePropsType> = (props) => {
     return { ...row, key: row.id };
   });
 
-  console.log(originData);
+  console.log("originData", originData);
   const [form] = Form.useForm();
   const [editingKey, setEditingKey] = useState<string | number>(-1);
   const isEditing = (record: RowType) => record.id === editingKey;
@@ -32,12 +32,6 @@ const AdminTable: FC<AdminTablePropsType> = (props) => {
     });
     setDataSource(data);
   }, [props.rows]);
-  // const columns = props.cols.map((col) => {
-  //   return { title: col.name, dataIndex: col.name, key: col.name };
-  // });
-  // const dataSource = props.rows.map((row) => {
-  //   return { ...row, key: row.id };
-  // });
 
   const edit = (record: RowType) => {
     form.setFieldsValue({ ...record });
