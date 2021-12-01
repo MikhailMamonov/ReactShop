@@ -4,20 +4,20 @@
     "D:\\petProjects\\ReactShop\\ReactShop.Services\\ReactShop.Services.csproj": {}
   },
   "projects": {
-    "D:\\petProjects\\ReactShop\\ReactShop.Domain\\ReactShop.Domain.csproj": {
+    "D:\\petProjects\\ReactShop\\ReactShop.Application\\ReactShop.Application.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "D:\\petProjects\\ReactShop\\ReactShop.Domain\\ReactShop.Domain.csproj",
-        "projectName": "ReactShop.Domain",
-        "projectPath": "D:\\petProjects\\ReactShop\\ReactShop.Domain\\ReactShop.Domain.csproj",
-        "packagesPath": "C:\\Users\\m.mamonov\\.nuget\\packages\\",
-        "outputPath": "D:\\petProjects\\ReactShop\\ReactShop.Domain\\obj\\",
+        "projectUniqueName": "D:\\petProjects\\ReactShop\\ReactShop.Application\\ReactShop.Application.csproj",
+        "projectName": "ReactShop.Application",
+        "projectPath": "D:\\petProjects\\ReactShop\\ReactShop.Application\\ReactShop.Application.csproj",
+        "packagesPath": "C:\\Users\\User\\.nuget\\packages\\",
+        "outputPath": "D:\\petProjects\\ReactShop\\ReactShop.Application\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
           "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder"
         ],
         "configFilePaths": [
-          "C:\\Users\\m.mamonov\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Users\\User\\AppData\\Roaming\\NuGet\\NuGet.Config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
         "originalTargetFrameworks": [
@@ -25,7 +25,91 @@
         ],
         "sources": {
           "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
-          "http://fmagent5.krista.ru/api/v2/": {},
+          "https://api.nuget.org/v3/index.json": {}
+        },
+        "frameworks": {
+          "netcoreapp3.1": {
+            "targetAlias": "netcoreapp3.1",
+            "projectReferences": {
+              "D:\\petProjects\\ReactShop\\ReactShop.Domain\\ReactShop.Core.csproj": {
+                "projectPath": "D:\\petProjects\\ReactShop\\ReactShop.Domain\\ReactShop.Core.csproj"
+              },
+              "D:\\petProjects\\ReactShop\\ReactShop.Infrastucture\\ReactShop.Infrastructure.csproj": {
+                "projectPath": "D:\\petProjects\\ReactShop\\ReactShop.Infrastucture\\ReactShop.Infrastructure.csproj"
+              }
+            }
+          }
+        },
+        "warningProperties": {
+          "warnAsError": [
+            "NU1605"
+          ]
+        }
+      },
+      "frameworks": {
+        "netcoreapp3.1": {
+          "targetAlias": "netcoreapp3.1",
+          "dependencies": {
+            "AutoMapper": {
+              "target": "Package",
+              "version": "[10.1.1, )"
+            },
+            "FluentValidation": {
+              "target": "Package",
+              "version": "[10.3.4, )"
+            },
+            "FluentValidation.AspNetCore": {
+              "target": "Package",
+              "version": "[10.3.4, )"
+            },
+            "MediatR.Extensions.Microsoft.DependencyInjection": {
+              "target": "Package",
+              "version": "[9.0.0, )"
+            }
+          },
+          "imports": [
+            "net461",
+            "net462",
+            "net47",
+            "net471",
+            "net472",
+            "net48"
+          ],
+          "assetTargetFallback": true,
+          "warn": true,
+          "frameworkReferences": {
+            "Microsoft.AspNetCore.App": {
+              "privateAssets": "none"
+            },
+            "Microsoft.NETCore.App": {
+              "privateAssets": "all"
+            }
+          },
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\5.0.100\\RuntimeIdentifierGraph.json"
+        }
+      }
+    },
+    "D:\\petProjects\\ReactShop\\ReactShop.Domain\\ReactShop.Core.csproj": {
+      "version": "1.0.0",
+      "restore": {
+        "projectUniqueName": "D:\\petProjects\\ReactShop\\ReactShop.Domain\\ReactShop.Core.csproj",
+        "projectName": "ReactShop.Core",
+        "projectPath": "D:\\petProjects\\ReactShop\\ReactShop.Domain\\ReactShop.Core.csproj",
+        "packagesPath": "C:\\Users\\User\\.nuget\\packages\\",
+        "outputPath": "D:\\petProjects\\ReactShop\\ReactShop.Domain\\obj\\",
+        "projectStyle": "PackageReference",
+        "fallbackFolders": [
+          "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder"
+        ],
+        "configFilePaths": [
+          "C:\\Users\\User\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
+        ],
+        "originalTargetFrameworks": [
+          "netcoreapp3.1"
+        ],
+        "sources": {
+          "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
           "https://api.nuget.org/v3/index.json": {}
         },
         "frameworks": {
@@ -100,7 +184,68 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\5.0.302\\RuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\5.0.100\\RuntimeIdentifierGraph.json"
+        }
+      }
+    },
+    "D:\\petProjects\\ReactShop\\ReactShop.Infrastucture\\ReactShop.Infrastructure.csproj": {
+      "version": "1.0.0",
+      "restore": {
+        "projectUniqueName": "D:\\petProjects\\ReactShop\\ReactShop.Infrastucture\\ReactShop.Infrastructure.csproj",
+        "projectName": "ReactShop.Infrastructure",
+        "projectPath": "D:\\petProjects\\ReactShop\\ReactShop.Infrastucture\\ReactShop.Infrastructure.csproj",
+        "packagesPath": "C:\\Users\\User\\.nuget\\packages\\",
+        "outputPath": "D:\\petProjects\\ReactShop\\ReactShop.Infrastucture\\obj\\",
+        "projectStyle": "PackageReference",
+        "fallbackFolders": [
+          "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder"
+        ],
+        "configFilePaths": [
+          "C:\\Users\\User\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
+        ],
+        "originalTargetFrameworks": [
+          "netcoreapp3.1"
+        ],
+        "sources": {
+          "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
+          "https://api.nuget.org/v3/index.json": {}
+        },
+        "frameworks": {
+          "netcoreapp3.1": {
+            "targetAlias": "netcoreapp3.1",
+            "projectReferences": {
+              "D:\\petProjects\\ReactShop\\ReactShop.Domain\\ReactShop.Core.csproj": {
+                "projectPath": "D:\\petProjects\\ReactShop\\ReactShop.Domain\\ReactShop.Core.csproj"
+              }
+            }
+          }
+        },
+        "warningProperties": {
+          "warnAsError": [
+            "NU1605"
+          ]
+        }
+      },
+      "frameworks": {
+        "netcoreapp3.1": {
+          "targetAlias": "netcoreapp3.1",
+          "imports": [
+            "net461",
+            "net462",
+            "net47",
+            "net471",
+            "net472",
+            "net48"
+          ],
+          "assetTargetFallback": true,
+          "warn": true,
+          "frameworkReferences": {
+            "Microsoft.NETCore.App": {
+              "privateAssets": "all"
+            }
+          },
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\5.0.100\\RuntimeIdentifierGraph.json"
         }
       }
     },
@@ -110,14 +255,14 @@
         "projectUniqueName": "D:\\petProjects\\ReactShop\\ReactShop.Services\\ReactShop.Services.csproj",
         "projectName": "ReactShop.Services",
         "projectPath": "D:\\petProjects\\ReactShop\\ReactShop.Services\\ReactShop.Services.csproj",
-        "packagesPath": "C:\\Users\\m.mamonov\\.nuget\\packages\\",
+        "packagesPath": "C:\\Users\\User\\.nuget\\packages\\",
         "outputPath": "D:\\petProjects\\ReactShop\\ReactShop.Services\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
           "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder"
         ],
         "configFilePaths": [
-          "C:\\Users\\m.mamonov\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Users\\User\\AppData\\Roaming\\NuGet\\NuGet.Config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
         "originalTargetFrameworks": [
@@ -125,15 +270,20 @@
         ],
         "sources": {
           "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
-          "http://fmagent5.krista.ru/api/v2/": {},
           "https://api.nuget.org/v3/index.json": {}
         },
         "frameworks": {
           "netcoreapp3.1": {
             "targetAlias": "netcoreapp3.1",
             "projectReferences": {
-              "D:\\petProjects\\ReactShop\\ReactShop.Domain\\ReactShop.Domain.csproj": {
-                "projectPath": "D:\\petProjects\\ReactShop\\ReactShop.Domain\\ReactShop.Domain.csproj"
+              "D:\\petProjects\\ReactShop\\ReactShop.Application\\ReactShop.Application.csproj": {
+                "projectPath": "D:\\petProjects\\ReactShop\\ReactShop.Application\\ReactShop.Application.csproj"
+              },
+              "D:\\petProjects\\ReactShop\\ReactShop.Domain\\ReactShop.Core.csproj": {
+                "projectPath": "D:\\petProjects\\ReactShop\\ReactShop.Domain\\ReactShop.Core.csproj"
+              },
+              "D:\\petProjects\\ReactShop\\ReactShop.Infrastucture\\ReactShop.Infrastructure.csproj": {
+                "projectPath": "D:\\petProjects\\ReactShop\\ReactShop.Infrastucture\\ReactShop.Infrastructure.csproj"
               }
             }
           }
@@ -164,11 +314,14 @@
           "assetTargetFallback": true,
           "warn": true,
           "frameworkReferences": {
+            "Microsoft.AspNetCore.App": {
+              "privateAssets": "none"
+            },
             "Microsoft.NETCore.App": {
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\5.0.302\\RuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\5.0.100\\RuntimeIdentifierGraph.json"
         }
       }
     }

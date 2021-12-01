@@ -1,20 +1,32 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
+using Newtonsoft.Json;
+using ReactShop.Core.Entities.Base;
 
 #nullable disable
 
-namespace ReactShop.Domain.Entities
+namespace ReactShop.Core.Entities
 {
-    public partial class Category
+    public class Category : Entity
     {
-        public Category()
-        {
-            Products = new HashSet<Product>();
-        }
+        [JsonIgnore]
+        public virtual ICollection<Product> Products { get; set; }
 
-        public int Id { get; set; }
+        //public Category()
+        //{
+        //    Products = new HashSet<Product>();
+        //}
+
         public string Name { get; set; }
 
-        public virtual ICollection<Product> Products { get; set; }
+        public static Category Create(int categoryId, string name)
+        {
+            var category = new Category()
+            {
+                Id = categoryId,
+                Name = name
+            };
+
+            return category;
+        }
     }
 }

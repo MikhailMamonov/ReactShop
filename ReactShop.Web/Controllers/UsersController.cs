@@ -1,67 +1,50 @@
-﻿using AutoMapper;
+﻿using System;
+using AutoMapper;
+
+using MediatR;
+
 using Microsoft.AspNetCore.Mvc;
-using ReactShop.Domain.DTOModels;
-using ReactShop.Domain.Entities;
 
 using ReactShop.LoggerService;
-using ReactShop.Services.Interfaces;
-using System;
-using System.Collections.Generic;
-using System.Linq;
 
 using System.Threading.Tasks;
+using ReactShop.Application.Features.Orders.CreateOrder;
+using ReactShop.Application.Features.Users.GetAllUsers;
+using ReactShop.Application.Features.Users.GetUserById;
+using ReactShop.Application.Queries.Orders;
 
 namespace ReactShop.Web.Controllers
 {
     [ApiController]
-    [Route("api/[controller]")]
-    public class UsersController : BaseController<UserDTO>
+[Route("api/[controller]")]
+public class UsersController : Controller
+    //BaseController<UserModel>
+{
+    private readonly IMediator _mediator;
+
+    public UsersController(IMediator mediator)
+        //: base(productsService, mapper, logger)
     {
-        public UsersController(IDatabaseService<UserDTO> usersService, IMapper mapper, ILoggerManager logger)
-            : base(usersService,mapper, logger)
-        {
-        }
+        _mediator = mediator ?? throw new ArgumentNullException(nameof(mediator));
+    }
 
-        
+    [HttpGet]
+    public async Task<IActionResult> GetAll()
+    {
+        return Ok(await _mediator.Send(new GetAllUsersQuery()));
+    }
 
-        //[HttpPost]
-        //public async Task<IActionResult> AddUser([FromBody] RegisterModel userDTO)
-        //{
-        //    try
-        //    {
-        //        if (userDTO == null)
-        //        {
-        //            return LogErrorAndReturnStatusCode("ApplicationUser Object is null", 400);
-        //        }
+    [HttpGet("{id}")]
+    public async Task<IActionResult> GetById(string id)
+    {
+        return Ok(await _mediator.Send(new GetUserByIdQuery() { Id = id }));
+    }
 
-        //        if (!ModelState.IsValid)
-        //        {
-        //            return LogErrorAndReturnStatusCode("Model is invalid", 400);
-        //        }
+    [HttpPost]
+    public async Task<IActionResult> CreateProduct([FromBody] CreateOrderCommand command)
+    {
+        return Ok(await _mediator.Send(command));
+    }
 
-        //        var user = new UserDTO
-        //        {
-        //            DisplayName = userDTO.DisplayName,
-        //            UserName = userDTO.DisplayName,
-        //            Email = userDTO.Email,
-        //            PasswordHash = userDTO.Password
-        //        };
-
-        //        var errorMessage = await _usersService.Add(user, userDTO.Password);
-        //        if (errorMessage == null)
-        //        {
-        //            _logger.LogInfo($"\nUser Object added ${user}");
-        //            return Ok(new { user });
-        //        }
-        //        else
-        //        {
-        //            return LogErrorAndReturnStatusCode(errorMessage, 500);
-        //        }
-        //    }
-        //    catch (Exception e) {
-        //        return LogErrorAndReturnStatusCode($"{e.InnerException} -> {e.StackTrace}", 500);
-        //    }
-
-        //}
     }
 }

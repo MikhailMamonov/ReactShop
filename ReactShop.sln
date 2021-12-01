@@ -3,13 +3,15 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 16
 VisualStudioVersion = 16.0.30114.105
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ReactShop.Domain", "ReactShop.Domain\ReactShop.Domain.csproj", "{EB00F1ED-27DB-40B6-BA48-06CA718A78F3}"
-EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ReactShop.Services", "ReactShop.Services\ReactShop.Services.csproj", "{FE3B69D9-9745-45CF-97E7-91A4DA29526F}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ReactShop.Core", "ReactShop.Domain\ReactShop.Core.csproj", "{EB00F1ED-27DB-40B6-BA48-06CA718A78F3}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ReactShop.Web", "ReactShop.Web\ReactShop.Web.csproj", "{500A0EED-3711-432D-B74D-10236D92C81D}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ReactShop.LoggerService", "ReactShop.LoggerService\ReactShop.LoggerService.csproj", "{3D3482DB-4F06-4168-BFFD-0147A8C35546}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ReactShop.LoggerService", "ReactShop.LoggerService\ReactShop.LoggerService.csproj", "{3D3482DB-4F06-4168-BFFD-0147A8C35546}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ReactShop.Infrastructure", "ReactShop.Infrastucture\ReactShop.Infrastructure.csproj", "{54911700-CF83-4087-A864-AF56DB4E3A57}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ReactShop.Application", "ReactShop.Application\ReactShop.Application.csproj", "{F2803B9D-3CE0-4B0A-AF75-5783F0E07E90}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -21,10 +23,6 @@ Global
 		{EB00F1ED-27DB-40B6-BA48-06CA718A78F3}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{EB00F1ED-27DB-40B6-BA48-06CA718A78F3}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{EB00F1ED-27DB-40B6-BA48-06CA718A78F3}.Release|Any CPU.Build.0 = Release|Any CPU
-		{FE3B69D9-9745-45CF-97E7-91A4DA29526F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{FE3B69D9-9745-45CF-97E7-91A4DA29526F}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{FE3B69D9-9745-45CF-97E7-91A4DA29526F}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{FE3B69D9-9745-45CF-97E7-91A4DA29526F}.Release|Any CPU.Build.0 = Release|Any CPU
 		{500A0EED-3711-432D-B74D-10236D92C81D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{500A0EED-3711-432D-B74D-10236D92C81D}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{500A0EED-3711-432D-B74D-10236D92C81D}.Release|Any CPU.ActiveCfg = Release|Any CPU
@@ -33,6 +31,14 @@ Global
 		{3D3482DB-4F06-4168-BFFD-0147A8C35546}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{3D3482DB-4F06-4168-BFFD-0147A8C35546}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{3D3482DB-4F06-4168-BFFD-0147A8C35546}.Release|Any CPU.Build.0 = Release|Any CPU
+		{54911700-CF83-4087-A864-AF56DB4E3A57}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{54911700-CF83-4087-A864-AF56DB4E3A57}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{54911700-CF83-4087-A864-AF56DB4E3A57}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{54911700-CF83-4087-A864-AF56DB4E3A57}.Release|Any CPU.Build.0 = Release|Any CPU
+		{F2803B9D-3CE0-4B0A-AF75-5783F0E07E90}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{F2803B9D-3CE0-4B0A-AF75-5783F0E07E90}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{F2803B9D-3CE0-4B0A-AF75-5783F0E07E90}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{F2803B9D-3CE0-4B0A-AF75-5783F0E07E90}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

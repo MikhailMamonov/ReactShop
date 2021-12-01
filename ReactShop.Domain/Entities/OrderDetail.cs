@@ -1,16 +1,15 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using ReactShop.Core.Entities.Base;
 
 #nullable disable
 
-namespace ReactShop.Domain.Entities
+namespace ReactShop.Core.Entities
 {
-    public partial class OrderDetail
+    public class OrderDetail :Entity
     {
-        public int Id { get; set; }
+
         public int OrderId { get; set; }
         public int ProductId { get; set; }
-
+        public int Amount { get; set; }
         public virtual Order Order { get; set; }
         public virtual Product Product { get; set; }
     }

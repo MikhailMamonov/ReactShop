@@ -10,7 +10,18 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\ReactShop.Domain\ReactShop.Domain.csproj" />
+    <ProjectReference Include="..\ReactShop.Application\ReactShop.Application.csproj" />
+    <ProjectReference Include="..\ReactShop.Domain\ReactShop.Core.csproj" />
+    <ProjectReference Include="..\ReactShop.Infrastucture\ReactShop.Infrastructure.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Folder Include="Categories\" />
+    <Folder Include="Orders\" />
+    <Folder Include="Products\" />
+    <Folder Include="RestService\" />
+    <Folder Include="ShoppingCartService\" />
+    <Folder Include="Users\" />
   </ItemGroup>
 
 </Project>

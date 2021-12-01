@@ -1,23 +1,27 @@
 ﻿using AutoMapper;
+using ReactShop.Application.Models;
+using ReactShop.Core.Entities;
 
-using ReactShop.Domain.DTOModels;
-using ReactShop.Domain.Entities;
-
-public class MappingProfile : Profile
+namespace ReactShop.Web
 {
-    public MappingProfile()
+    public class MappingProfile : Profile
     {
-        // ApplicationUser
-        CreateMap<UserDTO, ApplicationUser>();
-        CreateMap<ApplicationUser, UserDTO>();
+        public MappingProfile()
+        {
+            // ApplicationUser
+            CreateMap<UserModel, ApplicationUser>();
+            CreateMap<ApplicationUser, UserModel>();
 
-        //Product
-        CreateMap<ProductDTO, Product>();
-        CreateMap<Product, ProductDTO>();
+            //Product
+            CreateMap<ProductModel, Product>();//.ForMember(dto => dto.Image, opt => opt.MapFrom(c => Convert.FromBase64String(c.Image)));
+            CreateMap<Product, ProductModel>();//ForMember(dto => dto.Image, opt => opt.MapFrom(c => Convert.ToBase64String(c.Image)));
 
-        //Category
-        CreateMap<CategoryDTO, Category>();
-        CreateMap<Category, CategoryDTO>();
+            //Category
+            CreateMap<CategoryModel, Category>();
+            CreateMap<Category, CategoryModel>();
 
+
+
+        }
     }
 }

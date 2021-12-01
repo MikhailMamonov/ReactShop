@@ -1,0 +1,23 @@
+.layoutBackground {
+  background: #fff;
+}
+
+.site-layout {
+  margin: "0 100 0 100 ";
+}
+
+.header {
+  text-align: "center";
+}
+
+.site-layout__header {
+  padding: 0;
+}
+
+.menu {
+  height: "100%";
+}
+
+.site-layout__menu {
+  padding: 0;
+}
