@@ -2,7 +2,7 @@ import { Redirect } from "react-router-dom";
 import { connect } from "react-redux";
 import { User } from "./../types/users";
 import React from "react";
-import { RootStateType } from "../store/store";
+import { RootStateType } from "../store";
 
 type ProfileProps = {
   currentUser: User | undefined;

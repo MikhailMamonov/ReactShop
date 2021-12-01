@@ -1,20 +1,32 @@
-﻿using Microsoft.AspNetCore.Identity;
+﻿using System.Collections.Generic;
+using Microsoft.AspNetCore.Identity;
+using ReactShop.Core.Entities.Base;
 
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace ReactShop.Domain.Entities
+namespace ReactShop.Core.Entities
 {
-    public class ApplicationUser:IdentityUser
+    public class ApplicationUser : IdentityUser,IEntityBase<string>
     {
-        public IEnumerable<Order> Orders { get; set; }
+        
+
+        public virtual ShoppingCart ShoppingCart { get; set; }
+
+        public virtual IEnumerable<Order> Orders { get; set; }
 
         public override string ToString()
         {
             return $"\n Id:{base.Id}, UserName:{base.UserName}, Email:{base.Email}";
+        }
+
+        public static ApplicationUser Create(string userId, string email, string username, string password)
+        {
+            var user = new ApplicationUser()
+            {
+                Id = userId,
+                Email = email,
+                UserName = username,
+                PasswordHash = password,
+            };
+            return user;
         }
     }
 }

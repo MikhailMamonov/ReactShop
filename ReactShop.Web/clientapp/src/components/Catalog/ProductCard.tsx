@@ -1,5 +1,5 @@
 import React, { FC } from "react";
-import { Product } from "./../../types";
+import { Product } from "../../types";
 import { Col, Card } from "antd";
 import Meta from "antd/lib/card/Meta";
 
@@ -10,16 +10,20 @@ type ProductCardPropType = {
 
 const ProductCard: FC<ProductCardPropType> = (props) => {
   return (
-    <Col key={props.product.id} span={4}>
+    <Col
+      key={props.product.id}
+      style={{ margin: "1px 100px 0", width: "100%" }}
+    >
       <Card
         onClick={() => props.onClick(props.product.id)}
         style={{
-          width: 240,
-
-          marginTop: 20,
+          width: 400,
+          marginTop: 10,
+          textAlign: "center",
           backgroundColor: "yellow",
+          alignContent: "center",
         }}
-        bodyStyle={{ backgroundColor: "green", minHeight: 120 }}
+        bodyStyle={{ backgroundColor: "#DA6464", minHeight: 120 }}
         bordered={false}
         cover={
           <img
@@ -34,7 +38,9 @@ const ProductCard: FC<ProductCardPropType> = (props) => {
           title={props.product.name}
           description={props.product.description}
         />
-        <Card.Grid>{props.product.price}</Card.Grid>
+        <Card.Grid style={{ height: 40, width: "100%", textAlign: "center" }}>
+          {props.product.price}
+        </Card.Grid>
       </Card>
     </Col>
   );

@@ -1,18 +1,18 @@
 ﻿using System;
 using System.Collections.Generic;
+using Microsoft.Extensions.Configuration.UserSecrets;
+using ReactShop.Core.Entities.Base;
 
 #nullable disable
 
-namespace ReactShop.Domain.Entities
+namespace ReactShop.Core.Entities
 {
-    public partial class Order
+    public class Order : Entity
     {
-        public Order()
-        {
-            OrderDetails = new HashSet<OrderDetail>();
-        }
-
-        public int Id { get; set; }
+        //public Order()
+        //{
+        //    OrderDetails = new HashSet<OrderDetail>();
+        //}
 
         public string ZipCode { get; set; }
 
@@ -30,5 +30,22 @@ namespace ReactShop.Domain.Entities
 
         public virtual ApplicationUser User { get; set; }
         public virtual ICollection<OrderDetail> OrderDetails { get; set; }
+
+        public static Order Create(int orderId, string userId, string address, string city, string country, decimal orderTotal, DateTime orderPlaced, string zipCode)
+        {
+            var order = new Order()
+            {
+                Id = orderId,
+                UserId = userId,
+                Address = address,
+                Country = country,
+                City = city,
+                OrderTotal = orderTotal,
+                OrderPlaced = orderPlaced,
+                ZipCode = zipCode
+            };
+
+            return order;
+        }
     }
 }

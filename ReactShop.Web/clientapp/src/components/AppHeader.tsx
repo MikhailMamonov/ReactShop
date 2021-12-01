@@ -1,8 +1,8 @@
 import React from "react";
 import { connect } from "react-redux";
-import { logout } from "../store/action-creators/auth";
+import { logout } from "store/action-creators/auth";
 import { useHistory } from "react-router-dom";
-import { RootStateType } from "../store/store";
+import { RootStateType } from "store";
 import { Dispatch } from "redux";
 import { User } from "../types/users";
 import { Layout, Menu } from "antd";
@@ -47,6 +47,14 @@ const AppHeader: React.FC<Props> = (props) => {
             </Menu.Item>
             <Menu.Item
               key="4"
+              onClick={() => {
+                router.push("/shopping-cart");
+              }}
+            >
+              Shopping Cart
+            </Menu.Item>
+            <Menu.Item
+              key="5"
               onClick={() => {
                 props.logout();
                 router.push("login");

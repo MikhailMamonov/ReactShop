@@ -1,16 +1,18 @@
-import authService from "../api/auth.service";
-
 import { history } from "../../helpers/history";
 import { ThunkAction } from "redux-thunk";
-import { RootStateType } from "../store";
+import { RootStateType } from "..";
 import axios, { AxiosError } from "axios";
 
-import { authActionTypes } from "../../types/auth";
+import {
+  authActionTypes,
+  LogoutAction,
+  ResetRegisterFormAction,
+} from "../../types/auth";
 import { ActionTypes } from "../../types/actionCreators";
 import { LoginResponseType } from "../../types/api.services";
-import { User } from "../../types/users";
+import { authService } from "../api/services";
 
-type thunkType = ThunkAction<
+export type thunkType = ThunkAction<
   Promise<void>,
   RootStateType,
   unknown,
@@ -28,7 +30,11 @@ export const login = (userName: string, password: string): thunkType => {
           user: res.user,
           accessToken: res.accessToken,
         });
-        history.push("/home");
+        dispatch({
+          type: authActionTypes.LOGIN_SUCCESS,
+          user: res.user,
+          accessToken: res.accessToken,
+        });
       })
       .catch((err: Error | AxiosError) => {
         if (axios.isAxiosError(err)) {
@@ -46,7 +52,7 @@ export const login = (userName: string, password: string): thunkType => {
   };
 };
 
-export const logout = () => {
+export const logout = (): LogoutAction => {
   authService.logout();
   return { type: authActionTypes.LOGOUT };
 };
@@ -64,6 +70,7 @@ export const register = (
       },
       (err: Error | AxiosError) => {
         if (axios.isAxiosError(err)) {
+          console.log("err", err);
           dispatch({
             type: authActionTypes.REGISTER_FAILURE,
             error: err.response?.data.ToString(),
@@ -79,6 +86,6 @@ export const register = (
   };
 };
 
-export const resetRegisterForm = () => {
+export const resetRegisterForm = (): ResetRegisterFormAction => {
   return { type: authActionTypes.RESET_REGISTER_FORM };
 };

@@ -3,7 +3,7 @@ import { useSelector } from "react-redux";
 
 import { Input, Button, Select, Form, InputNumber, Upload } from "antd";
 import { CreateProductType } from "./ProductsContainer";
-import { RootStateType } from "../../../store/store";
+import { RootStateType } from "../../../store";
 import { Product } from "./../../../types/products";
 import { UploadFile } from "antd/lib/upload/interface";
 import UploadOutlined from "@ant-design/icons/lib/icons/UploadOutlined";

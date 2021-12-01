@@ -1,7 +1,7 @@
 import React, { useEffect } from "react";
 import { connect } from "react-redux";
 import { Row, Col, Button } from "antd";
-import { AppDispatch, RootStateType } from "../store/store";
+import { AppDispatch, RootStateType } from "../store";
 
 type ErrorPagePropsType = {
   errors: {

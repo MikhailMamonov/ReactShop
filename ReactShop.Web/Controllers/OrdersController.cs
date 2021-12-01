@@ -1,22 +1,46 @@
-﻿using AutoMapper;
-
-using ReactShop.Domain.DTOModels;
-using ReactShop.Domain.Entities;
-using ReactShop.LoggerService;
-using ReactShop.Services.Interfaces;
-
-using System;
-using System.Collections.Generic;
-using System.Linq;
+﻿using System;
 using System.Threading.Tasks;
+using AutoMapper;
+using MediatR;
+using Microsoft.AspNetCore.Mvc;
+using ReactShop.Application.Features.Orders.CreateOrder;
+using ReactShop.Application.Features.Orders.GetAllOrders;
+using ReactShop.Application.Queries.Orders;
+
 
 namespace ReactShop.Web.Controllers
 {
-    public class OrdersController : BaseController<Order, OrderDTO>
+    [ApiController]
+    [Route("api/[controller]")]
+    public class OrdersController : Controller
+        //: BaseController<CategoryModel>
     {
 
-        public OrdersController(IOrdersService ordersService, IMapper mapper, ILoggerManager logger) : base(ordersService, mapper,logger) { }
+        private readonly IMediator _mediator;
 
+        public OrdersController(IMediator mediator)
+            //: base(productsService, mapper, logger)
+        {
+            _mediator = mediator ?? throw new ArgumentNullException(nameof(mediator));
+        }
 
+        [HttpGet]
+        public async Task<IActionResult> GetAll()
+        {
+            return Ok(await _mediator.Send(new GetAllOrdersQuery()));
+        }
+
+        [HttpGet("{id}")]
+        public async Task<IActionResult> GetById(int id)
+        {
+            return Ok(await _mediator.Send(new GetOrderByIdQuery() { Id = id }));
+        }
+
+        [HttpPost]
+        public async Task<IActionResult> CreateProduct([FromBody] CreateOrderCommand command)
+        {
+            return Ok(await _mediator.Send(command));
+        }
     }
 }
+

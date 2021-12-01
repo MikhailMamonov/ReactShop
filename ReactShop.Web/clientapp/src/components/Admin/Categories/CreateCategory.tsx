@@ -17,8 +17,6 @@ const CreateCategory: FC<CreateCategoryProps> = (props) => {
     console.log("before", item);
     setItem({ ...item, name: "" });
     console.log("After", item);
-    //form.resetFields();
-    //handleReset();
   };
   const handleReset = () => {
     console.log("before", item);

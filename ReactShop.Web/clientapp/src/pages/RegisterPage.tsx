@@ -1,8 +1,8 @@
-import React, { useEffect } from "react";
+import React from "react";
 import { Link } from "react-router-dom";
 import { connect } from "react-redux";
-import { register, resetRegisterForm } from "../store/action-creators/auth";
-import { RootStateType } from "../store/store";
+import { register, resetRegisterForm } from "store/action-creators/auth";
+import { RootStateType } from "../store";
 
 type RegisterPageProps = {
   error: string | undefined;
@@ -39,19 +39,9 @@ const RegisterPage: React.FC<RegisterPageProps> = (props) => {
     const { user } = registerForm;
     if (user.username && user.email && user.password) {
       props.register(user.username, user.email, user.password);
+      props.resetRegisterForm();
     }
   };
-
-  useEffect(() => {
-    console.log("props", props);
-    if (props.error) {
-      props.resetRegisterForm();
-      props.history.push("error");
-    } else if (!props.error) {
-      props.resetRegisterForm();
-      props.history.push("/login");
-    }
-  });
 
   const { user, submitted } = registerForm;
   return (

@@ -1,9 +1,12 @@
+import { Category } from "types";
+
 export type Product = {
   id: number;
   name: string;
   price?: number;
   description?: string;
   categoryId: number;
+  category: Category;
   image: string | undefined;
 };
 
@@ -30,9 +33,13 @@ export enum productsActionTypes {
   EDIT_PRODUCT_FAILURE = "EDIT_PRODUCT_FAILURE",
   EDIT_PRODUCT_SUCCESS = "EDIT_PRODUCT_SUCCESS",
   PRODUCTS = "products",
+
+  ADD_PRODUCT_TO_CART_REQUEST = "ADD_PRODUCT_TO_CART_REQUEST",
+  ADD_PRODUCT_TO_CART_FAILURE = "ADD_PRODUCT_TO_CART_FAILURE",
+  ADD_PRODUCT_TO_CART_SUCCESS = "ADD_PRODUCT_TO_CART_SUCCESS",
 }
 
-export type AddProductReguestAction = {
+export type AddProductRequestAction = {
   type: productsActionTypes.ADD_PRODUCT_REQUEST;
 };
 
@@ -46,7 +53,7 @@ export type AddProductFailureAction = {
   error: string;
 };
 
-export type GetProductsReguestAction = {
+export type GetProductsRequestAction = {
   type: productsActionTypes.GET_PRODUCTS_REQUEST;
 };
 
@@ -60,7 +67,7 @@ export type GetProductsFailureAction = {
   error: string;
 };
 
-export type EditProductReguestAction = {
+export type EditProductRequestAction = {
   type: productsActionTypes.EDIT_PRODUCT_REQUEST;
 };
 
@@ -75,7 +82,7 @@ export type EditProductFailureAction = {
   error: string;
 };
 
-export type DeleteProductReguestAction = {
+export type DeleteProductRequestAction = {
   type: productsActionTypes.DELETE_PRODUCT_REQUEST;
 };
 
@@ -89,16 +96,33 @@ export type DeleteProductFailureAction = {
   error: string | undefined;
 };
 
+export type AddProductToCartRequestAction = {
+  type: productsActionTypes.ADD_PRODUCT_TO_CART_REQUEST;
+};
+
+export type AddProductToCartSuccessAction = {
+  type: productsActionTypes.ADD_PRODUCT_TO_CART_SUCCESS;
+  id: number;
+};
+
+export type AddProductToCartFailureAction = {
+  type: productsActionTypes.ADD_PRODUCT_TO_CART_FAILURE;
+  error: string | undefined;
+};
+
 export type ProductsActions =
-  | AddProductReguestAction
+  | AddProductRequestAction
   | AddProductSuccessAction
   | AddProductFailureAction
   | GetProductsSuccessAction
-  | GetProductsReguestAction
+  | GetProductsRequestAction
   | GetProductsFailureAction
   | EditProductSuccessAction
-  | EditProductReguestAction
+  | EditProductRequestAction
   | EditProductFailureAction
   | DeleteProductSuccessAction
-  | DeleteProductReguestAction
-  | DeleteProductFailureAction;
+  | DeleteProductRequestAction
+  | DeleteProductFailureAction
+  | AddProductToCartSuccessAction
+  | AddProductToCartRequestAction
+  | AddProductToCartFailureAction;

@@ -1,6 +1,9 @@
 import { Button, Col, Form, Row, Table } from "antd";
-import { useEffect, useState } from "react";
+import { useTypedSelector } from "hooks/useTypedSelector";
+import { useCallback, useEffect, useState } from "react";
 import Loader from "react-loader-spinner";
+import { useDispatch } from "react-redux";
+import { getAllUsersThunk } from "store/action-creators/users";
 import { User } from "../../../types/users";
 import { EditableCell } from "../EditableCell";
 import CreateUser from "./CreateUser";
@@ -15,6 +18,18 @@ const Users: React.FC<UserProps> = (props) => {
   const [editingKey, setEditingKey] = useState("");
   const isEditing = (record: User) => record.id === editingKey;
   const [dataSource, setDataSource] = useState(originData);
+
+  const dispatch = useDispatch();
+  const { users, isLoading, error } = useTypedSelector((state) => state.users);
+
+  const fetchUsers = useCallback(() => {
+    console.log("getAllUsersThunk");
+    dispatch(getAllUsersThunk());
+  }, [dispatch]);
+
+  useEffect(() => {
+    fetchUsers();
+  }, [fetchUsers]);
 
   useEffect(() => {
     const data = props.users.map((row) => {

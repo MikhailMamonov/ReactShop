@@ -1,16 +1,13 @@
-import { ThunkAction } from "redux-thunk";
 import { categoriesActionTypes, Category } from "../../types/categories";
 import axios, { AxiosError } from "axios";
-import categoriessDataService from "./../api/category.service";
-import { RootStateType } from "../store";
-import { ActionTypes } from "../../types/actionCreators";
 
-type thunkType = ThunkAction<void, RootStateType, unknown, ActionTypes>;
+import { thunkType } from "../../types";
+import { categoryService } from "../api/services";
 
 export const addCategoryThunk = (newCategory: Category): thunkType => {
   return (dispatch) => {
     dispatch({ type: categoriesActionTypes.ADD_CATEGORY_REQUEST });
-    categoriessDataService
+    categoryService
       .create({
         id: newCategory.id,
         name: newCategory.name,
@@ -34,7 +31,7 @@ export const addCategoryThunk = (newCategory: Category): thunkType => {
 export const getAllCategoriesThunk = (): thunkType => {
   return (dispatch) => {
     dispatch({ type: categoriesActionTypes.GET_CATEGORIES_REQUEST });
-    categoriessDataService
+    categoryService
       .getAll()
       .then((categories: Category[]) => {
         dispatch({
@@ -61,7 +58,7 @@ export const getAllCategoriesThunk = (): thunkType => {
 export const deleteCategoryThunk = (id: number): thunkType => {
   return (dispatch) => {
     dispatch({ type: categoriesActionTypes.DELETE_CATEGORY_REQUEST });
-    categoriessDataService
+    categoryService
       .remove(id)
       .then((deleteRespone) => {
         dispatch({
@@ -88,7 +85,7 @@ export const deleteCategoryThunk = (id: number): thunkType => {
 export const editCategoryThunk = (id: number, item: Category): thunkType => {
   return (dispatch) => {
     dispatch({ type: categoriesActionTypes.EDIT_CATEGORY_REQUEST });
-    categoriessDataService
+    categoryService
       .update(id, item)
       .then((editedCategory: Category) => {
         dispatch({

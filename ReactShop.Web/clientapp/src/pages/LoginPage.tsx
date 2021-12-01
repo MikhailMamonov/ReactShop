@@ -1,12 +1,13 @@
 import React from "react";
 import { connect } from "react-redux";
-import { login } from "../store/action-creators/auth";
 import { Typography, Space } from "antd";
-import { RootStateType } from "../store/store";
+import { RootStateType } from "../store";
 import { ActionTypes } from "../types/actionCreators";
 import { ThunkDispatch } from "redux-thunk";
 import { User } from "../types/users";
+import { history } from "../helpers/history";
 import { Form, Input, Button, Checkbox } from "antd";
+import { login } from "store/action-creators/auth";
 
 const { Text } = Typography;
 
@@ -23,6 +24,7 @@ const LoginPage: React.FC<LoginProps> = (props) => {
       const { userName, password } = values;
       if (userName && password) {
         props.login(userName, password);
+        history.push("/home");
       }
     } catch (e: any) {}
   };

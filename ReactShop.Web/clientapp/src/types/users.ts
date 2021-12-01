@@ -1,7 +1,10 @@
+import { ShoppingCart } from "types";
+
 export type User = {
   id: string;
   userName: string;
   email?: string;
+  shoppingCart?: ShoppingCart;
   password: string;
 };
 
@@ -30,7 +33,7 @@ export enum usersActionTypes {
   USERS = "users",
 }
 
-export type AddUserReguestAction = {
+export type AddUserRequestAction = {
   type: usersActionTypes.ADD_USER_REQUEST;
 };
 
@@ -44,7 +47,7 @@ export type AddUserFailureAction = {
   error: string;
 };
 
-export type GetUsersReguestAction = {
+export type GetUsersRequestAction = {
   type: usersActionTypes.GET_USERS_REQUEST;
 };
 
@@ -73,7 +76,7 @@ export type EditUserFailureAction = {
   error: string;
 };
 
-export type DeleteUserReguestAction = {
+export type DeleteUserRequestAction = {
   type: usersActionTypes.DELETE_USER_REQUEST;
 };
 
@@ -88,15 +91,15 @@ export type DeleteUserFailureAction = {
 };
 
 export type UsersActions =
-  | AddUserReguestAction
+  | AddUserRequestAction
   | AddUserSuccessAction
   | AddUserFailureAction
   | GetUsersSuccessAction
-  | GetUsersReguestAction
+  | GetUsersRequestAction
   | GetUsersFailureAction
   | EditUserSuccessAction
   | EditUserRequestAction
   | EditUserFailureAction
   | DeleteUserSuccessAction
-  | DeleteUserReguestAction
+  | DeleteUserRequestAction
   | DeleteUserFailureAction;

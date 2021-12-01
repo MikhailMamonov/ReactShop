@@ -1,43 +1,39 @@
 ﻿using AutoMapper;
 
 using Microsoft.AspNetCore.Authorization;
-using Microsoft.AspNetCore.Cors;
 using Microsoft.AspNetCore.Mvc;
 
 using ReactShop.LoggerService;
-using ReactShop.Services.Implementations;
-using ReactShop.Services.Interfaces;
-
 using System;
-using System.Collections.Generic;
-using System.Linq;
 using System.Threading.Tasks;
+using ReactShop.Application.Services.Rest;
+
 
 namespace ReactShop.Web.Controllers
 {
 
     [Route("api/[controller]")]
-    public class BaseController<TDomain, TViewModel> : Controller where TDomain : class where TViewModel : class
+    public class BaseController<TViewModel> : Controller where TViewModel : class
     {
-        protected IRestService<TDomain, TViewModel> _restService { get; private set; }
-        private readonly IMapper _mapper;
-        private ILoggerManager _logger;
+        protected IRestService<TViewModel> RestService { get; private set; }
+        public IMapper Mapper1 { get; }
+        public ILoggerManager Logger { get; }
 
 
-        public BaseController(IRestService<TDomain, TViewModel> restService, IMapper mapper, ILoggerManager logger)
+        public BaseController(IRestService<TViewModel> restService, IMapper mapper, ILoggerManager logger)
         {
-            _restService = restService;
-            _mapper = mapper;
-            _logger = logger;
+            RestService = restService;
+            Mapper1 = mapper;
+            Logger = logger;
         }
 
+        
         [HttpGet]
-
         public async Task<IActionResult> Get()
         {
             try
             {
-                var objectList = await _restService.GetAll();
+                var objectList = await RestService.GetAll();
                 return Ok(objectList);
             }
             catch (Exception e)
@@ -46,12 +42,13 @@ namespace ReactShop.Web.Controllers
             }
         }
 
-        [HttpGet("{id}")]
-        public async Task<IActionResult> Get(int id)
-        {
-            var item =await _restService.GetById(id.ToString());
-            return Ok(new { item });
-        }
+        //[Authorize]
+        //[HttpGet("{id}")]
+        //public async Task<IActionResult> Get(int id)
+        //{
+        //    var item =await RestService.GetById(id.ToString());
+        //    return Ok(new { item });
+        //}
 
         [Authorize]
         [HttpPost]
@@ -68,7 +65,7 @@ namespace ReactShop.Web.Controllers
             }
 
             var newObject =
-                await _restService.Add(requestValue);
+                await RestService.Add(requestValue);
             return Ok(newObject);
 
         }
@@ -77,7 +74,7 @@ namespace ReactShop.Web.Controllers
         [HttpPut("{id}")]
         public async Task<IActionResult> Edit(string id, [FromBody] TViewModel requestValue)
         {
-            await _restService.Edit(requestValue);
+            await RestService.Edit(requestValue);
             return Ok(requestValue);
 
         }
@@ -86,42 +83,42 @@ namespace ReactShop.Web.Controllers
         [HttpPut("{id:int}")]
         public async Task<IActionResult> Edit(int id, [FromBody] TViewModel requestValue)
         {
-            await _restService.Edit(requestValue);
+            await RestService.Edit(requestValue);
             return Ok(requestValue);
         }
 
-        [Authorize]
-        [HttpDelete("{id:int}")]
-        public async Task<IActionResult> Remove(int id)
-        {
-            try
-            {
-                await _restService.Remove(id.ToString());
-                return Ok(
-                    new { id = id, message = string.Format("object with id -> {0} succes deleted", id) });
-            }
-            catch (Exception e)
-            {
-                return LogErrorAndReturnStatusCode(e.Message + e.InnerException + e.StackTrace, 500);
-            }
-        }
+        //[Authorize]
+        //[HttpDelete("{id:int}")]
+        //public async Task<IActionResult> Remove(int id)
+        //{
+        //    try
+        //    {
+        //        await RestService.Remove(id.ToString());
+        //        return Ok(
+        //            new { id, message = string.Format("object with id -> {0} succes deleted", id) });
+        //    }
+        //    catch (Exception e)
+        //    {
+        //        return LogErrorAndReturnStatusCode(e.Message + e.InnerException + e.StackTrace, 500);
+        //    }
+        //}
 
-        [Authorize]
-        [HttpDelete("{id}")]
-        public async Task<IActionResult> Remove(string id)
-        {
-            try
-            {
-                await _restService.Remove(id.ToString());
-                return Ok(new { id, message = string.Format("object with id -> {0} succes deleted", id) });
+        //[Authorize]
+        //[HttpDelete("{id}")]
+        //public async Task<IActionResult> Remove(string id)
+        //{
+        //    try
+        //    {
+        //        await RestService.Remove(id);
+        //        return Ok(new { id, message = string.Format("object with id -> {0} succes deleted", id) });
 
-            }
-            catch (Exception e)
-            {
-                return LogErrorAndReturnStatusCode(e.Message + e.InnerException + e.StackTrace, 500);
-            }
+        //    }
+        //    catch (Exception e)
+        //    {
+        //        return LogErrorAndReturnStatusCode(e.Message + e.InnerException + e.StackTrace, 500);
+        //    }
 
-        }
+        //}
 
         //protected async Task<IActionResult> ExecuteCommand(Func<IActionResult> action)
         //{

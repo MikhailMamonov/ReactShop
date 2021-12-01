@@ -3998,9 +3998,9 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "D:\\petProjects\\ReactShop\\ReactShop.Domain\\ReactShop.Domain.csproj",
-      "projectName": "ReactShop.Domain",
-      "projectPath": "D:\\petProjects\\ReactShop\\ReactShop.Domain\\ReactShop.Domain.csproj",
+      "projectUniqueName": "D:\\petProjects\\ReactShop\\ReactShop.Domain\\ReactShop.Core.csproj",
+      "projectName": "ReactShop.Core",
+      "projectPath": "D:\\petProjects\\ReactShop\\ReactShop.Domain\\ReactShop.Core.csproj",
       "packagesPath": "C:\\Users\\User\\.nuget\\packages\\",
       "outputPath": "D:\\petProjects\\ReactShop\\ReactShop.Domain\\obj\\",
       "projectStyle": "PackageReference",

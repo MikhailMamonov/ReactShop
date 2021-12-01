@@ -1,10 +1,5 @@
 import axios from "axios";
 import LocalStorageService from "./LocalStorageService";
-import store, { AppDispatch } from "../store";
-import { logout } from "./../action-creators/auth";
-import { Dispatch } from "redux";
-import { useAppDispatch } from "./../../hooks/useTypedSelector";
-import { useDispatch } from "react-redux";
 import { history } from "../../helpers/history";
 
 const localStorageService = new LocalStorageService();

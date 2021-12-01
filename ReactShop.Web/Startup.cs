@@ -1,8 +1,13 @@
+using System;
+using System.IO;
+using System.Reflection;
+using System.Text;
+using System.Threading.Tasks;
+using MediatR;
 using Microsoft.AspNetCore.Authentication.Cookies;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
-using Microsoft.AspNetCore.HttpsPolicy;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.SpaServices.ReactDevelopmentServer;
 using Microsoft.EntityFrameworkCore;
@@ -10,21 +15,18 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.IdentityModel.Tokens;
-
 using NLog;
-
 using ReactShop.Domain;
-using ReactShop.Domain.Entities;
 using ReactShop.LoggerService;
 using ReactShop.Web.Extensions;
+using Microsoft.AspNetCore.Http;
+using Microsoft.OpenApi.Models;
+using ReactShop.Application;
+using ReactShop.Application.Handlers;
+using ReactShop.Core.Entities;
+using ReactShop.Infrastructure.Data;
 
-using System;
-using System.IO;
-using System.Net;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace ReactShop
+namespace ReactShop.Web
 {
     public class Startup
     {
@@ -36,24 +38,25 @@ namespace ReactShop
 
         public IConfiguration Configuration { get; }
 
-        // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
-            //For Entity Framework
             services.AddDbContext<ApplicationDbContext>(options => options.UseSqlServer(Configuration.GetConnectionString("DefaultConnection")));
-            // For Identity  
             services.AddIdentity<ApplicationUser, IdentityRole>()
                 .AddEntityFrameworkStores<ApplicationDbContext>();
 
-            // Adding Authentication  
+            services.AddAutoMapper(typeof(Startup));
+            services.RegisterRequestHandlers();
+            services.ConfigureMapper();
+
+            services.CustomServices();
+
             services.AddAuthentication(options =>
             {
                 options.DefaultAuthenticateScheme = JwtBearerDefaults.AuthenticationScheme;
                 options.DefaultChallengeScheme = JwtBearerDefaults.AuthenticationScheme;
                 options.DefaultScheme = JwtBearerDefaults.AuthenticationScheme;
             })
-            // Adding Jwt Bearer  
-            .AddJwtBearer(options =>
+                .AddJwtBearer(options =>
             {
                 options.SaveToken = true;
                 options.RequireHttpsMetadata = false;
@@ -91,11 +94,27 @@ namespace ReactShop
                     }
                 };
             });
-            services.AddControllersWithViews().AddNewtonsoftJson();
+            services.AddControllersWithViews()
+                .AddNewtonsoftJson();
 
-            services.ConfigureCustomServices();
-            services.ConfigureMapper();
+
+            #region Swagger
+            services.AddSwaggerGen(c =>
+            {
+                //c.IncludeXmlComments(string.Format(@"{0}\CQRS.WebApi.xml", System.AppDomain.CurrentDomain.BaseDirectory));
+                c.SwaggerDoc("v1", new OpenApiInfo
+                {
+                    Version = "v1",
+                    Title = "CQRS.WebApi",
+                });
+            });
+            #endregion
+
+
+            //services.AddMediatR(Assembly.GetExecutingAssembly());
+
             services.ConfigureLoggerService();
+            services.AddHttpContextAccessor();
 
             services.AddCors(o => o.AddPolicy("MyPolicy", builder =>
             {
@@ -104,8 +123,6 @@ namespace ReactShop
                        .AllowAnyHeader();
             }));
 
-
-            // In production, the React files will be served from this directory
             services.AddSpaStaticFiles(configuration =>
             {
                 configuration.RootPath = "clientapp/build";
@@ -130,6 +147,13 @@ namespace ReactShop
 
 
             app.UseHttpsRedirection();
+            #region Swagger
+            app.UseSwagger();
+            app.UseSwaggerUI(c =>
+            {
+                c.SwaggerEndpoint("/swagger/v1/swagger.json", "CQRS.WebApi");
+            });
+            #endregion
 
             app.UseCors(x => x
                 .AllowAnyOrigin()

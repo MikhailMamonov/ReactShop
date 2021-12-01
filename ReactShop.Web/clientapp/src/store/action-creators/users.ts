@@ -3,10 +3,10 @@ import { Dispatch } from "react";
 import { ThunkAction } from "redux-thunk";
 import { ActionTypes } from "../../types/actionCreators";
 import { UsersActions, usersActionTypes } from "../../types/users";
-import userService from "../api/user.service";
-import { RootStateType } from "../store";
+import { RootStateType } from "..";
 
-import { User } from "./../../types/users";
+import { User } from "../../types/users";
+import { userService } from "../api/services";
 
 type thunkType = ThunkAction<void, RootStateType, unknown, ActionTypes>;
 

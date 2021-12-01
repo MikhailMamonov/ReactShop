@@ -1,10 +1,10 @@
 import { ThunkAction } from "redux-thunk";
-import { Product, productsActionTypes } from "./../../types/products";
+import { Product, productsActionTypes } from "../../types/products";
 
 import axios, { AxiosError } from "axios";
-import productsDataService from "./../api/product.service";
-import { RootStateType } from "../store";
+import { RootStateType } from "..";
 import { ActionTypes } from "../../types/actionCreators";
+import { productService } from "../api/services/product.service";
 
 type thunkType = ThunkAction<void, RootStateType, unknown, ActionTypes>;
 
@@ -13,12 +13,13 @@ export const addProductThunk = (newProduct: Product): thunkType => {
     dispatch({ type: productsActionTypes.ADD_PRODUCT_REQUEST });
     debugger;
     console.log("newProduct", newProduct);
-    productsDataService
+    productService
       .create({
         id: 0,
         name: newProduct.name,
         price: newProduct.price,
         categoryId: newProduct.categoryId,
+        category: newProduct.category,
         image: newProduct.image,
       })
       .then((product) => {
@@ -40,7 +41,7 @@ export const editProductThunk = (id: number, item: Product): thunkType => {
   return (dispatch) => {
     dispatch({ type: productsActionTypes.EDIT_PRODUCT_REQUEST });
     console.log("editProductThunk -> item", item);
-    productsDataService
+    productService
       .update(id, item)
       .then((product) => {
         console.log("editProductThunk -> res.data", product);
@@ -69,9 +70,10 @@ export const editProductThunk = (id: number, item: Product): thunkType => {
 export const getAllProductsThunk = (): thunkType => {
   return (dispatch) => {
     dispatch({ type: productsActionTypes.GET_PRODUCTS_REQUEST });
-    productsDataService
+    productService
       .getAll()
       .then((products) => {
+        console.log("products", products);
         dispatch({
           type: productsActionTypes.GET_PRODUCTS_SUCCESS,
           products: products,
@@ -82,7 +84,7 @@ export const getAllProductsThunk = (): thunkType => {
           console.log(err);
           dispatch({
             type: productsActionTypes.GET_PRODUCTS_FAILURE,
-            error: err.response?.data.ToString(),
+            error: err.response?.data,
           });
         } else {
           dispatch({
@@ -97,7 +99,7 @@ export const getAllProductsThunk = (): thunkType => {
 export const deleteProductThunk = (id: number): thunkType => {
   return (dispatch) => {
     dispatch({ type: productsActionTypes.DELETE_PRODUCT_REQUEST });
-    productsDataService
+    productService
       .remove(id)
       .then(() => {
         dispatch({ type: productsActionTypes.DELETE_PRODUCT_SUCCES, id });

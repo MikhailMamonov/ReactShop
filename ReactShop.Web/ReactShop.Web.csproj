@@ -11,6 +11,9 @@
 
   <ItemGroup>
     <PackageReference Include="AutoMapper" Version="10.1.1" />
+    <PackageReference Include="AutoMapper.Extensions.Microsoft.DependencyInjection" Version="8.1.1" />
+    <PackageReference Include="FluentValidation" Version="10.3.4" />
+    <PackageReference Include="MediatR.Extensions.Microsoft.DependencyInjection" Version="9.0.0" />
     <PackageReference Include="Microsoft.AspNetCore.Authentication.JwtBearer" Version="5.0.9" />
     <PackageReference Include="Microsoft.AspNetCore.Mvc.NewtonsoftJson" Version="5.0.10" />
     <PackageReference Include="Microsoft.AspNetCore.SpaServices.Extensions" Version="5.0.7" />
@@ -19,25 +22,121 @@
       <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
     </PackageReference>
     <PackageReference Include="NLog.Extensions.Logging" Version="1.7.3" />
+    <PackageReference Include="Swashbuckle.AspNetCore" Version="6.2.3" />
   </ItemGroup>
 
   <ItemGroup>
     <!-- Don't publish the SPA source files, but do show them in the project files list -->
+    <Compile Remove="clientapp\**" />
+    <Compile Remove="internal_logs\**" />
+    <Compile Remove="logs\**" />
     <Content Remove="$(SpaRoot)**" />
+    <Content Remove="clientapp\**" />
+    <Content Remove="internal_logs\**" />
+    <Content Remove="logs\**" />
+    <EmbeddedResource Remove="clientapp\**" />
+    <EmbeddedResource Remove="internal_logs\**" />
+    <EmbeddedResource Remove="logs\**" />
     <None Remove="$(SpaRoot)**" />
+    <None Remove="clientapp\**" />
+    <None Remove="internal_logs\**" />
+    <None Remove="logs\**" />
     <None Include="$(SpaRoot)**" Exclude="$(SpaRoot)node_modules\**" />
   </ItemGroup>
 
   <ItemGroup>
-    <Content Include="clientapp\package-lock.json" />
-    <Content Include="clientapp\package.json" />
-    <Content Include="clientapp\public\manifest.json" />
+    <None Remove="clientapp\.gitignore" />
+    <None Remove="clientapp\.vscode\launch.json" />
+    <None Remove="clientapp\package-lock.json" />
+    <None Remove="clientapp\package.json" />
+    <None Remove="clientapp\public\favicon.ico" />
+    <None Remove="clientapp\public\index.html" />
+    <None Remove="clientapp\public\logo192.png" />
+    <None Remove="clientapp\public\logo512.png" />
+    <None Remove="clientapp\public\manifest.json" />
+    <None Remove="clientapp\README.md" />
+    <None Remove="clientapp\src\App.css" />
+    <None Remove="clientapp\src\App.test.js" />
+    <None Remove="clientapp\src\App.tsx" />
+    <None Remove="clientapp\src\components\Admin\AdminTable.tsx" />
+    <None Remove="clientapp\src\components\Admin\Categories\Categories.tsx" />
+    <None Remove="clientapp\src\components\Admin\Categories\CategoriesContainer.ts" />
+    <None Remove="clientapp\src\components\Admin\Categories\CreateCategory.tsx" />
+    <None Remove="clientapp\src\components\Admin\EditableCell.tsx" />
+    <None Remove="clientapp\src\components\Admin\Products\CreateProduct.tsx" />
+    <None Remove="clientapp\src\components\Admin\Products\ImageUploader.tsx" />
+    <None Remove="clientapp\src\components\Admin\Products\Products.tsx" />
+    <None Remove="clientapp\src\components\Admin\Products\ProductsContainer.tsx" />
+    <None Remove="clientapp\src\components\Admin\Users\CreateUser.tsx" />
+    <None Remove="clientapp\src\components\Admin\Users\Users.tsx" />
+    <None Remove="clientapp\src\components\Admin\Users\UsersContainer.ts" />
+    <None Remove="clientapp\src\components\Admin\utils.ts" />
+    <None Remove="clientapp\src\components\AppContent.jsx" />
+    <None Remove="clientapp\src\components\AppHeader.tsx" />
+    <None Remove="clientapp\src\components\AppRouter.tsx" />
+    <None Remove="clientapp\src\components\Catalog\catalog.css" />
+    <None Remove="clientapp\src\components\Catalog\Catalog.tsx" />
+    <None Remove="clientapp\src\components\Catalog\CatalogContainer.ts" />
+    <None Remove="clientapp\src\components\Catalog\CatalogContent.tsx" />
+    <None Remove="clientapp\src\components\Catalog\ProductCard.tsx" />
+    <None Remove="clientapp\src\components\Catalog\ShoppingCart.tsx" />
+    <None Remove="clientapp\src\components\HomePage.tsx" />
+    <None Remove="clientapp\src\components\Products\ProductList.jsx" />
+    <None Remove="clientapp\src\helpers\history.ts" />
+    <None Remove="clientapp\src\hooks\useTypedSelector.ts" />
+    <None Remove="clientapp\src\http-common.ts" />
+    <None Remove="clientapp\src\index.css" />
+    <None Remove="clientapp\src\index.tsx" />
+    <None Remove="clientapp\src\logo.svg" />
+    <None Remove="clientapp\src\pages\AdminPage.tsx" />
+    <None Remove="clientapp\src\pages\CatalogPage.tsx" />
+    <None Remove="clientapp\src\pages\ErrorPage.tsx" />
+    <None Remove="clientapp\src\pages\HomePage.tsx" />
+    <None Remove="clientapp\src\pages\LoginPage.tsx" />
+    <None Remove="clientapp\src\pages\ProfilePage.tsx" />
+    <None Remove="clientapp\src\pages\RegisterPage.tsx" />
+    <None Remove="clientapp\src\pages\ShoppingCartPage.tsx" />
+    <None Remove="clientapp\src\react-app-env.d.ts" />
+    <None Remove="clientapp\src\reportWebVitals.js" />
+    <None Remove="clientapp\src\router\index.ts" />
+    <None Remove="clientapp\src\setupTests.js" />
+    <None Remove="clientapp\src\store\api\http-common.ts" />
+    <None Remove="clientapp\src\store\api\LocalStorageService.ts" />
+    <None Remove="clientapp\src\store\auth\auth.reducer.ts" />
+    <None Remove="clientapp\src\store\auth\auth.service.ts" />
+    <None Remove="clientapp\src\store\auth\auth.state.ts" />
+    <None Remove="clientapp\src\store\auth\auth.ts" />
+    <None Remove="clientapp\src\store\categories\categories.reducer.ts" />
+    <None Remove="clientapp\src\store\categories\categories.ts" />
+    <None Remove="clientapp\src\store\categories\category.service.ts" />
+    <None Remove="clientapp\src\store\products\product.service.ts" />
+    <None Remove="clientapp\src\store\products\products.reducer.ts" />
+    <None Remove="clientapp\src\store\products\products.ts" />
+    <None Remove="clientapp\src\store\reducers\index.ts" />
+    <None Remove="clientapp\src\store\shoppingCart\actionCreators.ts" />
+    <None Remove="clientapp\src\store\shoppingCart\categories.reducer.ts" />
+    <None Remove="clientapp\src\store\shoppingCart\shoppingCart.service.ts" />
+    <None Remove="clientapp\src\store\store.ts" />
+    <None Remove="clientapp\src\store\users\user.service.ts" />
+    <None Remove="clientapp\src\store\users\users.reducer.ts" />
+    <None Remove="clientapp\src\store\users\users.ts" />
+    <None Remove="clientapp\src\types\actionCreators.ts" />
+    <None Remove="clientapp\src\types\admin.ts" />
+    <None Remove="clientapp\src\types\api.services.ts" />
+    <None Remove="clientapp\src\types\auth.ts" />
+    <None Remove="clientapp\src\types\categories.ts" />
+    <None Remove="clientapp\src\types\index.ts" />
+    <None Remove="clientapp\src\types\products.ts" />
+    <None Remove="clientapp\src\types\shoppingCart.ts" />
+    <None Remove="clientapp\src\types\users.ts" />
+    <None Remove="clientapp\tsconfig.json" />
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\ReactShop.Domain\ReactShop.Domain.csproj" />
+    <ProjectReference Include="..\ReactShop.Application\ReactShop.Application.csproj" />
+    <ProjectReference Include="..\ReactShop.Domain\ReactShop.Core.csproj" />
+    <ProjectReference Include="..\ReactShop.Infrastucture\ReactShop.Infrastructure.csproj" />
     <ProjectReference Include="..\ReactShop.LoggerService\ReactShop.LoggerService.csproj" />
-    <ProjectReference Include="..\ReactShop.Services\ReactShop.Services.csproj" />
   </ItemGroup>
 
   <Target Name="DebugEnsureNodeEnv" BeforeTargets="Build" Condition=" '$(Configuration)' == 'Debug' And !Exists('$(SpaRoot)node_modules') ">
