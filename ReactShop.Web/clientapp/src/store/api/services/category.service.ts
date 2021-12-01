@@ -42,5 +42,3 @@ export const categoryService = {
   update,
   remove,
 };
-
-//export default categoryService;

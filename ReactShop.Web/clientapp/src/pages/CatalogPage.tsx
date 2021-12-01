@@ -1,21 +1,8 @@
-// import CatalogContainer from "./CatalogContainer";
-
-// const CatalogPage: React.FC = () => {
-//   return (
-//     <div>
-//       <CatalogContainer></CatalogContainer>
-//     </div>
-//   );
-// };
-
-// export default CatalogPage;
-
 import React, { FC, useEffect, useState } from "react";
 import "./catalog.css";
 import { Typography, Menu, Layout } from "antd";
-//import { CatalogProps } from "../components/Catalog/CatalogContainer";
 import CatalogSection from "../components/Catalog/CatalogSection";
-import ShoppingCart from "../components/Catalog/ShoppingCart";
+import ShoppingCart from "../components/Catalog/ShoppingCartSection";
 import { Product } from "../types";
 import { useTypedSelector } from "hooks/useTypedSelector";
 

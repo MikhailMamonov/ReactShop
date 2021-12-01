@@ -10,7 +10,7 @@ const axiosInstance = axios.create({
     "Content-type": "application/json",
   },
 });
-// Request interceptor for API calls
+
 axiosInstance.interceptors.request.use(
   (config) => {
     const token = localStorageService.getAccessToken();
@@ -29,18 +29,14 @@ axiosInstance.interceptors.response.use(
     return response;
   },
   (error) => {
-    // Reject promise if usual error
     if (error.status !== 401) {
       return Promise.reject(error);
     }
     const originalConfig = error.config;
-    // Reject promise if usual error
 
     if (error.response) {
       if (error.response.status === UNAUTHORIZED && !originalConfig._retry) {
         originalConfig._retry = true;
-        // Do something, call refreshToken() request for example;
-        // return a request
         history.push("login");
         return Promise.reject(error);
       }

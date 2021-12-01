@@ -11,7 +11,6 @@ const axiosInstance = axios.create({
   },
 });
 
-// Request interceptor for API calls
 axiosInstance.interceptors.request.use(
   (config) => {
     const token = localStorageService.getAccessToken();

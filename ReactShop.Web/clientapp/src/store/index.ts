@@ -3,9 +3,6 @@ import { rootReducer } from "./reducers/index";
 import thunk, { ThunkMiddleware } from "redux-thunk";
 import { createLogger } from "redux-logger";
 import { composeWithDevTools } from "redux-devtools-extension";
-// import { getAllUsersThunk } from "./users/actionCreators";
-// import { getAllProductsThunk } from "./products/actionCreators";
-// import { getAllCategoriesThunk } from "./categories/actionCreators";
 import { ActionTypes } from "../types/actionCreators";
 import { ThunkDispatch } from "redux-thunk";
 import { useDispatch } from "react-redux";
@@ -32,9 +29,5 @@ const dispatch = store.dispatch as ThunkDispatch<
 
 export type AppDispatch = typeof dispatch;
 export const useAppDispatch = () => useDispatch<AppDispatch>(); //
-
-// dispatch(getAllUsersThunk());
-// dispatch(getAllProductsThunk());
-// dispatch(getAllCategoriesThunk());
 
 export default store;

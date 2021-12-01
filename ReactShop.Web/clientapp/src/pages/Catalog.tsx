@@ -3,7 +3,7 @@ import "./catalog.css";
 import { Typography, Menu, Layout } from "antd";
 import { CatalogProps } from "./CatalogContainer";
 import CatalogSection from "../components/Catalog/CatalogSection";
-import ShoppingCart from "../components/Catalog/ShoppingCart";
+import ShoppingCart from "../components/Catalog/ShoppingCartSection";
 import { Product } from "../types";
 
 const { Header, Sider } = Layout;

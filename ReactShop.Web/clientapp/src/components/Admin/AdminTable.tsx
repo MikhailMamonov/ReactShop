@@ -14,7 +14,6 @@ type AdminTablePropsType = {
   onAdd: (item: RowType) => void;
 };
 
-//https://github.com/benawad/basic-react-form/tree/6_edit_delete_rows
 const AdminTable: FC<AdminTablePropsType> = (props) => {
   const originData = props.rows.map((row) => {
     return { ...row, key: row.id };

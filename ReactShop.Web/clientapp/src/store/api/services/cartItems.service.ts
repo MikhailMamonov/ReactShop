@@ -42,5 +42,3 @@ export const cartItemsService = {
   update,
   remove,
 };
-
-//export default shoppingCartsDataService;

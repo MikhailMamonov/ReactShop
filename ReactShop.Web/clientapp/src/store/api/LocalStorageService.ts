@@ -1,4 +1,3 @@
-// LocalStorageService.js
 import { User } from "../../types/users";
 interface ILocalStorageService {
   setToken(user: User, accessToken: string): void;

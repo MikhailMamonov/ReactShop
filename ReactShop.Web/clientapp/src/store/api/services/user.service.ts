@@ -46,5 +46,3 @@ export const userService = {
   remove,
   removeAll,
 };
-
-//export default userService;

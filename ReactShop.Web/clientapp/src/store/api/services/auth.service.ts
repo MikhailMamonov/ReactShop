@@ -17,7 +17,6 @@ export const login = (username: string, password: string) => {
 };
 
 export const logout = () => {
-  // remove user from local storage to log user out
   localStorageService.clearToken();
 };
 

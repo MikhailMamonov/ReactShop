@@ -42,5 +42,3 @@ export const productService = {
   remove,
   removeAll,
 };
-
-//export default productService;
