@@ -1,5 +1,6 @@
 ﻿using System.Collections.Generic;
 using Microsoft.AspNetCore.Identity;
+using Newtonsoft.Json;
 using ReactShop.Core.Entities.Base;
 
 namespace ReactShop.Core.Entities
@@ -11,6 +12,9 @@ namespace ReactShop.Core.Entities
         public virtual ShoppingCart ShoppingCart { get; set; }
 
         public virtual IEnumerable<Order> Orders { get; set; }
+
+        [JsonIgnore]
+        public virtual IEnumerable<RefreshToken> RefreshTokens { get; set; }
 
         public override string ToString()
         {

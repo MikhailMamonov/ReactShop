@@ -25,6 +25,7 @@ export const login = (userName: string, password: string): thunkType => {
     authService
       .login(userName, password)
       .then((res: LoginResponseType) => {
+        console.log("res", res);
         dispatch({
           type: authActionTypes.LOGIN_SUCCESS,
           user: res.user,

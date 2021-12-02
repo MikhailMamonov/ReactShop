@@ -25,6 +25,7 @@ using ReactShop.Application;
 using ReactShop.Application.Handlers;
 using ReactShop.Core.Entities;
 using ReactShop.Infrastructure.Data;
+using ReactShop.Web.Authentication.Configuration;
 
 namespace ReactShop.Web
 {
@@ -42,13 +43,20 @@ namespace ReactShop.Web
         {
             services.AddDbContext<ApplicationDbContext>(options => options.UseSqlServer(Configuration.GetConnectionString("DefaultConnection")));
             services.AddIdentity<ApplicationUser, IdentityRole>()
-                .AddEntityFrameworkStores<ApplicationDbContext>();
+                .AddEntityFrameworkStores<ApplicationDbContext>()
+                .AddDefaultTokenProviders();
 
             services.AddAutoMapper(typeof(Startup));
             services.RegisterRequestHandlers();
             services.ConfigureMapper();
 
             services.CustomServices();
+
+            // configure strongly typed settings objects
+            var jwtSection = Configuration.GetSection("JwtBearerTokenSettings");
+            services.Configure<JwtBearerTokenSettings>(jwtSection);
+            var jwtBearerTokenSettings = jwtSection.Get<JwtBearerTokenSettings>();
+            var key = Encoding.ASCII.GetBytes(jwtBearerTokenSettings.SecretKey);
 
             services.AddAuthentication(options =>
             {
@@ -62,11 +70,9 @@ namespace ReactShop.Web
                 options.RequireHttpsMetadata = false;
                 options.TokenValidationParameters = new TokenValidationParameters()
                 {
-                    ValidateIssuer = true,
-                    ValidateAudience = true,
-                    ValidAudience = Configuration["JWT:ValidAudience"],
-                    ValidIssuer = Configuration["JWT:ValidIssuer"],
-                    IssuerSigningKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(Configuration["JWT:Secret"]))
+                    ValidIssuer = jwtBearerTokenSettings.Issuer,
+                    ValidAudience = jwtBearerTokenSettings.Audience,
+                    IssuerSigningKey = new SymmetricSecurityKey(key),
                 };
             });
 
