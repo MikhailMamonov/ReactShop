@@ -17,7 +17,7 @@ Online store app for training in c# development using various architecture appro
 
 
 
-### tried to study patterns
-- layered architecture
+### tried to learn approaches and patterns
+- Layered architecture
 - repositories
 - cqrs 
